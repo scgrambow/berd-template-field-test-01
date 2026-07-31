@@ -1,0 +1,342 @@
+---
+title: "Module 2: Descriptive Statistics and Baseline Characteristics"
+subtitle: "CRP 241 — IVAM-ED Teaching Case"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    theme: flatly
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+This module covers the first analytical step after loading your data: **describing
+the sample**. In a randomized trial, descriptive statistics serve two purposes:
+
+1. **Characterize who was in the study** — so readers know whether the findings
+   might apply to other populations.
+2. **Check that randomization worked** — by comparing baseline characteristics
+   between the intervention and control groups.
+
+By the end of this module you should be able to:
+
+1. Compute means, standard deviations, medians, and frequencies for continuous
+   and categorical variables.
+2. Construct a formatted baseline characteristics table (Table 1).
+3. Explain why we do not perform significance tests of baseline differences in
+   a randomized trial.
+4. Distinguish between clinically meaningful and trivially small group differences
+   at baseline.
+
+------------------------------------------------------------------------
+
+## Setup
+
+```{r}
+#| label: setup
+
+library(dplyr)
+library(gtsummary)  # produces publication-ready Table 1
+library(labelled)   # variable labels
+```
+
+```{r}
+#| label: load-data
+
+# Load the working copy created in Module 1
+# If data/ivam_working.rds does not exist, run R/simulate-ivam-ed.R first,
+# then render 01-data-setup.qmd to generate the working copy.
+dat <- readRDS("../data/ivam_working.rds")
+```
+
+------------------------------------------------------------------------
+
+## 1. Univariate Summaries
+
+Before building a grouped table, it helps to look at the whole sample
+together. This gives you a feel for the data and catches obvious problems
+(values out of range, unexpected distributions).
+
+### Continuous variables
+
+```{r}
+#| label: continuous-summaries
+
+# Summarize all continuous outcome and clinical variables
+dat |>
+  select(age, edu_years, income_wages, dm_duration_y,
+         mmse_0, srq20_0, sci_r_0, pss_0, sf36_0, hba1c_0) |>
+  summarise(across(everything(),
+    list(
+      n     = \(x) sum(!is.na(x)),
+      mean  = \(x) round(mean(x, na.rm = TRUE), 1),
+      sd    = \(x) round(sd(x,   na.rm = TRUE), 1),
+      min   = \(x) round(min(x,  na.rm = TRUE), 1),
+      max   = \(x) round(max(x,  na.rm = TRUE), 1)
+    ),
+    .names = "{.col}__{.fn}"
+  )) |>
+  tidyr::pivot_longer(everything(),
+    names_to  = c("variable", "stat"),
+    names_sep = "__"
+  ) |>
+  tidyr::pivot_wider(names_from = stat, values_from = value)
+```
+
+::: {.callout-note}
+**What to notice:** Compare the means and SDs to the published Table 1 in
+Matzenbacher et al. (2026). The pooled (overall) values should be close.
+Small differences are expected because this is a simulation.
+:::
+
+### Categorical variables
+
+```{r}
+#| label: categorical-summaries
+
+# Count and percentage for each binary variable
+binary_vars <- c("female", "insulin", "hx_depression", "hx_anxiety",
+                 "cognitive_decline")
+
+dat |>
+  select(all_of(binary_vars)) |>
+  summarise(across(everything(),
+    list(
+      n   = \(x) sum(x == 1, na.rm = TRUE),
+      pct = \(x) round(mean(x == 1, na.rm = TRUE) * 100, 1)
+    ),
+    .names = "{.col}__{.fn}"
+  )) |>
+  tidyr::pivot_longer(everything(),
+    names_to  = c("variable", "stat"),
+    names_sep = "__"
+  ) |>
+  tidyr::pivot_wider(names_from = stat, values_from = value) |>
+  mutate(summary = paste0(n, " (", pct, "%)"))
+```
+
+------------------------------------------------------------------------
+
+## 2. Table 1: Baseline Characteristics by Randomized Group
+
+The standard way to present baseline characteristics in a clinical trial is a
+**Table 1**: one column per group, with each row showing a baseline variable.
+
+We use `gtsummary::tbl_summary()` to build this table. The package automatically
+selects appropriate statistics (mean ± SD for continuous variables, n (%) for
+categorical variables) and formats the output for publication.
+
+```{r}
+#| label: table1
+
+# Prepare a clean analysis dataset for Table 1
+# Rename group to a labeled factor so the column headers read clearly
+dat_t1 <- dat |>
+  select(
+    group_label,
+    # Demographics
+    age, female, edu_years, income_wages,
+    # Clinical
+    dm_duration_y, insulin,
+    # Comorbidities
+    hx_depression, hx_anxiety, cognitive_decline,
+    # Baseline scores
+    mmse_0, srq20_0, sci_r_0, pss_0, sf36_0, hba1c_0
+  ) |>
+  mutate(
+    # Convert binary integers to labeled factors for cleaner table display
+    female            = factor(female,            levels = c(1, 0), labels = c("Female", "Male")),
+    insulin           = factor(insulin,           levels = c(1, 0), labels = c("Yes", "No")),
+    hx_depression     = factor(hx_depression,     levels = c(1, 0), labels = c("Yes", "No")),
+    hx_anxiety        = factor(hx_anxiety,        levels = c(1, 0), labels = c("Yes", "No")),
+    cognitive_decline = factor(cognitive_decline, levels = c(1, 0), labels = c("Yes", "No"))
+  )
+
+# Build the table
+tbl_summary(
+  dat_t1,
+  by = group_label,
+  label = list(
+    age               ~ "Age, years",
+    female            ~ "Female sex",
+    edu_years         ~ "Education, years",
+    income_wages      ~ "Income, min. wages/month",
+    dm_duration_y     ~ "Diabetes duration, years",
+    insulin           ~ "Insulin use",
+    hx_depression     ~ "History of depression",
+    hx_anxiety        ~ "History of anxiety",
+    cognitive_decline ~ "Cognitive decline screening (positive)",
+    mmse_0            ~ "MMSE score (0–30)",
+    srq20_0           ~ "SRQ-20 score (0–20)",
+    sci_r_0           ~ "SCI-R score (0–56)",
+    pss_0             ~ "PSS score (0–40)",
+    sf36_0            ~ "SF-36 score (0–100)",
+    hba1c_0           ~ "HbA1c, %"
+  ),
+  statistic = list(
+    all_continuous()  ~ "{mean} ({sd})",
+    all_categorical() ~ "{n} ({p}%)"
+  ),
+  digits = list(
+    all_continuous() ~ 1
+  ),
+  missing = "no"   # missing data handled separately
+) |>
+  add_overall() |>
+  modify_header(label ~ "**Characteristic**") |>
+  modify_spanning_header(c("stat_1", "stat_2") ~ "**Randomized group**") |>
+  bold_labels()
+```
+
+::: {.callout-note}
+**Compare to the published table:** Pull up Table 1 in Matzenbacher et al. (2026).
+Your simulated table should have similar overall means and SDs but will not match
+exactly — this is expected with a synthetic dataset. The group-level differences
+(imbalances) in your table will also differ from the published table because they
+arise from random chance in the simulation.
+:::
+
+------------------------------------------------------------------------
+
+## 3. Interpreting Baseline Balance
+
+### 3a. What "balanced" means in a randomized trial
+
+After randomization, we compare baseline characteristics between groups. In a
+*perfectly* balanced trial, every characteristic would be identical across groups.
+In practice, small differences always occur by chance, even with proper
+randomization.
+
+The key question is: **are any of the differences large enough to matter?**
+
+```{r}
+#| label: baseline-differences
+
+# Calculate the mean difference between groups for each continuous outcome
+# and the standardized mean difference (SMD)
+dat |>
+  group_by(group_label) |>
+  summarise(
+    age_mean       = mean(age),
+    srq20_mean     = mean(srq20_0),
+    hba1c_mean     = mean(hba1c_0),
+    sf36_mean      = mean(sf36_0),
+    pss_mean       = mean(pss_0),
+    sci_r_mean     = mean(sci_r_0)
+  ) |>
+  tidyr::pivot_longer(-group_label, names_to = "variable", values_to = "mean") |>
+  tidyr::pivot_wider(names_from = group_label, values_from = mean) |>
+  mutate(difference = round(`Smart speaker` - `Usual care`, 2))
+```
+
+### 3b. Why we do NOT test for statistical significance at baseline
+
+You may notice that Table 1 in our simulated output (and in most published trials)
+does not include a p-value column. This is intentional, and it is one of the most
+important conventions in clinical trial reporting.
+
+**The reason:** In a properly randomized trial, any baseline difference between
+groups arose by chance — by definition, because we randomized. Testing whether
+a baseline difference is "statistically significant" asks: "Is this difference
+too large to be due to chance?" But we already know it is due to chance (the
+randomization). The test cannot tell us anything informative.
+
+What matters instead is whether the difference is **clinically meaningful** — large
+enough to affect the outcome, regardless of its p-value. A large p-value does not
+mean a baseline imbalance is unimportant; it means only that the sample was too
+small to detect it with confidence.
+
+::: {.callout-important}
+**CONSORT reporting guideline:** Table 1 in a randomized trial should show
+baseline characteristics but **should not include p-values for between-group
+comparisons**. This is stated explicitly in the CONSORT 2010 guidelines
+(Schulz et al., 2010, *BMJ*).
+:::
+
+### 3c. Standardized mean differences
+
+A more informative measure of baseline balance is the **standardized mean
+difference (SMD)**: the group difference divided by the pooled standard deviation.
+Values below 0.1 are generally considered small (good balance); values above 0.2
+may warrant adjustment in the primary analysis.
+
+```{r}
+#| label: smd
+
+# gtsummary can add SMDs directly to the Table 1
+tbl_summary(
+  dat_t1 |> select(group_label, age, srq20_0, hba1c_0, sf36_0, pss_0, sci_r_0),
+  by = group_label,
+  statistic = list(all_continuous() ~ "{mean} ({sd})"),
+  digits    = list(all_continuous() ~ 1),
+  missing   = "no"
+) |>
+  add_difference(test = list(all_continuous() ~ "smd")) |>
+  modify_header(estimate ~ "**SMD**") |>
+  bold_labels()
+```
+
+::: {.callout-note}
+**Interpreting SMDs in this dataset:** Because we simulated from pooled group
+means (the same mean for both groups), any SMDs you see reflect random variation
+from the 1:1 assignment with this particular seed. In the real trial, Table 1
+also showed no important baseline differences. The ANCOVA model in Module 5 will
+adjust for the baseline value of each outcome regardless of the SMD, providing a
+more precise estimate of the treatment effect.
+:::
+
+------------------------------------------------------------------------
+
+## 4. Practice Exercises
+
+1. **Recalculate by hand.** Compute the mean SRQ-20 score for each group using
+   only base R (no packages). Compare to the gtsummary table.
+
+2. **The education variable.** In the real trial, 24.1% of participants had
+   completed secondary education or higher. What percentage do you find in the
+   simulated data? Is it close? (Check `docs/simulation-assumptions.md` to see
+   where this parameter came from.)
+
+3. **Identify the most imbalanced baseline variable.** Using the SMD table,
+   which variable shows the largest imbalance between groups in your simulated
+   data? Is the SMD above or below 0.1?
+
+4. **Why does the SRQ-20 show group imbalance?** Think back to `docs/simulation-refinements.md`.
+   The intervention group started with a higher average SRQ-20 score than the
+   control group. Recall the discussion of how this imbalance affects the raw
+   follow-up comparison. What does this suggest about the importance of the
+   ANCOVA adjustment in Module 5?
+
+------------------------------------------------------------------------
+
+## Summary
+
+In this module you:
+
+- Computed univariate summaries (mean, SD, n, %) for all baseline variables.
+- Built a formatted Table 1 using `gtsummary`.
+- Confirmed that randomization produced roughly balanced groups.
+- Learned why significance tests of baseline differences are not appropriate in
+  a randomized trial, and introduced standardized mean differences as a better
+  measure of balance.
+
+**Next:** Module 3 will examine the distributions of the primary and secondary
+outcomes visually, using histograms, box plots, and individual-change plots.
+
+------------------------------------------------------------------------
+
+## Session Information
+
+```{r}
+#| label: session-info
+
+sessionInfo()
+```

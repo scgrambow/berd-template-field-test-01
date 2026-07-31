@@ -9,11 +9,35 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Rename standards file, CAPABILITIES.md, Module 2, HTML renders
+
+**Status:** Completed
+
+**Files changed:** `standards/r-quarto-teaching-materials.md` (renamed from `standards-r-quarto-teaching-materials.md`), `standards/CAPABILITIES.md`, `standards/r-quarto-tutorial-authoring.md` (reference update), `AGENTS.md` (reference update), `R/02-descriptive.qmd`, `renv.lock` (gtsummary, gt, knitr, rmarkdown, yaml added)
+
+**Summary:**
+Renamed `standards/standards-r-quarto-teaching-materials.md` → `standards/r-quarto-teaching-materials.md` to match the repo's naming convention (no "standards-" prefix). Updated all cross-references. Created `standards/CAPABILITIES.md` recording verified tool versions (R 4.6.1, Quarto 1.10.18, Pandoc 3.10.0) and render commands. Installed rendering packages (knitr 1.51, rmarkdown 2.31, yaml) and gtsummary/gt. Both `R/01-data-setup.qmd` and `R/02-descriptive.qmd` render cleanly to HTML from the project root. HTML is the primary review format; PDF deferred pending TinyTeX setup.
+
+**Decisions Made:**
+
+- **Render from project root:** Quarto must be invoked from the project root (not from `R/`) so that renv's `.Rprofile` activates the project library. Documented in CAPABILITIES.md.
+- **HTML-first, PDF later:** All modules render to HTML for now. PDF will be added when TinyTeX is needed; that step will be recorded in CAPABILITIES.md.
+- **No skills/ directory:** Both the tutorial-authoring skill and the teaching-materials standard remain in `standards/`. No separate skills folder was created.
+- **Module 2 scope:** Covers univariate summaries, gtsummary Table 1, baseline balance discussion, SMDs, and four practice exercises. Includes explicit explanation of why p-values do not belong in Table 1 (CONSORT guideline).
+
+**Next Steps:**
+
+- Create `R/03-visualization.qmd` (Module 3: histograms, box plots, individual change plots for primary and secondary outcomes).
+- Consider a `_quarto.yml` project file at the repo root to register all modules and set a shared execution directory, enabling `quarto render` (no path argument) to build all modules at once.
+- Add a `ggplot2` install to renv.lock for Module 3.
+
+---
+
 ## 2026-07-31: Simulation refinements doc, standards file updates, AGENTS.md
 
 **Status:** Completed
 
-**Files changed:** `docs/simulation-refinements.md`, `standards/r-quarto-tutorial-authoring.md`, `standards/standards-r-quarto-teaching-materials.md`, `AGENTS.md`
+**Files changed:** `docs/simulation-refinements.md`, `standards/r-quarto-tutorial-authoring.md`, `standards/r-quarto-teaching-materials.md`, `AGENTS.md`
 
 **Summary:**
 Created `docs/simulation-refinements.md` documenting the two bugs found during simulation development (wrong ANCOVA centering, wrong missingness split), their mathematical diagnosis, the targeted fixes, and the pedagogical lessons embedded in the iterative process. Updated two new standards files that were copied from a prior course repository: fixed `skills/` path references to `standards/`, replaced `CAPABILITIES.md` with `renv::status()` / `renv.lock` pattern, replaced missing `standards-ai-use-disclosure.md` reference with SESSION_LOG convention, and adapted draft-layer language to this repo's structure. Updated AGENTS.md to list the new standards in the Read First section.

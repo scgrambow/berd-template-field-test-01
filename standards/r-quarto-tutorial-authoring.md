@@ -14,7 +14,7 @@ last_updated: 2026-07-31
 
 Create an instructional R script and executable Quarto tutorial from an existing analysis, dataset, lesson plan, or reviewed source material.
 
-Read `standards/standards-r-quarto-teaching-materials.md` (in this same folder). That standard controls output quality, dependency handling, provenance, and verification.
+Read `standards/r-quarto-teaching-materials.md` (in this same folder). That standard controls output quality, dependency handling, provenance, and verification.
 
 ## Required Inputs
 

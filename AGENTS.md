@@ -25,7 +25,7 @@ procedure):
 4. Any standard in `standards/` relevant to the current task. Key standards:
    - `standards/data-handling.md` — data, PHI, and prompt hygiene
    - `standards/r-quarto-tutorial-authoring.md` — workflow for creating R scripts and Quarto tutorials
-   - `standards/standards-r-quarto-teaching-materials.md` — quality requirements for teaching materials
+   - `standards/r-quarto-teaching-materials.md` — quality requirements for teaching materials
 
 ## Repository Purpose
 
