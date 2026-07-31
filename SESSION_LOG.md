@@ -9,6 +9,29 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Modules 3 and 4, _quarto.yml, ggplot2
+
+**Status:** Completed
+
+**Files changed:** `_quarto.yml`, `R/03-visualization.qmd`, `R/03-visualization.html`, `R/04-estimation.qmd`, `R/04-estimation.html`, `renv.lock` (ggplot2, patchwork added)
+
+**Summary:**
+Created `_quarto.yml` project file to set shared HTML defaults and enable `quarto render` from the project root. Created and rendered Module 3 (visualization: histograms, group box plots, individual trajectory plots, floor/ceiling check) and Module 4 (estimation: within- vs. between-group change, t-tests, forest plot, all five outcomes). Initial `_quarto.yml` included `output-dir: output/html` which sent rendered files to the gitignored `output/` folder; corrected by removing that setting so all HTML files stay in `R/` alongside their `.qmd` sources.
+
+**Decisions Made:**
+
+- **`_quarto.yml` output-dir removed:** Keeping HTML adjacent to `.qmd` in `R/` is simpler and consistent with the pattern established by modules 1 and 2.
+- **Module 3 design:** Uses patchwork for the floor/ceiling comparison panel; individual trajectory plot uses `stat_summary` to overlay group mean lines without pre-computing them.
+- **Module 4 design:** Explicit manual Welch t-interval calculation in Section 3 (before `t.test()`) so students can see the formula before seeing the R function. Forest plot uses the unadjusted estimates as a preview of what ANCOVA will correct.
+
+**Next Steps:**
+
+- Create `R/05-ancova.qmd` (Module 5: baseline-adjusted and fully adjusted ANCOVA, interpreting the treatment coefficient, comparing to unadjusted estimates).
+- Create `R/06-missing-data.qmd` (Module 6: complete-case analysis, BOCF sensitivity, multiple imputation demo).
+- Create `R/07-interpretation.qmd` (Module 7: statistical vs. clinical significance, primary vs. exploratory findings, protocol-to-publication comparison).
+
+---
+
 ## 2026-07-31: Rename standards file, CAPABILITIES.md, Module 2, HTML renders
 
 **Status:** Completed

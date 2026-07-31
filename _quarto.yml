@@ -1,0 +1,19 @@
+project:
+  type: default
+
+# Default options applied to all documents
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    theme: flatly
+    embed-resources: true
+
+execute:
+  echo: true
+  warning: false
+  message: false
+
+# Always render from the project root so renv activates correctly.
+# Run: quarto render  (no path) to build all modules at once.
