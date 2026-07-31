@@ -9,6 +9,28 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: references.qmd, GitHub Pages (docs/), GitHub Actions
+
+**Status:** Completed
+
+**Files changed:** `references.qmd` (new), `_quarto.yml` (output-dir, appendix), `docs/` (rendered output), `.github/workflows/render-book.yml` (new), `.gitignore` (_book/ added), `SESSION_LOG.md`
+
+**Summary:**
+Created `references.qmd` appendix with full citations for both source papers, all four supplemental documents, all five instrument validation studies, CONSORT and missing-data method references, and all R packages used. Switched Quarto book output from `_book/` to `docs/` for GitHub Pages compatibility. Added `references.qmd` as a formal appendix chapter. Created `.github/workflows/render-book.yml` to automatically re-render and commit the book on every push to main. Removed the old `_book/` directory from git. Book renders to 3.4 MB in `docs/`.
+
+**Decisions Made:**
+
+- **docs/ folder for Pages:** Serving from `docs/` on the main branch is simpler than a separate `gh-pages` branch; the rendered source is visible alongside the .qmd files, which supports the transparency principle.
+- **GitHub Actions commit-back pattern:** The workflow generates the synthetic data, renders the book, and commits the updated `docs/` back to main with `[skip ci]` to avoid an infinite loop. This means the rendered book on GitHub always matches the source.
+- **`_book/` gitignored:** The old output directory is now ignored. `docs/` is the canonical rendered output.
+
+**Next Steps:**
+
+- **Enable GitHub Pages:** Go to the repository Settings → Pages → Source: "Deploy from a branch" → Branch: main → Folder: /docs → Save. The book will be live at `https://scgrambow.github.io/berd-template-field-test-01/`.
+- The GitHub Actions workflow will automatically re-render the book on every push to main.
+
+---
+
 ## 2026-07-31: Quarto book project, index.qmd, format cleanup
 
 **Status:** Completed

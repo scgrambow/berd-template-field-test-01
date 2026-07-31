@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: _book
+  output-dir: docs
 
 book:
   title: "IVAM-ED: A CRP 241 Teaching Case"
@@ -8,7 +8,7 @@ book:
   author: "CRP 241 — Duke University"
   date: today
   repo-url: https://github.com/scgrambow/berd-template-field-test-01
-  repo-actions: [issue]
+  repo-actions: [edit, issue]
   search: true
   chapters:
     - index.qmd
@@ -21,6 +21,8 @@ book:
         - R/05-ancova.qmd
         - R/06-missing-data.qmd
         - R/07-interpretation.qmd
+  appendices:
+    - references.qmd
 
 format:
   html:
@@ -28,7 +30,7 @@ format:
     toc: true
     toc-depth: 3
     code-fold: false
-    embed-resources: false   # book pages share assets; standalone render uses per-file setting
+    embed-resources: false
 
 execute:
   echo: true

@@ -1,0 +1,151 @@
+---
+title: "References and Source Documents"
+---
+
+# References {.unnumbered}
+
+This appendix provides complete citations for all source publications used in
+this teaching case, a guide to the extracted Markdown documents in the
+repository, and citation language for students reporting results from the
+synthetic dataset.
+
+---
+
+## Primary Source Publications {.unnumbered}
+
+### Results Paper {.unnumbered}
+
+Matzenbacher LS, da Costa FL, de Barros LGB, Gheno V, Maia IS, Blank LM,
+Brum MAB, Fontoura LF, Viola TW, Schwanke CHA, Gadonski G, Alessi J, Telo GH.
+Interactive virtual assistant for health promotion among older adults with type 2
+diabetes: the IVAM-ED randomized clinical trial.
+*JAMA Network Open*. 2026;9(1):e2553508.
+doi:[10.1001/jamanetworkopen.2025.53508](https://doi.org/10.1001/jamanetworkopen.2025.53508)
+
+Open access under CC-BY 4.0.
+Extracted to: `docs/extracted/matzenbacher-2026-ivam-ed-results-paper.md`
+
+### Protocol and Statistical Analysis Plan {.unnumbered}
+
+Da Costa FL, Matzenbacher LS, Gheno V, Maia IS, Fontoura LF, Viola TW,
+Schwanke CHA, Gadonski G, Alessi J, Telo GH.
+Interactive virtual assistance for mental health promotion and self-care
+management in elderly with type 2 diabetes (IVAM-ED): study protocol and
+statistical analysis plan for a randomized controlled trial.
+*Trials*. 2024;25(1):205.
+doi:[10.1186/s13063-024-08055-3](https://doi.org/10.1186/s13063-024-08055-3)
+
+Open access under CC-BY 4.0.
+Extracted to: `docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
+
+---
+
+## Supplemental Documents {.unnumbered}
+
+| File | Description | Extracted to |
+|---|---|---|
+| JAMA Supplement 1 | Study protocol and SAP embedded in the results paper | `docs/extracted/matzenbacher-2026-supplement-1.md` |
+| JAMA Supplement 2 | Supplemental tables and figures (eTables 1–3) | `docs/extracted/matzenbacher-2026-supplement-2.md` |
+| JAMA Supplement 3 | Data sharing statement | `docs/extracted/matzenbacher-2026-supplement-3.md` |
+| Trials Supplementary Material | SPIRIT checklist, intervention messages, instrument validations | `docs/extracted/da-costa-2024-supplement-1.md` |
+
+---
+
+## Instruments and Validation Studies {.unnumbered}
+
+The outcome instruments used in the IVAM-ED trial were validated for Brazilian
+Portuguese. Key validation citations:
+
+**SRQ-20 (Self-Reporting Questionnaire)**
+Gonçalves DM, Stein AT, Kapczinski F. Performance of the self-reporting
+questionnaire as a psychiatric screening questionnaire: a comparative study with
+structured clinical interview for DSM-IV-TR [article in Portuguese].
+*Cad Saude Publica*. 2008;24(2):380–390.
+
+**SF-36 (36-Item Short Form Health Survey)**
+Ciconelli RM, Ferraz MB, Santos W, Meinao I, Quaresma MR. Brazilian-Portuguese
+version of the SF-36: a reliable and valid quality of life outcome measure.
+*Rev Bras Reumatol*. 1999;39(3):143–150.
+
+**SCI-R (Self-Care Inventory Revised)**
+Teló GH, Iorra FQ, Velho BS, Sparrenberger K, Schaan BD. Validation to Brazilian
+Portuguese of the Self-Care Inventory-revised for adults with type 2 diabetes.
+*Arch Endocrinol Metab*. 2020;64(2):190–194.
+doi:[10.20945/2359-3997000000213](https://doi.org/10.20945/2359-3997000000213)
+
+**PSS (Perceived Stress Scale)**
+Luft CDB, Sanches SdO, Mazo GZ, Andrade A. Brazilian version of the Perceived
+Stress Scale: translation and validation for the elderly [article in Portuguese].
+*Rev Saude Publica*. 2007;41(4):606–615.
+doi:[10.1590/S0034-89102007000400015](https://doi.org/10.1590/S0034-89102007000400015)
+
+**MMSE (Mini-Mental State Examination)**
+Standard education-adjusted cutoffs used in Brazilian clinical practice:
+MMSE < 24 for participants with < 5 years of education;
+MMSE < 26 for participants with ≥ 5 years of education.
+
+---
+
+## Methods and Statistical Reporting Standards {.unnumbered}
+
+**CONSORT 2010 (randomized trial reporting)**
+Schulz KF, Altman DG, Moher D; CONSORT Group. CONSORT 2010 statement: updated
+guidelines for reporting parallel group randomised trials.
+*BMJ*. 2010;340:c332.
+doi:[10.1136/bmj.c332](https://doi.org/10.1136/bmj.c332)
+
+**Multiple imputation**
+van Buuren S. *Flexible Imputation of Missing Data*. 2nd ed. Chapman & Hall/CRC; 2018.
+Freely available online: [https://stefvanbuuren.name/fimd/](https://stefvanbuuren.name/fimd/)
+
+van Buuren S, Groothuis-Oudshoorn K. mice: Multivariate imputation by chained
+equations in R. *Journal of Statistical Software*. 2011;45(3):1–67.
+doi:[10.18637/jss.v045.i03](https://doi.org/10.18637/jss.v045.i03)
+
+---
+
+## R Packages Used in This Tutorial {.unnumbered}
+
+| Package | Version | Reference |
+|---|---|---|
+| R Core Team | 4.6.1 | R Core Team. R: A language and environment for statistical computing. Vienna, Austria: R Foundation; 2024. |
+| Quarto | 1.10.18 | Allaire J, et al. Quarto. 2024. [https://quarto.org](https://quarto.org) |
+| dplyr | (see renv.lock) | Wickham H, et al. dplyr: A grammar of data manipulation. 2023. |
+| ggplot2 | (see renv.lock) | Wickham H. ggplot2: Elegant graphics for data analysis. Springer; 2016. |
+| gtsummary | (see renv.lock) | Sjoberg DD, et al. Reproducible summary tables with the gtsummary package. *The R Journal*. 2021;13(1):570–580. |
+| mice | (see renv.lock) | van Buuren S, Groothuis-Oudshoorn K. *Journal of Statistical Software*. 2011;45(3):1–67. |
+| patchwork | (see renv.lock) | Pedersen TL. patchwork: The composer of plots. 2024. |
+| labelled | (see renv.lock) | Larmarange J. labelled: Manipulating labelled data. 2024. |
+
+---
+
+## Citation Language for Student Reports {.unnumbered}
+
+When reporting results from exercises in this teaching case, use the following
+language to correctly attribute the source and characterize the data:
+
+> Analysis was performed on a synthetic dataset constructed to approximate the
+> sample characteristics reported in Matzenbacher et al. (2026). The synthetic
+> data were generated for teaching purposes using the simulation code in
+> `R/simulate-ivam-ed.R` and do not represent individual participant data from
+> the IVAM-ED trial. Full simulation documentation is available in
+> `docs/simulation-assumptions.md`.
+
+Cite the primary publication when discussing the clinical findings:
+
+> Matzenbacher LS, da Costa FL, de Barros LGB, et al. Interactive virtual
+> assistant for health promotion among older adults with type 2 diabetes:
+> the IVAM-ED randomized clinical trial. *JAMA Network Open*.
+> 2026;9(1):e2553508. doi:10.1001/jamanetworkopen.2025.53508
+
+---
+
+## Repository {.unnumbered}
+
+All source code, simulation scripts, analysis modules, and extracted documents
+are available at:
+
+[github.com/scgrambow/berd-template-field-test-01](https://github.com/scgrambow/berd-template-field-test-01)
+
+This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2)
+using GitHub Copilot Business with synthetic data only.
