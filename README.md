@@ -1,5 +1,7 @@
 # IVAM-ED CRP 241 Teaching Case
 
+**Live book:** [https://scgrambow.github.io/berd-template-field-test-01/](https://scgrambow.github.io/berd-template-field-test-01/)
+
 Analysis code, documentation, and simulated-data generation scripts for a CRP 241 introductory clinical research methods course. The teaching case is built around the IVAM-ED randomized clinical trial, which evaluated a voice-activated virtual assistant for mental health promotion and diabetes self-management in older adults with type 2 diabetes (Matzenbacher et al., *JAMA Network Open*, 2026).
 
 ## Purpose

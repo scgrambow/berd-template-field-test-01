@@ -10,6 +10,41 @@
 
 ## Audit Log
 
+### 2026-07-31: Pre-Public-Release Security Audit
+
+**Auditor:** GitHub Copilot (automated scan)
+**Scope:** Full repository scan before changing visibility from private to public
+
+#### Findings
+
+| # | Category | Finding | Severity | Status | Evidence |
+|---|---|---|---|---|---|
+| 1 | Credentials | Keyword scan (password, token, secret, api_key, bearer) matched only documentation files (BOOTSTRAP.md, AGENTS.md, SECURITY.md, standards/) — all occurrences are governance rules saying "never include credentials," not actual credentials | None | N/A | `grep -rI -i "password\|token\|secret"` across all tracked files |
+| 2 | Data files | No CSV, RDS, RData, SAS, XLSX, DTA, or Parquet files found in working tree or git history | None | N/A | `git log --all --name-only` + `git ls-files` filtered for data extensions |
+| 3 | PHI / identifiers | PHI keyword matches in R/ and .qmd files are all educational references (explaining what PHI is), not actual patient data | None | N/A | `grep -rI "patient name\|date of birth\|ssn\|mrn"` |
+| 4 | .env / secret files | No .env, .pem, or *_key* files found anywhere in the working tree | None | N/A | `find . -name "*.env" -o -name "*.pem" -o -name "*_key*"` |
+| 5 | Personal identifiers | GitHub username `scgrambow` and "Steve Grambow" (review_owner) appear in README, SESSION_LOG, _quarto.yml, standards, and rendered HTML | Low / Accepted | Accepted | `git ls-files \| xargs grep -lI sgrambow` — expected for a public academic repository |
+| 6 | Source PDFs / DOCX | Six source documents in `source/` and `source/extracted/` are open-access publications under CC-BY 4.0 license — appropriate to distribute publicly | None | N/A | DOIs verified: 10.1001/jamanetworkopen.2025.53508 and 10.1186/s13063-024-08055-3 |
+| 7 | Internal institutional info | SESSION_LOG.md references the BERD AI Pilot program (Tier 2, GitHub Copilot Business). This is process/governance documentation describing publicly available tooling, not internal infrastructure details | Low / Accepted | Accepted | SESSION_LOG.md reviewed in full |
+| 8 | `.Rprofile` | Contains only `source("renv/activate.R")` — standard renv activation, no secrets | None | N/A | `cat .Rprofile` |
+| 9 | GitHub Actions workflow | `.github/workflows/render-book.yml` uses `actions/checkout`, `r-lib/actions`, and `quarto-dev/quarto-actions` from official registries. No secrets, tokens, or external API calls | None | N/A | Workflow reviewed in full |
+| 10 | `renv.lock` | Lists CRAN package names and versions; no proprietary packages, no secrets, no internal registry URLs | None | N/A | `renv.lock` reviewed |
+
+#### Remediations Applied
+
+- None required. Repository is clean for public release.
+
+#### Verdict
+
+**CLEAR FOR PUBLIC RELEASE.** No credentials, no data files (in working tree or history), no PHI, no internal infrastructure details. All source documents are open-access CC-BY. Personal identifiers are appropriate and expected for a public academic teaching repository.
+
+#### Known Accepted Limitations
+
+- **Personal identifiers:** The GitHub username `scgrambow` and name "Steve Grambow" in standards files will be publicly visible. This is intentional and appropriate for a public teaching repository.
+- **BERD AI Pilot references:** The SESSION_LOG documents use of GitHub Copilot Business under the Duke BERD pilot program. This is disclosed governance documentation; the pilot program itself is not confidential.
+
+---
+
 ### 2026-07-31: Bootstrap Security Audit
 
 **Auditor:** GitHub Copilot (automated bootstrap)

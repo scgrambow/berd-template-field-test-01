@@ -7,6 +7,7 @@ book:
   subtitle: "A Complete Analysis Tutorial for Introductory Clinical Research Methods"
   author: "CRP 241 — Duke University"
   date: today
+  site-url: https://scgrambow.github.io/berd-template-field-test-01/
   repo-url: https://github.com/scgrambow/berd-template-field-test-01
   repo-actions: [edit, issue]
   search: true
