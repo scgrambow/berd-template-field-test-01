@@ -9,6 +9,31 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Simulation refinements doc, standards file updates, AGENTS.md
+
+**Status:** Completed
+
+**Files changed:** `docs/simulation-refinements.md`, `standards/r-quarto-tutorial-authoring.md`, `standards/standards-r-quarto-teaching-materials.md`, `AGENTS.md`
+
+**Summary:**
+Created `docs/simulation-refinements.md` documenting the two bugs found during simulation development (wrong ANCOVA centering, wrong missingness split), their mathematical diagnosis, the targeted fixes, and the pedagogical lessons embedded in the iterative process. Updated two new standards files that were copied from a prior course repository: fixed `skills/` path references to `standards/`, replaced `CAPABILITIES.md` with `renv::status()` / `renv.lock` pattern, replaced missing `standards-ai-use-disclosure.md` reference with SESSION_LOG convention, and adapted draft-layer language to this repo's structure. Updated AGENTS.md to list the new standards in the Read First section.
+
+**Decisions Made:**
+
+- **Simulation refinements document:** Preserved the full debugging narrative (Attempt 1 → Bug 1 diagnosis → fix → Bug 2 diagnosis → fix → final verification) because it illustrates the verify–diagnose–fix–re-verify cycle that applies equally to simulation code and real data analysis.
+- **Standards file location:** Both the skill (`r-quarto-tutorial-authoring.md`) and standard (`standards-r-quarto-teaching-materials.md`) live in `standards/` (no separate `skills/` folder). All cross-references updated accordingly.
+- **YAML type field:** Changed `type: strategy, subtype: skill-prompt` to `type: skill` for the authoring file, and removed `subtype`, `aliases`, and `tags` fields from both files to match the repo's simpler YAML convention.
+- **Missing file references resolved:** `CAPABILITIES.md` → `renv::status()` + `quarto --version`; `standards-ai-use-disclosure.md` → SESSION_LOG Decisions Made block.
+
+**Next Steps:**
+
+- Render `R/01-data-setup.qmd` and review the HTML output visually.
+- Create `R/02-descriptive.qmd` (Module 2: Table 1 baseline characteristics, gtsummary).
+- Consider creating a `standards/CAPABILITIES.md` to record verified tool versions (R 4.6.1, Quarto version, Pandoc version) as the two new standards reference this pattern.
+- Commit and push this session's work.
+
+---
+
 ## 2026-07-31: Simulation script, assumptions doc, and first Quarto module
 
 **Status:** Completed

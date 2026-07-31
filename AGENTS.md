@@ -22,7 +22,10 @@ procedure):
 1. This file.
 2. `README.md`.
 3. The top entry of `SESSION_LOG.md`.
-4. Any standard in `standards/` relevant to the current task.
+4. Any standard in `standards/` relevant to the current task. Key standards:
+   - `standards/data-handling.md` — data, PHI, and prompt hygiene
+   - `standards/r-quarto-tutorial-authoring.md` — workflow for creating R scripts and Quarto tutorials
+   - `standards/standards-r-quarto-teaching-materials.md` — quality requirements for teaching materials
 
 ## Repository Purpose
 
