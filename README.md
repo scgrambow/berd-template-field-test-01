@@ -37,6 +37,14 @@ The repository contains code, documentation, and configuration only. The synthet
 └── source/                    Original source documents (PDFs and DOCX — not committed as data)
 ```
 
+## Analysis Modules
+
+| File | Description |
+|---|---|
+| [R/simulate-ivam-ed.R](R/simulate-ivam-ed.R) | Generates the synthetic dataset; run once before opening any module |
+| [R/01-data-setup.qmd](R/01-data-setup.qmd) | Module 1: data loading, variable inspection, missingness |
+| [docs/simulation-assumptions.md](docs/simulation-assumptions.md) | Full documentation of simulation parameters and assumptions |
+
 ## Source Documents
 
 | File | Description |

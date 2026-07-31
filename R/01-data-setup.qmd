@@ -1,0 +1,322 @@
+---
+title: "Module 1: Data Setup and Inspection"
+subtitle: "CRP 241 — IVAM-ED Teaching Case"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    theme: flatly
+    embed-resources: true
+execute:
+  echo: true       # show all code in the rendered document
+  warning: false
+  message: false
+---
+
+## Overview
+
+This document introduces the IVAM-ED synthetic dataset and walks through the first
+analytical step in any research project: **understanding your data before analyzing it**.
+
+By the end of this module you should be able to:
+
+1. Load a dataset in R and inspect its structure.
+2. Identify variable types (continuous, binary, ordinal) and their scales.
+3. Count missing values and understand why they occur.
+4. Recognize the difference between baseline measurements and follow-up measurements.
+
+------------------------------------------------------------------------
+
+## The IVAM-ED Study
+
+The **IVAM-ED** trial evaluated whether a voice-activated smart speaker (Amazon Echo
+Dot) could improve mental health and diabetes self-management among older adults with
+type 2 diabetes. Researchers in Brazil randomly assigned 112 adults (age ≥ 65) to
+either:
+
+- **Intervention:** Use a smart speaker at home for 12 weeks. The device was
+  programmed with reminders, health messages, and educational podcasts.
+- **Usual care:** Continue with standard diabetes management and no device.
+
+The **primary outcome** was the SRQ-20 score (Self-Reporting Questionnaire, 0–20),
+a measure of mental distress. Lower scores mean less distress.
+
+> **Important:** We are working with a **synthetic (simulated) dataset** — not real
+> participant data. The dataset was constructed to approximate the published summary
+> statistics. See `docs/simulation-assumptions.md` for how it was built and what
+> assumptions were made.
+
+------------------------------------------------------------------------
+
+## Setup
+
+```{r}
+#| label: setup
+
+# Load packages
+# If any of these are missing, run: renv::install("package_name")
+library(dplyr)    # data manipulation
+library(labelled) # reading variable labels
+```
+
+------------------------------------------------------------------------
+
+## 1. Generate the Synthetic Dataset
+
+The simulation script creates the dataset from scratch using a fixed random seed,
+so you will always get the same data.
+
+```{r}
+#| label: generate-data
+
+# Source the simulation script. This creates data/ivam_synthetic.rds.
+# The verification summary will print below.
+source("simulate-ivam-ed.R")
+```
+
+------------------------------------------------------------------------
+
+## 2. Load and Inspect the Data
+
+```{r}
+#| label: load-data
+
+# Load the saved dataset
+dat <- readRDS("../data/ivam_synthetic.rds")
+```
+
+### 2a. Dimensions
+
+```{r}
+#| label: dimensions
+
+# How many rows (participants) and columns (variables)?
+dim(dat)
+```
+
+::: {.callout-note}
+**What to notice:** Each row is one participant. Each column is one variable. The
+number of rows should equal the number of enrolled participants (112).
+:::
+
+### 2b. Variable list with labels
+
+The dataset includes human-readable labels on every variable. Use `look_for()` to
+see them all at once:
+
+```{r}
+#| label: variable-list
+
+# Show all variable names and their labels
+labelled::look_for(dat)
+```
+
+::: {.callout-tip}
+**Reading the label output:** The `label` column tells you what each variable means,
+including the score direction (higher = better vs. higher = worse) and range.
+This is important — not all instruments point the same way!
+:::
+
+### 2c. Data types
+
+```{r}
+#| label: data-types
+
+# str() shows the type (numeric, integer, character) and first few values
+str(dat)
+```
+
+::: {.callout-note}
+**What to notice:** Variables like `group`, `female`, `insulin`, `hx_depression`,
+and `hx_anxiety` are stored as integers (0 or 1). They represent binary categories,
+not truly numeric quantities. We'll convert these to labeled factors in later modules.
+:::
+
+------------------------------------------------------------------------
+
+## 3. Understand the Randomization
+
+```{r}
+#| label: group-counts
+
+# Count participants per group
+# group = 1 is intervention (smart speaker); group = 0 is usual care
+table(dat$group)
+```
+
+```{r}
+#| label: group-labels
+
+# A clearer version using dplyr
+dat |>
+  count(group) |>
+  mutate(group_label = ifelse(group == 1, "Smart speaker", "Usual care"))
+```
+
+::: {.callout-note}
+**What to notice:** The trial used a 1:1 randomization ratio, so both groups
+should have exactly 56 participants at enrollment. Simple random assignment
+(as used here) does not guarantee perfect balance on every baseline characteristic —
+we'll examine that in Module 2.
+:::
+
+------------------------------------------------------------------------
+
+## 4. Identify the Outcome Measures
+
+The dataset contains measurements at two time points:
+
+| Suffix | Time point | Example |
+|--------|------------|---------|
+| `_0`   | Baseline (week −1, before intervention) | `srq20_0` |
+| `_12`  | Follow-up (week 12, end of intervention) | `srq20_12` |
+
+```{r}
+#| label: outcome-names
+
+# Select just the outcome columns to see their structure
+dat |>
+  select(participant_id, group, srq20_0, srq20_12,
+         sf36_0, sf36_12, hba1c_0, hba1c_12) |>
+  head(10)
+```
+
+::: {.callout-tip}
+**Score directions to keep in mind:**
+
+- **SRQ-20** (0–20): Higher score = MORE mental distress (bad)
+- **SF-36** (0–100): Higher score = BETTER quality of life (good)
+- **HbA1c** (%): Higher = WORSE glycemic control (bad)
+- **SCI-R** (0–56): Higher = BETTER self-care adherence (good)
+- **PSS** (0–40): Higher = MORE perceived stress (bad)
+:::
+
+------------------------------------------------------------------------
+
+## 5. Missing Data
+
+Not everyone completed the 12-week follow-up. In the real trial, 9 participants
+(8%) did not return for the follow-up visit — 3 died and 6 were lost to follow-up.
+
+```{r}
+#| label: missing-overview
+
+# How many participants are missing at follow-up?
+dat |>
+  count(missing_12wk, reason_missing)
+```
+
+```{r}
+#| label: missing-by-group
+
+# Is the missingness distributed equally between the two groups?
+dat |>
+  group_by(group) |>
+  summarise(
+    n_enrolled  = n(),
+    n_missing   = sum(missing_12wk),
+    pct_missing = round(mean(missing_12wk) * 100, 1)
+  )
+```
+
+```{r}
+#| label: missing-outcomes
+
+# Confirm: follow-up outcomes are NA for those with missing_12wk = 1
+dat |>
+  filter(missing_12wk == 1) |>
+  select(participant_id, group, reason_missing, srq20_12, hba1c_12)
+```
+
+::: {.callout-warning}
+**Why this matters:** Missing data is a recurring challenge in clinical trials.
+When participants drop out, we must decide how to handle the missing values in our
+analysis. We will explore this in Module 6 (Missing Data). For now, we will
+flag that missingness is present and roughly balanced between groups.
+:::
+
+------------------------------------------------------------------------
+
+## 6. Quick Sanity Checks
+
+Before doing any analysis, it is good practice to check for values that fall
+outside the expected instrument ranges. These could indicate data entry errors
+(in real data) or simulation bugs (in synthetic data).
+
+```{r}
+#| label: range-checks
+
+# Check that all scores fall within their valid ranges
+# Any TRUE in the "out_of_range" column would indicate a problem
+
+range_checks <- tibble(
+  variable  = c("srq20_0",  "srq20_12", "sf36_0",  "sf36_12",
+                "sci_r_0", "sci_r_12", "pss_0",   "pss_12",
+                "hba1c_0", "hba1c_12", "mmse_0"),
+  min_valid = c(0,  0,  0,   0,  0, 0, 0,  0,  4.5, 4.5, 0),
+  max_valid = c(20, 20, 100, 100, 56, 56, 40, 40, 18,  18,  30)
+)
+
+range_checks |>
+  rowwise() |>
+  mutate(
+    obs_min = min(dat[[variable]], na.rm = TRUE),
+    obs_max = max(dat[[variable]], na.rm = TRUE),
+    out_of_range = obs_min < min_valid | obs_max > max_valid
+  )
+```
+
+------------------------------------------------------------------------
+
+## 7. Save a Clean Working Copy
+
+It is good practice to keep the raw data unchanged and save a separate working
+copy with any modifications (like renaming variables or recoding groups).
+
+```{r}
+#| label: save-working-copy
+
+# Create a working copy with a descriptive group label
+dat_work <- dat |>
+  mutate(
+    group_label = factor(group,
+                         levels = c(0, 1),
+                         labels = c("Usual care", "Smart speaker"))
+  )
+
+# Save the working copy
+saveRDS(dat_work, file = "../data/ivam_working.rds")
+
+cat("Working dataset saved to data/ivam_working.rds\n")
+cat("Dimensions:", nrow(dat_work), "rows x", ncol(dat_work), "columns\n")
+```
+
+------------------------------------------------------------------------
+
+## Summary
+
+In this module you:
+
+- Loaded the IVAM-ED synthetic dataset (112 participants, 25 variables)
+- Identified the two time points (baseline `_0` and follow-up `_12`)
+- Confirmed randomization produced two groups of 56
+- Found 9 participants (8%) with missing follow-up data, slightly more in the
+  control group (5 vs. 4)
+- Verified all score ranges are within valid instrument bounds
+
+**Next:** Module 2 will examine baseline characteristics using descriptive
+statistics and explore whether randomization produced balanced groups.
+
+------------------------------------------------------------------------
+
+## Session Information
+
+```{r}
+#| label: session-info
+
+# Record the R version and package versions for reproducibility
+sessionInfo()
+```

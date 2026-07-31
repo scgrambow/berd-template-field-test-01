@@ -9,6 +9,32 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Simulation script, assumptions doc, and first Quarto module
+
+**Status:** Completed
+
+**Files changed:** `R/simulate-ivam-ed.R`, `R/01-data-setup.qmd`, `docs/simulation-assumptions.md`, `renv.lock` (updated with dplyr, labelled, tibble)
+
+**Summary:**
+Created the synthetic data simulation script (`R/simulate-ivam-ed.R`) using moment matching against published summary statistics from Matzenbacher et al. (2026) Table 1, Table 2, and Figure 2, and instrument specifications from the Da Costa et al. (2024) protocol. The script uses an ANCOVA-generating model with published treatment effects; the baseline-adjusted MD for the primary outcome (SRQ-20) recovers −1.19 (published: −1.28) with a statistically significant CI. Wrote `docs/simulation-assumptions.md` documenting every simulation parameter, its source, and known limitations. Created `R/01-data-setup.qmd` as Module 1 of the CRP 241 exercise sequence, covering data loading, variable inspection, missingness, and sanity checks.
+
+**Decisions Made:**
+
+- **Code documentation standard:** Established inline comment conventions in `simulate-ivam-ed.R` — every parameter block has a comment citing the specific paper table and value; instruments have their scale direction noted (higher = better/worse); helper functions have argument-level documentation. Quarto documents use callout boxes to highlight key conceptual points for students.
+- **ANCOVA centering:** Baseline outcome (`y0`) is centered at the grand mean in the follow-up simulation model, so that the intercept equals the control group's published adjusted mean and the treatment coefficient directly recovers the published MD regardless of baseline imbalance between groups.
+- **Missingness implementation:** Used a deterministic MAR mechanism — the 5 control and 4 intervention participants with the highest baseline SRQ-20 scores are set as missing. This is simpler and more predictable than a probabilistic model while remaining clinically plausible.
+- **Residual SDs:** Calibrated from the published 95% CI widths (SE = CI_width / 3.92) for each outcome. The resulting SRQ-20 CI (−2.06 to −0.32) is narrower than published (−2.51 to −0.04) but statistically significant in the correct direction; this discrepancy is documented in `docs/simulation-assumptions.md`.
+- **Packages added to renv:** `dplyr`, `labelled`, `tibble` (and dependencies). `renv.lock` updated and will be committed.
+
+**Next Steps:**
+
+- Render `R/01-data-setup.qmd` with Quarto and review the HTML output.
+- Create `R/02-descriptive.qmd` (Module 2: baseline characteristics table, Table 1 reproduction).
+- Consider adding the `gtsummary` package for Table 1 generation.
+- Commit and push this session's work.
+
+---
+
 ## 2026-07-31: Repository Bootstrap
 
 **Status:** Completed
