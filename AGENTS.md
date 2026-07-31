@@ -5,7 +5,7 @@ description: "Operating contract for AI coding tools working in this clinical re
 status: active
 version: "1.1"
 review_owner: BERD AI Pilot Team
-last_updated: 2026-07-10
+last_updated: 2026-07-31
 ---
 
 # AGENTS.md: Repository Operating Contract
@@ -26,15 +26,13 @@ procedure):
 
 ## Repository Purpose
 
-<!-- BOOTSTRAP: Replace this comment with one paragraph naming the project, its
-analytical purpose, and the primary language(s). Filled in during BOOTSTRAP.md
-Step 3f. -->
+This repository contains analysis code, documentation, and simulated-data generation scripts for a CRP 241 introductory clinical research methods course. The teaching case is built around the IVAM-ED randomized clinical trial, which evaluated a voice-activated virtual assistant (Amazon Echo Dot) for mental health promotion and diabetes self-management in 112 older adults with type 2 diabetes (Matzenbacher et al., *JAMA Network Open*, 2026). The primary language is **R**, with analysis documents written in Quarto and the package environment managed with renv. All exercises use a synthetic dataset that approximates the published trial's sample characteristics; no real participant data are stored in this repository.
 
 ## Pilot Tier and Data Posture
 
-<!-- BOOTSTRAP: Replace this comment with the declared tier (1A, 1B, or 2), the data
-sensitivity from the bootstrap interview, and the one-line data rule for that tier.
-Filled in during BOOTSTRAP.md Step 3f. -->
+**Tier 2** — GitHub Copilot Business; synthetic or non-sensitive data only; GitHub remote.
+
+Data rule: This repository contains code and documentation only. The synthetic dataset generated for exercises lives in `data/` (gitignored) and is never committed. No real participant data, PHI, or identifiable information is used at any tier of this project.
 
 The full tier definitions and rationale are in `standards/data-handling.md`.
 
@@ -116,12 +114,18 @@ following the format in `standards/repo-baseline.md`: date, status, files change
 
 ## Verification Commands
 
-<!-- BOOTSTRAP: Replace this comment with the project's actual verification commands,
-for example:
-- `Rscript -e 'renv::status()'` to confirm the environment matches the lockfile
-- `quarto render` for rendered documents
-- lint / test commands as applicable
-Filled in during BOOTSTRAP.md Step 3f. -->
+```bash
+# Confirm the package library matches the lockfile
+Rscript -e 'renv::status()'
+
+# Render a Quarto document
+quarto render R/01-data-setup.qmd
+
+# Check git status before any commit — confirm no data files are staged
+git status
+```
+
+> **Note:** `renv` has not yet been initialized. Until the user runs `renv::init()` and commits `renv.lock`, use `Rscript -e 'sessionInfo()'` to verify R is available.
 
 ## Security
 

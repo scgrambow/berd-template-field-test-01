@@ -1,0 +1,32 @@
+# Data files: never committed, per standards/data-handling.md
+data/
+*.csv
+*.rds
+*.RData
+*.Rdata
+*.sas7bdat
+*.xlsx
+*.xls
+*.dta
+*.parquet
+*.feather
+
+# Credentials and environment
+.env
+.Renviron
+*.pem
+*_key*
+
+# Output that may embed data values
+output/
+
+# R clutter
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# OS clutter
+.DS_Store
+Thumbs.db
