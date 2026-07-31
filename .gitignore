@@ -30,3 +30,7 @@ renv/staging/
 # OS clutter
 .DS_Store
 Thumbs.db
+
+/.quarto/
+**/*.quarto_ipynb
+R/*.html

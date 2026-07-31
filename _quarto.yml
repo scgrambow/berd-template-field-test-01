@@ -1,19 +1,36 @@
 project:
-  type: default
+  type: book
+  output-dir: _book
 
-# Default options applied to all documents
+book:
+  title: "IVAM-ED: A CRP 241 Teaching Case"
+  subtitle: "A Complete Analysis Tutorial for Introductory Clinical Research Methods"
+  author: "CRP 241 — Duke University"
+  date: today
+  repo-url: https://github.com/scgrambow/berd-template-field-test-01
+  repo-actions: [issue]
+  search: true
+  chapters:
+    - index.qmd
+    - part: "Analysis Modules"
+      chapters:
+        - R/01-data-setup.qmd
+        - R/02-descriptive.qmd
+        - R/03-visualization.qmd
+        - R/04-estimation.qmd
+        - R/05-ancova.qmd
+        - R/06-missing-data.qmd
+        - R/07-interpretation.qmd
+
 format:
   html:
+    theme: flatly
     toc: true
     toc-depth: 3
     code-fold: false
-    theme: flatly
-    embed-resources: true
+    embed-resources: false   # book pages share assets; standalone render uses per-file setting
 
 execute:
   echo: true
   warning: false
   message: false
-
-# Always render from the project root so renv activates correctly.
-# Run: quarto render  (no path) to build all modules at once.

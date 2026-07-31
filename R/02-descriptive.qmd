@@ -3,13 +3,6 @@ title: "Module 2: Descriptive Statistics and Baseline Characteristics"
 subtitle: "CRP 241 — IVAM-ED Teaching Case"
 author: "Your Name"
 date: today
-format:
-  html:
-    toc: true
-    toc-depth: 3
-    code-fold: false
-    theme: flatly
-    embed-resources: true
 execute:
   echo: true
   warning: false
@@ -36,7 +29,8 @@ By the end of this module you should be able to:
 4. Distinguish between clinically meaningful and trivially small group differences
    at baseline.
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## Setup
 
@@ -57,7 +51,8 @@ library(labelled)   # variable labels
 dat <- readRDS("../data/ivam_working.rds")
 ```
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## 1. Univariate Summaries
 
@@ -123,7 +118,8 @@ dat |>
   mutate(summary = paste0(n, " (", pct, "%)"))
 ```
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## 2. Table 1: Baseline Characteristics by Randomized Group
 
@@ -204,7 +200,8 @@ exactly — this is expected with a synthetic dataset. The group-level differenc
 arise from random chance in the simulation.
 :::
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## 3. Interpreting Baseline Balance
 
@@ -293,7 +290,8 @@ adjust for the baseline value of each outcome regardless of the SMD, providing a
 more precise estimate of the treatment effect.
 :::
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## 4. Practice Exercises
 
@@ -315,7 +313,8 @@ more precise estimate of the treatment effect.
    follow-up comparison. What does this suggest about the importance of the
    ANCOVA adjustment in Module 5?
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## Summary
 
@@ -331,7 +330,8 @@ In this module you:
 **Next:** Module 3 will examine the distributions of the primary and secondary
 outcomes visually, using histograms, box plots, and individual-change plots.
 
-------------------------------------------------------------------------
+---------------------------------------------------------------------
+---
 
 ## Session Information
 

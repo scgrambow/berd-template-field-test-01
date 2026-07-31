@@ -1,0 +1,454 @@
+---
+title: "Introduction"
+subtitle: "Case Selection, Source Materials, Repository Design, and Learning Objectives"
+---
+
+# About This Book {.unnumbered}
+
+This book is a complete, reproducible tutorial in introductory clinical research
+methods built around a single published randomized trial. Every chapter uses the
+same dataset and the same study, so statistical concepts accumulate rather than
+restart. By the end you will have followed a real clinical investigation from
+raw data structure to published conclusion — examining the design, the analysis,
+the missing data, and the gap between what was planned and what was reported.
+
+The primary language is **R**. All analysis is performed on a **synthetic
+(simulated) dataset** that approximates the published trial's sample characteristics.
+No real participant data are used or stored anywhere in this repository.
+
+---
+
+## The IVAM-ED Study {.unnumbered}
+
+### Why this study was chosen
+
+The IVAM-ED trial — *Interactive Virtual Assistant for Mental Health Promotion and
+Self-Care Management in Elderly with Type 2 Diabetes* — was selected as the
+teaching case for CRP 241 for four reasons.
+
+**1. An accessible clinical question.** The study asks whether a voice-activated
+smart speaker (Amazon Echo Dot) programmed with reminders, health tips, and
+educational podcasts can reduce mental distress and improve diabetes self-management
+in older adults. Students from any clinical background can engage with this question
+without specialized domain knowledge.
+
+**2. A manageable and instructive design.** The trial is a conventional two-group
+randomized clinical trial with baseline and 12-week follow-up measurements, a single
+pre-specified primary outcome, and five pre-specified secondary outcomes. The design
+is straightforward enough to understand in full while providing rich material for
+every statistical concept covered in an introductory research methods course:
+randomization, descriptive statistics, confidence intervals, t-tests, ANCOVA,
+missing data, and critical appraisal.
+
+**3. Open access under Creative Commons licensing.** Both the results paper and
+the protocol paper are published under CC-BY licenses, meaning the course repository
+can be made publicly available without copyright restriction. All source documents
+can be cited, quoted, and distributed alongside the teaching materials.
+
+**4. A rich documentation trail.** The trial published a protocol and statistical
+analysis plan (SAP) in *Trials* in 2024, before the results were known. The results
+paper appeared in *JAMA Network Open* in 2026. Having both a pre-registered protocol
+and a published paper makes it possible to ask: *did the published analysis follow
+the plan?* That comparison — covered in Module 7 — is one of the most important
+critical-appraisal exercises in the course.
+
+### The published findings
+
+Matzenbacher et al. (2026) enrolled 112 adults aged ≥ 65 years with type 2 diabetes
+at a single academic medical center in Brazil. Participants were randomized 1:1 to
+receive the smart speaker intervention (n = 56) or usual care (n = 56) for 12 weeks.
+The primary outcome was the SRQ-20 mental distress score (range 0–20; higher = more
+distress).
+
+At 12 weeks, outcome data were available for 103 participants (92%). In the
+pre-specified fully adjusted ANCOVA, the smart speaker group had a mean SRQ-20
+score 1.46 points lower than the usual care group (95% CI: −2.73 to −0.19; p = .02).
+The intervention was also associated with improvements in quality of life (SF-36),
+diabetes self-care (SCI-R), and glycemic control (HbA1c), though these secondary
+findings were exploratory given the absence of multiplicity adjustment. No difference
+was observed for perceived stress (PSS).
+
+---
+
+## Source Materials and Their Roles {.unnumbered}
+
+This repository includes six source documents: two published papers and their
+supplemental files. Every document plays a specific role in the teaching case.
+
+### The results paper
+
+> Matzenbacher LS, da Costa FL, de Barros LGB, et al. Interactive virtual
+> assistant for health promotion among older adults with type 2 diabetes: the
+> IVAM-ED randomized clinical trial. *JAMA Network Open*. 2026;9(1):e2553508.
+> doi:[10.1001/jamanetworkopen.2025.53508](https://doi.org/10.1001/jamanetworkopen.2025.53508)
+
+**Role:** The definitive account of what was done and what was found. It provides
+every numerical parameter used to build the synthetic dataset: baseline demographics
+(Table 1), adjusted group means and 95% CIs for all outcomes (Table 2), subgroup
+counts (Figure 2), and the complete-case count (Results text). It is also the
+document students will be interpreting and critically appraising in Module 7.
+
+**Markdown extraction:** `docs/extracted/matzenbacher-2026-ivam-ed-results-paper.md`
+
+### The protocol and SAP paper
+
+> Da Costa FL, Matzenbacher LS, Gheno V, et al. Interactive virtual assistance for
+> mental health promotion and self-care management in elderly with type 2 diabetes
+> (IVAM-ED): study protocol and statistical analysis plan for a randomized controlled
+> trial. *Trials*. 2024;25(1):205.
+> doi:[10.1186/s13063-024-08055-3](https://doi.org/10.1186/s13063-024-08055-3)
+
+**Role:** The pre-registration document — written and published *before* the results
+were known. It describes what the investigators planned to do: the intervention,
+the outcome instruments, the sample size calculation (n = 112, power 90%, α = 0.05,
+effect size 0.68, 20% dropout assumption), the ANCOVA primary analysis, and the
+three pre-specified sensitivity analyses for missing data. Crucially, it specifies
+that secondary outcomes are exploratory and that p-values for secondary outcomes
+would not be the basis for conclusions.
+
+Comparing this document to the results paper is the foundation of Module 7.
+
+**Markdown extraction:** `docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
+
+### JAMA Supplement 1: Embedded protocol and SAP
+
+The primary results paper includes a full embedded protocol and statistical analysis
+plan as its first supplemental appendix.
+
+**Role:** A compressed reference that is easier to navigate than the Trials paper
+for specific SAP details — particularly the subgroup definitions, MMSE cognitive
+decline cutoffs, and sensitivity analysis specifications referenced in Modules 6
+and 7.
+
+**Markdown extraction:** `docs/extracted/matzenbacher-2026-supplement-1.md`
+
+### JAMA Supplement 2: Supplemental online content
+
+Tables and figures supporting the primary paper, including the standardized
+differences between study groups for all baseline characteristics (eTable 1),
+individual outcome supplemental tables (eTable 2), and baseline comparisons for
+participants with and without missing outcome data (eTable 3).
+
+**Role:** Provides granular baseline balance data and the per-outcome missing-data
+comparison used in Module 6.
+
+**Markdown extraction:** `docs/extracted/matzenbacher-2026-supplement-2.md`
+
+### JAMA Supplement 3: Data sharing statement
+
+The trial's data availability statement.
+
+**Role:** Documents that individual participant data are not publicly available,
+which is the direct motivation for constructing a synthetic dataset rather than
+using real data. The data sharing statement is part of the provenance chain: it
+confirms that the simulation was necessary, not a shortcut.
+
+**Markdown extraction:** `docs/extracted/matzenbacher-2026-supplement-3.md`
+
+### Trials Supplementary Material
+
+The supplementary appendix to the protocol paper, including the SPIRIT checklist,
+detailed intervention description (28 daily messages), Brazilian-Portuguese
+instrument validations, and the SAP checklist.
+
+**Role:** The most detailed specification of the intervention content and the
+instrument scoring rules. Used to verify instrument ranges in the simulation and
+to populate the instrument descriptions in the teaching materials.
+
+**Markdown extraction:** `docs/extracted/da-costa-2024-supplement-1.md`
+
+### Why include all of this? Transparency and reproducibility
+
+Combining the results paper, the pre-registered protocol, and all supplemental
+materials in one repository reflects a principle that is increasingly central to
+clinical research: **reproducibility requires documentation, not just code**.
+
+A simulation that correctly reproduces the published numbers without disclosing
+its source would be a black box. A simulation with all sources linked, all
+parameters cited, and all deviations documented is:
+
+- **Auditable:** instructors and students can verify every number.
+- **Correctable:** if a parameter was approximated incorrectly, the source document
+  shows what the correct value should be.
+- **Pedagogically complete:** students can trace the path from published summary
+  statistic to simulated data value to analysis output to interpreted conclusion.
+
+This also models a research practice that applies beyond teaching: when you publish
+analysis code, include the data source, the provenance chain, and the decisions
+that shaped the analysis.
+
+---
+
+## Repository Structure and How It Was Built {.unnumbered}
+
+### Initial setup
+
+This repository was initialized using the **BERD AI Repository Starter** — a
+portable scaffold for AI-assisted clinical research analysis repositories developed
+by the Duke Biostatistics, Epidemiology, and Research Design (BERD) Core as part
+of a GitHub Copilot pilot program. The starter provides:
+
+- `AGENTS.md`: an operating contract for AI coding tools that specifies what an
+  AI agent may do autonomously versus what requires confirmation.
+- `standards/`: a set of shared standards covering data handling, session logging,
+  security, and teaching material quality.
+- A bootstrap procedure that interviews the user and generates the baseline
+  repository files.
+
+The bootstrap interview established:
+
+- **Tier 2** — GitHub Copilot Business, synthetic or non-sensitive data only,
+  GitHub remote (per the BERD pilot governance framework).
+- **Primary language:** R with Quarto and renv.
+- **Data posture:** synthetic/simulated only; no real participant data at any stage.
+
+Full bootstrap and session history is in `SESSION_LOG.md`.
+
+### Source document extraction
+
+All six source documents (PDFs and one DOCX) were converted to Markdown at
+initialization using `miyo parse` (for PDFs) and `pandoc` (for the DOCX file).
+The Markdown extractions in `docs/extracted/` serve as the working reference for
+every simulation parameter and every teaching material claim. They are not modified
+from the extracted output; any corrections would be flagged as deviations from
+the source.
+
+### The synthetic dataset
+
+The synthetic dataset is generated by `R/simulate-ivam-ed.R` using the following
+strategy:
+
+1. **Moment matching.** For each variable, we chose a probability distribution
+   whose mean and standard deviation match the published Table 1 values. This is
+   the simplest defensible approach when only summary statistics are available.
+
+2. **ANCOVA-generating model.** Follow-up outcomes were simulated using:
+   $$y_{12,i} = \alpha + \tau \cdot \text{group}_i + \beta \cdot (y_{0,i} - \bar{y}_0) + \varepsilon_i$$
+   where $\tau$ is taken directly from the published Table 2 baseline-adjusted
+   mean differences, $\beta = 0.70$ (a standard test-retest correlation for
+   12-week clinical outcomes), and $\alpha$ equals the published control-group
+   adjusted mean.
+
+3. **MAR missingness.** The 9 missing participants (5 control, 4 intervention)
+   are assigned deterministically — those with the highest baseline SRQ-20 within
+   each group — reflecting a clinically plausible missing-at-random mechanism.
+
+Full simulation parameter documentation is in `docs/simulation-assumptions.md`.
+
+### Simulation refinement
+
+The simulation required two debugging cycles before producing correct output. Both
+bugs were caught by the verification summary printed at the end of the script:
+
+**Bug 1 (ANCOVA centering):** The intercept was initially calibrated at the
+*control group's* baseline mean rather than the *grand mean*, causing the treatment
+effect ($\tau$) to be almost entirely offset by chance baseline imbalance in the
+simulated data. Fix: center the baseline covariate at the grand mean so that
+$\alpha$ directly equals the published control-group adjusted mean.
+
+**Bug 2 (missingness split):** A probabilistic logistic model for missingness
+assigned 1 and 8 missing participants to the two groups instead of the target 4
+and 5. Fix: deterministic rank-based selection within each group.
+
+After both fixes, the ANCOVA recovers an adjusted MD of −1.19 (published: −1.28),
+which is close enough for a teaching dataset. The full debugging narrative —
+including the mathematical diagnosis for each bug — is in
+`docs/simulation-refinements.md`. This document is part of the teaching case:
+it illustrates the verify–diagnose–fix–re-verify cycle that applies to any
+quantitative analysis.
+
+---
+
+## Learning Objectives {.unnumbered}
+
+After completing all seven modules, students will be able to:
+
+### Data management
+- Load an R data frame, inspect its structure, and identify variable types.
+- Recognize the `_0` (baseline) and `_12` (follow-up) suffix convention for
+  repeated measurements.
+- Count and characterize missing values and explain why missingness matters.
+
+### Descriptive statistics
+- Compute means, standard deviations, medians, frequencies, and percentages.
+- Construct and interpret a baseline characteristics table (Table 1).
+- Explain why significance tests of baseline differences are inappropriate in a
+  randomized trial and use standardized mean differences instead.
+
+### Data visualization
+- Construct histograms, box plots, and individual trajectory plots in ggplot2.
+- Describe distributional features (skewness, outliers, floor/ceiling effects)
+  from a plot.
+- Identify regression to the mean as a visual pattern in pre-post data.
+
+### Estimation and inference
+- Compute group means, mean changes from baseline, and between-group mean
+  differences with 95% confidence intervals.
+- Conduct an independent-samples t-test and interpret the p-value correctly.
+- Distinguish within-group change (not the treatment effect) from the between-group
+  difference (the treatment effect).
+
+### Regression and ANCOVA
+- Fit a linear regression model using `lm()` and interpret each coefficient.
+- Explain why adjusting for baseline increases precision without introducing bias.
+- Calculate adjusted means using `predict()` and compare them to observed means.
+- Reproduce the primary analysis of a published randomized trial.
+
+### Missing data
+- Describe the MCAR, MAR, and MNAR mechanisms and their implications.
+- Conduct a complete-case analysis and state its assumptions.
+- Apply a BOCF sensitivity analysis.
+- Run multiple imputation with `mice` and pool results using Rubin's rules.
+
+### Interpretation and critical appraisal
+- Distinguish statistical significance from clinical significance using MCID.
+- Identify a trial's pre-specified primary outcome and label secondary outcomes
+  as exploratory.
+- Apply Bonferroni correction and explain what changes.
+- Compare a published analysis to its pre-registered protocol and evaluate
+  identified deviations.
+
+---
+
+## Chapter Guide {.unnumbered}
+
+Each chapter addresses a distinct methodological question and is designed to take
+approximately 45–90 minutes for a student working independently.
+
+### Module 1 — Data Setup and Inspection
+
+*What are the data? What do the variables mean? Who is missing?*
+
+Introduces the synthetic dataset: variable types, instrument descriptions and score
+directions, group assignment, and the 9 participants with missing follow-up data.
+Establishes the working dataset used in all subsequent modules.
+
+**Key concepts:** data frames, variable labels, binary vs. continuous variables,
+missing values, range checks.
+
+### Module 2 — Descriptive Statistics and Baseline Characteristics
+
+*Who was enrolled? Are the two groups similar at baseline?*
+
+Constructs Table 1 using `gtsummary`. Introduces standardized mean differences
+as the appropriate measure of baseline balance and explains the CONSORT rationale
+for omitting p-values from Table 1 in a randomized trial.
+
+**Key concepts:** means and SDs, frequencies and percentages, Table 1, standardized
+mean differences, CONSORT reporting guidelines.
+
+### Module 3 — Data Visualization
+
+*What do the outcome distributions look like? Do individuals improve?*
+
+Builds four types of visualizations: a baseline histogram with density overlay,
+faceted box plots with jittered individual points, individual trajectory plots
+with group mean lines, and a side-by-side floor/ceiling check. Introduces
+regression to the mean as a visual concept.
+
+**Key concepts:** histograms, box plots, jitter plots, trajectory plots, floor and
+ceiling effects, regression to the mean.
+
+### Module 4 — Estimation and Hypothesis Testing
+
+*How much did each group change? How different were they at follow-up?*
+
+Computes group means at both time points and the within-group change. Derives the
+Welch t-interval formula before applying `t.test()`. Builds a forest plot for
+all five outcomes. Emphasizes the distinction between within-group change and the
+randomized between-group comparison.
+
+**Key concepts:** mean difference, standard error, 95% confidence interval, Welch
+t-test, p-value interpretation, forest plots.
+
+### Module 5 — Linear Regression and ANCOVA
+
+*Does adjusting for baseline change the estimate and its precision?*
+
+Fits the pre-specified ANCOVA using `lm()`. Demonstrates the precision gain from
+baseline adjustment by comparing CI widths. Introduces adjusted means via
+`predict()`. Extends to the fully adjusted model and replicates Table 2.
+
+**Key concepts:** linear regression, ANCOVA, treatment coefficient, adjusted means,
+grand mean centering, efficiency gain from covariate adjustment.
+
+### Module 6 — Missing Data
+
+*Does it matter how we handle the 9 participants with missing follow-up data?*
+
+Compares three approaches: complete-case analysis, baseline-observation-carried
+forward (BOCF), and multiple imputation with the `mice` package. Visualizes all
+three estimates on a forest plot and assesses the robustness of the primary
+conclusion.
+
+**Key concepts:** MCAR / MAR / MNAR, complete-case analysis, BOCF, multiple
+imputation, Rubin's rules, sensitivity analysis.
+
+### Module 7 — Interpretation and Critical Appraisal
+
+*Is the result clinically meaningful? Did the paper follow its own plan?*
+
+Introduces the minimum clinically important difference (MCID) and visualizes the
+CI against that threshold. Applies Bonferroni correction to the five outcomes.
+Conducts a structured protocol-to-publication comparison identifying four specific
+deviations between the Da Costa 2024 protocol and the Matzenbacher 2026 paper.
+
+**Key concepts:** clinical significance, effect size, Cohen's d, MCID, multiplicity
+correction, confirmatory vs. exploratory inference, protocol adherence.
+
+---
+
+## How to Use This Book {.unnumbered}
+
+**Prerequisites:** R (≥ 4.6), Quarto (≥ 1.10), and a working renv installation.
+See `standards/CAPABILITIES.md` for verified tool versions.
+
+**Generate the dataset first.** Before opening any module, run the simulation
+script from the project root:
+
+```r
+source("R/simulate-ivam-ed.R")
+```
+
+This creates `data/ivam_synthetic.rds`. The `data/` directory is gitignored and
+the file will not be committed; you generate it locally each time.
+
+**Render from the project root.** Because renv activates via a `.Rprofile` at the
+project root, all `quarto render` commands must be run from there:
+
+```bash
+# Build the entire book
+quarto render
+
+# Render a single module (standalone HTML with embedded resources)
+quarto render R/01-data-setup.qmd --to html
+```
+
+**Work sequentially.** Each module depends on the data and concepts established
+in the previous one. Module 2 loads the working dataset created by Module 1;
+Modules 3–7 use the same completers object.
+
+---
+
+## Acknowledgments and Licensing {.unnumbered}
+
+The IVAM-ED trial was conducted by Lucas S. Matzenbacher, Frederico Ludwig da
+Costa, and colleagues at the Pontifical Catholic University of Rio Grande do Sul,
+Porto Alegre, Brazil. We are grateful for their commitment to open-access
+publication under a Creative Commons Attribution license, which makes this teaching
+case possible.
+
+Both source publications are open access under the
+[CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/) license:
+
+- Matzenbacher et al. (2026). *JAMA Network Open*. doi:10.1001/jamanetworkopen.2025.53508
+- Da Costa et al. (2024). *Trials*. doi:10.1186/s13063-024-08055-3
+
+The synthetic dataset and all analysis code in this repository were generated for
+teaching purposes and do not represent reconstructed individual participant data.
+Students should cite both source publications when reporting results derived from
+this teaching case (see suggested citation language in
+`docs/simulation-assumptions.md`).
+
+This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2)
+using GitHub Copilot Business with synthetic data only.

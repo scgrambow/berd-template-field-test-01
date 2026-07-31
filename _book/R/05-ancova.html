@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Your Name">
+<meta name="dcterms.date" content="2026-07-31">
+
+<title>6&nbsp; Module 5: Linear Regression and ANCOVA – IVAM-ED: A CRP 241 Teaching Case</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../R/06-missing-data.html" rel="next">
+<link href="../R/04-estimation.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/01-data-setup.html">Analysis Modules</a></li><li class="breadcrumb-item"><a href="../R/05-ancova.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">IVAM-ED: A CRP 241 Teaching Case</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/scgrambow/berd-template-field-test-01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analysis Modules</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/01-data-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Data Setup and Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/02-descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Descriptive Statistics and Baseline Characteristics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/03-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Module 3: Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/04-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Estimation and Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/05-ancova.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/06-missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Module 6: Missing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/07-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">6.1</span> Overview</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6.2</span> ———————————————————————</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">6.3</span> Setup</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">6.4</span> ———————————————————————</a></li>
+  <li><a href="#why-adjust-for-baseline" id="toc-why-adjust-for-baseline" class="nav-link" data-scroll-target="#why-adjust-for-baseline"><span class="header-section-number">6.5</span> 1. Why Adjust for Baseline?</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">6.6</span> ———————————————————————</a></li>
+  <li><a href="#the-baseline-adjusted-ancova-model" id="toc-the-baseline-adjusted-ancova-model" class="nav-link" data-scroll-target="#the-baseline-adjusted-ancova-model"><span class="header-section-number">6.7</span> 2. The Baseline-Adjusted ANCOVA Model</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">6.8</span> ———————————————————————</a></li>
+  <li><a href="#adjusted-means" id="toc-adjusted-means" class="nav-link" data-scroll-target="#adjusted-means"><span class="header-section-number">6.9</span> 3. Adjusted Means</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">6.10</span> ———————————————————————</a></li>
+  <li><a href="#the-fully-adjusted-model" id="toc-the-fully-adjusted-model" class="nav-link" data-scroll-target="#the-fully-adjusted-model"><span class="header-section-number">6.11</span> 4. The Fully Adjusted Model</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">6.12</span> ———————————————————————</a></li>
+  <li><a href="#replicating-table-2-all-outcomes" id="toc-replicating-table-2-all-outcomes" class="nav-link" data-scroll-target="#replicating-table-2-all-outcomes"><span class="header-section-number">6.13</span> 5. Replicating Table 2: All Outcomes</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">6.14</span> ———————————————————————</a></li>
+  <li><a href="#visualizing-adjusted-vs.-unadjusted-estimates" id="toc-visualizing-adjusted-vs.-unadjusted-estimates" class="nav-link" data-scroll-target="#visualizing-adjusted-vs.-unadjusted-estimates"><span class="header-section-number">6.15</span> 6. Visualizing Adjusted vs.&nbsp;Unadjusted Estimates</a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">6.16</span> ———————————————————————</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">6.17</span> 7. Practice Exercises</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">6.18</span> ———————————————————————</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.19</span> Summary</a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"><span class="header-section-number">6.20</span> ———————————————————————</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">6.21</span> Session Information</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../R/01-data-setup.html">Analysis Modules</a></li><li class="breadcrumb-item"><a href="../R/05-ancova.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></h1>
+<p class="subtitle lead">CRP 241 — IVAM-ED Teaching Case</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 31, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">6.1</span> Overview</h2>
+<p>In Module 4 we used an unadjusted t-test to compare groups at follow-up. The pre-specified primary analysis in the IVAM-ED protocol used a different approach: <strong>ANCOVA (Analysis of Covariance)</strong> — a linear regression model that includes the baseline value of the outcome as a covariate alongside the treatment group indicator.</p>
+<p>By the end of this module you should be able to:</p>
+<ol type="1">
+<li>Explain why adjusting for baseline improves precision without introducing bias.</li>
+<li>Fit a baseline-adjusted ANCOVA model using <code>lm()</code> and interpret the treatment coefficient.</li>
+<li>Fit the fully-adjusted model with additional covariates and compare it to the baseline-adjusted model.</li>
+<li>Report results in the format used in the published paper (Table 2).</li>
+<li>Understand what “adjusted mean” means and how it differs from an observed mean.</li>
+</ol>
+</section>
+<section id="section" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="section"><span class="header-section-number">6.2</span> ———————————————————————</h2>
+</section>
+<section id="setup" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">6.3</span> Setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat        <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/ivam_working.rds"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>completers <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>)   <span class="co"># 103 participants</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="section-1" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">6.4</span> ———————————————————————</h2>
+</section>
+<section id="why-adjust-for-baseline" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="why-adjust-for-baseline"><span class="header-section-number">6.5</span> 1. Why Adjust for Baseline?</h2>
+<p>When participants are randomized, the two groups are <em>expected</em> to be balanced at baseline on average — but in any finite sample, chance imbalances occur. In our simulated data (and the real IVAM-ED trial), the intervention group started with a slightly higher SRQ-20 score than the control group.</p>
+<p><strong>Two consequences of baseline imbalance:</strong></p>
+<ol type="1">
+<li><p><strong>The unadjusted mean difference is biased.</strong> If the intervention group starts higher, regression to the mean will push them down more, even without a real treatment effect. Adjusting for baseline removes this confounding.</p></li>
+<li><p><strong>Adjusting for baseline increases precision.</strong> Because baseline scores are strongly correlated with follow-up scores, including the baseline as a covariate reduces residual variance. This makes confidence intervals narrower and tests more powerful — for free, without collecting additional data.</p></li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># How strongly correlated are baseline and follow-up SRQ-20?</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(completers, <span class="fu">round</span>(<span class="fu">cor</span>(srq20_0, srq20_12, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.748</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpreting the correlation:</strong> A value near 0.7 means that knowing a participant’s baseline score explains about 49% of the variance in their follow-up score (r² = 0.70² ≈ 0.49). Including the baseline in the regression model can therefore reduce the residual variance by roughly half, which substantially narrows the confidence interval for the treatment effect.</p>
+</div>
+</div>
+</section>
+<section id="section-2" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="section-2"><span class="header-section-number">6.6</span> ———————————————————————</h2>
+</section>
+<section id="the-baseline-adjusted-ancova-model" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="the-baseline-adjusted-ancova-model"><span class="header-section-number">6.7</span> 2. The Baseline-Adjusted ANCOVA Model</h2>
+<p>The baseline-adjusted ANCOVA model includes two predictors: - <code>group</code>: the randomized treatment assignment (1 = intervention, 0 = control) - <code>srq20_0</code>: the participant’s SRQ-20 score at baseline</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline-adjusted model: y_12 ~ group + y_0</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model_base <span class="ot">&lt;-</span> <span class="fu">lm</span>(srq20_12 <span class="sc">~</span> group <span class="sc">+</span> srq20_0, <span class="at">data =</span> completers)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_base)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = srq20_12 ~ group + srq20_0, data = completers)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8267 -1.2076  0.1222  1.4317  5.3160 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.61270    0.49443   5.284 7.41e-07 ***
+group       -1.18712    0.43919  -2.703  0.00808 ** 
+srq20_0      0.69045    0.05789  11.928  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.207 on 100 degrees of freedom
+Multiple R-squared:  0.5892,    Adjusted R-squared:  0.581 
+F-statistic: 71.71 on 2 and 100 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the key estimates in a clean format</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>coef_base <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_base)<span class="sc">$</span>coefficients</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ci_base   <span class="ot">&lt;-</span> <span class="fu">confint</span>(model_base)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>results_base <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Term         =</span> <span class="fu">rownames</span>(coef_base),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimate     =</span> <span class="fu">round</span>(coef_base[, <span class="st">"Estimate"</span>], <span class="dv">3</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">SE           =</span> <span class="fu">round</span>(coef_base[, <span class="st">"Std. Error"</span>], <span class="dv">3</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">95% CI</span><span class="st">`</span>     <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(ci_base[, <span class="dv">1</span>], <span class="dv">2</span>), <span class="st">", "</span>, <span class="fu">round</span>(ci_base[, <span class="dv">2</span>], <span class="dv">2</span>), <span class="st">")"</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">p-value</span><span class="st">`</span>    <span class="ot">=</span> <span class="fu">round</span>(coef_base[, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">4</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names  =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>results_base</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Term Estimate    SE         95% CI p-value
+(Intercept) (Intercept)    2.613 0.494   (1.63, 3.59)  0.0000
+group             group   -1.187 0.439 (-2.06, -0.32)  0.0081
+srq20_0         srq20_0    0.690 0.058   (0.58, 0.81)  0.0000</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpreting the <code>group</code> coefficient (the treatment effect):</strong></p>
+<ul>
+<li>This is the estimated mean difference in SRQ-20 at 12 weeks between the intervention and control groups, <strong>holding baseline SRQ-20 constant</strong>.</li>
+<li>A negative value means the intervention group had lower distress (better outcome).</li>
+<li>Compare this to the unadjusted mean difference from Module 4. The ANCOVA estimate should be larger in magnitude because it corrects for the baseline imbalance (intervention group started higher).</li>
+<li>The 95% CI should be narrower than the unadjusted CI, reflecting the increased precision from including the baseline covariate.</li>
+</ul>
+<p><strong>Published baseline-adjusted MD:</strong> −1.28 (95% CI: −2.51 to −0.04). Your estimate will be close but not identical because this is a simulation.</p>
+</div>
+</div>
+</section>
+<section id="section-3" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="section-3"><span class="header-section-number">6.8</span> ———————————————————————</h2>
+</section>
+<section id="adjusted-means" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="adjusted-means"><span class="header-section-number">6.9</span> 3. Adjusted Means</h2>
+<p>The ANCOVA model produces <strong>adjusted means</strong> — the estimated group means at follow-up after accounting for baseline differences. These are what the paper reports in Table 2 as “Adjusted mean (SE)”.</p>
+<p>The adjusted means are evaluated at the <strong>grand mean</strong> of the baseline covariate (not the group-specific mean). This removes the effect of any baseline imbalance.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grand mean of baseline SRQ-20 across all completers</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>grand_mean_srq20 <span class="ot">&lt;-</span> <span class="fu">mean</span>(completers<span class="sc">$</span>srq20_0)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Grand mean of baseline SRQ-20:"</span>, <span class="fu">round</span>(grand_mean_srq20, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Grand mean of baseline SRQ-20: 7.19 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted means: predict at grand mean of baseline, for each group</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>adj_means <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  model_base,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">group   =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">srq20_0 =</span> <span class="fu">c</span>(grand_mean_srq20, grand_mean_srq20)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">se.fit =</span> <span class="cn">TRUE</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Adjusted mean (SE) — Usual care:    "</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(adj_means<span class="sc">$</span>fit[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">"("</span>, <span class="fu">round</span>(adj_means<span class="sc">$</span>se.fit[<span class="dv">1</span>], <span class="dv">2</span>), <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted mean (SE) — Usual care:     7.58 ( 0.31 )</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Adjusted mean (SE) — Smart speaker: "</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(adj_means<span class="sc">$</span>fit[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">"("</span>, <span class="fu">round</span>(adj_means<span class="sc">$</span>se.fit[<span class="dv">2</span>], <span class="dv">2</span>), <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Adjusted mean (SE) — Smart speaker:  6.39 ( 0.31 )</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Published (Table 2): Usual care 7.66 (0.43), Smart speaker 6.39 (0.45)</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Published (Table 2): Usual care 7.66 (0.43), Smart speaker 6.39 (0.45)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Why adjusted means differ from raw means:</strong> The raw follow-up means reflect which participants ended up in each group, including any baseline imbalance. The adjusted means represent what the expected follow-up score would be for a “typical” participant (at the grand mean of the baseline) in each group.</p>
+</div>
+</div>
+</section>
+<section id="section-4" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="section-4"><span class="header-section-number">6.10</span> ———————————————————————</h2>
+</section>
+<section id="the-fully-adjusted-model" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="the-fully-adjusted-model"><span class="header-section-number">6.11</span> 4. The Fully Adjusted Model</h2>
+<p>The protocol specified a <strong>fully adjusted</strong> model that additionally controls for: age, sex, years of education, individual income, and MMSE score. These variables are included to account for any remaining between-group differences that could influence the outcome.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fully adjusted model: adds age, sex, education, income, MMSE as covariates</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  srq20_12 <span class="sc">~</span> group <span class="sc">+</span> srq20_0 <span class="sc">+</span> age <span class="sc">+</span> female <span class="sc">+</span> edu_years <span class="sc">+</span> income_wages <span class="sc">+</span> mmse_0,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> completers</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = srq20_12 ~ group + srq20_0 + age + female + edu_years + 
+    income_wages + mmse_0, data = completers)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.5828 -1.2808  0.1698  1.3799  5.3337 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   4.54577    3.63377   1.251   0.2140    
+group        -1.10707    0.45396  -2.439   0.0166 *  
+srq20_0       0.70205    0.05998  11.705   &lt;2e-16 ***
+age          -0.02763    0.04848  -0.570   0.5700    
+female       -0.46403    0.46959  -0.988   0.3256    
+edu_years    -0.05649    0.06344  -0.890   0.3755    
+income_wages -0.13485    0.10606  -1.271   0.2067    
+mmse_0        0.04077    0.06523   0.625   0.5334    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.22 on 95 degrees of freedom
+Multiple R-squared:  0.6053,    Adjusted R-squared:  0.5762 
+F-statistic: 20.81 on 7 and 95 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>coef_full <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_full)<span class="sc">$</span>coefficients</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ci_full   <span class="ot">&lt;-</span> <span class="fu">confint</span>(model_full)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Term      =</span> <span class="fu">rownames</span>(coef_full),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Estimate  =</span> <span class="fu">round</span>(coef_full[, <span class="st">"Estimate"</span>], <span class="dv">3</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">SE        =</span> <span class="fu">round</span>(coef_full[, <span class="st">"Std. Error"</span>], <span class="dv">3</span>),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">95% CI</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(ci_full[, <span class="dv">1</span>], <span class="dv">2</span>), <span class="st">", "</span>, <span class="fu">round</span>(ci_full[, <span class="dv">2</span>], <span class="dv">2</span>), <span class="st">")"</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">p-value</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(coef_full[, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">4</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Term Estimate    SE         95% CI p-value
+(Intercept)   (Intercept)    4.546 3.634 (-2.67, 11.76)  0.2140
+group               group   -1.107 0.454 (-2.01, -0.21)  0.0166
+srq20_0           srq20_0    0.702 0.060   (0.58, 0.82)  0.0000
+age                   age   -0.028 0.048  (-0.12, 0.07)  0.5700
+female             female   -0.464 0.470   (-1.4, 0.47)  0.3256
+edu_years       edu_years   -0.056 0.063  (-0.18, 0.07)  0.3755
+income_wages income_wages   -0.135 0.106  (-0.35, 0.08)  0.2067
+mmse_0             mmse_0    0.041 0.065  (-0.09, 0.17)  0.5334</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Comparing baseline-adjusted vs.&nbsp;fully adjusted:</strong></p>
+<ul>
+<li>The treatment effect (<code>group</code> coefficient) may change slightly between the two models. In the published paper, the fully adjusted MD was −1.46 (95% CI: −2.73 to −0.19) versus −1.28 baseline-adjusted — slightly larger after full adjustment.</li>
+<li>Adding more covariates can either increase or decrease the treatment estimate depending on whether those covariates are positively or negatively correlated with both group assignment and the outcome.</li>
+<li>The primary advantage of the fully adjusted model is further precision gain when the additional covariates explain residual variance.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="section-5" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="section-5"><span class="header-section-number">6.12</span> ———————————————————————</h2>
+</section>
+<section id="replicating-table-2-all-outcomes" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="replicating-table-2-all-outcomes"><span class="header-section-number">6.13</span> 5. Replicating Table 2: All Outcomes</h2>
+<p>The paper’s Table 2 reports baseline-adjusted and fully adjusted results for all five outcomes. Here we fit the baseline-adjusted model for each and compile the results.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: fit ANCOVA for one outcome and return a tidy summary row</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ancova_row <span class="ot">&lt;-</span> <span class="cf">function</span>(data, outcome_12, outcome_0, label) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  fmla <span class="ot">&lt;-</span> <span class="fu">as.formula</span>(<span class="fu">paste</span>(outcome_12, <span class="st">"~"</span>, <span class="st">"group +"</span>, outcome_0))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  m    <span class="ot">&lt;-</span> <span class="fu">lm</span>(fmla, <span class="at">data =</span> data)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  ci   <span class="ot">&lt;-</span> <span class="fu">confint</span>(m)[<span class="st">"group"</span>, ]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  coef_row <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(m))[<span class="st">"group"</span>, ]</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Outcome       =</span> label,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">MD            =</span> <span class="fu">round</span>(coef_row[<span class="st">"Estimate"</span>], <span class="dv">2</span>),</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">SE            =</span> <span class="fu">round</span>(coef_row[<span class="st">"Std. Error"</span>], <span class="dv">2</span>),</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">CI lower</span><span class="st">`</span>    <span class="ot">=</span> <span class="fu">round</span>(ci[<span class="dv">1</span>], <span class="dv">2</span>),</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">CI upper</span><span class="st">`</span>    <span class="ot">=</span> <span class="fu">round</span>(ci[<span class="dv">2</span>], <span class="dv">2</span>),</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">p-value</span><span class="st">`</span>     <span class="ot">=</span> <span class="fu">round</span>(coef_row[<span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">3</span>),</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names   =</span> <span class="cn">FALSE</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>table2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ancova_row</span>(completers, <span class="st">"srq20_12"</span>, <span class="st">"srq20_0"</span>, <span class="st">"SRQ-20 (primary)"</span>),</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ancova_row</span>(completers, <span class="st">"sf36_12"</span>,  <span class="st">"sf36_0"</span>,  <span class="st">"SF-36 (quality of life)"</span>),</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ancova_row</span>(completers, <span class="st">"sci_r_12"</span>, <span class="st">"sci_r_0"</span>, <span class="st">"SCI-R (self-care)"</span>),</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ancova_row</span>(completers, <span class="st">"pss_12"</span>,   <span class="st">"pss_0"</span>,   <span class="st">"PSS (perceived stress)"</span>),</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ancova_row</span>(completers, <span class="st">"hba1c_12"</span>, <span class="st">"hba1c_0"</span>, <span class="st">"HbA1c %"</span>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>table2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             Outcome    MD   SE CI lower CI upper p-value
+Estimate...1        SRQ-20 (primary) -1.19 0.44    -2.06    -0.32   0.008
+Estimate...2 SF-36 (quality of life)  5.95 2.97     0.05    11.85   0.048
+Estimate...3       SCI-R (self-care)  1.39 0.94    -0.48     3.26   0.142
+Estimate...4  PSS (perceived stress) -3.28 1.57    -6.39    -0.16   0.040
+Estimate...5                 HbA1c % -0.54 0.21    -0.96    -0.12   0.012</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Published baseline-adjusted results (Table 2, Matzenbacher et al. 2026)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># for comparison</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>published <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Outcome    =</span> <span class="fu">c</span>(<span class="st">"SRQ-20 (primary)"</span>, <span class="st">"SF-36 (quality of life)"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"SCI-R (self-care)"</span>, <span class="st">"PSS (perceived stress)"</span>, <span class="st">"HbA1c %"</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">MD_pub     =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.28</span>, <span class="fl">9.46</span>, <span class="fl">3.40</span>, <span class="sc">-</span><span class="fl">3.00</span>, <span class="sc">-</span><span class="fl">0.48</span>),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">CI_pub     =</span> <span class="fu">c</span>(<span class="st">"(-2.51, -0.04)"</span>, <span class="st">"(3.65, 15.26)"</span>, <span class="st">"(1.61, 5.19)"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"(-6.20, 0.20)"</span>, <span class="st">"(-0.85, -0.11)"</span>),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">p_pub      =</span> <span class="fu">c</span>(<span class="fl">0.04</span>, <span class="fl">0.001</span>, <span class="st">"&lt;0.001"</span>, <span class="fl">0.07</span>, <span class="fl">0.01</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>published</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  Outcome MD_pub         CI_pub  p_pub
+1        SRQ-20 (primary)  -1.28 (-2.51, -0.04)   0.04
+2 SF-36 (quality of life)   9.46  (3.65, 15.26)  0.001
+3       SCI-R (self-care)   3.40   (1.61, 5.19) &lt;0.001
+4  PSS (perceived stress)  -3.00  (-6.20, 0.20)   0.07
+5                 HbA1c %  -0.48 (-0.85, -0.11)   0.01</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Comparing your estimates to the published values:</strong> Your estimates should have the same sign and approximate magnitude as the published results. Exact matches are not expected — the simulation approximates, but does not reconstruct, the real data. The key patterns to confirm:</p>
+<ul>
+<li>SRQ-20: negative MD, p &lt; 0.05 (significant)</li>
+<li>SF-36 and SCI-R: positive MD, p &lt; 0.05 (significant)</li>
+<li>PSS: negative MD, p &gt; 0.05 (not significant; CI should cross zero)</li>
+<li>HbA1c: negative MD, p &lt; 0.05 (significant)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="section-6" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="section-6"><span class="header-section-number">6.14</span> ———————————————————————</h2>
+</section>
+<section id="visualizing-adjusted-vs.-unadjusted-estimates" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="visualizing-adjusted-vs.-unadjusted-estimates"><span class="header-section-number">6.15</span> 6. Visualizing Adjusted vs.&nbsp;Unadjusted Estimates</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect unadjusted and adjusted MDs for SRQ-20</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>unadj_t  <span class="ot">&lt;-</span> <span class="fu">t.test</span>(srq20_12 <span class="sc">~</span> group_label, <span class="at">data =</span> completers)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>unadj_est <span class="ot">&lt;-</span> <span class="fu">diff</span>(<span class="fu">rev</span>(unadj_t<span class="sc">$</span>estimate))   <span class="co"># Smart speaker - Usual care</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>unadj_ci <span class="ot">&lt;-</span> unadj_t<span class="sc">$</span>conf.int</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>adj_ci   <span class="ot">&lt;-</span> <span class="fu">confint</span>(model_base)[<span class="st">"group"</span>, ]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>adj_est  <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_base)[<span class="st">"group"</span>]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>compare <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Model    =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Unadjusted (t-test)"</span>, <span class="st">"Baseline-adjusted ANCOVA"</span>),</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Unadjusted (t-test)"</span>, <span class="st">"Baseline-adjusted ANCOVA"</span>)),</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">MD       =</span> <span class="fu">c</span>(unadj_est, adj_est),</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">lo       =</span> <span class="fu">c</span>(unadj_ci[<span class="dv">1</span>], adj_ci[<span class="dv">1</span>]),</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">hi       =</span> <span class="fu">c</span>(unadj_ci[<span class="dv">2</span>], adj_ci[<span class="dv">2</span>])</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(compare, <span class="fu">aes</span>(<span class="at">x =</span> MD, <span class="at">xmin =</span> lo, <span class="at">xmax =</span> hi, <span class="at">y =</span> Model)) <span class="sc">+</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">linewidth =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">18</span>, <span class="at">color =</span> <span class="st">"#4472C4"</span>) <span class="sc">+</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"point"</span>, <span class="at">x =</span> <span class="sc">-</span><span class="fl">1.28</span>, <span class="at">y =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">4</span>,</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#C00000"</span>) <span class="sc">+</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>,  <span class="at">x =</span> <span class="sc">-</span><span class="fl">1.28</span>, <span class="at">y =</span> <span class="fl">2.25</span>, <span class="at">label =</span> <span class="st">"Published (−1.28)"</span>,</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"#C00000"</span>, <span class="at">size =</span> <span class="fl">3.2</span>) <span class="sc">+</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title   =</span> <span class="st">"SRQ-20: Unadjusted vs. Baseline-Adjusted Mean Difference"</span>,</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Red × = published baseline-adjusted estimate"</span>,</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">x       =</span> <span class="st">"Mean difference (Smart speaker − Usual care)"</span>,</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">y       =</span> <span class="cn">NULL</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="05-ancova_files/figure-html/compare-estimates-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>The ANCOVA estimate should be larger in absolute value than the unadjusted estimate (the adjustment corrects for the baseline imbalance that attenuated the raw difference).</li>
+<li>The ANCOVA CI should be narrower (more precise), demonstrating the efficiency gain from baseline adjustment.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="section-7" class="level2" data-number="6.16">
+<h2 data-number="6.16" class="anchored" data-anchor-id="section-7"><span class="header-section-number">6.16</span> ———————————————————————</h2>
+</section>
+<section id="practice-exercises" class="level2" data-number="6.17">
+<h2 data-number="6.17" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">6.17</span> 7. Practice Exercises</h2>
+<ol type="1">
+<li><p><strong>Coefficient interpretation.</strong> Write one sentence interpreting the <code>group</code> coefficient from the baseline-adjusted ANCOVA as you would in a results section of a paper.</p></li>
+<li><p><strong>Baseline coefficient.</strong> The <code>srq20_0</code> coefficient in the ANCOVA model is approximately 0.70. What does this tell you about the relationship between baseline and follow-up SRQ-20 scores?</p></li>
+<li><p><strong>Adjusted means by hand.</strong> Using the estimated coefficients from <code>model_base</code>, predict the adjusted mean SRQ-20 at 12 weeks for a participant in the control group (<code>group = 0</code>) with a baseline SRQ-20 equal to the grand mean. Does this match the output from Section 3?</p></li>
+<li><p><strong>Degrees of freedom.</strong> The baseline-adjusted model has 103 observations and estimates 3 coefficients (intercept, group, baseline). How many residual degrees of freedom does it have? Why does the fully adjusted model (7 coefficients) have fewer? What is the practical consequence of having fewer degrees of freedom?</p></li>
+</ol>
+</section>
+<section id="section-8" class="level2" data-number="6.18">
+<h2 data-number="6.18" class="anchored" data-anchor-id="section-8"><span class="header-section-number">6.18</span> ———————————————————————</h2>
+</section>
+<section id="summary" class="level2" data-number="6.19">
+<h2 data-number="6.19" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.19</span> Summary</h2>
+<p>In this module you:</p>
+<ul>
+<li>Explained why ANCOVA is preferred over an unadjusted t-test in a randomized trial with continuous outcomes.</li>
+<li>Fitted the baseline-adjusted ANCOVA and interpreted the treatment coefficient and adjusted means.</li>
+<li>Extended to the fully adjusted model with additional covariates.</li>
+<li>Reproduced the structure of the published Table 2 for all five outcomes.</li>
+<li>Visualized the precision gain from baseline adjustment.</li>
+</ul>
+<p><strong>Next:</strong> Module 6 examines missing data — how the 9 missing participants affect the analysis and what sensitivity analyses can tell us about robustness.</p>
+</section>
+<section id="section-9" class="level2" data-number="6.20">
+<h2 data-number="6.20" class="anchored" data-anchor-id="section-9"><span class="header-section-number">6.20</span> ———————————————————————</h2>
+</section>
+<section id="session-information" class="level2" data-number="6.21">
+<h2 data-number="6.21" class="anchored" data-anchor-id="session-information"><span class="header-section-number">6.21</span> Session Information</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.6.1 (2026-06-24)
+Platform: aarch64-apple-darwin23
+Running under: macOS Tahoe 26.5.2
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+
+locale:
+[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8
+
+time zone: America/New_York
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices datasets  utils     methods   base     
+
+other attached packages:
+[1] ggplot2_4.0.3 dplyr_1.2.1  
+
+loaded via a namespace (and not attached):
+ [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       
+ [5] xfun_0.60          renv_1.2.3         generics_0.1.4     S7_0.2.2          
+ [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   
+[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    
+[17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   
+[21] compiler_4.6.1     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   
+[25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  
+[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.1       
+[33] gtable_0.3.6      </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../R/04-estimation.html" class="pagination-link" aria-label="Module 4: Estimation and Hypothesis Testing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Estimation and Hypothesis Testing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../R/06-missing-data.html" class="pagination-link" aria-label="Module 6: Missing Data">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Module 6: Missing Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

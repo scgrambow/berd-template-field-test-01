@@ -28,9 +28,13 @@ All packages are managed by renv. The full list is in `renv.lock`.
 | knitr | 1.51 | Executes R code in Quarto documents |
 | rmarkdown | 2.31 | Quarto HTML rendering support |
 | yaml | 2.3.12 | Parses Quarto YAML front matter |
+| mice | (in lockfile) | Multiple imputation (Module 6) |
 | dplyr | (in lockfile) | Data manipulation in exercises |
 | labelled | (in lockfile) | Variable labels on the synthetic dataset |
 | tibble | (in lockfile) | Tidy data frames |
+| ggplot2 | (in lockfile) | Visualizations (Modules 3–7) |
+| patchwork | (in lockfile) | Combining ggplot panels |
+| gtsummary | (in lockfile) | Publication-ready Table 1 (Module 2) |
 
 ## Rendering
 
@@ -39,11 +43,11 @@ All packages are managed by renv. The full list is in `renv.lock`.
 Rscript -e 'renv::restore()'
 
 # Always render from the project root (renv .Rprofile activates the library there)
-quarto render R/01-data-setup.qmd --to html
-quarto render R/02-descriptive.qmd --to html
-
-# Render all modules (once _quarto.yml is configured)
+# Build the full Quarto book (renders to _book/)
 quarto render
+
+# Render a single module as a book chapter (also goes to _book/R/)
+quarto render R/01-data-setup.qmd
 ```
 
 **PDF rendering:** Not configured. A working LaTeX engine (TinyTeX or MacTeX) is required.

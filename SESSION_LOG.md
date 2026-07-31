@@ -9,6 +9,28 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Quarto book project, index.qmd, format cleanup
+
+**Status:** Completed
+
+**Files changed:** `_quarto.yml` (book project), `index.qmd` (new), all 7 `R/0*.qmd` (format blocks removed), `.gitignore` (R/*.html added), `_book/` (rendered output), `standards/CAPABILITIES.md`
+
+**Summary:**
+Converted the project from a default Quarto project to a Quarto Book. Created `index.qmd` with a comprehensive introduction covering case selection rationale, all six source documents and their pedagogical roles, repository construction history, simulation strategy and refinements, full learning objectives, and a per-chapter guide. Resolved a 182 MB book bloat issue caused by per-chapter `embed-resources: true` YAML overriding the book-level `embed-resources: false`; fixed by removing the `format:` block from all 7 chapter files. Rendered book is 3.3 MB in `_book/`. Old standalone `R/*.html` files removed from git.
+
+**Decisions Made:**
+
+- **Book renders to `_book/`:** The rendered HTML book is committed to the repository so students can browse chapters directly.
+- **Individual chapter format removed:** Book's `_quarto.yml` now owns all format settings; per-chapter `format:` blocks caused the 182 MB bloat.
+- **`R/*.html` gitignored:** Single-chapter renders also route to `_book/R/` now; no separate standalone HTML files.
+
+**Next Steps:**
+
+- Review the rendered book in a browser (`_book/index.html`).
+- Consider adding `references.qmd` as an appendix chapter with full citations.
+
+---
+
 ## 2026-07-31: Modules 5, 6, and 7 — complete CRP 241 sequence
 
 **Status:** Completed
