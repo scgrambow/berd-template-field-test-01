@@ -9,6 +9,29 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Modules 5, 6, and 7 — complete CRP 241 sequence
+
+**Status:** Completed
+
+**Files changed:** `R/05-ancova.qmd`, `R/05-ancova.html`, `R/06-missing-data.qmd`, `R/06-missing-data.html`, `R/07-interpretation.qmd`, `R/07-interpretation.html`, `renv.lock` (mice added), `README.md`
+
+**Summary:**
+Completed the full seven-module CRP 241 exercise sequence. Module 5 covers ANCOVA with baseline-adjusted and fully adjusted models, adjusted means, and Table 2 replication. Module 6 covers missing data: complete-case analysis, BOCF sensitivity, and multiple imputation with `mice`. Module 7 covers clinical vs. statistical significance (MCID plot), primary vs. exploratory outcomes, Bonferroni correction, and a structured protocol-to-publication comparison identifying four specific deviations. All seven modules render cleanly to HTML. README updated with the full module table.
+
+**Decisions Made:**
+
+- **Module 7 protocol deviations:** Identified four changes between the Da Costa 2024 protocol and the Matzenbacher 2026 publication: (1) age subgroup cutoff 80→75, (2) education category graduate→secondary, (3) unplanned history of anxiety subgroup, (4) secondary outcome p-values reported despite SAP exploratory language. Each evaluated for concern level.
+- **MCID threshold:** Used an approximate 3-point threshold for the SRQ-20. This is presented as an instructive approximation; the exact MCID for this population is not published. Noted in the callout box.
+- **Bonferroni correction:** Included as the simplest multiplicity approach, not as the only valid one. Students are shown what changes but not told Bonferroni is required — the pedagogical point is the concept, not the specific method.
+
+**Next Steps:**
+
+- Verify all seven modules render correctly end-to-end from a clean session.
+- Consider adding a `_quarto.yml` book project or a wrapper index document so all modules are navigable from a single HTML landing page.
+- Update `standards/CAPABILITIES.md` with the `mice` package version.
+
+---
+
 ## 2026-07-31: Modules 3 and 4, _quarto.yml, ggplot2
 
 **Status:** Completed

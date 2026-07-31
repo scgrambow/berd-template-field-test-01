@@ -43,7 +43,12 @@ The repository contains code, documentation, and configuration only. The synthet
 |---|---|
 | [R/simulate-ivam-ed.R](R/simulate-ivam-ed.R) | Generates the synthetic dataset; run once before opening any module |
 | [R/01-data-setup.qmd](R/01-data-setup.qmd) | Module 1: data loading, variable inspection, missingness |
-| [docs/simulation-assumptions.md](docs/simulation-assumptions.md) | Full documentation of simulation parameters and assumptions |
+| [R/02-descriptive.qmd](R/02-descriptive.qmd) | Module 2: Table 1, baseline characteristics, balance |
+| [R/03-visualization.qmd](R/03-visualization.qmd) | Module 3: histograms, box plots, individual trajectory plots |
+| [R/04-estimation.qmd](R/04-estimation.qmd) | Module 4: group means, CIs, t-tests, forest plot |
+| [R/05-ancova.qmd](R/05-ancova.qmd) | Module 5: ANCOVA, adjusted means, Table 2 replication |
+| [R/06-missing-data.qmd](R/06-missing-data.qmd) | Module 6: complete-case, BOCF, multiple imputation |
+| [R/07-interpretation.qmd](R/07-interpretation.qmd) | Module 7: clinical significance, multiplicity, protocol-to-publication comparison |
 
 ## Source Documents
 

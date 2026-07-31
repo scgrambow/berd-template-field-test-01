@@ -1,0 +1,401 @@
+---
+title: "Module 5: Linear Regression and ANCOVA"
+subtitle: "CRP 241 — IVAM-ED Teaching Case"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    theme: flatly
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+In Module 4 we used an unadjusted t-test to compare groups at follow-up. The
+pre-specified primary analysis in the IVAM-ED protocol used a different approach:
+**ANCOVA (Analysis of Covariance)** — a linear regression model that includes
+the baseline value of the outcome as a covariate alongside the treatment group
+indicator.
+
+By the end of this module you should be able to:
+
+1. Explain why adjusting for baseline improves precision without introducing bias.
+2. Fit a baseline-adjusted ANCOVA model using `lm()` and interpret the treatment
+   coefficient.
+3. Fit the fully-adjusted model with additional covariates and compare it to the
+   baseline-adjusted model.
+4. Report results in the format used in the published paper (Table 2).
+5. Understand what "adjusted mean" means and how it differs from an observed mean.
+
+------------------------------------------------------------------------
+
+## Setup
+
+```{r}
+#| label: setup
+
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+#| label: load-data
+
+dat        <- readRDS("../data/ivam_working.rds")
+completers <- filter(dat, missing_12wk == 0)   # 103 participants
+```
+
+------------------------------------------------------------------------
+
+## 1. Why Adjust for Baseline?
+
+When participants are randomized, the two groups are *expected* to be balanced at
+baseline on average — but in any finite sample, chance imbalances occur. In our
+simulated data (and the real IVAM-ED trial), the intervention group started with
+a slightly higher SRQ-20 score than the control group.
+
+**Two consequences of baseline imbalance:**
+
+1. **The unadjusted mean difference is biased.** If the intervention group starts
+   higher, regression to the mean will push them down more, even without a real
+   treatment effect. Adjusting for baseline removes this confounding.
+
+2. **Adjusting for baseline increases precision.** Because baseline scores are
+   strongly correlated with follow-up scores, including the baseline as a covariate
+   reduces residual variance. This makes confidence intervals narrower and tests
+   more powerful — for free, without collecting additional data.
+
+```{r}
+#| label: baseline-correlation
+
+# How strongly correlated are baseline and follow-up SRQ-20?
+with(completers, round(cor(srq20_0, srq20_12, use = "complete.obs"), 3))
+```
+
+::: {.callout-note}
+**Interpreting the correlation:** A value near 0.7 means that knowing a
+participant's baseline score explains about 49% of the variance in their
+follow-up score (r² = 0.70² ≈ 0.49). Including the baseline in the regression
+model can therefore reduce the residual variance by roughly half, which substantially
+narrows the confidence interval for the treatment effect.
+:::
+
+------------------------------------------------------------------------
+
+## 2. The Baseline-Adjusted ANCOVA Model
+
+The baseline-adjusted ANCOVA model includes two predictors:
+- `group`: the randomized treatment assignment (1 = intervention, 0 = control)
+- `srq20_0`: the participant's SRQ-20 score at baseline
+
+```{r}
+#| label: ancova-baseline
+
+# Baseline-adjusted model: y_12 ~ group + y_0
+model_base <- lm(srq20_12 ~ group + srq20_0, data = completers)
+summary(model_base)
+```
+
+```{r}
+#| label: ancova-base-results
+
+# Extract the key estimates in a clean format
+coef_base <- summary(model_base)$coefficients
+ci_base   <- confint(model_base)
+
+results_base <- data.frame(
+  Term         = rownames(coef_base),
+  Estimate     = round(coef_base[, "Estimate"], 3),
+  SE           = round(coef_base[, "Std. Error"], 3),
+  `95% CI`     = paste0("(", round(ci_base[, 1], 2), ", ", round(ci_base[, 2], 2), ")"),
+  `p-value`    = round(coef_base[, "Pr(>|t|)"], 4),
+  check.names  = FALSE
+)
+
+results_base
+```
+
+::: {.callout-note}
+**Interpreting the `group` coefficient (the treatment effect):**
+
+- This is the estimated mean difference in SRQ-20 at 12 weeks between the
+  intervention and control groups, **holding baseline SRQ-20 constant**.
+- A negative value means the intervention group had lower distress (better outcome).
+- Compare this to the unadjusted mean difference from Module 4. The ANCOVA
+  estimate should be larger in magnitude because it corrects for the baseline
+  imbalance (intervention group started higher).
+- The 95% CI should be narrower than the unadjusted CI, reflecting the increased
+  precision from including the baseline covariate.
+
+**Published baseline-adjusted MD:** −1.28 (95% CI: −2.51 to −0.04). Your
+estimate will be close but not identical because this is a simulation.
+:::
+
+------------------------------------------------------------------------
+
+## 3. Adjusted Means
+
+The ANCOVA model produces **adjusted means** — the estimated group means at
+follow-up after accounting for baseline differences. These are what the paper
+reports in Table 2 as "Adjusted mean (SE)".
+
+The adjusted means are evaluated at the **grand mean** of the baseline covariate
+(not the group-specific mean). This removes the effect of any baseline imbalance.
+
+```{r}
+#| label: adjusted-means
+
+# Grand mean of baseline SRQ-20 across all completers
+grand_mean_srq20 <- mean(completers$srq20_0)
+cat("Grand mean of baseline SRQ-20:", round(grand_mean_srq20, 2), "\n\n")
+
+# Adjusted means: predict at grand mean of baseline, for each group
+adj_means <- predict(
+  model_base,
+  newdata = data.frame(
+    group   = c(0, 1),
+    srq20_0 = c(grand_mean_srq20, grand_mean_srq20)
+  ),
+  se.fit = TRUE
+)
+
+cat("Adjusted mean (SE) — Usual care:    ",
+    round(adj_means$fit[1], 2), "(", round(adj_means$se.fit[1], 2), ")\n")
+cat("Adjusted mean (SE) — Smart speaker: ",
+    round(adj_means$fit[2], 2), "(", round(adj_means$se.fit[2], 2), ")\n")
+cat("\nPublished (Table 2): Usual care 7.66 (0.43), Smart speaker 6.39 (0.45)\n")
+```
+
+::: {.callout-note}
+**Why adjusted means differ from raw means:** The raw follow-up means reflect
+which participants ended up in each group, including any baseline imbalance.
+The adjusted means represent what the expected follow-up score would be for a
+"typical" participant (at the grand mean of the baseline) in each group.
+:::
+
+------------------------------------------------------------------------
+
+## 4. The Fully Adjusted Model
+
+The protocol specified a **fully adjusted** model that additionally controls for:
+age, sex, years of education, individual income, and MMSE score. These variables
+are included to account for any remaining between-group differences that could
+influence the outcome.
+
+```{r}
+#| label: ancova-full
+
+# Fully adjusted model: adds age, sex, education, income, MMSE as covariates
+model_full <- lm(
+  srq20_12 ~ group + srq20_0 + age + female + edu_years + income_wages + mmse_0,
+  data = completers
+)
+summary(model_full)
+```
+
+```{r}
+#| label: full-results
+
+coef_full <- summary(model_full)$coefficients
+ci_full   <- confint(model_full)
+
+data.frame(
+  Term      = rownames(coef_full),
+  Estimate  = round(coef_full[, "Estimate"], 3),
+  SE        = round(coef_full[, "Std. Error"], 3),
+  `95% CI`  = paste0("(", round(ci_full[, 1], 2), ", ", round(ci_full[, 2], 2), ")"),
+  `p-value` = round(coef_full[, "Pr(>|t|)"], 4),
+  check.names = FALSE
+)
+```
+
+::: {.callout-note}
+**Comparing baseline-adjusted vs. fully adjusted:**
+
+- The treatment effect (`group` coefficient) may change slightly between the two
+  models. In the published paper, the fully adjusted MD was −1.46 (95% CI: −2.73
+  to −0.19) versus −1.28 baseline-adjusted — slightly larger after full adjustment.
+- Adding more covariates can either increase or decrease the treatment estimate
+  depending on whether those covariates are positively or negatively correlated
+  with both group assignment and the outcome.
+- The primary advantage of the fully adjusted model is further precision gain
+  when the additional covariates explain residual variance.
+:::
+
+------------------------------------------------------------------------
+
+## 5. Replicating Table 2: All Outcomes
+
+The paper's Table 2 reports baseline-adjusted and fully adjusted results for all
+five outcomes. Here we fit the baseline-adjusted model for each and compile the
+results.
+
+```{r}
+#| label: table2-replication
+
+# Helper: fit ANCOVA for one outcome and return a tidy summary row
+ancova_row <- function(data, outcome_12, outcome_0, label) {
+  fmla <- as.formula(paste(outcome_12, "~", "group +", outcome_0))
+  m    <- lm(fmla, data = data)
+  ci   <- confint(m)["group", ]
+  coef_row <- coef(summary(m))["group", ]
+
+  data.frame(
+    Outcome       = label,
+    MD            = round(coef_row["Estimate"], 2),
+    SE            = round(coef_row["Std. Error"], 2),
+    `CI lower`    = round(ci[1], 2),
+    `CI upper`    = round(ci[2], 2),
+    `p-value`     = round(coef_row["Pr(>|t|)"], 3),
+    check.names   = FALSE
+  )
+}
+
+table2 <- bind_rows(
+  ancova_row(completers, "srq20_12", "srq20_0", "SRQ-20 (primary)"),
+  ancova_row(completers, "sf36_12",  "sf36_0",  "SF-36 (quality of life)"),
+  ancova_row(completers, "sci_r_12", "sci_r_0", "SCI-R (self-care)"),
+  ancova_row(completers, "pss_12",   "pss_0",   "PSS (perceived stress)"),
+  ancova_row(completers, "hba1c_12", "hba1c_0", "HbA1c %")
+)
+
+table2
+```
+
+```{r}
+#| label: table2-published
+
+# Published baseline-adjusted results (Table 2, Matzenbacher et al. 2026)
+# for comparison
+published <- data.frame(
+  Outcome    = c("SRQ-20 (primary)", "SF-36 (quality of life)",
+                 "SCI-R (self-care)", "PSS (perceived stress)", "HbA1c %"),
+  MD_pub     = c(-1.28, 9.46, 3.40, -3.00, -0.48),
+  CI_pub     = c("(-2.51, -0.04)", "(3.65, 15.26)", "(1.61, 5.19)",
+                 "(-6.20, 0.20)", "(-0.85, -0.11)"),
+  p_pub      = c(0.04, 0.001, "<0.001", 0.07, 0.01)
+)
+
+published
+```
+
+::: {.callout-note}
+**Comparing your estimates to the published values:** Your estimates should have
+the same sign and approximate magnitude as the published results. Exact matches
+are not expected — the simulation approximates, but does not reconstruct, the
+real data. The key patterns to confirm:
+
+- SRQ-20: negative MD, p < 0.05 (significant)
+- SF-36 and SCI-R: positive MD, p < 0.05 (significant)
+- PSS: negative MD, p > 0.05 (not significant; CI should cross zero)
+- HbA1c: negative MD, p < 0.05 (significant)
+:::
+
+------------------------------------------------------------------------
+
+## 6. Visualizing Adjusted vs. Unadjusted Estimates
+
+```{r}
+#| label: compare-estimates
+#| fig-width: 8
+#| fig-height: 4
+
+# Collect unadjusted and adjusted MDs for SRQ-20
+unadj_t  <- t.test(srq20_12 ~ group_label, data = completers)
+unadj_est <- diff(rev(unadj_t$estimate))   # Smart speaker - Usual care
+
+unadj_ci <- unadj_t$conf.int
+adj_ci   <- confint(model_base)["group", ]
+adj_est  <- coef(model_base)["group"]
+
+compare <- data.frame(
+  Model    = factor(c("Unadjusted (t-test)", "Baseline-adjusted ANCOVA"),
+                    levels = c("Unadjusted (t-test)", "Baseline-adjusted ANCOVA")),
+  MD       = c(unadj_est, adj_est),
+  lo       = c(unadj_ci[1], adj_ci[1]),
+  hi       = c(unadj_ci[2], adj_ci[2])
+)
+
+ggplot(compare, aes(x = MD, xmin = lo, xmax = hi, y = Model)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey50") +
+  geom_errorbarh(height = 0.2, linewidth = 0.9) +
+  geom_point(size = 4, shape = 18, color = "#4472C4") +
+  annotate("point", x = -1.28, y = 2, size = 4, shape = 4,
+           color = "#C00000") +
+  annotate("text",  x = -1.28, y = 2.25, label = "Published (−1.28)",
+           color = "#C00000", size = 3.2) +
+  labs(
+    title   = "SRQ-20: Unadjusted vs. Baseline-Adjusted Mean Difference",
+    subtitle = "Red × = published baseline-adjusted estimate",
+    x       = "Mean difference (Smart speaker − Usual care)",
+    y       = NULL
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+::: {.callout-note}
+**What to notice:**
+
+- The ANCOVA estimate should be larger in absolute value than the unadjusted
+  estimate (the adjustment corrects for the baseline imbalance that attenuated
+  the raw difference).
+- The ANCOVA CI should be narrower (more precise), demonstrating the efficiency
+  gain from baseline adjustment.
+:::
+
+------------------------------------------------------------------------
+
+## 7. Practice Exercises
+
+1. **Coefficient interpretation.** Write one sentence interpreting the `group`
+   coefficient from the baseline-adjusted ANCOVA as you would in a results
+   section of a paper.
+
+2. **Baseline coefficient.** The `srq20_0` coefficient in the ANCOVA model is
+   approximately 0.70. What does this tell you about the relationship between
+   baseline and follow-up SRQ-20 scores?
+
+3. **Adjusted means by hand.** Using the estimated coefficients from
+   `model_base`, predict the adjusted mean SRQ-20 at 12 weeks for a participant
+   in the control group (`group = 0`) with a baseline SRQ-20 equal to the grand
+   mean. Does this match the output from Section 3?
+
+4. **Degrees of freedom.** The baseline-adjusted model has 103 observations and
+   estimates 3 coefficients (intercept, group, baseline). How many residual
+   degrees of freedom does it have? Why does the fully adjusted model (7
+   coefficients) have fewer? What is the practical consequence of having fewer
+   degrees of freedom?
+
+------------------------------------------------------------------------
+
+## Summary
+
+In this module you:
+
+- Explained why ANCOVA is preferred over an unadjusted t-test in a randomized
+  trial with continuous outcomes.
+- Fitted the baseline-adjusted ANCOVA and interpreted the treatment coefficient
+  and adjusted means.
+- Extended to the fully adjusted model with additional covariates.
+- Reproduced the structure of the published Table 2 for all five outcomes.
+- Visualized the precision gain from baseline adjustment.
+
+**Next:** Module 6 examines missing data — how the 9 missing participants affect
+the analysis and what sensitivity analyses can tell us about robustness.
+
+------------------------------------------------------------------------
+
+## Session Information
+
+```{r}
+#| label: session-info
+
+sessionInfo()
+```

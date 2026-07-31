@@ -1,0 +1,325 @@
+---
+title: "Module 6: Missing Data"
+subtitle: "CRP 241 — IVAM-ED Teaching Case"
+author: "Your Name"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    theme: flatly
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+Nine of 112 enrolled participants (8%) did not complete the 12-week follow-up.
+That is a modest rate — but how we handle those 9 participants can matter.
+This module examines three approaches to missing outcome data and compares their
+results.
+
+By the end of this module you should be able to:
+
+1. Describe three missing-data mechanisms (MCAR, MAR, MNAR) and explain why
+   the mechanism matters for analysis.
+2. Conduct a complete-case analysis and state its assumptions.
+3. Apply a baseline-observation-carried-forward (BOCF) sensitivity analysis.
+4. Run a simple multiple-imputation analysis using the `mice` package and pool
+   the results.
+5. Interpret how much the estimates change across the three approaches.
+
+------------------------------------------------------------------------
+
+## Setup
+
+```{r}
+#| label: setup
+
+library(dplyr)
+library(mice)     # multiple imputation
+library(ggplot2)
+```
+
+```{r}
+#| label: load-data
+
+dat <- readRDS("../data/ivam_working.rds")
+```
+
+------------------------------------------------------------------------
+
+## 1. Review: Who Is Missing and Why?
+
+```{r}
+#| label: missing-summary
+
+# Count missing participants by group and reason
+dat |>
+  filter(missing_12wk == 1) |>
+  count(group_label, reason_missing)
+```
+
+```{r}
+#| label: missing-baseline-comparison
+
+# Compare baseline characteristics between completers and non-completers
+dat |>
+  mutate(completed = factor(missing_12wk,
+                            levels = c(0, 1),
+                            labels = c("Completed", "Missing"))) |>
+  group_by(completed) |>
+  summarise(
+    n            = n(),
+    srq20_mean   = round(mean(srq20_0), 1),
+    srq20_sd     = round(sd(srq20_0),   1),
+    hba1c_mean   = round(mean(hba1c_0), 1),
+    age_mean     = round(mean(age),     1),
+    female_pct   = round(mean(female) * 100, 1)
+  )
+```
+
+::: {.callout-note}
+**What to notice:** In our simulated data, the missing participants were selected
+as those with the highest baseline SRQ-20 scores within each group. So
+participants who dropped out started with higher mental distress on average.
+This is our MAR mechanism — missingness is related to the observed baseline
+value, not to the unobserved follow-up value.
+:::
+
+------------------------------------------------------------------------
+
+## 2. Missing Data Mechanisms
+
+Before choosing an analysis approach, we need to think about *why* data are
+missing. There are three formal mechanisms:
+
+| Mechanism | Definition | Implication |
+|---|---|---|
+| **MCAR** (Missing Completely At Random) | Missingness is unrelated to any variable, observed or unobserved | Complete-case analysis is unbiased |
+| **MAR** (Missing At Random) | Missingness depends on *observed* variables (e.g., baseline score) but not on the *unobserved* follow-up value | Multiple imputation or mixed models are valid |
+| **MNAR** (Missing Not At Random) | Missingness depends on the unobserved follow-up value itself (e.g., those who got worse stopped coming) | No standard analysis is fully valid; sensitivity analyses needed |
+
+In the IVAM-ED protocol, the authors stated: "the frequency and reasons for
+missing data are expected to be missing at random (MAR)." The three deaths are
+arguably MCAR (unrelated to the outcome); the six lost-to-follow-up are assumed MAR.
+
+------------------------------------------------------------------------
+
+## 3. Analysis 1: Complete-Case Analysis
+
+A **complete-case analysis** uses only the 103 participants with follow-up data
+and ignores the 9 who are missing. This is what we have been doing in modules 4
+and 5. It is the simplest approach.
+
+**Assumption:** The 103 completers are representative of all 112 enrolled
+participants — or more precisely, that missingness is independent of the
+follow-up outcome after conditioning on the observed baseline values (MAR).
+
+```{r}
+#| label: cca
+
+completers <- filter(dat, missing_12wk == 0)
+
+model_cca <- lm(srq20_12 ~ group + srq20_0, data = completers)
+
+cca_coef <- coef(summary(model_cca))["group", ]
+cca_ci   <- confint(model_cca)["group", ]
+
+cat("Complete-case ANCOVA (n = 103):\n")
+cat(sprintf("  MD:    %.3f\n",   cca_coef["Estimate"]))
+cat(sprintf("  SE:    %.3f\n",   cca_coef["Std. Error"]))
+cat(sprintf("  95%% CI: (%.2f, %.2f)\n", cca_ci[1], cca_ci[2]))
+cat(sprintf("  p:     %.4f\n",   cca_coef["Pr(>|t|)"]))
+```
+
+------------------------------------------------------------------------
+
+## 4. Analysis 2: Baseline Observation Carried Forward (BOCF)
+
+**BOCF** replaces each missing follow-up value with the participant's own
+baseline value. This assumes that participants who dropped out had *no change*
+from baseline — a conservative assumption that tends to underestimate treatment
+effects.
+
+The IVAM-ED SAP listed BOCF as one of the pre-specified sensitivity analyses
+(strategy 2: "a baseline observation carried forward approach").
+
+```{r}
+#| label: bocf
+
+# Apply BOCF: if srq20_12 is missing, use srq20_0 as the follow-up value
+dat_bocf <- dat |>
+  mutate(
+    srq20_12_bocf = if_else(is.na(srq20_12), srq20_0, srq20_12)
+  )
+
+model_bocf <- lm(srq20_12_bocf ~ group + srq20_0, data = dat_bocf)
+
+bocf_coef <- coef(summary(model_bocf))["group", ]
+bocf_ci   <- confint(model_bocf)["group", ]
+
+cat("BOCF ANCOVA (n = 112):\n")
+cat(sprintf("  MD:    %.3f\n",   bocf_coef["Estimate"]))
+cat(sprintf("  SE:    %.3f\n",   bocf_coef["Std. Error"]))
+cat(sprintf("  95%% CI: (%.2f, %.2f)\n", bocf_ci[1], bocf_ci[2]))
+cat(sprintf("  p:     %.4f\n",   bocf_coef["Pr(>|t|)"]))
+```
+
+::: {.callout-note}
+**Why BOCF is conservative:** By assuming no change for dropouts, BOCF adds
+observations that pull both groups' follow-up means toward their baseline values.
+If dropouts tend to have higher baseline distress (as in our simulation), their
+imputed follow-up values will be higher than average, pushing both group means up
+and slightly reducing the between-group difference.
+:::
+
+------------------------------------------------------------------------
+
+## 5. Analysis 3: Multiple Imputation (MI)
+
+**Multiple imputation** generates several (typically 5–20) plausible complete
+datasets by drawing imputed values from a model of the missing data, runs the
+analysis on each complete dataset, and combines the results using Rubin's rules.
+
+Under MAR, MI is statistically valid and more efficient than BOCF. The IVAM-ED
+SAP specified MI with baseline data correction as its primary missing-data
+strategy.
+
+```{r}
+#| label: mi-setup
+
+# Variables to include in the imputation model
+# Including auxiliary variables (all baselines, demographics) helps MI
+# produce better imputations.
+vars_for_mi <- dat |>
+  select(srq20_12, srq20_0, sf36_12, sf36_0, hba1c_12, hba1c_0,
+         sci_r_12, sci_r_0, pss_12, pss_0,
+         group, age, female, edu_years, income_wages, mmse_0)
+
+# Run multiple imputation: 5 imputations, 10 iterations
+# seed for reproducibility; method "pmm" = predictive mean matching for continuous vars
+set.seed(241)
+mi_imp <- mice(vars_for_mi, m = 5, maxit = 10, method = "pmm",
+               printFlag = FALSE)
+```
+
+```{r}
+#| label: mi-fit
+
+# Fit the ANCOVA on each imputed dataset and pool the results
+mi_fit    <- with(mi_imp, lm(srq20_12 ~ group + srq20_0))
+mi_pooled <- pool(mi_fit)
+
+summary(mi_pooled, conf.int = TRUE) |>
+  filter(term == "group") |>
+  select(term, estimate, std.error, `2.5 %`, `97.5 %`, p.value) |>
+  mutate(across(where(is.numeric), \(x) round(x, 3)))
+```
+
+::: {.callout-note}
+**Reading MI output:**
+
+- `estimate`: the treatment effect, averaged (pooled) across all 5 imputed datasets.
+- `std.error`: the pooled SE, which accounts for both within-imputation and
+  between-imputation variability.
+- `2.5 %` and `97.5 %`: the 95% CI from Rubin's rules.
+
+Because only 9 participants (8%) are missing, the three approaches should give
+very similar estimates. Large divergence would signal that the MAR assumption
+may not hold.
+:::
+
+------------------------------------------------------------------------
+
+## 6. Comparing the Three Approaches
+
+```{r}
+#| label: sensitivity-comparison
+#| fig-width: 7
+#| fig-height: 3.5
+
+# Gather results from all three analyses
+mi_row <- summary(mi_pooled, conf.int = TRUE) |>
+  filter(term == "group")
+
+sensitivity <- data.frame(
+  Analysis = factor(
+    c("Complete-case\n(n = 103)", "BOCF\n(n = 112)", "Multiple imputation\n(n = 112)"),
+    levels = c("Complete-case\n(n = 103)", "BOCF\n(n = 112)", "Multiple imputation\n(n = 112)")
+  ),
+  MD = c(cca_coef["Estimate"],  bocf_coef["Estimate"],  mi_row$estimate),
+  lo = c(cca_ci[1],             bocf_ci[1],             mi_row$`2.5 %`),
+  hi = c(cca_ci[2],             bocf_ci[2],             mi_row$`97.5 %`)
+)
+
+ggplot(sensitivity, aes(x = MD, xmin = lo, xmax = hi, y = Analysis)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey50") +
+  geom_errorbarh(height = 0.2, linewidth = 0.9) +
+  geom_point(size = 4, shape = 18, color = "#4472C4") +
+  labs(
+    title   = "SRQ-20 Treatment Effect: Sensitivity to Missing Data Approach",
+    x       = "Mean difference (Smart speaker − Usual care)",
+    y       = NULL,
+    caption = "All models baseline-adjusted (ANCOVA)"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+::: {.callout-note}
+**What consistent results mean:** If all three estimates point in the same
+direction and have overlapping confidence intervals, the primary conclusion is
+**robust to the missing data assumptions**. The published IVAM-ED paper reported
+that both BOCF and complete-case analyses were consistent with the primary MI
+analysis, supporting the robustness of the main result.
+:::
+
+------------------------------------------------------------------------
+
+## 7. Practice Exercises
+
+1. **MCAR vs. MAR.** In Section 1, we saw that missing participants had higher
+   baseline SRQ-20 scores than completers. Does this pattern support MCAR or MAR?
+   Explain in one sentence.
+
+2. **BOCF direction.** If participants who dropped out were getting *worse*
+   (rather than staying the same), would BOCF overestimate or underestimate the
+   treatment effect? Why?
+
+3. **Imputation model variables.** We included all five outcomes' baseline and
+   follow-up values in the imputation model, plus demographic variables. Why is
+   it generally better to include more variables in the imputation model than fewer?
+
+4. **Compare the three CIs.** Using the forest plot from Section 6, which
+   analysis produces the widest confidence interval? Why? Which produces the
+   narrowest?
+
+------------------------------------------------------------------------
+
+## Summary
+
+In this module you:
+
+- Described three missing-data mechanisms and their implications for analysis.
+- Conducted a complete-case analysis (the default ANCOVA from Module 5).
+- Applied BOCF as a conservative sensitivity analysis.
+- Ran a multiple-imputation analysis using the `mice` package and pooled results.
+- Confirmed that all three approaches gave consistent conclusions.
+
+**Next:** Module 7 connects the statistical findings back to the published paper —
+examining clinical significance, the distinction between primary and exploratory
+findings, and comparing the published analysis to what the protocol and SAP specified.
+
+------------------------------------------------------------------------
+
+## Session Information
+
+```{r}
+#| label: session-info
+
+sessionInfo()
+```
