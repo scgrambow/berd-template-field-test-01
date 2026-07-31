@@ -23,7 +23,7 @@ diabetes: the IVAM-ED randomized clinical trial.
 doi:[10.1001/jamanetworkopen.2025.53508](https://doi.org/10.1001/jamanetworkopen.2025.53508)
 
 Open access under CC-BY 4.0.
-Extracted to: `docs/extracted/matzenbacher-2026-ivam-ed-results-paper.md`
+Extracted to: `source/extracted/matzenbacher-2026-ivam-ed-results-paper.md`
 
 ### Protocol and Statistical Analysis Plan {.unnumbered}
 
@@ -36,7 +36,7 @@ statistical analysis plan for a randomized controlled trial.
 doi:[10.1186/s13063-024-08055-3](https://doi.org/10.1186/s13063-024-08055-3)
 
 Open access under CC-BY 4.0.
-Extracted to: `docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
+Extracted to: `source/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
 
 ---
 
@@ -44,10 +44,10 @@ Extracted to: `docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
 
 | File | Description | Extracted to |
 |---|---|---|
-| JAMA Supplement 1 | Study protocol and SAP embedded in the results paper | `docs/extracted/matzenbacher-2026-supplement-1.md` |
-| JAMA Supplement 2 | Supplemental tables and figures (eTables 1–3) | `docs/extracted/matzenbacher-2026-supplement-2.md` |
-| JAMA Supplement 3 | Data sharing statement | `docs/extracted/matzenbacher-2026-supplement-3.md` |
-| Trials Supplementary Material | SPIRIT checklist, intervention messages, instrument validations | `docs/extracted/da-costa-2024-supplement-1.md` |
+| JAMA Supplement 1 | Study protocol and SAP embedded in the results paper | `source/extracted/matzenbacher-2026-supplement-1.md` |
+| JAMA Supplement 2 | Supplemental tables and figures (eTables 1–3) | `source/extracted/matzenbacher-2026-supplement-2.md` |
+| JAMA Supplement 3 | Data sharing statement | `source/extracted/matzenbacher-2026-supplement-3.md` |
+| Trials Supplementary Material | SPIRIT checklist, intervention messages, instrument validations | `source/extracted/da-costa-2024-supplement-1.md` |
 
 ---
 
@@ -129,7 +129,7 @@ language to correctly attribute the source and characterize the data:
 > data were generated for teaching purposes using the simulation code in
 > `R/simulate-ivam-ed.R` and do not represent individual participant data from
 > the IVAM-ED trial. Full simulation documentation is available in
-> `docs/simulation-assumptions.md`.
+> `simulation-assumptions.md`.
 
 Cite the primary publication when discussing the clinical findings:
 

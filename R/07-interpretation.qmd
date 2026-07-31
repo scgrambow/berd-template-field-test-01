@@ -236,12 +236,12 @@ was done** (published paper) **to what was planned** (protocol and SAP).
 
 The IVAM-ED protocol was published in *Trials* in 2024 (Da Costa et al.) before
 the results were available. The results paper was published in *JAMA Network Open*
-in 2026. Both are in `docs/extracted/`.
+in 2026. Both are in `source/extracted/`.
 
 ### 4a. Changes found between the protocol and the publication
 
 Below are four specific changes that a careful reader can identify by comparing
-the two documents. Read the relevant sections in `docs/extracted/` to verify each one.
+the two documents. Read the relevant sections in `source/extracted/` to verify each one.
 
 ```{r}
 #| label: protocol-changes
@@ -334,7 +334,7 @@ discover only by reading the protocol.
    of 0.01? What language would you use to describe this result in a paper?
 
 3. **Read the protocol SAP section.** Open
-   `docs/extracted/matzenbacher-2026-supplement-1.md` and find the statistical
+   `source/extracted/matzenbacher-2026-supplement-1.md` and find the statistical
    analysis plan section. Identify the sentence that describes how secondary
    outcome p-values would be reported. Does the published Table 2 follow that
    guidance exactly?

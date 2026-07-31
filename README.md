@@ -54,12 +54,12 @@ The repository contains code, documentation, and configuration only. The synthet
 
 | File | Description |
 |---|---|
-| [docs/extracted/matzenbacher-2026-ivam-ed-results-paper.md](docs/extracted/matzenbacher-2026-ivam-ed-results-paper.md) | Primary results paper (JAMA Network Open, 2026) |
-| [docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md](docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md) | Trial protocol and SAP (Trials, 2024) |
-| [docs/extracted/matzenbacher-2026-supplement-1.md](docs/extracted/matzenbacher-2026-supplement-1.md) | JAMA supplement 1 — study protocol and SAP embedded in results paper |
-| [docs/extracted/matzenbacher-2026-supplement-2.md](docs/extracted/matzenbacher-2026-supplement-2.md) | JAMA supplement 2 — supplemental online content |
-| [docs/extracted/matzenbacher-2026-supplement-3.md](docs/extracted/matzenbacher-2026-supplement-3.md) | JAMA supplement 3 — data sharing statement |
-| [docs/extracted/da-costa-2024-supplement-1.md](docs/extracted/da-costa-2024-supplement-1.md) | Trials supplementary material |
+| [source/extracted/matzenbacher-2026-ivam-ed-results-paper.md](source/extracted/matzenbacher-2026-ivam-ed-results-paper.md) | Primary results paper (JAMA Network Open, 2026) |
+| [source/extracted/da-costa-2024-ivam-ed-protocol-sap.md](source/extracted/da-costa-2024-ivam-ed-protocol-sap.md) | Trial protocol and SAP (Trials, 2024) |
+| [source/extracted/matzenbacher-2026-supplement-1.md](source/extracted/matzenbacher-2026-supplement-1.md) | JAMA supplement 1 — study protocol and SAP embedded in results paper |
+| [source/extracted/matzenbacher-2026-supplement-2.md](source/extracted/matzenbacher-2026-supplement-2.md) | JAMA supplement 2 — supplemental online content |
+| [source/extracted/matzenbacher-2026-supplement-3.md](source/extracted/matzenbacher-2026-supplement-3.md) | JAMA supplement 3 — data sharing statement |
+| [source/extracted/da-costa-2024-supplement-1.md](source/extracted/da-costa-2024-supplement-1.md) | Trials supplementary material |
 | [source/paper-case-study-description.md](source/paper-case-study-description.md) | Case study rationale and planned CRP 241 activity sequence |
 
 ## Getting Started / Reproducing the Environment

@@ -88,7 +88,7 @@ every numerical parameter used to build the synthetic dataset: baseline demograp
 counts (Figure 2), and the complete-case count (Results text). It is also the
 document students will be interpreting and critically appraising in Module 7.
 
-**Markdown extraction:** `docs/extracted/matzenbacher-2026-ivam-ed-results-paper.md`
+**Markdown extraction:** `source/extracted/matzenbacher-2026-ivam-ed-results-paper.md`
 
 ### The protocol and SAP paper
 
@@ -108,7 +108,7 @@ would not be the basis for conclusions.
 
 Comparing this document to the results paper is the foundation of Module 7.
 
-**Markdown extraction:** `docs/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
+**Markdown extraction:** `source/extracted/da-costa-2024-ivam-ed-protocol-sap.md`
 
 ### JAMA Supplement 1: Embedded protocol and SAP
 
@@ -120,7 +120,7 @@ for specific SAP details — particularly the subgroup definitions, MMSE cogniti
 decline cutoffs, and sensitivity analysis specifications referenced in Modules 6
 and 7.
 
-**Markdown extraction:** `docs/extracted/matzenbacher-2026-supplement-1.md`
+**Markdown extraction:** `source/extracted/matzenbacher-2026-supplement-1.md`
 
 ### JAMA Supplement 2: Supplemental online content
 
@@ -132,7 +132,7 @@ participants with and without missing outcome data (eTable 3).
 **Role:** Provides granular baseline balance data and the per-outcome missing-data
 comparison used in Module 6.
 
-**Markdown extraction:** `docs/extracted/matzenbacher-2026-supplement-2.md`
+**Markdown extraction:** `source/extracted/matzenbacher-2026-supplement-2.md`
 
 ### JAMA Supplement 3: Data sharing statement
 
@@ -143,7 +143,7 @@ which is the direct motivation for constructing a synthetic dataset rather than
 using real data. The data sharing statement is part of the provenance chain: it
 confirms that the simulation was necessary, not a shortcut.
 
-**Markdown extraction:** `docs/extracted/matzenbacher-2026-supplement-3.md`
+**Markdown extraction:** `source/extracted/matzenbacher-2026-supplement-3.md`
 
 ### Trials Supplementary Material
 
@@ -155,7 +155,7 @@ instrument validations, and the SAP checklist.
 instrument scoring rules. Used to verify instrument ranges in the simulation and
 to populate the instrument descriptions in the teaching materials.
 
-**Markdown extraction:** `docs/extracted/da-costa-2024-supplement-1.md`
+**Markdown extraction:** `source/extracted/da-costa-2024-supplement-1.md`
 
 ### Why include all of this? Transparency and reproducibility
 
@@ -208,7 +208,7 @@ Full bootstrap and session history is in `SESSION_LOG.md`.
 
 All six source documents (PDFs and one DOCX) were converted to Markdown at
 initialization using `miyo parse` (for PDFs) and `pandoc` (for the DOCX file).
-The Markdown extractions in `docs/extracted/` serve as the working reference for
+The Markdown extractions in `source/extracted/` serve as the working reference for
 every simulation parameter and every teaching material claim. They are not modified
 from the extracted output; any corrections would be flagged as deviations from
 the source.
@@ -233,7 +233,7 @@ strategy:
    are assigned deterministically — those with the highest baseline SRQ-20 within
    each group — reflecting a clinically plausible missing-at-random mechanism.
 
-Full simulation parameter documentation is in `docs/simulation-assumptions.md`.
+Full simulation parameter documentation is in `simulation-assumptions.md`.
 
 ### Simulation refinement
 
@@ -253,7 +253,7 @@ and 5. Fix: deterministic rank-based selection within each group.
 After both fixes, the ANCOVA recovers an adjusted MD of −1.19 (published: −1.28),
 which is close enough for a teaching dataset. The full debugging narrative —
 including the mathematical diagnosis for each bug — is in
-`docs/simulation-refinements.md`. This document is part of the teaching case:
+`simulation-refinements.md`. This document is part of the teaching case:
 it illustrates the verify–diagnose–fix–re-verify cycle that applies to any
 quantitative analysis.
 
@@ -448,7 +448,7 @@ The synthetic dataset and all analysis code in this repository were generated fo
 teaching purposes and do not represent reconstructed individual participant data.
 Students should cite both source publications when reporting results derived from
 this teaching case (see suggested citation language in
-`docs/simulation-assumptions.md`).
+`simulation-assumptions.md`).
 
 This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2)
 using GitHub Copilot Business with synthetic data only.

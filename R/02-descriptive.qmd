@@ -300,14 +300,14 @@ more precise estimate of the treatment effect.
 
 2. **The education variable.** In the real trial, 24.1% of participants had
    completed secondary education or higher. What percentage do you find in the
-   simulated data? Is it close? (Check `docs/simulation-assumptions.md` to see
+   simulated data? Is it close? (Check `simulation-assumptions.md` to see
    where this parameter came from.)
 
 3. **Identify the most imbalanced baseline variable.** Using the SMD table,
    which variable shows the largest imbalance between groups in your simulated
    data? Is the SMD above or below 0.1?
 
-4. **Why does the SRQ-20 show group imbalance?** Think back to `docs/simulation-refinements.md`.
+4. **Why does the SRQ-20 show group imbalance?** Think back to `simulation-refinements.md`.
    The intervention group started with a higher average SRQ-20 score than the
    control group. Recall the discussion of how this imbalance affects the raw
    follow-up comparison. What does this suggest about the importance of the

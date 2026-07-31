@@ -40,7 +40,7 @@ a measure of mental distress. Lower scores mean less distress.
 
 > **Important:** We are working with a **synthetic (simulated) dataset** — not real
 > participant data. The dataset was constructed to approximate the published summary
-> statistics. See `docs/simulation-assumptions.md` for how it was built and what
+> statistics. See `simulation-assumptions.md` for how it was built and what
 > assumptions were made.
 
 ---------------------------------------------------------------------
