@@ -9,6 +9,35 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Session wrap-up — IVAM-ED CRP 241 teaching case complete
+
+**Status:** Completed
+
+**Files changed:** `SESSION_LOG.md`, `docs/` (re-rendered)
+
+**Summary:**
+Full session wrap-up following `standards/session-wrap-up.md`. The IVAM-ED CRP 241 teaching case is complete as of this entry: 8 analysis modules, an Answer Key appendix, a References appendix, an AI disclosure with repository architecture section, all author fields set to Steve Grambow, and the Quarto book live at https://scgrambow.github.io/berd-template-field-test-01/. The repository has passed a pre-public security audit and is ready to be made public.
+
+**Decisions Made:**
+
+- No deferred work requiring immediate resolution. Open items are advisory, not blocking.
+
+**Verification:**
+
+- `renv::status()` → "No issues found — the project is in a consistent state."
+- `quarto render` → "Output created: docs/index.html" (clean, no errors)
+- `git status --short --branch` → clean working tree, main in sync with origin/main
+- No data files in git or git history (confirmed in security audit, SECURITY.md)
+
+**Next Steps:**
+
+- Make the repository public: GitHub Settings → General → Danger Zone → Change visibility → Make public
+- Enable GitHub Pages if not already active: Settings → Pages → main → /docs → Save
+- Consider replacing `# languageserver` (VS Code R extension package installed outside renv) with a formal renv::install() if R language features are needed in future editing sessions
+- Future development: instructor answer key seed variants for multi-section courses; Module 9 power analysis standalone; `_quarto.yml` PDF format when TinyTeX is available (record in CAPABILITIES.md)
+
+---
+
 ## 2026-07-31: Book review fixes, Module 8, Answer Key, Power Analysis
 
 **Status:** Completed
