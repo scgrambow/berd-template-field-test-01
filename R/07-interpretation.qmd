@@ -320,10 +320,169 @@ A deviation disclosed in the paper is far less concerning than a deviation you
 discover only by reading the protocol.
 :::
 
----------------------------------------------------------------------
 ---
 
-## 5. Practice Exercises
+## 5. Sample Size and Power: What Was Planned vs. What Was Observed
+
+The IVAM-ED protocol specified the sample size using three inputs: α = 0.05,
+power = 90%, and an effect size of **0.68** (Cohen's d) for the primary outcome.
+Assuming 20% dropout, this produced the target of **112 participants** (56 per group).
+
+This section works through that calculation, examines what happens if the true
+effect size is smaller than planned, and addresses a common but invalid practice:
+*post-hoc power analysis*.
+
+```{r}
+#| label: power-setup
+
+# Install pwr if needed: renv::install("pwr")
+library(pwr)
+```
+
+### 5a. Reproducing the planned sample size
+
+```{r}
+#| label: planned-power
+
+# Reproduce the protocol's sample size calculation
+# Two-sample t-test, two-sided, α = 0.05, power = 90%, effect size d = 0.68
+pwr_planned <- pwr.t.test(
+  d    = 0.68,
+  sig.level = 0.05,
+  power     = 0.90,
+  type      = "two.sample",
+  alternative = "two.sided"
+)
+pwr_planned
+
+# Completers needed (before adding dropout allowance)
+cat(sprintf("\nCompleters per group needed: %.0f\n", ceiling(pwr_planned$n)))
+cat(sprintf("With 20%% dropout: %.0f per group enrolled\n",
+    ceiling(pwr_planned$n / 0.80)))
+cat(sprintf("Published target: 56 per group (112 total)\n"))
+```
+
+::: {.callout-note}
+**Interpreting the power calculation:** The trial was powered to detect an effect
+of d = 0.68 with 90% probability if that effect truly exists. The 0.68 effect size
+was based on a prior study of a comparable psychological intervention. With the
+20% dropout adjustment, 56 participants per group were enrolled — consistent with
+the published n = 112.
+:::
+
+### 5b. Sensitivity analysis: what if the true effect is smaller?
+
+```{r}
+#| label: power-sensitivity
+#| fig-width: 7
+#| fig-height: 4
+
+# Power curve: what is the probability of a significant result across a range
+# of true effect sizes, given n = 52 completers per group (observed)?
+n_completers <- 52  # observed completers per group
+
+d_seq   <- seq(0.10, 1.0, by = 0.05)
+power_seq <- sapply(d_seq, function(d) {
+  pwr.t.test(n = n_completers, d = d, sig.level = 0.05,
+             type = "two.sample", alternative = "two.sided")$power
+})
+
+power_df <- data.frame(d = d_seq, power = power_seq)
+
+ggplot(power_df, aes(x = d, y = power)) +
+  geom_line(linewidth = 1, color = "#4472C4") +
+  geom_hline(yintercept = 0.80, linetype = "dashed", color = "grey50") +
+  geom_hline(yintercept = 0.90, linetype = "dotted", color = "#C00000") +
+  geom_vline(xintercept = 0.68, linetype = "dashed", color = "#538135") +
+  annotate("text", x = 0.68, y = 0.15, label = "Planned\nd = 0.68",
+           hjust = -0.1, color = "#538135", size = 3.2) +
+  annotate("text", x = 0.15, y = 0.81, label = "80% power",
+           hjust = 0, color = "grey40", size = 3.2) +
+  annotate("text", x = 0.15, y = 0.91, label = "90% power (planned)",
+           hjust = 0, color = "#C00000", size = 3.2) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  labs(
+    title   = "Power to Detect a Significant SRQ-20 Effect (n = 52 completers/group)",
+    x       = "True effect size (Cohen's d)",
+    y       = "Probability of significant result (power)",
+    caption = "Dashed grey = 80% threshold; red dotted = planned 90%; green = protocol effect size"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+::: {.callout-warning}
+**What the power curve tells you:** At the planned effect size (d = 0.68), the
+study has approximately 90% power — consistent with the protocol. But if the true
+effect is closer to d = 0.40 (a plausible smaller effect for a brief 12-week
+behavioral intervention), power drops to roughly 55–60%. More than one in three
+real effects of that size would be missed. This is the fragility that modest
+effect sizes in small trials can create.
+
+This does not mean the trial was underpowered or that the result is wrong. It means
+that the conclusion "the intervention works" should be held with appropriate
+uncertainty about magnitude, and that future trials should consider larger samples
+or longer follow-up if the effect is expected to be smaller than the planning estimate.
+:::
+
+### 5c. The post-hoc power fallacy
+
+After seeing a statistically significant result with an observed mean difference
+of approximately −1.2 points and a pooled SD of about 4.5, one might be tempted
+to compute the "observed power" — plugging the observed effect size into the power
+formula to see whether the study was "adequately powered."
+
+**This is invalid and should never be done.**
+
+```{r}
+#| label: posthoc-power-demo
+
+# Observed Cohen's d from our ANCOVA estimate
+model_check <- lm(srq20_12 ~ group + srq20_0, data = filter(dat, missing_12wk == 0))
+obs_md      <- coef(model_check)["group"]
+pooled_sd   <- sd(filter(dat, missing_12wk == 0)$srq20_0)
+obs_d       <- obs_md / pooled_sd
+
+cat(sprintf("Observed MD: %.2f\n", obs_md))
+cat(sprintf("Pooled SD:   %.2f\n", pooled_sd))
+cat(sprintf("Observed d:  %.2f\n", obs_d))
+
+# 'Post-hoc power' using the observed d — this is the fallacy
+posthoc_pwr <- pwr.t.test(n = 52, d = abs(obs_d), sig.level = 0.05,
+                           type = "two.sample", alternative = "two.sided")
+cat(sprintf("\n'Post-hoc power' (invalid): %.1f%%\n", posthoc_pwr$power * 100))
+```
+
+::: {.callout-important}
+**Why post-hoc power is a fallacy — and what to do instead.**
+
+Post-hoc power takes the observed effect size and asks "how powerful was this study
+to detect an effect *this large*?" The answer is mathematically determined by the
+p-value: any result with p < 0.05 will have post-hoc power above approximately 50%;
+any result with p > 0.05 will have post-hoc power below 50%. The calculation adds
+no information.
+
+The circular reasoning: we observed this effect size precisely because the study
+was significant. If the study had been non-significant (and the observed effect
+smaller), post-hoc power would be lower. Post-hoc power tracks significance —
+it does not independently assess whether the study was large enough.
+
+**What to do instead:**
+- Report the **prospective power** from the protocol's sample size calculation
+  (which is what matters for design evaluation).
+- For a non-significant result, report a **confidence interval** and discuss
+  whether the upper bound rules out a clinically important effect.
+- For future trials, use a **sensitivity power analysis** (as in Section 5b above):
+  show what effect sizes the proposed design can and cannot reliably detect.
+
+The American Statistical Association and most major clinical journals explicitly
+discourage post-hoc power analysis. The key reference is Hoenig & Heisey (2001),
+*The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis*,
+*The American Statistician*, 55(1):19–24.
+:::
+
+---
+
+## 6. Practice Exercises
 
 1. **Is the SRQ-20 effect clinically significant?** Using the MCID of 3 points,
    write a two-sentence interpretation of the primary outcome result that conveys

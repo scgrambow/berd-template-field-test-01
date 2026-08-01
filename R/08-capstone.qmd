@@ -1,0 +1,238 @@
+---
+title: "Module 8: Capstone — Write a Methods and Results Section"
+subtitle: "CRP 241 — IVAM-ED Teaching Case"
+author: "Your Name"
+date: today
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Overview
+
+The seven preceding modules have taught you to handle data, describe samples,
+visualize distributions, estimate effects, model with ANCOVA, handle missing data,
+and critically appraise findings. This capstone exercise asks you to bring those
+skills together in a single task that closely mirrors real research work:
+
+**Write a complete Methods and Results section for the primary outcome of the
+IVAM-ED trial, as if you were the corresponding author.**
+
+There is no new code to introduce. The challenge is synthesis — using what you
+have already computed to produce coherent, accurate, publication-ready prose.
+
+---
+
+## Background: What a Methods and Results Section Looks Like
+
+In a randomized clinical trial report, the Methods section describes *what was
+done* (design, participants, intervention, outcomes, analysis). The Results section
+describes *what was found* (flow of participants, baseline characteristics, primary
+outcome, secondary outcomes). Together they answer: "What did the investigators
+do, and what happened?"
+
+The target length for this exercise is approximately **400–600 words** total
+(Methods + Results). Brevity and precision are both required. Every number
+should match your analysis output. Every analytical choice should be described
+accurately.
+
+---
+
+## Part 1: Data Analysis
+
+Run the complete analysis below before writing. All the numbers you need will
+appear in the output.
+
+```{r}
+#| label: setup
+
+library(dplyr)
+library(gtsummary)
+library(mice)
+```
+
+```{r}
+#| label: load-data
+
+dat        <- readRDS("../data/ivam_working.rds")
+completers <- filter(dat, missing_12wk == 0)
+```
+
+### Participant flow
+
+```{r}
+#| label: participant-flow
+
+cat("Enrolled:         ", nrow(dat), "\n")
+cat("  Intervention:   ", sum(dat$group == 1), "\n")
+cat("  Usual care:     ", sum(dat$group == 0), "\n")
+cat("Missing at 12 wk:", sum(dat$missing_12wk), "\n")
+cat("  Reason - death:          ", sum(dat$reason_missing == "death", na.rm=TRUE), "\n")
+cat("  Reason - lost to f/u:    ", sum(dat$reason_missing == "lost_to_followup", na.rm=TRUE), "\n")
+cat("Completers:       ", nrow(completers), "\n")
+cat("  Intervention:   ", sum(completers$group == 1), "\n")
+cat("  Usual care:     ", sum(completers$group == 0), "\n")
+```
+
+### Baseline characteristics
+
+```{r}
+#| label: baseline-table
+
+tbl_summary(
+  dat |> select(group_label, age, female, edu_years, dm_duration_y,
+                insulin, mmse_0, srq20_0, hba1c_0),
+  by = group_label,
+  statistic = list(all_continuous() ~ "{mean} ({sd})",
+                   all_categorical() ~ "{n} ({p}%)"),
+  digits   = list(all_continuous() ~ 1),
+  missing  = "no",
+  label    = list(age ~ "Age, y", female ~ "Female", edu_years ~ "Education, y",
+                  dm_duration_y ~ "Diabetes duration, y", insulin ~ "Insulin use",
+                  mmse_0 ~ "MMSE score", srq20_0 ~ "SRQ-20 (baseline)",
+                  hba1c_0 ~ "HbA1c, %")
+) |> add_overall() |> bold_labels()
+```
+
+### Primary outcome: ANCOVA
+
+```{r}
+#| label: primary-ancova
+
+model_base <- lm(srq20_12 ~ group + srq20_0, data = completers)
+model_full <- lm(srq20_12 ~ group + srq20_0 + age + female +
+                   edu_years + income_wages + mmse_0,
+                 data = completers)
+
+# Baseline-adjusted
+base_coef <- coef(summary(model_base))["group", ]
+base_ci   <- confint(model_base)["group", ]
+
+# Fully adjusted
+full_coef <- coef(summary(model_full))["group", ]
+full_ci   <- confint(model_full)["group", ]
+
+# Adjusted group means at 12 weeks
+grand_bl  <- mean(completers$srq20_0)
+adj_means <- predict(model_base,
+  newdata = data.frame(group = c(0, 1), srq20_0 = c(grand_bl, grand_bl)),
+  se.fit = TRUE)
+
+cat("=== Baseline-adjusted ANCOVA ===\n")
+cat(sprintf("  Control adj mean (SE):       %.2f (%.2f)\n",
+    adj_means$fit[1], adj_means$se.fit[1]))
+cat(sprintf("  Intervention adj mean (SE):  %.2f (%.2f)\n",
+    adj_means$fit[2], adj_means$se.fit[2]))
+cat(sprintf("  MD (int - ctrl):             %.2f\n", base_coef["Estimate"]))
+cat(sprintf("  95%% CI:                      (%.2f, %.2f)\n",
+    base_ci[1], base_ci[2]))
+cat(sprintf("  p-value:                     %.3f\n\n", base_coef["Pr(>|t|)"]))
+
+cat("=== Fully adjusted ANCOVA ===\n")
+cat(sprintf("  MD:    %.2f\n", full_coef["Estimate"]))
+cat(sprintf("  95%% CI: (%.2f, %.2f)\n", full_ci[1], full_ci[2]))
+cat(sprintf("  p-value: %.3f\n", full_coef["Pr(>|t|)"]))
+```
+
+### Missing data sensitivity
+
+```{r}
+#| label: bocf-sensitivity
+
+dat_bocf <- dat |>
+  mutate(srq20_12_bocf = if_else(is.na(srq20_12), srq20_0, srq20_12))
+model_bocf <- lm(srq20_12_bocf ~ group + srq20_0, data = dat_bocf)
+bocf_coef  <- coef(summary(model_bocf))["group", ]
+bocf_ci    <- confint(model_bocf)["group", ]
+
+cat(sprintf("BOCF sensitivity: MD = %.2f (%.2f, %.2f), p = %.3f\n",
+    bocf_coef["Estimate"], bocf_ci[1], bocf_ci[2], bocf_coef["Pr(>|t|)"]))
+```
+
+---
+
+## Part 2: Write the Methods Section
+
+Using the analysis output above and your knowledge of the study design, write a
+Methods section covering the following elements. Your prose should be accurate,
+concise, and written in the past tense.
+
+**Required elements:**
+
+1. **Study design:** State the design (randomized clinical trial), setting, and
+   enrollment period.
+2. **Participants:** State the key eligibility criteria (age ≥ 65, type 2 diabetes)
+   and the enrolled sample size.
+3. **Randomization:** Describe how participants were assigned (1:1 ratio, computer-
+   generated simple random sequence, no stratification or blocking).
+4. **Intervention:** Describe what the smart speaker group received and for how long.
+   State that the control group received usual care.
+5. **Primary outcome:** Name the SRQ-20, state its range and directionality (higher =
+   more distress), and state that it was assessed at 12 weeks.
+6. **Statistical analysis:** State that the primary analysis was a baseline-adjusted
+   ANCOVA with group and baseline SRQ-20 as predictors. State the significance
+   threshold (α = 0.05). Describe the BOCF sensitivity analysis.
+7. **Missing data:** State the number missing and the assumed mechanism (MAR).
+
+---
+
+## Part 3: Write the Results Section
+
+Using the numbers from your analysis output, write a Results section covering the
+following elements. Every number must match your output — not the published paper
+(you are reporting the synthetic dataset).
+
+**Required elements:**
+
+1. **Participant flow:** State how many were enrolled, how many completed follow-up,
+   and the reasons for dropout.
+2. **Baseline characteristics:** Summarize the groups briefly (one or two sentences
+   comparing key variables). Do not say the groups were "significantly different"
+   on baseline characteristics — state whether any differences are clinically notable.
+3. **Primary outcome:** Report the adjusted mean (SE) for each group at 12 weeks,
+   the mean difference (95% CI), and the p-value from the baseline-adjusted ANCOVA.
+   Then report the fully adjusted model result.
+4. **Sensitivity analysis:** State that the BOCF analysis produced a consistent
+   finding.
+5. **Interpretation sentence:** Write one sentence interpreting what the result
+   means clinically, including a comparison to the approximate MCID of 3 points.
+
+---
+
+## Part 4: Peer Review Checklist
+
+After drafting your Methods and Results, apply this checklist before submitting.
+
+```{r}
+#| echo: false
+
+checklist <- data.frame(
+  Item = c(
+    "All numbers match the analysis output (not the published paper)",
+    "Design, setting, and enrollment period are stated in Methods",
+    "Randomization procedure is described accurately",
+    "ANCOVA model covariates are listed",
+    "Participant flow numbers are correct and consistent",
+    "Baseline comparison uses clinically meaningful language (no p-values)",
+    "Adjusted means are reported with SEs, not raw means",
+    "Mean difference is reported with 95% CI and p-value",
+    "BOCF sensitivity result is reported",
+    "Interpretation sentence addresses clinical magnitude (MCID)"
+  ),
+  `Done?` = rep("☐", 10),
+  check.names = FALSE
+)
+
+knitr::kable(checklist)
+```
+
+---
+
+## Session Information
+
+```{r}
+#| label: session-info
+
+sessionInfo()
+```

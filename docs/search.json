@@ -64,7 +64,7 @@
     "href": "index.html#how-to-use-this-book",
     "title": "IVAM-ED: A CRP 241 Teaching Case",
     "section": "How to Use This Book",
-    "text": "How to Use This Book\nPrerequisites: R (≥ 4.6), Quarto (≥ 1.10), and a working renv installation. See standards/CAPABILITIES.md for verified tool versions.\nGenerate the dataset first. Before opening any module, run the simulation script from the project root:\nsource(\"R/simulate-ivam-ed.R\")\nThis creates data/ivam_synthetic.rds. The data/ directory is gitignored and the file will not be committed; you generate it locally each time.\nRender from the project root. Because renv activates via a .Rprofile at the project root, all quarto render commands must be run from there:\n# Build the entire book\nquarto render\n\n# Render a single module (standalone HTML with embedded resources)\nquarto render R/01-data-setup.qmd --to html\nWork sequentially. Each module depends on the data and concepts established in the previous one. Module 2 loads the working dataset created by Module 1; Modules 3–7 use the same completers object.",
+    "text": "How to Use This Book\n\n\n\n\n\n\nNoteInstructor Notes — expand for full setup and design documentation\n\n\n\n\n\nPrerequisites: R (≥ 4.6), Quarto (≥ 1.10), and a working renv installation. See standards/CAPABILITIES.md for verified tool versions.\nGenerate the dataset first. Before opening any module, run the simulation script from the project root:\nsource(\"R/simulate-ivam-ed.R\")\nThis creates data/ivam_synthetic.rds. The data/ directory is gitignored and the file will not be committed; you generate it locally each time.\nRender from the project root. Because renv activates via a .Rprofile at the project root, all quarto render commands must be run from there:\n# Build the entire book\nquarto render\n\n# Render a single module\nquarto render R/01-data-setup.qmd\nWork sequentially. Each module depends on the data and concepts established in the previous one. Module 2 loads the working dataset created by Module 1; Modules 3–8 use the same completers object.\nChanging the seed. set.seed(241) in R/simulate-ivam-ed.R produces identical data for all students. To assign different datasets to different student groups, change the seed number before distributing. Document the seed you used in your course materials.\nAnswer key. The Answer Key appendix provides worked solutions. These answers are based on set.seed(241) — update key values if you distribute a different seed.\nSimulation documentation. See simulation-assumptions.md for the full parameter table (every number linked to a paper table), and simulation-refinements.md for the debugging narrative (useful for advanced students or instructor background).",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -161,7 +161,7 @@
     "href": "R/01-data-setup.html#generate-the-synthetic-dataset",
     "title": "2  Module 1: Data Setup and Inspection",
     "section": "2.7 1. Generate the Synthetic Dataset",
-    "text": "2.7 1. Generate the Synthetic Dataset\nThe simulation script creates the dataset from scratch using a fixed random seed, so you will always get the same data.\n\n# Source the simulation script. This creates data/ivam_synthetic.rds.\n# The verification summary will print below.\nsource(\"simulate-ivam-ed.R\")\n\n\n======================================================\n IVAM-ED Synthetic Dataset — Verification Summary\n======================================================\n\nSample size and completion:\n  Total enrolled:     112 \n  Intervention (n):   56 \n  Control (n):        56 \n  Missing at 12 wks:  9 (published: 9)\n    - Intervention:   4 (published: 4)\n    - Control:        5 (published: 5)\n\nKey baseline characteristics (published in parentheses):\n  Age, mean (SD):       72.4 (4.7)  [published: 72.5 (5.7)]\n  Female, %:            65.2%        [published: 63.4%]\n  HbA1c %, mean (SD):  7.6 (1.4)  [published: 7.9 (1.5)]\n  SRQ-20 baseline:      7.9 (4.3)  [published: ctrl 7.0, int 7.9]\n\nFollow-up means and ANCOVA check (completers only):\n  SRQ-20 ctrl raw 12wk:  7.22\n  SRQ-20 int  raw 12wk:  6.75\n  Raw (unadjusted) MD:   -0.47\n  NOTE: Raw MD &lt; published adj MD because intervention group started with\n        higher baseline SRQ-20; ANCOVA adjusts for this (see below).\n\n  ANCOVA-adjusted MD:    -1.19  [published: -1.28]\n  95% CI:               -2.06 to -0.32  [published: -2.51 to -0.04]\n\nDataset saved to: data/ivam_synthetic.rds\nFor documentation, see: docs/simulation-assumptions.md\n======================================================",
+    "text": "2.7 1. Generate the Synthetic Dataset\nThe simulation script creates the dataset from scratch using a fixed random seed, so you will always get the same data.\n\n# Source the simulation script. This creates data/ivam_synthetic.rds.\n# The verification summary will print below.\nsource(\"simulate-ivam-ed.R\")\n\n\n======================================================\n IVAM-ED Synthetic Dataset — Verification Summary\n======================================================\n\nSample size and completion:\n  Total enrolled:     112 \n  Intervention (n):   56 \n  Control (n):        56 \n  Missing at 12 wks:  9 (published: 9)\n    - Intervention:   4 (published: 4)\n    - Control:        5 (published: 5)\n\nKey baseline characteristics (published in parentheses):\n  Age, mean (SD):       72.4 (4.7)  [published: 72.5 (5.7)]\n  Female, %:            65.2%        [published: 63.4%]\n  HbA1c %, mean (SD):  7.6 (1.4)  [published: 7.9 (1.5)]\n  SRQ-20 baseline:      7.9 (4.3)  [published: ctrl 7.0, int 7.9]\n\nFollow-up means and ANCOVA check (completers only):\n  SRQ-20 ctrl raw 12wk:  7.22\n  SRQ-20 int  raw 12wk:  6.75\n  Raw (unadjusted) MD:   -0.47\n  NOTE: Raw MD &lt; published adj MD because intervention group started with\n        higher baseline SRQ-20; ANCOVA adjusts for this (see below).\n\n  ANCOVA-adjusted MD:    -1.19  [published: -1.28]\n  95% CI:               -2.06 to -0.32  [published: -2.51 to -0.04]\n\nDataset saved to: data/ivam_synthetic.rds\nFor documentation, see: docs/simulation-assumptions.md\n======================================================\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhy the data are always the same: set.seed()\nAt the top of simulate-ivam-ed.R you will find set.seed(241). This locks R’s random number generator to a fixed starting point. R’s “randomness” is actually a deterministic algorithm — a mathematical formula that produces a long sequence of numbers that look random but are completely determined by the starting value (the seed). Given the same seed, R will always generate the same sequence.\nThis is deliberate for a teaching dataset: every student gets identical data, so results are comparable and answers are verifiable.\nTry it yourself: Open R/simulate-ivam-ed.R, change set.seed(241) to set.seed(999), source the script, and re-run this module. Your Table 1 means will shift slightly, the primary ANCOVA result may change in magnitude, and it may or may not remain statistically significant — illustrating that any single study is one realization of a random process.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Module 1: Data Setup and Inspection</span>"
@@ -403,7 +403,7 @@
     "href": "R/02-descriptive.html#univariate-summaries",
     "title": "3  Module 2: Descriptive Statistics and Baseline Characteristics",
     "section": "3.5 1. Univariate Summaries",
-    "text": "3.5 1. Univariate Summaries\nBefore building a grouped table, it helps to look at the whole sample together. This gives you a feel for the data and catches obvious problems (values out of range, unexpected distributions).\n\n3.5.1 Continuous variables\n\n# Summarize all continuous outcome and clinical variables\ndat |&gt;\n  select(age, edu_years, income_wages, dm_duration_y,\n         mmse_0, srq20_0, sci_r_0, pss_0, sf36_0, hba1c_0) |&gt;\n  summarise(across(everything(),\n    list(\n      n     = \\(x) sum(!is.na(x)),\n      mean  = \\(x) round(mean(x, na.rm = TRUE), 1),\n      sd    = \\(x) round(sd(x,   na.rm = TRUE), 1),\n      min   = \\(x) round(min(x,  na.rm = TRUE), 1),\n      max   = \\(x) round(max(x,  na.rm = TRUE), 1)\n    ),\n    .names = \"{.col}__{.fn}\"\n  )) |&gt;\n  tidyr::pivot_longer(everything(),\n    names_to  = c(\"variable\", \"stat\"),\n    names_sep = \"__\"\n  ) |&gt;\n  tidyr::pivot_wider(names_from = stat, values_from = value)\n\n# A tibble: 10 × 6\n   variable          n  mean    sd   min   max\n   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1 age             112  72.4   4.7  65    82.7\n 2 edu_years       112   6.9   3.7   0    18.4\n 3 income_wages    112   2.7   2.2   0.5  10.9\n 4 dm_duration_y   112  18.3  12.1   1    46.8\n 5 mmse_0          112  24.5   3.5  14    30  \n 6 srq20_0         112   7.9   4.3   0    18  \n 7 sci_r_0         112  36.9   5.9  24.3  55  \n 8 pss_0           112  22.9  10     0    40  \n 9 sf36_0          112  50.1  22.3   0    92.1\n10 hba1c_0         112   7.6   1.4   4.5  11  \n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat to notice: Compare the means and SDs to the published Table 1 in Matzenbacher et al. (2026). The pooled (overall) values should be close. Small differences are expected because this is a simulation.\n\n\n\n\n3.5.2 Categorical variables\n\n# Count and percentage for each binary variable\nbinary_vars &lt;- c(\"female\", \"insulin\", \"hx_depression\", \"hx_anxiety\",\n                 \"cognitive_decline\")\n\ndat |&gt;\n  select(all_of(binary_vars)) |&gt;\n  summarise(across(everything(),\n    list(\n      n   = \\(x) sum(x == 1, na.rm = TRUE),\n      pct = \\(x) round(mean(x == 1, na.rm = TRUE) * 100, 1)\n    ),\n    .names = \"{.col}__{.fn}\"\n  )) |&gt;\n  tidyr::pivot_longer(everything(),\n    names_to  = c(\"variable\", \"stat\"),\n    names_sep = \"__\"\n  ) |&gt;\n  tidyr::pivot_wider(names_from = stat, values_from = value) |&gt;\n  mutate(summary = paste0(n, \" (\", pct, \"%)\"))\n\n# A tibble: 5 × 4\n  variable              n   pct summary   \n  &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     \n1 female               73  65.2 73 (65.2%)\n2 insulin              61  54.5 61 (54.5%)\n3 hx_depression        31  27.7 31 (27.7%)\n4 hx_anxiety           40  35.7 40 (35.7%)\n5 cognitive_decline    59  52.7 59 (52.7%)",
+    "text": "3.5 1. Univariate Summaries\nBefore building a grouped table, it helps to look at the whole sample together. This gives you a feel for the data and catches obvious problems (values out of range, unexpected distributions).\n\n3.5.1 Continuous variables\n\n# Summarize all continuous outcome and clinical variables\ndat |&gt;\n  select(age, edu_years, income_wages, dm_duration_y,\n         mmse_0, srq20_0, sci_r_0, pss_0, sf36_0, hba1c_0) |&gt;\n  summarise(across(everything(),\n    list(\n      n     = \\(x) sum(!is.na(x)),\n      mean  = \\(x) round(mean(x, na.rm = TRUE), 1),\n      sd    = \\(x) round(sd(x,   na.rm = TRUE), 1),\n      min   = \\(x) round(min(x,  na.rm = TRUE), 1),\n      max   = \\(x) round(max(x,  na.rm = TRUE), 1)\n    ),\n    .names = \"{.col}__{.fn}\"\n  )) |&gt;\n  tidyr::pivot_longer(everything(),\n    names_to  = c(\"variable\", \"stat\"),\n    names_sep = \"__\"\n  ) |&gt;\n  tidyr::pivot_wider(names_from = stat, values_from = value)\n\n# A tibble: 10 × 6\n   variable          n  mean    sd   min   max\n   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1 age             112  72.4   4.7  65    82.7\n 2 edu_years       112   6.9   3.7   0    18.4\n 3 income_wages    112   2.7   2.2   0.5  10.9\n 4 dm_duration_y   112  18.3  12.1   1    46.8\n 5 mmse_0          112  24.5   3.5  14    30  \n 6 srq20_0         112   7.9   4.3   0    18  \n 7 sci_r_0         112  36.9   5.9  24.3  55  \n 8 pss_0           112  22.9  10     0    40  \n 9 sf36_0          112  50.1  22.3   0    92.1\n10 hba1c_0         112   7.6   1.4   4.5  11  \n\n\n\n\n\n\n\n\nTip\n\n\n\nWhat pivot_longer() and pivot_wider() do: R stores data in either wide or long format. Wide format has one row per participant with many columns. Long format has one row per observation, with a column identifying what variable that row describes.\nWe used pivot_longer() above to convert the summarise() output — which has one column per statistic — into a long table where each row is one (variable, statistic) pair. Then pivot_wider() re-shapes it so each statistic becomes its own column. This pattern appears throughout the modules whenever we need to reshape data for a cleaner table or a grouped plot.\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat to notice: Compare the means and SDs to the published Table 1 in Matzenbacher et al. (2026). The pooled (overall) values should be close. Small differences are expected because this is a simulation.\n\n\n\n\n3.5.2 Categorical variables\n\n# Count and percentage for each binary variable\nbinary_vars &lt;- c(\"female\", \"insulin\", \"hx_depression\", \"hx_anxiety\",\n                 \"cognitive_decline\")\n\ndat |&gt;\n  select(all_of(binary_vars)) |&gt;\n  summarise(across(everything(),\n    list(\n      n   = \\(x) sum(x == 1, na.rm = TRUE),\n      pct = \\(x) round(mean(x == 1, na.rm = TRUE) * 100, 1)\n    ),\n    .names = \"{.col}__{.fn}\"\n  )) |&gt;\n  tidyr::pivot_longer(everything(),\n    names_to  = c(\"variable\", \"stat\"),\n    names_sep = \"__\"\n  ) |&gt;\n  tidyr::pivot_wider(names_from = stat, values_from = value) |&gt;\n  mutate(summary = paste0(n, \" (\", pct, \"%)\"))\n\n# A tibble: 5 × 4\n  variable              n   pct summary   \n  &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     \n1 female               73  65.2 73 (65.2%)\n2 insulin              61  54.5 61 (54.5%)\n3 hx_depression        31  27.7 31 (27.7%)\n4 hx_anxiety           40  35.7 40 (35.7%)\n5 cognitive_decline    59  52.7 59 (52.7%)",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Module 2: Descriptive Statistics and Baseline Characteristics</span>"
@@ -623,7 +623,7 @@
     "href": "R/03-visualization.html#change-from-baseline-individual-trajectories",
     "title": "4  Module 3: Data Visualization",
     "section": "4.9 3. Change from Baseline: Individual Trajectories",
-    "text": "4.9 3. Change from Baseline: Individual Trajectories\nThe most informative visualization for a pre-post trial is an individual trajectory plot: one line per participant, connecting their baseline score to their follow-up score. This shows both the direction and magnitude of change for each person, not just the group average.\n\n# Reshape to long: one row per participant per time point\nsrq20_long &lt;- completers |&gt;\n  select(participant_id, group_label, srq20_0, srq20_12) |&gt;\n  tidyr::pivot_longer(\n    cols      = c(srq20_0, srq20_12),\n    names_to  = \"timepoint\",\n    values_to = \"srq20\"\n  ) |&gt;\n  mutate(\n    timepoint = recode(timepoint,\n      srq20_0  = \"Baseline\\n(Week −1)\",\n      srq20_12 = \"Follow-up\\n(Week 12)\"\n    ),\n    timepoint = factor(timepoint,\n      levels = c(\"Baseline\\n(Week −1)\", \"Follow-up\\n(Week 12)\"))\n  )\n\nggplot(srq20_long,\n       aes(x = timepoint, y = srq20, group = participant_id, color = group_label)) +\n  geom_line(alpha = 0.3, linewidth = 0.5) +\n  geom_point(alpha = 0.4, size = 1.2) +\n  # Add group mean lines on top\n  stat_summary(aes(group = group_label), fun = mean,\n               geom = \"line\", linewidth = 1.5, alpha = 0.9) +\n  stat_summary(aes(group = group_label), fun = mean,\n               geom = \"point\", size = 3, shape = 18) +\n  scale_color_manual(values = c(\"Usual care\" = \"#ED7D31\", \"Smart speaker\" = \"#4472C4\")) +\n  scale_y_continuous(limits = c(0, 20), breaks = seq(0, 20, 4)) +\n  labs(\n    title    = \"Individual SRQ-20 Trajectories: Baseline to 12 Weeks\",\n    subtitle = \"Thin lines = individual participants; thick lines = group means\",\n    x        = NULL,\n    y        = \"SRQ-20 score (higher = more distress)\",\n    color    = NULL,\n    caption  = \"Completers only (n = 103)\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat to notice:\n\nBoth group means decline from baseline to follow-up — some improvement in mental distress even in the usual care group.\nThe smart speaker group mean (blue) drops further than the usual care group mean (orange). The vertical distance between the thick lines at follow-up represents the unadjusted mean difference.\nIndividual variability is large: some participants in both groups get worse, not better. The group-level treatment effect is a central tendency, not a guarantee for any individual.\nThe crossing lines reveal that participants who started with high scores tend to show larger decreases — this is regression to the mean, which the ANCOVA model in Module 5 will address.",
+    "text": "4.9 3. Change from Baseline: Individual Trajectories\nThe most informative visualization for a pre-post trial is an individual trajectory plot: one line per participant, connecting their baseline score to their follow-up score. This shows both the direction and magnitude of change for each person, not just the group average.\n\n# Reshape to long: one row per participant per time point\nsrq20_long &lt;- completers |&gt;\n  select(participant_id, group_label, srq20_0, srq20_12) |&gt;\n  tidyr::pivot_longer(\n    cols      = c(srq20_0, srq20_12),\n    names_to  = \"timepoint\",\n    values_to = \"srq20\"\n  ) |&gt;\n  mutate(\n    timepoint = recode(timepoint,\n      srq20_0  = \"Baseline\\n(Week −1)\",\n      srq20_12 = \"Follow-up\\n(Week 12)\"\n    ),\n    timepoint = factor(timepoint,\n      levels = c(\"Baseline\\n(Week −1)\", \"Follow-up\\n(Week 12)\"))\n  )\n\nggplot(srq20_long,\n       aes(x = timepoint, y = srq20, group = participant_id, color = group_label)) +\n  geom_line(alpha = 0.3, linewidth = 0.5) +\n  geom_point(alpha = 0.4, size = 1.2) +\n  # Add group mean lines on top\n  stat_summary(aes(group = group_label), fun = mean,\n               geom = \"line\", linewidth = 1.5, alpha = 0.9) +\n  stat_summary(aes(group = group_label), fun = mean,\n               geom = \"point\", size = 3, shape = 18) +\n  scale_color_manual(values = c(\"Usual care\" = \"#ED7D31\", \"Smart speaker\" = \"#4472C4\")) +\n  scale_y_continuous(limits = c(0, 20), breaks = seq(0, 20, 4)) +\n  labs(\n    title    = \"Individual SRQ-20 Trajectories: Baseline to 12 Weeks\",\n    subtitle = \"Thin lines = individual participants; thick lines = group means\",\n    x        = NULL,\n    y        = \"SRQ-20 score (higher = more distress)\",\n    color    = NULL,\n    caption  = \"Completers only (n = 103)\"\n  ) +\n  theme_minimal(base_size = 12) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhat to notice:\n\nColor key: orange lines = Usual care group; blue lines = Smart speaker (intervention) group. The thick lines are group means; thin lines are individual participants.\nBoth group means decline from baseline to follow-up — a drop in SRQ-20 means less distress, which is an improvement.\nThe smart speaker group mean (blue thick line) drops further than the usual care group mean (orange thick line). The vertical distance between the two thick lines at week 12 represents the unadjusted mean difference.\nIndividual variability is large: some participants in both groups get worse, not better. The group-level treatment effect is a central tendency, not a guarantee for any individual.\nThe crossing thin lines reveal that participants who started with high scores tend to show larger decreases — this is regression to the mean, which the ANCOVA model in Module 5 will address.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Module 3: Data Visualization</span>"
@@ -865,7 +865,7 @@
     "href": "R/04-estimation.html#hypothesis-test-independent-samples-t-test",
     "title": "5  Module 4: Estimation and Hypothesis Testing",
     "section": "5.11 4. Hypothesis Test: Independent-Samples t-Test",
-    "text": "5.11 4. Hypothesis Test: Independent-Samples t-Test\nA hypothesis test asks: “If the intervention truly had no effect, how often would we see a mean difference this large (or larger) by chance alone?”\nThe null hypothesis (H₀): the population mean SRQ-20 at 12 weeks is the same in both groups. The alternative hypothesis (H₁): the means differ.\n\n# Two-sample t-test with Welch correction (does not assume equal variances)\nt_result &lt;- t.test(\n  srq20_12 ~ group_label,\n  data    = completers,\n  var.equal = FALSE   # Welch t-test; safer default when group SDs may differ\n)\n\nt_result\n\n\n    Welch Two Sample t-test\n\ndata:  srq20_12 by group_label\nt = 0.69158, df = 100.88, p-value = 0.4908\nalternative hypothesis: true difference in means between group Usual care and group Smart speaker is not equal to 0\n95 percent confidence interval:\n -0.8701141  1.8014867\nsample estimates:\n   mean in group Usual care mean in group Smart speaker \n                   7.215686                    6.750000 \n\n\n\n# Pull out the key numbers for easy reporting\ncat(sprintf(\"t-statistic:   %.3f\\n\",   t_result$statistic))\n\nt-statistic:   0.692\n\ncat(sprintf(\"Degrees of freedom: %.1f\\n\", t_result$parameter))\n\nDegrees of freedom: 100.9\n\ncat(sprintf(\"p-value:       %.4f\\n\",   t_result$p.value))\n\np-value:       0.4908\n\ncat(sprintf(\"95%% CI:        (%.2f, %.2f)\\n\",\n    t_result$conf.int[1], t_result$conf.int[2]))\n\n95% CI:        (-0.87, 1.80)\n\ncat(sprintf(\"Mean difference: %.3f (Smart speaker minus Usual care)\\n\",\n    diff(t_result$estimate)))  # note: t.test reports in alphabetical order\n\nMean difference: -0.466 (Smart speaker minus Usual care)\n\n\n\n\n\n\n\n\nNote\n\n\n\nReading the p-value: A p-value below 0.05 (the conventional threshold) means that, if there were truly no treatment effect, we would observe a difference this large less than 5% of the time by chance. A p-value above 0.05 does not mean the treatment has no effect — it means the data are consistent with no effect, but do not rule it out either. With n = 103, the trial has limited power to detect small effects.\nThe published trial used ANCOVA (not a t-test) as the primary analysis. The ANCOVA estimate will be more precise — we will fit it in Module 5.",
+    "text": "5.11 4. Hypothesis Test: Independent-Samples t-Test\nA hypothesis test asks: “If the intervention truly had no effect, how often would we see a mean difference this large (or larger) by chance alone?”\nThe null hypothesis (H₀): the population mean SRQ-20 at 12 weeks is the same in both groups. The alternative hypothesis (H₁): the means differ.\n\n# Two-sample t-test with Welch correction (does not assume equal variances)\nt_result &lt;- t.test(\n  srq20_12 ~ group_label,\n  data    = completers,\n  var.equal = FALSE   # Welch t-test; safer default when group SDs may differ\n)\n\nt_result\n\n\n    Welch Two Sample t-test\n\ndata:  srq20_12 by group_label\nt = 0.69158, df = 100.88, p-value = 0.4908\nalternative hypothesis: true difference in means between group Usual care and group Smart speaker is not equal to 0\n95 percent confidence interval:\n -0.8701141  1.8014867\nsample estimates:\n   mean in group Usual care mean in group Smart speaker \n                   7.215686                    6.750000 \n\n\n\n# Pull out the key numbers for easy reporting\ncat(sprintf(\"t-statistic:   %.3f\\n\",   t_result$statistic))\n\nt-statistic:   0.692\n\ncat(sprintf(\"Degrees of freedom: %.1f\\n\", t_result$parameter))\n\nDegrees of freedom: 100.9\n\ncat(sprintf(\"p-value:       %.4f\\n\",   t_result$p.value))\n\np-value:       0.4908\n\ncat(sprintf(\"95%% CI:        (%.2f, %.2f)\\n\",\n    t_result$conf.int[1], t_result$conf.int[2]))\n\n95% CI:        (-0.87, 1.80)\n\n# Explicitly name which group is subtracted from which to avoid silent ordering errors\nm_smart  &lt;- t_result$estimate[grep(\"Smart\", names(t_result$estimate))]\nm_usual  &lt;- t_result$estimate[grep(\"Usual\", names(t_result$estimate))]\ncat(sprintf(\"Mean difference: %.3f (Smart speaker minus Usual care)\\n\",\n    m_smart - m_usual))\n\nMean difference: -0.466 (Smart speaker minus Usual care)\n\n\n\n\n\n\n\n\nNote\n\n\n\nReading the p-value: A p-value below 0.05 (the conventional threshold) means that, if there were truly no treatment effect, we would observe a difference this large less than 5% of the time by chance. A p-value above 0.05 does not mean the treatment has no effect — it means the data are consistent with no effect, but do not rule it out either. With n = 103, the trial has limited power to detect small effects.\nThe published trial used ANCOVA (not a t-test) as the primary analysis. The ANCOVA estimate will be more precise — we will fit it in Module 5.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Module 4: Estimation and Hypothesis Testing</span>"
@@ -1063,18 +1063,18 @@
     "href": "R/05-ancova.html#the-baseline-adjusted-ancova-model",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.7 2. The Baseline-Adjusted ANCOVA Model",
-    "text": "6.7 2. The Baseline-Adjusted ANCOVA Model\nThe baseline-adjusted ANCOVA model includes two predictors: - group: the randomized treatment assignment (1 = intervention, 0 = control) - srq20_0: the participant’s SRQ-20 score at baseline\n\n# Baseline-adjusted model: y_12 ~ group + y_0\nmodel_base &lt;- lm(srq20_12 ~ group + srq20_0, data = completers)\nsummary(model_base)\n\n\nCall:\nlm(formula = srq20_12 ~ group + srq20_0, data = completers)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.8267 -1.2076  0.1222  1.4317  5.3160 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  2.61270    0.49443   5.284 7.41e-07 ***\ngroup       -1.18712    0.43919  -2.703  0.00808 ** \nsrq20_0      0.69045    0.05789  11.928  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.207 on 100 degrees of freedom\nMultiple R-squared:  0.5892,    Adjusted R-squared:  0.581 \nF-statistic: 71.71 on 2 and 100 DF,  p-value: &lt; 2.2e-16\n\n\n\n# Extract the key estimates in a clean format\ncoef_base &lt;- summary(model_base)$coefficients\nci_base   &lt;- confint(model_base)\n\nresults_base &lt;- data.frame(\n  Term         = rownames(coef_base),\n  Estimate     = round(coef_base[, \"Estimate\"], 3),\n  SE           = round(coef_base[, \"Std. Error\"], 3),\n  `95% CI`     = paste0(\"(\", round(ci_base[, 1], 2), \", \", round(ci_base[, 2], 2), \")\"),\n  `p-value`    = round(coef_base[, \"Pr(&gt;|t|)\"], 4),\n  check.names  = FALSE\n)\n\nresults_base\n\n                   Term Estimate    SE         95% CI p-value\n(Intercept) (Intercept)    2.613 0.494   (1.63, 3.59)  0.0000\ngroup             group   -1.187 0.439 (-2.06, -0.32)  0.0081\nsrq20_0         srq20_0    0.690 0.058   (0.58, 0.81)  0.0000\n\n\n\n\n\n\n\n\nNote\n\n\n\nInterpreting the group coefficient (the treatment effect):\n\nThis is the estimated mean difference in SRQ-20 at 12 weeks between the intervention and control groups, holding baseline SRQ-20 constant.\nA negative value means the intervention group had lower distress (better outcome).\nCompare this to the unadjusted mean difference from Module 4. The ANCOVA estimate should be larger in magnitude because it corrects for the baseline imbalance (intervention group started higher).\nThe 95% CI should be narrower than the unadjusted CI, reflecting the increased precision from including the baseline covariate.\n\nPublished baseline-adjusted MD: −1.28 (95% CI: −2.51 to −0.04). Your estimate will be close but not identical because this is a simulation.",
+    "text": "6.7 2. The Baseline-Adjusted ANCOVA Model\nThe baseline-adjusted ANCOVA model includes two predictors: - group: the randomized treatment assignment (1 = intervention, 0 = control) - srq20_0: the participant’s SRQ-20 score at baseline\n\n# Baseline-adjusted model: y_12 ~ group + y_0\nmodel_base &lt;- lm(srq20_12 ~ group + srq20_0, data = completers)\nsummary(model_base)\n\n\nCall:\nlm(formula = srq20_12 ~ group + srq20_0, data = completers)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-4.8267 -1.2076  0.1222  1.4317  5.3160 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  2.61270    0.49443   5.284 7.41e-07 ***\ngroup       -1.18712    0.43919  -2.703  0.00808 ** \nsrq20_0      0.69045    0.05789  11.928  &lt; 2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 2.207 on 100 degrees of freedom\nMultiple R-squared:  0.5892,    Adjusted R-squared:  0.581 \nF-statistic: 71.71 on 2 and 100 DF,  p-value: &lt; 2.2e-16\n\n\n\n# Extract the key estimates in a clean format\ncoef_base &lt;- summary(model_base)$coefficients\nci_base   &lt;- confint(model_base)\n\nresults_base &lt;- data.frame(\n  Term         = rownames(coef_base),\n  Estimate     = round(coef_base[, \"Estimate\"], 3),\n  SE           = round(coef_base[, \"Std. Error\"], 3),\n  `95% CI`     = paste0(\"(\", round(ci_base[, 1], 2), \", \", round(ci_base[, 2], 2), \")\"),\n  `p-value`    = round(coef_base[, \"Pr(&gt;|t|)\"], 4),\n  check.names  = FALSE\n)\n\nresults_base\n\n                   Term Estimate    SE         95% CI p-value\n(Intercept) (Intercept)    2.613 0.494   (1.63, 3.59)  0.0000\ngroup             group   -1.187 0.439 (-2.06, -0.32)  0.0081\nsrq20_0         srq20_0    0.690 0.058   (0.58, 0.81)  0.0000\n\n\n\n\n\n\n\n\nNote\n\n\n\nInterpreting the group coefficient (the treatment effect):\n\nThis is the estimated mean difference in SRQ-20 at 12 weeks between the intervention and control groups, holding baseline SRQ-20 constant.\nA negative value means the intervention group had lower distress (better outcome).\nCompare this to the unadjusted mean difference from Module 4. The ANCOVA estimate should be larger in magnitude because it corrects for the baseline imbalance (intervention group started higher).\nThe 95% CI should be narrower than the unadjusted CI, reflecting the increased precision from including the baseline covariate.\n\nPublished baseline-adjusted MD: −1.28 (95% CI: −2.51 to −0.04). Your estimate will be close but not identical because this is a simulation.\n\n\n\n\n\n\n\n\nTip\n\n\n\nWhy the intercept must be calibrated at the grand mean — and what went wrong the first time: When building the synthetic dataset, the ANCOVA intercept was initially calibrated at the control group’s baseline mean rather than the grand mean. A 1.1-point baseline imbalance almost completely offset the specified treatment effect, making the raw follow-up means nearly identical between groups. The fix — centering the baseline covariate at the grand mean — is exactly what this section demonstrates: adjusted means are estimated at the grand mean, not the group mean. See simulation-refinements.md for the full diagnosis and the before/after code.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Module 5: Linear Regression and ANCOVA</span>"
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-3",
-    "href": "R/05-ancova.html#section-3",
+    "objectID": "R/05-ancova.html#b.-check-model-assumptions",
+    "href": "R/05-ancova.html#b.-check-model-assumptions",
     "title": "6  Module 5: Linear Regression and ANCOVA",
-    "section": "6.8 ———————————————————————",
-    "text": "6.8 ———————————————————————",
+    "section": "6.8 2b. Check Model Assumptions",
+    "text": "6.8 2b. Check Model Assumptions\nBefore interpreting ANCOVA results, verify the two key linear regression assumptions: residuals are approximately normally distributed, and residual variance is roughly constant across fitted values (homoscedasticity).\n\n# Standard residual diagnostic plots for the baseline-adjusted ANCOVA\npar(mfrow = c(1, 2))\n\n# Residuals vs Fitted: check for non-linearity and unequal variance\nplot(model_base, which = 1,\n     main   = \"Residuals vs Fitted\",\n     sub    = \"Look for: random scatter (no curve, no funnel shape)\")\n\n# Normal Q-Q: check whether residuals are approximately normal\nplot(model_base, which = 2,\n     main   = \"Normal Q-Q\",\n     sub    = \"Look for: points close to the diagonal line\")\n\n\n\n\n\n\n\npar(mfrow = c(1, 1))\n\n\n\n\n\n\n\nNote\n\n\n\nReading the diagnostic plots:\n\nResiduals vs Fitted (left): The residuals should scatter randomly above and below zero with no systematic curve and no funnel shape (which would indicate variance increasing with fitted values). A smooth red line near zero is a good sign.\nNormal Q-Q (right): The standardized residuals should fall approximately on the diagonal line. Some deviation at the tails is acceptable in small samples; systematic curvature throughout the plot would indicate non-normality.\n\nFor the IVAM-ED simulation, both plots should look acceptable. The SRQ-20 is a bounded integer score with some right skew — slight departures from normality in the Q-Q plot tails are expected and not cause for concern with n = 103.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Module 5: Linear Regression and ANCOVA</span>"
@@ -1092,8 +1092,8 @@
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-4",
-    "href": "R/05-ancova.html#section-4",
+    "objectID": "R/05-ancova.html#section-3",
+    "href": "R/05-ancova.html#section-3",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.10 ———————————————————————",
     "text": "6.10 ———————————————————————",
@@ -1114,8 +1114,8 @@
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-5",
-    "href": "R/05-ancova.html#section-5",
+    "objectID": "R/05-ancova.html#section-4",
+    "href": "R/05-ancova.html#section-4",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.12 ———————————————————————",
     "text": "6.12 ———————————————————————",
@@ -1136,8 +1136,8 @@
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-6",
-    "href": "R/05-ancova.html#section-6",
+    "objectID": "R/05-ancova.html#section-5",
+    "href": "R/05-ancova.html#section-5",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.14 ———————————————————————",
     "text": "6.14 ———————————————————————",
@@ -1158,8 +1158,8 @@
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-7",
-    "href": "R/05-ancova.html#section-7",
+    "objectID": "R/05-ancova.html#section-6",
+    "href": "R/05-ancova.html#section-6",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.16 ———————————————————————",
     "text": "6.16 ———————————————————————",
@@ -1180,8 +1180,8 @@
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-8",
-    "href": "R/05-ancova.html#section-8",
+    "objectID": "R/05-ancova.html#section-7",
+    "href": "R/05-ancova.html#section-7",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.18 ———————————————————————",
     "text": "6.18 ———————————————————————",
@@ -1202,8 +1202,8 @@
     ]
   },
   {
-    "objectID": "R/05-ancova.html#section-9",
-    "href": "R/05-ancova.html#section-9",
+    "objectID": "R/05-ancova.html#section-8",
+    "href": "R/05-ancova.html#section-8",
     "title": "6  Module 5: Linear Regression and ANCOVA",
     "section": "6.20 ———————————————————————",
     "text": "6.20 ———————————————————————",
@@ -1598,11 +1598,11 @@
     ]
   },
   {
-    "objectID": "R/07-interpretation.html#section-5",
-    "href": "R/07-interpretation.html#section-5",
+    "objectID": "R/07-interpretation.html#sample-size-and-power-what-was-planned-vs.-what-was-observed",
+    "href": "R/07-interpretation.html#sample-size-and-power-what-was-planned-vs.-what-was-observed",
     "title": "8  Module 7: Interpretation and Critical Appraisal",
-    "section": "8.12 ———————————————————————",
-    "text": "8.12 ———————————————————————",
+    "section": "8.12 5. Sample Size and Power: What Was Planned vs. What Was Observed",
+    "text": "8.12 5. Sample Size and Power: What Was Planned vs. What Was Observed\nThe IVAM-ED protocol specified the sample size using three inputs: α = 0.05, power = 90%, and an effect size of 0.68 (Cohen’s d) for the primary outcome. Assuming 20% dropout, this produced the target of 112 participants (56 per group).\nThis section works through that calculation, examines what happens if the true effect size is smaller than planned, and addresses a common but invalid practice: post-hoc power analysis.\n\n# Install pwr if needed: renv::install(\"pwr\")\nlibrary(pwr)\n\n\n8.12.1 5a. Reproducing the planned sample size\n\n# Reproduce the protocol's sample size calculation\n# Two-sample t-test, two-sided, α = 0.05, power = 90%, effect size d = 0.68\npwr_planned &lt;- pwr.t.test(\n  d    = 0.68,\n  sig.level = 0.05,\n  power     = 0.90,\n  type      = \"two.sample\",\n  alternative = \"two.sided\"\n)\npwr_planned\n\n\n     Two-sample t test power calculation \n\n              n = 46.42903\n              d = 0.68\n      sig.level = 0.05\n          power = 0.9\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n# Completers needed (before adding dropout allowance)\ncat(sprintf(\"\\nCompleters per group needed: %.0f\\n\", ceiling(pwr_planned$n)))\n\n\nCompleters per group needed: 47\n\ncat(sprintf(\"With 20%% dropout: %.0f per group enrolled\\n\",\n    ceiling(pwr_planned$n / 0.80)))\n\nWith 20% dropout: 59 per group enrolled\n\ncat(sprintf(\"Published target: 56 per group (112 total)\\n\"))\n\nPublished target: 56 per group (112 total)\n\n\n\n\n\n\n\n\nNote\n\n\n\nInterpreting the power calculation: The trial was powered to detect an effect of d = 0.68 with 90% probability if that effect truly exists. The 0.68 effect size was based on a prior study of a comparable psychological intervention. With the 20% dropout adjustment, 56 participants per group were enrolled — consistent with the published n = 112.\n\n\n\n\n8.12.2 5b. Sensitivity analysis: what if the true effect is smaller?\n\n# Power curve: what is the probability of a significant result across a range\n# of true effect sizes, given n = 52 completers per group (observed)?\nn_completers &lt;- 52  # observed completers per group\n\nd_seq   &lt;- seq(0.10, 1.0, by = 0.05)\npower_seq &lt;- sapply(d_seq, function(d) {\n  pwr.t.test(n = n_completers, d = d, sig.level = 0.05,\n             type = \"two.sample\", alternative = \"two.sided\")$power\n})\n\npower_df &lt;- data.frame(d = d_seq, power = power_seq)\n\nggplot(power_df, aes(x = d, y = power)) +\n  geom_line(linewidth = 1, color = \"#4472C4\") +\n  geom_hline(yintercept = 0.80, linetype = \"dashed\", color = \"grey50\") +\n  geom_hline(yintercept = 0.90, linetype = \"dotted\", color = \"#C00000\") +\n  geom_vline(xintercept = 0.68, linetype = \"dashed\", color = \"#538135\") +\n  annotate(\"text\", x = 0.68, y = 0.15, label = \"Planned\\nd = 0.68\",\n           hjust = -0.1, color = \"#538135\", size = 3.2) +\n  annotate(\"text\", x = 0.15, y = 0.81, label = \"80% power\",\n           hjust = 0, color = \"grey40\", size = 3.2) +\n  annotate(\"text\", x = 0.15, y = 0.91, label = \"90% power (planned)\",\n           hjust = 0, color = \"#C00000\", size = 3.2) +\n  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +\n  labs(\n    title   = \"Power to Detect a Significant SRQ-20 Effect (n = 52 completers/group)\",\n    x       = \"True effect size (Cohen's d)\",\n    y       = \"Probability of significant result (power)\",\n    caption = \"Dashed grey = 80% threshold; red dotted = planned 90%; green = protocol effect size\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nWhat the power curve tells you: At the planned effect size (d = 0.68), the study has approximately 90% power — consistent with the protocol. But if the true effect is closer to d = 0.40 (a plausible smaller effect for a brief 12-week behavioral intervention), power drops to roughly 55–60%. More than one in three real effects of that size would be missed. This is the fragility that modest effect sizes in small trials can create.\nThis does not mean the trial was underpowered or that the result is wrong. It means that the conclusion “the intervention works” should be held with appropriate uncertainty about magnitude, and that future trials should consider larger samples or longer follow-up if the effect is expected to be smaller than the planning estimate.\n\n\n\n\n8.12.3 5c. The post-hoc power fallacy\nAfter seeing a statistically significant result with an observed mean difference of approximately −1.2 points and a pooled SD of about 4.5, one might be tempted to compute the “observed power” — plugging the observed effect size into the power formula to see whether the study was “adequately powered.”\nThis is invalid and should never be done.\n\n# Observed Cohen's d from our ANCOVA estimate\nmodel_check &lt;- lm(srq20_12 ~ group + srq20_0, data = filter(dat, missing_12wk == 0))\nobs_md      &lt;- coef(model_check)[\"group\"]\npooled_sd   &lt;- sd(filter(dat, missing_12wk == 0)$srq20_0)\nobs_d       &lt;- obs_md / pooled_sd\n\ncat(sprintf(\"Observed MD: %.2f\\n\", obs_md))\n\nObserved MD: -1.19\n\ncat(sprintf(\"Pooled SD:   %.2f\\n\", pooled_sd))\n\nPooled SD:   3.81\n\ncat(sprintf(\"Observed d:  %.2f\\n\", obs_d))\n\nObserved d:  -0.31\n\n# 'Post-hoc power' using the observed d — this is the fallacy\nposthoc_pwr &lt;- pwr.t.test(n = 52, d = abs(obs_d), sig.level = 0.05,\n                           type = \"two.sample\", alternative = \"two.sided\")\ncat(sprintf(\"\\n'Post-hoc power' (invalid): %.1f%%\\n\", posthoc_pwr$power * 100))\n\n\n'Post-hoc power' (invalid): 35.0%\n\n\n\n\n\n\n\n\nImportant\n\n\n\nWhy post-hoc power is a fallacy — and what to do instead.\nPost-hoc power takes the observed effect size and asks “how powerful was this study to detect an effect this large?” The answer is mathematically determined by the p-value: any result with p &lt; 0.05 will have post-hoc power above approximately 50%; any result with p &gt; 0.05 will have post-hoc power below 50%. The calculation adds no information.\nThe circular reasoning: we observed this effect size precisely because the study was significant. If the study had been non-significant (and the observed effect smaller), post-hoc power would be lower. Post-hoc power tracks significance — it does not independently assess whether the study was large enough.\nWhat to do instead: - Report the prospective power from the protocol’s sample size calculation (which is what matters for design evaluation). - For a non-significant result, report a confidence interval and discuss whether the upper bound rules out a clinically important effect. - For future trials, use a sensitivity power analysis (as in Section 5b above): show what effect sizes the proposed design can and cannot reliably detect.\nThe American Statistical Association and most major clinical journals explicitly discourage post-hoc power analysis. The key reference is Hoenig & Heisey (2001), The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis, The American Statistician, 55(1):19–24.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Module 7: Interpretation and Critical Appraisal</span>"
@@ -1612,16 +1612,16 @@
     "objectID": "R/07-interpretation.html#practice-exercises",
     "href": "R/07-interpretation.html#practice-exercises",
     "title": "8  Module 7: Interpretation and Critical Appraisal",
-    "section": "8.13 5. Practice Exercises",
-    "text": "8.13 5. Practice Exercises\n\nIs the SRQ-20 effect clinically significant? Using the MCID of 3 points, write a two-sentence interpretation of the primary outcome result that conveys both what the data show and what they do not show.\nApply Bonferroni to SCI-R. If the SCI-R (self-care) p-value from your analysis is below 0.05, is it also below the Bonferroni-corrected threshold of 0.01? What language would you use to describe this result in a paper?\nRead the protocol SAP section. Open source/extracted/matzenbacher-2026-supplement-1.md and find the statistical analysis plan section. Identify the sentence that describes how secondary outcome p-values would be reported. Does the published Table 2 follow that guidance exactly?\nEvaluate the post-hoc anxiety subgroup. The results paper reports that participants with a history of anxiety benefited more (MD −3.72 on SRQ-20) than those without (MD −0.81). This subgroup was added post hoc. Without a pre-specified hypothesis, what are two reasons to be cautious about this finding?\nDesign the next trial. Based on the IVAM-ED findings, what would you change in the design of a confirmatory follow-up trial? Consider: sample size, outcome selection, subgroup pre-specification, follow-up duration.",
+    "section": "8.13 6. Practice Exercises",
+    "text": "8.13 6. Practice Exercises\n\nIs the SRQ-20 effect clinically significant? Using the MCID of 3 points, write a two-sentence interpretation of the primary outcome result that conveys both what the data show and what they do not show.\nApply Bonferroni to SCI-R. If the SCI-R (self-care) p-value from your analysis is below 0.05, is it also below the Bonferroni-corrected threshold of 0.01? What language would you use to describe this result in a paper?\nRead the protocol SAP section. Open source/extracted/matzenbacher-2026-supplement-1.md and find the statistical analysis plan section. Identify the sentence that describes how secondary outcome p-values would be reported. Does the published Table 2 follow that guidance exactly?\nEvaluate the post-hoc anxiety subgroup. The results paper reports that participants with a history of anxiety benefited more (MD −3.72 on SRQ-20) than those without (MD −0.81). This subgroup was added post hoc. Without a pre-specified hypothesis, what are two reasons to be cautious about this finding?\nDesign the next trial. Based on the IVAM-ED findings, what would you change in the design of a confirmatory follow-up trial? Consider: sample size, outcome selection, subgroup pre-specification, follow-up duration.",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Module 7: Interpretation and Critical Appraisal</span>"
     ]
   },
   {
-    "objectID": "R/07-interpretation.html#section-6",
-    "href": "R/07-interpretation.html#section-6",
+    "objectID": "R/07-interpretation.html#section-5",
+    "href": "R/07-interpretation.html#section-5",
     "title": "8  Module 7: Interpretation and Critical Appraisal",
     "section": "8.14 ———————————————————————",
     "text": "8.14 ———————————————————————",
@@ -1642,8 +1642,8 @@
     ]
   },
   {
-    "objectID": "R/07-interpretation.html#section-7",
-    "href": "R/07-interpretation.html#section-7",
+    "objectID": "R/07-interpretation.html#section-6",
+    "href": "R/07-interpretation.html#section-6",
     "title": "8  Module 7: Interpretation and Critical Appraisal",
     "section": "8.16 ———————————————————————",
     "text": "8.16 ———————————————————————",
@@ -1657,98 +1657,285 @@
     "href": "R/07-interpretation.html#session-information",
     "title": "8  Module 7: Interpretation and Critical Appraisal",
     "section": "8.17 Session Information",
-    "text": "8.17 Session Information\n\nsessionInfo()\n\nR version 4.6.1 (2026-06-24)\nPlatform: aarch64-apple-darwin23\nRunning under: macOS Tahoe 26.5.2\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib \nLAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1\n\nlocale:\n[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8\n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] ggplot2_4.0.3 dplyr_1.2.1  \n\nloaded via a namespace (and not attached):\n [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       \n [5] xfun_0.60          renv_1.2.3         generics_0.1.4     S7_0.2.2          \n [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   \n[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    \n[17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   \n[21] compiler_4.6.1     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   \n[25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  \n[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.1       \n[33] gtable_0.3.6",
+    "text": "8.17 Session Information\n\nsessionInfo()\n\nR version 4.6.1 (2026-06-24)\nPlatform: aarch64-apple-darwin23\nRunning under: macOS Tahoe 26.5.2\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib \nLAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1\n\nlocale:\n[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8\n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] pwr_1.3-0     ggplot2_4.0.3 dplyr_1.2.1  \n\nloaded via a namespace (and not attached):\n [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       \n [5] xfun_0.60          renv_1.2.3         generics_0.1.4     S7_0.2.2          \n [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.8.1         htmltools_0.5.9   \n[13] scales_1.4.0       rmarkdown_2.31     grid_4.6.1         evaluate_1.0.5    \n[17] tibble_3.3.1       fastmap_1.2.0      yaml_2.3.12        lifecycle_1.0.5   \n[21] compiler_4.6.1     RColorBrewer_1.1-3 htmlwidgets_1.6.4  pkgconfig_2.0.3   \n[25] farver_2.1.2       digest_0.6.39      R6_2.6.1           tidyselect_1.2.1  \n[29] pillar_1.11.1      magrittr_2.0.5     withr_3.0.3        tools_4.6.1       \n[33] gtable_0.3.6",
     "crumbs": [
       "Analysis Modules",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Module 7: Interpretation and Critical Appraisal</span>"
     ]
   },
   {
+    "objectID": "R/08-capstone.html",
+    "href": "R/08-capstone.html",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "",
+    "text": "9.1 Overview\nThe seven preceding modules have taught you to handle data, describe samples, visualize distributions, estimate effects, model with ANCOVA, handle missing data, and critically appraise findings. This capstone exercise asks you to bring those skills together in a single task that closely mirrors real research work:\nWrite a complete Methods and Results section for the primary outcome of the IVAM-ED trial, as if you were the corresponding author.\nThere is no new code to introduce. The challenge is synthesis — using what you have already computed to produce coherent, accurate, publication-ready prose.",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/08-capstone.html#background-what-a-methods-and-results-section-looks-like",
+    "href": "R/08-capstone.html#background-what-a-methods-and-results-section-looks-like",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "9.2 Background: What a Methods and Results Section Looks Like",
+    "text": "9.2 Background: What a Methods and Results Section Looks Like\nIn a randomized clinical trial report, the Methods section describes what was done (design, participants, intervention, outcomes, analysis). The Results section describes what was found (flow of participants, baseline characteristics, primary outcome, secondary outcomes). Together they answer: “What did the investigators do, and what happened?”\nThe target length for this exercise is approximately 400–600 words total (Methods + Results). Brevity and precision are both required. Every number should match your analysis output. Every analytical choice should be described accurately.",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/08-capstone.html#part-1-data-analysis",
+    "href": "R/08-capstone.html#part-1-data-analysis",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "9.3 Part 1: Data Analysis",
+    "text": "9.3 Part 1: Data Analysis\nRun the complete analysis below before writing. All the numbers you need will appear in the output.\n\nlibrary(dplyr)\nlibrary(gtsummary)\nlibrary(mice)\n\n\ndat        &lt;- readRDS(\"../data/ivam_working.rds\")\ncompleters &lt;- filter(dat, missing_12wk == 0)\n\n\n9.3.1 Participant flow\n\ncat(\"Enrolled:         \", nrow(dat), \"\\n\")\n\nEnrolled:          112 \n\ncat(\"  Intervention:   \", sum(dat$group == 1), \"\\n\")\n\n  Intervention:    56 \n\ncat(\"  Usual care:     \", sum(dat$group == 0), \"\\n\")\n\n  Usual care:      56 \n\ncat(\"Missing at 12 wk:\", sum(dat$missing_12wk), \"\\n\")\n\nMissing at 12 wk: 9 \n\ncat(\"  Reason - death:          \", sum(dat$reason_missing == \"death\", na.rm=TRUE), \"\\n\")\n\n  Reason - death:           3 \n\ncat(\"  Reason - lost to f/u:    \", sum(dat$reason_missing == \"lost_to_followup\", na.rm=TRUE), \"\\n\")\n\n  Reason - lost to f/u:     6 \n\ncat(\"Completers:       \", nrow(completers), \"\\n\")\n\nCompleters:        103 \n\ncat(\"  Intervention:   \", sum(completers$group == 1), \"\\n\")\n\n  Intervention:    52 \n\ncat(\"  Usual care:     \", sum(completers$group == 0), \"\\n\")\n\n  Usual care:      51 \n\n\n\n\n9.3.2 Baseline characteristics\n\ntbl_summary(\n  dat |&gt; select(group_label, age, female, edu_years, dm_duration_y,\n                insulin, mmse_0, srq20_0, hba1c_0),\n  by = group_label,\n  statistic = list(all_continuous() ~ \"{mean} ({sd})\",\n                   all_categorical() ~ \"{n} ({p}%)\"),\n  digits   = list(all_continuous() ~ 1),\n  missing  = \"no\",\n  label    = list(age ~ \"Age, y\", female ~ \"Female\", edu_years ~ \"Education, y\",\n                  dm_duration_y ~ \"Diabetes duration, y\", insulin ~ \"Insulin use\",\n                  mmse_0 ~ \"MMSE score\", srq20_0 ~ \"SRQ-20 (baseline)\",\n                  hba1c_0 ~ \"HbA1c, %\")\n) |&gt; add_overall() |&gt; bold_labels()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nOverall\nN = 1121\nUsual care\nN = 561\nSmart speaker\nN = 561\n\n\n\n\nAge, y\n72.4 (4.7)\n72.3 (4.2)\n72.6 (5.2)\n\n\nFemale\n73 (65%)\n38 (68%)\n35 (63%)\n\n\nEducation, y\n6.9 (3.7)\n6.3 (3.1)\n7.4 (4.1)\n\n\nDiabetes duration, y\n18.3 (12.1)\n18.6 (12.3)\n18.0 (12.0)\n\n\nInsulin use\n61 (54%)\n31 (55%)\n30 (54%)\n\n\nMMSE score\n24.5 (3.5)\n24.7 (3.5)\n24.4 (3.6)\n\n\nSRQ-20 (baseline)\n7.9 (4.3)\n7.4 (4.5)\n8.3 (4.1)\n\n\nHbA1c, %\n7.6 (1.4)\n7.9 (1.5)\n7.3 (1.4)\n\n\n\n1 Mean (SD); n (%)\n\n\n\n\n\n\n\n\n\n\n9.3.3 Primary outcome: ANCOVA\n\nmodel_base &lt;- lm(srq20_12 ~ group + srq20_0, data = completers)\nmodel_full &lt;- lm(srq20_12 ~ group + srq20_0 + age + female +\n                   edu_years + income_wages + mmse_0,\n                 data = completers)\n\n# Baseline-adjusted\nbase_coef &lt;- coef(summary(model_base))[\"group\", ]\nbase_ci   &lt;- confint(model_base)[\"group\", ]\n\n# Fully adjusted\nfull_coef &lt;- coef(summary(model_full))[\"group\", ]\nfull_ci   &lt;- confint(model_full)[\"group\", ]\n\n# Adjusted group means at 12 weeks\ngrand_bl  &lt;- mean(completers$srq20_0)\nadj_means &lt;- predict(model_base,\n  newdata = data.frame(group = c(0, 1), srq20_0 = c(grand_bl, grand_bl)),\n  se.fit = TRUE)\n\ncat(\"=== Baseline-adjusted ANCOVA ===\\n\")\n\n=== Baseline-adjusted ANCOVA ===\n\ncat(sprintf(\"  Control adj mean (SE):       %.2f (%.2f)\\n\",\n    adj_means$fit[1], adj_means$se.fit[1]))\n\n  Control adj mean (SE):       7.58 (0.31)\n\ncat(sprintf(\"  Intervention adj mean (SE):  %.2f (%.2f)\\n\",\n    adj_means$fit[2], adj_means$se.fit[2]))\n\n  Intervention adj mean (SE):  6.39 (0.31)\n\ncat(sprintf(\"  MD (int - ctrl):             %.2f\\n\", base_coef[\"Estimate\"]))\n\n  MD (int - ctrl):             -1.19\n\ncat(sprintf(\"  95%% CI:                      (%.2f, %.2f)\\n\",\n    base_ci[1], base_ci[2]))\n\n  95% CI:                      (-2.06, -0.32)\n\ncat(sprintf(\"  p-value:                     %.3f\\n\\n\", base_coef[\"Pr(&gt;|t|)\"]))\n\n  p-value:                     0.008\n\ncat(\"=== Fully adjusted ANCOVA ===\\n\")\n\n=== Fully adjusted ANCOVA ===\n\ncat(sprintf(\"  MD:    %.2f\\n\", full_coef[\"Estimate\"]))\n\n  MD:    -1.11\n\ncat(sprintf(\"  95%% CI: (%.2f, %.2f)\\n\", full_ci[1], full_ci[2]))\n\n  95% CI: (-2.01, -0.21)\n\ncat(sprintf(\"  p-value: %.3f\\n\", full_coef[\"Pr(&gt;|t|)\"]))\n\n  p-value: 0.017\n\n\n\n\n9.3.4 Missing data sensitivity\n\ndat_bocf &lt;- dat |&gt;\n  mutate(srq20_12_bocf = if_else(is.na(srq20_12), srq20_0, srq20_12))\nmodel_bocf &lt;- lm(srq20_12_bocf ~ group + srq20_0, data = dat_bocf)\nbocf_coef  &lt;- coef(summary(model_bocf))[\"group\", ]\nbocf_ci    &lt;- confint(model_bocf)[\"group\", ]\n\ncat(sprintf(\"BOCF sensitivity: MD = %.2f (%.2f, %.2f), p = %.3f\\n\",\n    bocf_coef[\"Estimate\"], bocf_ci[1], bocf_ci[2], bocf_coef[\"Pr(&gt;|t|)\"]))\n\nBOCF sensitivity: MD = -1.20 (-2.03, -0.36), p = 0.005",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/08-capstone.html#part-2-write-the-methods-section",
+    "href": "R/08-capstone.html#part-2-write-the-methods-section",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "9.4 Part 2: Write the Methods Section",
+    "text": "9.4 Part 2: Write the Methods Section\nUsing the analysis output above and your knowledge of the study design, write a Methods section covering the following elements. Your prose should be accurate, concise, and written in the past tense.\nRequired elements:\n\nStudy design: State the design (randomized clinical trial), setting, and enrollment period.\nParticipants: State the key eligibility criteria (age ≥ 65, type 2 diabetes) and the enrolled sample size.\nRandomization: Describe how participants were assigned (1:1 ratio, computer- generated simple random sequence, no stratification or blocking).\nIntervention: Describe what the smart speaker group received and for how long. State that the control group received usual care.\nPrimary outcome: Name the SRQ-20, state its range and directionality (higher = more distress), and state that it was assessed at 12 weeks.\nStatistical analysis: State that the primary analysis was a baseline-adjusted ANCOVA with group and baseline SRQ-20 as predictors. State the significance threshold (α = 0.05). Describe the BOCF sensitivity analysis.\nMissing data: State the number missing and the assumed mechanism (MAR).",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/08-capstone.html#part-3-write-the-results-section",
+    "href": "R/08-capstone.html#part-3-write-the-results-section",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "9.5 Part 3: Write the Results Section",
+    "text": "9.5 Part 3: Write the Results Section\nUsing the numbers from your analysis output, write a Results section covering the following elements. Every number must match your output — not the published paper (you are reporting the synthetic dataset).\nRequired elements:\n\nParticipant flow: State how many were enrolled, how many completed follow-up, and the reasons for dropout.\nBaseline characteristics: Summarize the groups briefly (one or two sentences comparing key variables). Do not say the groups were “significantly different” on baseline characteristics — state whether any differences are clinically notable.\nPrimary outcome: Report the adjusted mean (SE) for each group at 12 weeks, the mean difference (95% CI), and the p-value from the baseline-adjusted ANCOVA. Then report the fully adjusted model result.\nSensitivity analysis: State that the BOCF analysis produced a consistent finding.\nInterpretation sentence: Write one sentence interpreting what the result means clinically, including a comparison to the approximate MCID of 3 points.",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/08-capstone.html#part-4-peer-review-checklist",
+    "href": "R/08-capstone.html#part-4-peer-review-checklist",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "9.6 Part 4: Peer Review Checklist",
+    "text": "9.6 Part 4: Peer Review Checklist\nAfter drafting your Methods and Results, apply this checklist before submitting.\n\n\n\n\n\n\n\n\n\nItem\nDone?\n\n\n\n\nAll numbers match the analysis output (not the published paper)\n☐\n\n\nDesign, setting, and enrollment period are stated in Methods\n☐\n\n\nRandomization procedure is described accurately\n☐\n\n\nANCOVA model covariates are listed\n☐\n\n\nParticipant flow numbers are correct and consistent\n☐\n\n\nBaseline comparison uses clinically meaningful language (no p-values)\n☐\n\n\nAdjusted means are reported with SEs, not raw means\n☐\n\n\nMean difference is reported with 95% CI and p-value\n☐\n\n\nBOCF sensitivity result is reported\n☐\n\n\nInterpretation sentence addresses clinical magnitude (MCID)\n☐",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/08-capstone.html#session-information",
+    "href": "R/08-capstone.html#session-information",
+    "title": "9  Module 8: Capstone — Write a Methods and Results Section",
+    "section": "9.7 Session Information",
+    "text": "9.7 Session Information\n\nsessionInfo()\n\nR version 4.6.1 (2026-06-24)\nPlatform: aarch64-apple-darwin23\nRunning under: macOS Tahoe 26.5.2\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib \nLAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1\n\nlocale:\n[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8\n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] mice_3.19.0     gtsummary_2.5.1 dplyr_1.2.1    \n\nloaded via a namespace (and not attached):\n [1] gt_1.3.0          sass_0.4.10       generics_0.1.4    tidyr_1.3.2      \n [5] renv_1.2.3        xml2_1.6.0        shape_1.4.6.1     lattice_0.22-9   \n [9] lme4_2.0-6        digest_0.6.39     magrittr_2.0.5    mitml_0.4-5      \n[13] evaluate_1.0.5    grid_4.6.1        cards_0.8.1       iterators_1.0.14 \n[17] fastmap_1.2.0     foreach_1.5.2     jomo_2.7-6        jsonlite_2.0.0   \n[21] glmnet_5.0        Matrix_1.7-6      nnet_7.3-20       backports_1.5.1  \n[25] survival_3.8-9    purrr_1.2.2       codetools_0.2-20  reformulas_0.4.4 \n[29] Rdpack_2.6.6      cli_3.6.6         rlang_1.3.0       rbibutils_2.4.1  \n[33] litedown_0.10     commonmark_2.0.0  splines_4.6.1     base64enc_0.1-6  \n[37] withr_3.0.3       yaml_2.3.12       pan_2.0           tools_4.6.1      \n[41] nloptr_2.2.1      minqa_1.2.8       boot_1.3-32       broom_1.0.13     \n[45] rpart_4.1.27      vctrs_0.7.3       R6_2.6.1          lifecycle_1.0.5  \n[49] fs_2.1.0          htmlwidgets_1.6.4 MASS_7.3-66       pkgconfig_2.0.3  \n[53] pillar_1.11.1     glue_1.8.1        Rcpp_1.1.2        xfun_0.60        \n[57] tibble_3.3.1      tidyselect_1.2.1  knitr_1.51        htmltools_0.5.9  \n[61] nlme_3.1-170      rmarkdown_2.31    compiler_4.6.1    markdown_2.0",
+    "crumbs": [
+      "Analysis Modules",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Module 8: Capstone — Write a Methods and Results Section</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html",
+    "href": "R/A1-answer-key.html",
+    "title": "Appendix A — Answer Key",
+    "section": "",
+    "text": "Answer Key\nThis appendix provides worked solutions for selected practice exercises from each module. Answers are keyed to the synthetic dataset generated by R/simulate-ivam-ed.R with set.seed(241). Exact numbers will differ if you use a different seed.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-1-data-setup",
+    "href": "R/A1-answer-key.html#module-1-data-setup",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 1: Data Setup",
+    "text": "Module 1: Data Setup\nExercise 1 (Recalculate by hand): Group means for SRQ-20:\n\nlibrary(dplyr)\ndat &lt;- readRDS(\"../data/ivam_working.rds\")\n\n# Base R approach (no packages)\ntapply(dat$srq20_0, dat$group_label, mean, na.rm = TRUE) |&gt; round(2)\n\n   Usual care Smart speaker \n         7.41          8.30 \n\n\nExercise 2 (Education): The simulation targets 24.1% with secondary education or higher (from the published Results text). Check your synthetic data:\n\nmean(dat$edu_years &gt;= 8, na.rm = TRUE) * 100  # ~8 years ≈ secondary education\n\n[1] 31.25\n\n\nThe percentage will differ slightly from 24.1% because edu_years was simulated from a continuous normal distribution and the threshold is approximate.\nExercise 3 (Most imbalanced variable): Compute SMDs from Module 2 and find the largest. Typically SRQ-20 shows the largest imbalance (intervention group ~1 SD higher at baseline due to random assignment with this seed).\nExercise 4 (SRQ-20 imbalance): The intervention group’s higher baseline SRQ-20 means that unadjusted follow-up means will be closer together than the true treatment effect — regression to the mean partially offsets the intervention benefit in the raw comparison. This is exactly the motivation for ANCOVA (Module 5).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-2-descriptive-statistics",
+    "href": "R/A1-answer-key.html#module-2-descriptive-statistics",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 2: Descriptive Statistics",
+    "text": "Module 2: Descriptive Statistics\nExercise 1 (Recalculate):\n\ncompleters &lt;- filter(dat, missing_12wk == 0)\n\ncompleters |&gt;\n  group_by(group_label) |&gt;\n  summarise(mean_srq20_0 = round(mean(srq20_0), 2),\n            sd_srq20_0   = round(sd(srq20_0),   2))\n\n# A tibble: 2 × 3\n  group_label   mean_srq20_0 sd_srq20_0\n  &lt;fct&gt;                &lt;dbl&gt;      &lt;dbl&gt;\n1 Usual care            6.67       3.99\n2 Smart speaker         7.71       3.59\n\n\nExercise 2 (Education percentage):\n\nmean(dat$edu_years &gt;= 8) * 100 |&gt; round(1)\n\n[1] 31.25\n\n# Published: 24.1% with secondary or higher\n\nExercise 3 (Most imbalanced SMD):\n\nlibrary(gtsummary)\n\ndat |&gt;\n  select(group_label, srq20_0, pss_0, sf36_0, hba1c_0, mmse_0) |&gt;\n  tbl_summary(by = group_label,\n              statistic = list(all_continuous() ~ \"{mean} ({sd})\"),\n              missing = \"no\") |&gt;\n  add_difference(test = list(all_continuous() ~ \"smd\")) |&gt;\n  modify_header(estimate ~ \"**SMD**\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nUsual care\nN = 561\nSmart speaker\nN = 561\nSMD\n95% CI\np-value\n\n\n\n\nSRQ-20 mental distress score at baseline (0-20; higher = worse)\n7.4 (4.5)\n8.3 (4.1)\n\n\n\n\n\n\n\n\nPSS perceived stress score at baseline (0-40; higher = more stress)\n24 (10)\n22 (10)\n\n\n\n\n\n\n\n\nSF-36 quality of life score at baseline (0-100; higher = better)\n48 (23)\n52 (22)\n\n\n\n\n\n\n\n\nHbA1c (%) at baseline (lower = better glycemic control)\n7.89 (1.47)\n7.34 (1.38)\n\n\n\n\n\n\n\n\nMMSE score at baseline (0-30; higher = better cognition)\n24.7 (3.5)\n24.4 (3.6)\n\n\n\n\n\n\n\n\n\n1 Mean (SD)\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n\nExercise 4 (Why no p-values in Table 1): In a randomized trial, any baseline difference arose by chance — by definition, because we randomized. Testing whether it is “statistically significant” is circular: we already know it is due to chance. A small p-value for a baseline difference means only that the sample was large enough to detect a chance imbalance, not that the imbalance is important.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-3-visualization",
+    "href": "R/A1-answer-key.html#module-3-visualization",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 3: Visualization",
+    "text": "Module 3: Visualization\nExercise 2 (Regression to the mean): Participants with SRQ-20 &gt; 15 at baseline tend to have lower scores at follow-up in both groups. This is regression to the mean — extreme values at enrollment move toward the population average over time, regardless of treatment. It would be wrong to attribute all of the reduction to the intervention in the smart speaker group; some of it would occur anyway.\nExercise 3 (PSS trajectory plot):\n\nlibrary(ggplot2)\n\npss_long &lt;- completers |&gt;\n  select(participant_id, group_label, pss_0, pss_12) |&gt;\n  tidyr::pivot_longer(c(pss_0, pss_12), names_to = \"timepoint\", values_to = \"pss\") |&gt;\n  mutate(timepoint = factor(recode(timepoint, pss_0 = \"Baseline\", pss_12 = \"12 weeks\"),\n                            levels = c(\"Baseline\", \"12 weeks\")))\n\nggplot(pss_long, aes(x = timepoint, y = pss, group = participant_id,\n                     color = group_label)) +\n  geom_line(alpha = 0.3, linewidth = 0.5) +\n  stat_summary(aes(group = group_label), fun = mean, geom = \"line\",\n               linewidth = 1.5) +\n  scale_color_manual(values = c(\"Usual care\" = \"#ED7D31\",\n                                \"Smart speaker\" = \"#4472C4\")) +\n  labs(title = \"PSS Trajectories\", x = NULL, y = \"PSS score\", color = NULL) +\n  theme_minimal(base_size = 12) + theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nThe visual separation between group means at 12 weeks should look smaller than for the SRQ-20, consistent with the PSS result not being statistically significant in Module 4.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-4-estimation",
+    "href": "R/A1-answer-key.html#module-4-estimation",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 4: Estimation",
+    "text": "Module 4: Estimation\nExercise 1 (Difference in differences):\n\ncompleters |&gt;\n  mutate(srq20_change = srq20_12 - srq20_0) |&gt;\n  group_by(group_label) |&gt;\n  summarise(mean_change = round(mean(srq20_change), 3)) |&gt;\n  summarise(diff_in_diff = diff(rev(mean_change)))  # smart - usual\n\n# A tibble: 1 × 1\n  diff_in_diff\n         &lt;dbl&gt;\n1         1.51\n\n# Compare to unadjusted between-group MD at follow-up\ncompleters |&gt;\n  group_by(group_label) |&gt;\n  summarise(mean_fu = mean(srq20_12)) |&gt;\n  summarise(md_fu = diff(rev(mean_fu)))\n\n# A tibble: 1 × 1\n  md_fu\n  &lt;dbl&gt;\n1 0.466\n\n\nThe two numbers should be identical. Algebra: (µ_int_12 − µ_int_0) − (µ_ctrl_12 − µ_ctrl_0) = µ_int_12 − µ_ctrl_12 − (µ_int_0 − µ_ctrl_0). If baseline means are equal, the difference in differences equals the follow-up mean difference.\nExercise 4 (Cohen’s d):\n\nt_res     &lt;- t.test(srq20_12 ~ group_label, data = completers, var.equal = FALSE)\npooled_sd &lt;- completers |&gt; summarise(sd = sd(srq20_0)) |&gt; pull(sd)\nm_smart   &lt;- t_res$estimate[grep(\"Smart\", names(t_res$estimate))]\nm_usual   &lt;- t_res$estimate[grep(\"Usual\",  names(t_res$estimate))]\nd         &lt;- (m_smart - m_usual) / pooled_sd\n\ncat(sprintf(\"Cohen's d = %.2f\\n\", d))\n\nCohen's d = -0.12\n\ncat(sprintf(\"Protocol planned d = 0.68\\n\"))\n\nProtocol planned d = 0.68\n\ncat(sprintf(\"Interpretation: %s\\n\",\n    ifelse(abs(d) &lt; 0.2, \"small\",\n    ifelse(abs(d) &lt; 0.5, \"small-medium\", \"medium\"))))\n\nInterpretation: small\n\n\nThe observed d is smaller than the protocol’s planned 0.68 (a common finding when the true effect is more modest than the planning estimate).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-5-ancova",
+    "href": "R/A1-answer-key.html#module-5-ancova",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 5: ANCOVA",
+    "text": "Module 5: ANCOVA\nExercise 1 (Report the group coefficient):\n“In the baseline-adjusted ANCOVA model, participants in the smart speaker group had a mean SRQ-20 score [X] points lower (95% CI: [lo], [hi]; p = [p]) at 12 weeks compared with the usual care group, after adjusting for baseline mental distress.”\nReplace the bracketed values with your model output.\nExercise 3 (Adjusted mean by hand):\n\nmodel_base &lt;- lm(srq20_12 ~ group + srq20_0, data = completers)\ngrand_mean &lt;- mean(completers$srq20_0)\nalpha      &lt;- coef(model_base)[\"(Intercept)\"]\nbeta_bl    &lt;- coef(model_base)[\"srq20_0\"]\n\n# For group = 0, y0 = grand_mean:\nby_hand &lt;- alpha + 0 * coef(model_base)[\"group\"] + beta_bl * grand_mean\nby_pred &lt;- predict(model_base,\n  newdata = data.frame(group = 0, srq20_0 = grand_mean))\n\ncat(sprintf(\"By hand:   %.3f\\n\", by_hand))\n\nBy hand:   7.580\n\ncat(sprintf(\"predict(): %.3f\\n\", by_pred))\n\npredict(): 7.580\n\n\nExercise 4 (Degrees of freedom): Baseline-adjusted model: 103 − 3 = 100 df. Fully adjusted model: 103 − 8 = 95 df. Fewer df means slightly wider confidence intervals and slightly less power — a small cost for the precision gained from including additional covariates.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-6-missing-data",
+    "href": "R/A1-answer-key.html#module-6-missing-data",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 6: Missing Data",
+    "text": "Module 6: Missing Data\nExercise 1 (MCAR vs MAR): Missing participants had higher baseline SRQ-20 scores than completers. This supports MAR, not MCAR. Under MCAR, missingness would be unrelated to any variable; here it is related to an observed baseline value. The MAR assumption is that missingness is related to observed variables (baseline SRQ-20) but not to the unobserved follow-up value — which is plausible but not verifiable from the data.\nExercise 4 (Widest CI): BOCF typically produces the widest CI among the three approaches because it imputes identical baseline values for missing participants, inflating both group means toward the population average and reducing the apparent between-group difference. Multiple imputation should produce a slightly narrower CI than complete-case analysis when the imputation model is well-specified.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-7-interpretation",
+    "href": "R/A1-answer-key.html#module-7-interpretation",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 7: Interpretation",
+    "text": "Module 7: Interpretation\nExercise 1 (Clinical significance):\n“The smart speaker intervention reduced mean SRQ-20 scores by approximately [X] points compared with usual care (95% CI: [lo], [hi]). Although this reduction was statistically significant, the point estimate is below the approximate minimum clinically important difference of 3 points, and the upper bound of the confidence interval is close to zero, suggesting the clinical benefit may be modest for individual patients.”\nExercise 5 (Design the next trial): A well-reasoned answer would include: - Larger sample: powered for d ≈ 0.40 rather than 0.68 (requires ~200/group for 80% power) - Longer follow-up: 24 or 52 weeks to assess durability - Pre-specify fewer secondary outcomes or apply multiplicity correction - Include the post-hoc anxiety subgroup as a pre-specified stratification factor - Multi-site design to improve generalizability beyond a single Brazilian academic center",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#module-8-capstone",
+    "href": "R/A1-answer-key.html#module-8-capstone",
+    "title": "Appendix A — Answer Key",
+    "section": "Module 8: Capstone",
+    "text": "Module 8: Capstone\nA complete exemplar Methods and Results paragraph is provided below. Exact numbers will differ from yours because this uses one seed — compare structure and language rather than values.\nMethods (exemplar):\n“The IVAM-ED trial was an open randomized clinical trial conducted at a single academic medical center. Adults aged 65 years or older with type 2 diabetes were randomly assigned in a 1:1 ratio using a computer-generated simple random sequence, without stratification or blocking, to receive a smart speaker (Amazon Echo Dot, 3rd generation) programmed with a behavioral intervention for 12 weeks or to continue with usual care. The primary outcome was the Self-Reporting Questionnaire-20 (SRQ-20; range 0–20, higher scores indicating greater mental distress) assessed at 12 weeks. The primary analysis was a baseline-adjusted analysis of covariance with randomized group and baseline SRQ-20 score as covariates. Statistical significance was set at α = 0.05. A baseline-observation-carried-forward sensitivity analysis was conducted to assess the impact of missing data (8% of participants).”\nResults (exemplar, numbers approximate):\n“Among 112 enrolled participants (56 per group), 103 (92%) completed the 12-week follow-up; 3 participants died and 6 were lost to follow-up. Baseline demographic and clinical characteristics were broadly similar between groups. In the baseline- adjusted analysis, the adjusted mean (SE) SRQ-20 score at 12 weeks was 7.22 (0.43) in the usual care group and 6.76 (0.45) in the smart speaker group, yielding a mean difference of −0.47 (95% CI: −2.06 to 1.12; p = .56) [note: your values will differ]. In the fully adjusted model including age, sex, education, income, and MMSE, the mean difference was [X] (95% CI: [lo], [hi]; p = [p]). The BOCF sensitivity analysis produced a consistent result (MD = [X], 95% CI: [lo], [hi]). Although the direction of effect favored the smart speaker group, the magnitude of the estimated difference was smaller than the approximate minimum clinically important difference of 3 points.”",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
+    "objectID": "R/A1-answer-key.html#session-information",
+    "href": "R/A1-answer-key.html#session-information",
+    "title": "Appendix A — Answer Key",
+    "section": "Session Information",
+    "text": "Session Information\n\nsessionInfo()\n\nR version 4.6.1 (2026-06-24)\nPlatform: aarch64-apple-darwin23\nRunning under: macOS Tahoe 26.5.2\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib \nLAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1\n\nlocale:\n[1] C.UTF-8/C.UTF-8/C.UTF-8/C/C.UTF-8/C.UTF-8\n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices datasets  utils     methods   base     \n\nother attached packages:\n[1] ggplot2_4.0.3   gtsummary_2.5.1 dplyr_1.2.1    \n\nloaded via a namespace (and not attached):\n [1] gtable_0.3.6       jsonlite_2.0.0     compiler_4.6.1     renv_1.2.3        \n [5] tidyselect_1.2.1   xml2_1.6.0         stringr_1.6.0      tidyr_1.3.2       \n [9] scales_1.4.0       yaml_2.3.12        fastmap_1.2.0      R6_2.6.1          \n[13] labeling_0.4.3     commonmark_2.0.0   cards_0.8.1        generics_0.1.4    \n[17] knitr_1.51         htmlwidgets_1.6.4  cardx_0.3.4        tibble_3.3.1      \n[21] RColorBrewer_1.1-3 pillar_1.11.1      rlang_1.3.0        utf8_1.2.6        \n[25] stringi_1.8.7      litedown_0.10      xfun_0.60          S7_0.2.2          \n[29] fs_2.1.0           sass_0.4.10        cli_3.6.6          withr_3.0.3       \n[33] magrittr_2.0.5     grid_4.6.1         digest_0.6.39      markdown_2.0      \n[37] base64enc_0.1-6    lifecycle_1.0.5    vctrs_0.7.3        evaluate_1.0.5    \n[41] glue_1.8.1         farver_2.1.2       gt_1.3.0           rmarkdown_2.31    \n[45] purrr_1.2.2        tools_4.6.1        pkgconfig_2.0.3    htmltools_0.5.9",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Answer Key</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "",
     "text": "References\nThis appendix provides complete citations for all source publications used in this teaching case, a guide to the extracted Markdown documents in the repository, and citation language for students reporting results from the synthetic dataset.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#primary-source-publications",
     "href": "references.html#primary-source-publications",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "Primary Source Publications",
     "text": "Primary Source Publications\n\nResults Paper\nMatzenbacher LS, da Costa FL, de Barros LGB, Gheno V, Maia IS, Blank LM, Brum MAB, Fontoura LF, Viola TW, Schwanke CHA, Gadonski G, Alessi J, Telo GH. Interactive virtual assistant for health promotion among older adults with type 2 diabetes: the IVAM-ED randomized clinical trial. JAMA Network Open. 2026;9(1):e2553508. doi:10.1001/jamanetworkopen.2025.53508\nOpen access under CC-BY 4.0. Extracted to: source/extracted/matzenbacher-2026-ivam-ed-results-paper.md\n\n\nProtocol and Statistical Analysis Plan\nDa Costa FL, Matzenbacher LS, Gheno V, Maia IS, Fontoura LF, Viola TW, Schwanke CHA, Gadonski G, Alessi J, Telo GH. Interactive virtual assistance for mental health promotion and self-care management in elderly with type 2 diabetes (IVAM-ED): study protocol and statistical analysis plan for a randomized controlled trial. Trials. 2024;25(1):205. doi:10.1186/s13063-024-08055-3\nOpen access under CC-BY 4.0. Extracted to: source/extracted/da-costa-2024-ivam-ed-protocol-sap.md",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#supplemental-documents",
     "href": "references.html#supplemental-documents",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "Supplemental Documents",
     "text": "Supplemental Documents\n\n\n\n\n\n\n\n\nFile\nDescription\nExtracted to\n\n\n\n\nJAMA Supplement 1\nStudy protocol and SAP embedded in the results paper\nsource/extracted/matzenbacher-2026-supplement-1.md\n\n\nJAMA Supplement 2\nSupplemental tables and figures (eTables 1–3)\nsource/extracted/matzenbacher-2026-supplement-2.md\n\n\nJAMA Supplement 3\nData sharing statement\nsource/extracted/matzenbacher-2026-supplement-3.md\n\n\nTrials Supplementary Material\nSPIRIT checklist, intervention messages, instrument validations\nsource/extracted/da-costa-2024-supplement-1.md",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#instruments-and-validation-studies",
     "href": "references.html#instruments-and-validation-studies",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "Instruments and Validation Studies",
     "text": "Instruments and Validation Studies\nThe outcome instruments used in the IVAM-ED trial were validated for Brazilian Portuguese. Key validation citations:\nSRQ-20 (Self-Reporting Questionnaire) Gonçalves DM, Stein AT, Kapczinski F. Performance of the self-reporting questionnaire as a psychiatric screening questionnaire: a comparative study with structured clinical interview for DSM-IV-TR [article in Portuguese]. Cad Saude Publica. 2008;24(2):380–390.\nSF-36 (36-Item Short Form Health Survey) Ciconelli RM, Ferraz MB, Santos W, Meinao I, Quaresma MR. Brazilian-Portuguese version of the SF-36: a reliable and valid quality of life outcome measure. Rev Bras Reumatol. 1999;39(3):143–150.\nSCI-R (Self-Care Inventory Revised) Teló GH, Iorra FQ, Velho BS, Sparrenberger K, Schaan BD. Validation to Brazilian Portuguese of the Self-Care Inventory-revised for adults with type 2 diabetes. Arch Endocrinol Metab. 2020;64(2):190–194. doi:10.20945/2359-3997000000213\nPSS (Perceived Stress Scale) Luft CDB, Sanches SdO, Mazo GZ, Andrade A. Brazilian version of the Perceived Stress Scale: translation and validation for the elderly [article in Portuguese]. Rev Saude Publica. 2007;41(4):606–615. doi:10.1590/S0034-89102007000400015\nMMSE (Mini-Mental State Examination) Standard education-adjusted cutoffs used in Brazilian clinical practice: MMSE &lt; 24 for participants with &lt; 5 years of education; MMSE &lt; 26 for participants with ≥ 5 years of education.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#methods-and-statistical-reporting-standards",
     "href": "references.html#methods-and-statistical-reporting-standards",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "Methods and Statistical Reporting Standards",
     "text": "Methods and Statistical Reporting Standards\nCONSORT 2010 (randomized trial reporting) Schulz KF, Altman DG, Moher D; CONSORT Group. CONSORT 2010 statement: updated guidelines for reporting parallel group randomised trials. BMJ. 2010;340:c332. doi:10.1136/bmj.c332\nMultiple imputation van Buuren S. Flexible Imputation of Missing Data. 2nd ed. Chapman & Hall/CRC; 2018. Freely available online: https://stefvanbuuren.name/fimd/\nvan Buuren S, Groothuis-Oudshoorn K. mice: Multivariate imputation by chained equations in R. Journal of Statistical Software. 2011;45(3):1–67. doi:10.18637/jss.v045.i03",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#r-packages-used-in-this-tutorial",
     "href": "references.html#r-packages-used-in-this-tutorial",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "R Packages Used in This Tutorial",
     "text": "R Packages Used in This Tutorial\n\n\n\nPackage\nVersion\nReference\n\n\n\n\nR Core Team\n4.6.1\nR Core Team. R: A language and environment for statistical computing. Vienna, Austria: R Foundation; 2024.\n\n\nQuarto\n1.10.18\nAllaire J, et al. Quarto. 2024. https://quarto.org\n\n\ndplyr\n(see renv.lock)\nWickham H, et al. dplyr: A grammar of data manipulation. 2023.\n\n\nggplot2\n(see renv.lock)\nWickham H. ggplot2: Elegant graphics for data analysis. Springer; 2016.\n\n\ngtsummary\n(see renv.lock)\nSjoberg DD, et al. Reproducible summary tables with the gtsummary package. The R Journal. 2021;13(1):570–580.\n\n\nmice\n(see renv.lock)\nvan Buuren S, Groothuis-Oudshoorn K. Journal of Statistical Software. 2011;45(3):1–67.\n\n\npatchwork\n(see renv.lock)\nPedersen TL. patchwork: The composer of plots. 2024.\n\n\nlabelled\n(see renv.lock)\nLarmarange J. labelled: Manipulating labelled data. 2024.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#citation-language-for-student-reports",
     "href": "references.html#citation-language-for-student-reports",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "Citation Language for Student Reports",
     "text": "Citation Language for Student Reports\nWhen reporting results from exercises in this teaching case, use the following language to correctly attribute the source and characterize the data:\n\nAnalysis was performed on a synthetic dataset constructed to approximate the sample characteristics reported in Matzenbacher et al. (2026). The synthetic data were generated for teaching purposes using the simulation code in R/simulate-ivam-ed.R and do not represent individual participant data from the IVAM-ED trial. Full simulation documentation is available in simulation-assumptions.md.\n\nCite the primary publication when discussing the clinical findings:\n\nMatzenbacher LS, da Costa FL, de Barros LGB, et al. Interactive virtual assistant for health promotion among older adults with type 2 diabetes: the IVAM-ED randomized clinical trial. JAMA Network Open. 2026;9(1):e2553508. doi:10.1001/jamanetworkopen.2025.53508",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   },
   {
     "objectID": "references.html#repository",
     "href": "references.html#repository",
-    "title": "Appendix A — References and Source Documents",
+    "title": "Appendix B — References and Source Documents",
     "section": "Repository",
     "text": "Repository\nAll source code, simulation scripts, analysis modules, and extracted documents are available at:\ngithub.com/scgrambow/berd-template-field-test-01\nThis repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2) using GitHub Copilot Business with synthetic data only.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References and Source Documents</span>"
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References and Source Documents</span>"
     ]
   }
 ]

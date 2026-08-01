@@ -86,6 +86,19 @@ dat |>
   tidyr::pivot_wider(names_from = stat, values_from = value)
 ```
 
+::: {.callout-tip}
+**What `pivot_longer()` and `pivot_wider()` do:** R stores data in either *wide*
+or *long* format. Wide format has one row per participant with many columns.
+Long format has one row per observation, with a column identifying what variable
+that row describes.
+
+We used `pivot_longer()` above to convert the `summarise()` output — which has
+one column per statistic — into a long table where each row is one
+(variable, statistic) pair. Then `pivot_wider()` re-shapes it so each statistic
+becomes its own column. This pattern appears throughout the modules whenever we
+need to reshape data for a cleaner table or a grouped plot.
+:::
+
 ::: {.callout-note}
 **What to notice:** Compare the means and SDs to the published Table 1 in
 Matzenbacher et al. (2026). The pooled (overall) values should be close.

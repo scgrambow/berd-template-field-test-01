@@ -238,6 +238,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -251,8 +257,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
   </div>
 </li>
       </ul>
@@ -356,6 +368,24 @@ window.Quarto = {
 <h1 class="unnumbered">About This Book</h1>
 <p>This book is a complete, reproducible tutorial in introductory clinical research methods built around a single published randomized trial. Every chapter uses the same dataset and the same study, so statistical concepts accumulate rather than restart. By the end you will have followed a real clinical investigation from raw data structure to published conclusion — examining the design, the analysis, the missing data, and the gap between what was planned and what was reported.</p>
 <p>The primary language is <strong>R</strong>. All analysis is performed on a <strong>synthetic (simulated) dataset</strong> that approximates the published trial’s sample characteristics. No real participant data are used or stored anywhere in this repository.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Start here if you’re a student
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Generate the dataset</strong> — run <code>source("R/simulate-ivam-ed.R")</code> from the project root once before opening any module.</li>
+<li><strong>Open Module 1</strong> — <a href="./R/01-data-setup.html">Data Setup and Inspection</a> — and work sequentially through the chapters.</li>
+<li><strong>The study:</strong> We analyze the IVAM-ED randomized trial, which asked whether a voice-activated smart speaker could reduce mental distress and improve diabetes self-management in older adults. You do not need to read this introduction before Module 1 — but it will be here when you want to understand where the data came from.</li>
+</ol>
+<p>The <a href="./R/A1-answer-key.html">Answer Key</a> appendix provides worked solutions for selected exercises.</p>
+</div>
+</div>
 <hr>
 <section id="the-ivam-ed-study" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-ivam-ed-study">The IVAM-ED Study</h2>
@@ -585,6 +615,18 @@ window.Quarto = {
 </section>
 <section id="how-to-use-this-book" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="how-to-use-this-book">How to Use This Book</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Instructor Notes — expand for full setup and design documentation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p><strong>Prerequisites:</strong> R (≥ 4.6), Quarto (≥ 1.10), and a working renv installation. See <code>standards/CAPABILITIES.md</code> for verified tool versions.</p>
 <p><strong>Generate the dataset first.</strong> Before opening any module, run the simulation script from the project root:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/simulate-ivam-ed.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -593,9 +635,15 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the entire book</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a single module (standalone HTML with embedded resources)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render R/01-data-setup.qmd <span class="at">--to</span> html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Work sequentially.</strong> Each module depends on the data and concepts established in the previous one. Module 2 loads the working dataset created by Module 1; Modules 3–7 use the same completers object.</p>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a single module</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render R/01-data-setup.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Work sequentially.</strong> Each module depends on the data and concepts established in the previous one. Module 2 loads the working dataset created by Module 1; Modules 3–8 use the same <code>completers</code> object.</p>
+<p><strong>Changing the seed.</strong> <code>set.seed(241)</code> in <code>R/simulate-ivam-ed.R</code> produces identical data for all students. To assign different datasets to different student groups, change the seed number before distributing. Document the seed you used in your course materials.</p>
+<p><strong>Answer key.</strong> The <a href="./R/A1-answer-key.html">Answer Key</a> appendix provides worked solutions. These answers are based on <code>set.seed(241)</code> — update key values if you distribute a different seed.</p>
+<p><strong>Simulation documentation.</strong> See <code>simulation-assumptions.md</code> for the full parameter table (every number linked to a paper table), and <code>simulation-refinements.md</code> for the debugging narrative (useful for advanced students or instructor background).</p>
+</div>
+</div>
+</div>
 <hr>
 </section>
 <section id="acknowledgments-and-licensing" class="level2 unnumbered">

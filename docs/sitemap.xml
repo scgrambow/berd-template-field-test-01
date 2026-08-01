@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/index.html</loc>
-    <lastmod>2026-07-31T22:29:40.606Z</lastmod>
+    <lastmod>2026-08-01T00:38:06.860Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/01-data-setup.html</loc>
-    <lastmod>2026-07-31T22:29:40.592Z</lastmod>
+    <lastmod>2026-08-01T00:33:55.795Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/02-descriptive.html</loc>
-    <lastmod>2026-07-31T22:29:40.579Z</lastmod>
+    <lastmod>2026-08-01T00:33:55.795Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/03-visualization.html</loc>
-    <lastmod>2026-07-31T22:13:28.865Z</lastmod>
+    <lastmod>2026-08-01T00:33:55.785Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/04-estimation.html</loc>
-    <lastmod>2026-07-31T22:13:28.898Z</lastmod>
+    <lastmod>2026-08-01T00:33:55.785Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/05-ancova.html</loc>
-    <lastmod>2026-07-31T22:13:28.931Z</lastmod>
+    <lastmod>2026-08-01T00:33:57.151Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/06-missing-data.html</loc>
@@ -30,7 +30,15 @@
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/07-interpretation.html</loc>
-    <lastmod>2026-07-31T22:29:40.586Z</lastmod>
+    <lastmod>2026-08-01T00:34:53.967Z</lastmod>
+  </url>
+  <url>
+    <loc>https://scgrambow.github.io/berd-template-field-test-01/R/08-capstone.html</loc>
+    <lastmod>2026-08-01T00:35:58.257Z</lastmod>
+  </url>
+  <url>
+    <loc>https://scgrambow.github.io/berd-template-field-test-01/R/A1-answer-key.html</loc>
+    <lastmod>2026-08-01T00:37:07.283Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/references.html</loc>

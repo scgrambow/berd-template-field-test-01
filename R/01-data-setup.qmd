@@ -73,6 +73,27 @@ so you will always get the same data.
 source("simulate-ivam-ed.R")
 ```
 
+::: {.callout-note}
+**Why the data are always the same: `set.seed()`**
+
+At the top of `simulate-ivam-ed.R` you will find `set.seed(241)`. This locks
+R's random number generator to a fixed starting point. R's "randomness" is
+actually a deterministic algorithm — a mathematical formula that produces a long
+sequence of numbers that *look* random but are completely determined by the
+starting value (the seed). Given the same seed, R will always generate the same
+sequence.
+
+This is deliberate for a teaching dataset: every student gets identical data,
+so results are comparable and answers are verifiable.
+
+**Try it yourself:** Open `R/simulate-ivam-ed.R`, change `set.seed(241)` to
+`set.seed(999)`, source the script, and re-run this module. Your Table 1 means
+will shift slightly, the primary ANCOVA result may change in magnitude, and it
+may or may not remain statistically significant — illustrating that any single
+study is one realization of a random process.
+:::
+
+
 ---------------------------------------------------------------------
 ---
 

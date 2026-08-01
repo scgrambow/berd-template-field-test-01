@@ -210,6 +210,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -223,8 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
   </div>
 </li>
       </ul>
@@ -386,6 +398,22 @@ Follow-up means and ANCOVA check (completers only):
 Dataset saved to: data/ivam_synthetic.rds
 For documentation, see: docs/simulation-assumptions.md
 ======================================================</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Why the data are always the same: <code>set.seed()</code></strong></p>
+<p>At the top of <code>simulate-ivam-ed.R</code> you will find <code>set.seed(241)</code>. This locks R’s random number generator to a fixed starting point. R’s “randomness” is actually a deterministic algorithm — a mathematical formula that produces a long sequence of numbers that <em>look</em> random but are completely determined by the starting value (the seed). Given the same seed, R will always generate the same sequence.</p>
+<p>This is deliberate for a teaching dataset: every student gets identical data, so results are comparable and answers are verifiable.</p>
+<p><strong>Try it yourself:</strong> Open <code>R/simulate-ivam-ed.R</code>, change <code>set.seed(241)</code> to <code>set.seed(999)</code>, source the script, and re-run this module. Your Table 1 means will shift slightly, the primary ANCOVA result may change in magnitude, and it may or may not remain statistically significant — illustrating that any single study is one realization of a random process.</p>
 </div>
 </div>
 </section>

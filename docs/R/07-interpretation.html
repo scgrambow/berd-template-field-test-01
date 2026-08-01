@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
+<link href="../R/08-capstone.html" rel="next">
 <link href="../R/06-missing-data.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -239,6 +239,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -252,8 +258,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
   </div>
 </li>
       </ul>
@@ -290,11 +302,16 @@ window.Quarto = {
   <li><a href="#a.-changes-found-between-the-protocol-and-the-publication" id="toc-a.-changes-found-between-the-protocol-and-the-publication" class="nav-link" data-scroll-target="#a.-changes-found-between-the-protocol-and-the-publication"><span class="header-section-number">8.11.1</span> 4a. Changes found between the protocol and the publication</a></li>
   <li><a href="#b.-are-these-changes-problematic" id="toc-b.-are-these-changes-problematic" class="nav-link" data-scroll-target="#b.-are-these-changes-problematic"><span class="header-section-number">8.11.2</span> 4b. Are these changes problematic?</a></li>
   </ul></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">8.12</span> ———————————————————————</a></li>
-  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">8.13</span> 5. Practice Exercises</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">8.14</span> ———————————————————————</a></li>
+  <li><a href="#sample-size-and-power-what-was-planned-vs.-what-was-observed" id="toc-sample-size-and-power-what-was-planned-vs.-what-was-observed" class="nav-link" data-scroll-target="#sample-size-and-power-what-was-planned-vs.-what-was-observed"><span class="header-section-number">8.12</span> 5. Sample Size and Power: What Was Planned vs.&nbsp;What Was Observed</a>
+  <ul class="collapse">
+  <li><a href="#a.-reproducing-the-planned-sample-size" id="toc-a.-reproducing-the-planned-sample-size" class="nav-link" data-scroll-target="#a.-reproducing-the-planned-sample-size"><span class="header-section-number">8.12.1</span> 5a. Reproducing the planned sample size</a></li>
+  <li><a href="#b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" id="toc-b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" class="nav-link" data-scroll-target="#b.-sensitivity-analysis-what-if-the-true-effect-is-smaller"><span class="header-section-number">8.12.2</span> 5b. Sensitivity analysis: what if the true effect is smaller?</a></li>
+  <li><a href="#c.-the-post-hoc-power-fallacy" id="toc-c.-the-post-hoc-power-fallacy" class="nav-link" data-scroll-target="#c.-the-post-hoc-power-fallacy"><span class="header-section-number">8.12.3</span> 5c. The post-hoc power fallacy</a></li>
+  </ul></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">8.13</span> 6. Practice Exercises</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">8.14</span> ———————————————————————</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.15</span> Summary</a></li>
-  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">8.16</span> ———————————————————————</a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">8.16</span> ———————————————————————</a></li>
   <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">8.17</span> Session Information</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/R/07-interpretation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -655,13 +672,183 @@ Important
 <p><strong>The broader lesson:</strong> Even well-conducted, transparently reported trials in prestigious journals contain protocol deviations. This is normal — clinical research requires pragmatic adaptation. The critical-appraisal skill is to identify and evaluate these deviations, not to condemn the study for having them. A deviation disclosed in the paper is far less concerning than a deviation you discover only by reading the protocol.</p>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="section-5" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="section-5"><span class="header-section-number">8.12</span> ———————————————————————</h2>
+<section id="sample-size-and-power-what-was-planned-vs.-what-was-observed" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="sample-size-and-power-what-was-planned-vs.-what-was-observed"><span class="header-section-number">8.12</span> 5. Sample Size and Power: What Was Planned vs.&nbsp;What Was Observed</h2>
+<p>The IVAM-ED protocol specified the sample size using three inputs: α = 0.05, power = 90%, and an effect size of <strong>0.68</strong> (Cohen’s d) for the primary outcome. Assuming 20% dropout, this produced the target of <strong>112 participants</strong> (56 per group).</p>
+<p>This section works through that calculation, examines what happens if the true effect size is smaller than planned, and addresses a common but invalid practice: <em>post-hoc power analysis</em>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pwr if needed: renv::install("pwr")</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="a.-reproducing-the-planned-sample-size" class="level3" data-number="8.12.1">
+<h3 data-number="8.12.1" class="anchored" data-anchor-id="a.-reproducing-the-planned-sample-size"><span class="header-section-number">8.12.1</span> 5a. Reproducing the planned sample size</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduce the protocol's sample size calculation</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-sample t-test, two-sided, α = 0.05, power = 90%, effect size d = 0.68</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>pwr_planned <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">d    =</span> <span class="fl">0.68</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">power     =</span> <span class="fl">0.90</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">type      =</span> <span class="st">"two.sample"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">alternative =</span> <span class="st">"two.sided"</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>pwr_planned</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Two-sample t test power calculation 
+
+              n = 46.42903
+              d = 0.68
+      sig.level = 0.05
+          power = 0.9
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completers needed (before adding dropout allowance)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Completers per group needed: %.0f</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">ceiling</span>(pwr_planned<span class="sc">$</span>n)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Completers per group needed: 47</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"With 20%% dropout: %.0f per group enrolled</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ceiling</span>(pwr_planned<span class="sc">$</span>n <span class="sc">/</span> <span class="fl">0.80</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>With 20% dropout: 59 per group enrolled</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Published target: 56 per group (112 total)</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Published target: 56 per group (112 total)</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Interpreting the power calculation:</strong> The trial was powered to detect an effect of d = 0.68 with 90% probability if that effect truly exists. The 0.68 effect size was based on a prior study of a comparable psychological intervention. With the 20% dropout adjustment, 56 participants per group were enrolled — consistent with the published n = 112.</p>
+</div>
+</div>
+</section>
+<section id="b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" class="level3" data-number="8.12.2">
+<h3 data-number="8.12.2" class="anchored" data-anchor-id="b.-sensitivity-analysis-what-if-the-true-effect-is-smaller"><span class="header-section-number">8.12.2</span> 5b. Sensitivity analysis: what if the true effect is smaller?</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Power curve: what is the probability of a significant result across a range</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of true effect sizes, given n = 52 completers per group (observed)?</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>n_completers <span class="ot">&lt;-</span> <span class="dv">52</span>  <span class="co"># observed completers per group</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>d_seq   <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.10</span>, <span class="fl">1.0</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>power_seq <span class="ot">&lt;-</span> <span class="fu">sapply</span>(d_seq, <span class="cf">function</span>(d) {</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pwr.t.test</span>(<span class="at">n =</span> n_completers, <span class="at">d =</span> d, <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">type =</span> <span class="st">"two.sample"</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)<span class="sc">$</span>power</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>power_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">d =</span> d_seq, <span class="at">power =</span> power_seq)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(power_df, <span class="fu">aes</span>(<span class="at">x =</span> d, <span class="at">y =</span> power)) <span class="sc">+</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"#4472C4"</span>) <span class="sc">+</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.80</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.90</span>, <span class="at">linetype =</span> <span class="st">"dotted"</span>, <span class="at">color =</span> <span class="st">"#C00000"</span>) <span class="sc">+</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fl">0.68</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"#538135"</span>) <span class="sc">+</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.68</span>, <span class="at">y =</span> <span class="fl">0.15</span>, <span class="at">label =</span> <span class="st">"Planned</span><span class="sc">\n</span><span class="st">d = 0.68"</span>,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"#538135"</span>, <span class="at">size =</span> <span class="fl">3.2</span>) <span class="sc">+</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.15</span>, <span class="at">y =</span> <span class="fl">0.81</span>, <span class="at">label =</span> <span class="st">"80% power"</span>,</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey40"</span>, <span class="at">size =</span> <span class="fl">3.2</span>) <span class="sc">+</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">0.15</span>, <span class="at">y =</span> <span class="fl">0.91</span>, <span class="at">label =</span> <span class="st">"90% power (planned)"</span>,</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"#C00000"</span>, <span class="at">size =</span> <span class="fl">3.2</span>) <span class="sc">+</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title   =</span> <span class="st">"Power to Detect a Significant SRQ-20 Effect (n = 52 completers/group)"</span>,</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x       =</span> <span class="st">"True effect size (Cohen's d)"</span>,</span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y       =</span> <span class="st">"Probability of significant result (power)"</span>,</span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Dashed grey = 80% threshold; red dotted = planned 90%; green = protocol effect size"</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-interpretation_files/figure-html/power-sensitivity-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>What the power curve tells you:</strong> At the planned effect size (d = 0.68), the study has approximately 90% power — consistent with the protocol. But if the true effect is closer to d = 0.40 (a plausible smaller effect for a brief 12-week behavioral intervention), power drops to roughly 55–60%. More than one in three real effects of that size would be missed. This is the fragility that modest effect sizes in small trials can create.</p>
+<p>This does not mean the trial was underpowered or that the result is wrong. It means that the conclusion “the intervention works” should be held with appropriate uncertainty about magnitude, and that future trials should consider larger samples or longer follow-up if the effect is expected to be smaller than the planning estimate.</p>
+</div>
+</div>
+</section>
+<section id="c.-the-post-hoc-power-fallacy" class="level3" data-number="8.12.3">
+<h3 data-number="8.12.3" class="anchored" data-anchor-id="c.-the-post-hoc-power-fallacy"><span class="header-section-number">8.12.3</span> 5c. The post-hoc power fallacy</h3>
+<p>After seeing a statistically significant result with an observed mean difference of approximately −1.2 points and a pooled SD of about 4.5, one might be tempted to compute the “observed power” — plugging the observed effect size into the power formula to see whether the study was “adequately powered.”</p>
+<p><strong>This is invalid and should never be done.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Observed Cohen's d from our ANCOVA estimate</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>model_check <span class="ot">&lt;-</span> <span class="fu">lm</span>(srq20_12 <span class="sc">~</span> group <span class="sc">+</span> srq20_0, <span class="at">data =</span> <span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>))</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>obs_md      <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_check)[<span class="st">"group"</span>]</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>pooled_sd   <span class="ot">&lt;-</span> <span class="fu">sd</span>(<span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>)<span class="sc">$</span>srq20_0)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>obs_d       <span class="ot">&lt;-</span> obs_md <span class="sc">/</span> pooled_sd</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Observed MD: %.2f</span><span class="sc">\n</span><span class="st">"</span>, obs_md))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Observed MD: -1.19</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Pooled SD:   %.2f</span><span class="sc">\n</span><span class="st">"</span>, pooled_sd))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pooled SD:   3.81</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Observed d:  %.2f</span><span class="sc">\n</span><span class="st">"</span>, obs_d))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Observed d:  -0.31</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 'Post-hoc power' using the observed d — this is the fallacy</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>posthoc_pwr <span class="ot">&lt;-</span> <span class="fu">pwr.t.test</span>(<span class="at">n =</span> <span class="dv">52</span>, <span class="at">d =</span> <span class="fu">abs</span>(obs_d), <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">type =</span> <span class="st">"two.sample"</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">'Post-hoc power' (invalid): %.1f%%</span><span class="sc">\n</span><span class="st">"</span>, posthoc_pwr<span class="sc">$</span>power <span class="sc">*</span> <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+'Post-hoc power' (invalid): 35.0%</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Why post-hoc power is a fallacy — and what to do instead.</strong></p>
+<p>Post-hoc power takes the observed effect size and asks “how powerful was this study to detect an effect <em>this large</em>?” The answer is mathematically determined by the p-value: any result with p &lt; 0.05 will have post-hoc power above approximately 50%; any result with p &gt; 0.05 will have post-hoc power below 50%. The calculation adds no information.</p>
+<p>The circular reasoning: we observed this effect size precisely because the study was significant. If the study had been non-significant (and the observed effect smaller), post-hoc power would be lower. Post-hoc power tracks significance — it does not independently assess whether the study was large enough.</p>
+<p><strong>What to do instead:</strong> - Report the <strong>prospective power</strong> from the protocol’s sample size calculation (which is what matters for design evaluation). - For a non-significant result, report a <strong>confidence interval</strong> and discuss whether the upper bound rules out a clinically important effect. - For future trials, use a <strong>sensitivity power analysis</strong> (as in Section 5b above): show what effect sizes the proposed design can and cannot reliably detect.</p>
+<p>The American Statistical Association and most major clinical journals explicitly discourage post-hoc power analysis. The key reference is Hoenig &amp; Heisey (2001), <em>The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis</em>, <em>The American Statistician</em>, 55(1):19–24.</p>
+</div>
+</div>
+<hr>
+</section>
 </section>
 <section id="practice-exercises" class="level2" data-number="8.13">
-<h2 data-number="8.13" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">8.13</span> 5. Practice Exercises</h2>
+<h2 data-number="8.13" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">8.13</span> 6. Practice Exercises</h2>
 <ol type="1">
 <li><p><strong>Is the SRQ-20 effect clinically significant?</strong> Using the MCID of 3 points, write a two-sentence interpretation of the primary outcome result that conveys both what the data show and what they do not show.</p></li>
 <li><p><strong>Apply Bonferroni to SCI-R.</strong> If the SCI-R (self-care) p-value from your analysis is below 0.05, is it also below the Bonferroni-corrected threshold of 0.01? What language would you use to describe this result in a paper?</p></li>
@@ -670,8 +857,8 @@ Important
 <li><p><strong>Design the next trial.</strong> Based on the IVAM-ED findings, what would you change in the design of a confirmatory follow-up trial? Consider: sample size, outcome selection, subgroup pre-specification, follow-up duration.</p></li>
 </ol>
 </section>
-<section id="section-6" class="level2" data-number="8.14">
-<h2 data-number="8.14" class="anchored" data-anchor-id="section-6"><span class="header-section-number">8.14</span> ———————————————————————</h2>
+<section id="section-5" class="level2" data-number="8.14">
+<h2 data-number="8.14" class="anchored" data-anchor-id="section-5"><span class="header-section-number">8.14</span> ———————————————————————</h2>
 </section>
 <section id="summary" class="level2" data-number="8.15">
 <h2 data-number="8.15" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.15</span> Summary</h2>
@@ -684,13 +871,13 @@ Important
 </ul>
 <p><strong>Completing the sequence:</strong> You have now followed the IVAM-ED trial from data structure (Module 1) through descriptive statistics (Module 2), visualization (Module 3), unadjusted estimation (Module 4), ANCOVA (Module 5), missing data (Module 6), and critical appraisal (Module 7). Each module builds on the previous one using the same dataset — illustrating how a complete analysis of a randomized trial unfolds from raw data to published conclusion.</p>
 </section>
-<section id="section-7" class="level2" data-number="8.16">
-<h2 data-number="8.16" class="anchored" data-anchor-id="section-7"><span class="header-section-number">8.16</span> ———————————————————————</h2>
+<section id="section-6" class="level2" data-number="8.16">
+<h2 data-number="8.16" class="anchored" data-anchor-id="section-6"><span class="header-section-number">8.16</span> ———————————————————————</h2>
 </section>
 <section id="session-information" class="level2" data-number="8.17">
 <h2 data-number="8.17" class="anchored" data-anchor-id="session-information"><span class="header-section-number">8.17</span> Session Information</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>R version 4.6.1 (2026-06-24)
 Platform: aarch64-apple-darwin23
@@ -710,7 +897,7 @@ attached base packages:
 [1] stats     graphics  grDevices datasets  utils     methods   base     
 
 other attached packages:
-[1] ggplot2_4.0.3 dplyr_1.2.1  
+[1] pwr_1.3-0     ggplot2_4.0.3 dplyr_1.2.1  
 
 loaded via a namespace (and not attached):
  [1] vctrs_0.7.3        cli_3.6.6          knitr_1.51         rlang_1.3.0       
@@ -1136,8 +1323,8 @@ loaded via a namespace (and not attached):
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="References and Source Documents">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../R/08-capstone.html" class="pagination-link" aria-label="Module 8: Capstone — Write a Methods and Results Section">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

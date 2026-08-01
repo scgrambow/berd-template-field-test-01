@@ -210,6 +210,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -223,8 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
   </div>
 </li>
       </ul>
@@ -527,8 +539,11 @@ sample estimates:
 <div class="cell-output cell-output-stdout">
 <pre><code>95% CI:        (-0.87, 1.80)</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Mean difference: %.3f (Smart speaker minus Usual care)</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(t_result<span class="sc">$</span>estimate)))  <span class="co"># note: t.test reports in alphabetical order</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explicitly name which group is subtracted from which to avoid silent ordering errors</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>m_smart  <span class="ot">&lt;-</span> t_result<span class="sc">$</span>estimate[<span class="fu">grep</span>(<span class="st">"Smart"</span>, <span class="fu">names</span>(t_result<span class="sc">$</span>estimate))]</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>m_usual  <span class="ot">&lt;-</span> t_result<span class="sc">$</span>estimate[<span class="fu">grep</span>(<span class="st">"Usual"</span>, <span class="fu">names</span>(t_result<span class="sc">$</span>estimate))]</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Mean difference: %.3f (Smart speaker minus Usual care)</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    m_smart <span class="sc">-</span> m_usual))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mean difference: -0.466 (Smart speaker minus Usual care)</code></pre>
 </div>

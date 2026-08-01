@@ -202,15 +202,18 @@ ggplot(srq20_long,
 ::: {.callout-note}
 **What to notice:**
 
-- Both group means decline from baseline to follow-up — some improvement in
-  mental distress even in the usual care group.
-- The smart speaker group mean (blue) drops further than the usual care group mean
-  (orange). The vertical distance between the thick lines at follow-up represents
-  the unadjusted mean difference.
+- **Color key:** orange lines = Usual care group; blue lines = Smart speaker
+  (intervention) group. The thick lines are group means; thin lines are individual
+  participants.
+- Both group means *decline* from baseline to follow-up — a drop in SRQ-20
+  means *less* distress, which is an improvement.
+- The smart speaker group mean (blue thick line) drops further than the usual care
+  group mean (orange thick line). The vertical distance between the two thick lines
+  at week 12 represents the unadjusted mean difference.
 - Individual variability is large: some participants in both groups get worse,
   not better. The group-level treatment effect is a central tendency, not a
   guarantee for any individual.
-- The crossing lines reveal that participants who started with high scores tend
+- The crossing thin lines reveal that participants who started with high scores tend
   to show larger decreases — this is **regression to the mean**, which the ANCOVA
   model in Module 5 will address.
 :::

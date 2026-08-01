@@ -134,7 +134,61 @@ results_base
 estimate will be close but not identical because this is a simulation.
 :::
 
----------------------------------------------------------------------
+::: {.callout-tip}
+**Why the intercept must be calibrated at the grand mean — and what went wrong
+the first time:** When building the synthetic dataset, the ANCOVA intercept was
+initially calibrated at the *control group's* baseline mean rather than the
+*grand mean*. A 1.1-point baseline imbalance almost completely offset the
+specified treatment effect, making the raw follow-up means nearly identical
+between groups. The fix — centering the baseline covariate at the grand mean —
+is exactly what this section demonstrates: adjusted means are estimated at the
+grand mean, not the group mean. See `simulation-refinements.md` for the full
+diagnosis and the before/after code.
+:::
+
+## 2b. Check Model Assumptions
+
+Before interpreting ANCOVA results, verify the two key linear regression
+assumptions: residuals are approximately normally distributed, and residual
+variance is roughly constant across fitted values (homoscedasticity).
+
+```{r}
+#| label: residual-diagnostics
+#| fig-width: 8
+#| fig-height: 4
+
+# Standard residual diagnostic plots for the baseline-adjusted ANCOVA
+par(mfrow = c(1, 2))
+
+# Residuals vs Fitted: check for non-linearity and unequal variance
+plot(model_base, which = 1,
+     main   = "Residuals vs Fitted",
+     sub    = "Look for: random scatter (no curve, no funnel shape)")
+
+# Normal Q-Q: check whether residuals are approximately normal
+plot(model_base, which = 2,
+     main   = "Normal Q-Q",
+     sub    = "Look for: points close to the diagonal line")
+
+par(mfrow = c(1, 1))
+```
+
+::: {.callout-note}
+**Reading the diagnostic plots:**
+
+- **Residuals vs Fitted (left):** The residuals should scatter randomly above
+  and below zero with no systematic curve and no funnel shape (which would
+  indicate variance increasing with fitted values). A smooth red line near zero
+  is a good sign.
+- **Normal Q-Q (right):** The standardized residuals should fall approximately
+  on the diagonal line. Some deviation at the tails is acceptable in small
+  samples; systematic curvature throughout the plot would indicate non-normality.
+
+For the IVAM-ED simulation, both plots should look acceptable. The SRQ-20 is a
+bounded integer score with some right skew — slight departures from normality
+in the Q-Q plot tails are expected and not cause for concern with n = 103.
+:::
+
 ---
 
 ## 3. Adjusted Means

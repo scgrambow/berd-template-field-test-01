@@ -22,7 +22,9 @@ book:
         - R/05-ancova.qmd
         - R/06-missing-data.qmd
         - R/07-interpretation.qmd
+        - R/08-capstone.qmd
   appendices:
+    - R/A1-answer-key.qmd
     - references.qmd
 
 format:

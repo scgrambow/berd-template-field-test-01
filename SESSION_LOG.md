@@ -9,6 +9,27 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Book review fixes, Module 8, Answer Key, Power Analysis
+
+**Status:** Completed
+
+**Files changed:** `R/01-data-setup.qmd`, `R/02-descriptive.qmd`, `R/03-visualization.qmd`, `R/04-estimation.qmd`, `R/05-ancova.qmd`, `R/07-interpretation.qmd`, `R/08-capstone.qmd` (new), `R/A1-answer-key.qmd` (new), `_quarto.yml`, `index.qmd`, `renv.lock` (pwr)
+
+**Summary:**
+Applied all ten book review recommendations. Critical fixes: replaced fragile `diff(t_result$estimate)` with explicit named group extraction; added residual diagnostics to Module 5 with simulation-refinements.md callout. Added `set.seed()` explanation (Module 1), `pivot_longer` note (Module 2), trajectory callout color clarification (Module 3). Extended Module 7 with a full power analysis section including sample-size reproduction, sensitivity power curve, and an explicit post-hoc power fallacy discussion (Hoenig & Heisey 2001). Created Module 8 capstone (Methods + Results writing exercise with self-check checklist) and an Answer Key appendix. Split index.qmd "How to Use" into student callout + instructor collapsible block.
+
+**Decisions Made:**
+
+- Post-hoc power fallacy: demonstrated with code, cited Hoenig & Heisey (2001), provided correct alternatives.
+- Answer key: public appendix (demonstration repository with no competitive grading).
+- `pwr` package: added to renv.lock.
+
+**Next Steps:**
+
+- Make the repository public (security audit complete, SECURITY.md).
+
+---
+
 ## 2026-07-31: references.qmd, GitHub Pages (docs/), GitHub Actions
 
 **Status:** Completed

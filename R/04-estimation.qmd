@@ -208,8 +208,12 @@ cat(sprintf("Degrees of freedom: %.1f\n", t_result$parameter))
 cat(sprintf("p-value:       %.4f\n",   t_result$p.value))
 cat(sprintf("95%% CI:        (%.2f, %.2f)\n",
     t_result$conf.int[1], t_result$conf.int[2]))
+
+# Explicitly name which group is subtracted from which to avoid silent ordering errors
+m_smart  <- t_result$estimate[grep("Smart", names(t_result$estimate))]
+m_usual  <- t_result$estimate[grep("Usual", names(t_result$estimate))]
 cat(sprintf("Mean difference: %.3f (Smart speaker minus Usual care)\n",
-    diff(t_result$estimate)))  # note: t.test reports in alphabetical order
+    m_smart - m_usual))
 ```
 
 ::: {.callout-note}

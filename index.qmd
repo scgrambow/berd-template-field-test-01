@@ -16,6 +16,22 @@ The primary language is **R**. All analysis is performed on a **synthetic
 (simulated) dataset** that approximates the published trial's sample characteristics.
 No real participant data are used or stored anywhere in this repository.
 
+::: {.callout-tip}
+## Start here if you're a student
+
+1. **Generate the dataset** — run `source("R/simulate-ivam-ed.R")` from the project
+   root once before opening any module.
+2. **Open Module 1** — [Data Setup and Inspection](R/01-data-setup.qmd) — and work
+   sequentially through the chapters.
+3. **The study:** We analyze the IVAM-ED randomized trial, which asked whether a
+   voice-activated smart speaker could reduce mental distress and improve diabetes
+   self-management in older adults. You do not need to read this introduction before
+   Module 1 — but it will be here when you want to understand where the data came from.
+
+The [Answer Key](R/A1-answer-key.qmd) appendix provides worked solutions for
+selected exercises.
+:::
+
 ---
 
 ## The IVAM-ED Study {.unnumbered}
@@ -400,6 +416,9 @@ correction, confirmatory vs. exploratory inference, protocol adherence.
 
 ## How to Use This Book {.unnumbered}
 
+::: {.callout-note collapse="true"}
+## Instructor Notes — expand for full setup and design documentation
+
 **Prerequisites:** R (≥ 4.6), Quarto (≥ 1.10), and a working renv installation.
 See `standards/CAPABILITIES.md` for verified tool versions.
 
@@ -420,13 +439,29 @@ project root, all `quarto render` commands must be run from there:
 # Build the entire book
 quarto render
 
-# Render a single module (standalone HTML with embedded resources)
-quarto render R/01-data-setup.qmd --to html
+# Render a single module
+quarto render R/01-data-setup.qmd
 ```
 
 **Work sequentially.** Each module depends on the data and concepts established
 in the previous one. Module 2 loads the working dataset created by Module 1;
-Modules 3–7 use the same completers object.
+Modules 3–8 use the same `completers` object.
+
+**Changing the seed.** `set.seed(241)` in `R/simulate-ivam-ed.R` produces
+identical data for all students. To assign different datasets to different student
+groups, change the seed number before distributing. Document the seed you used in
+your course materials.
+
+**Answer key.** The [Answer Key](R/A1-answer-key.qmd) appendix provides worked
+solutions. These answers are based on `set.seed(241)` — update key values if you
+distribute a different seed.
+
+**Simulation documentation.** See `simulation-assumptions.md` for the full
+parameter table (every number linked to a paper table), and
+`simulation-refinements.md` for the debugging narrative (useful for advanced
+students or instructor background).
+:::
+
 
 ---
 
