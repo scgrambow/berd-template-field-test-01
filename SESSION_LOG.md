@@ -11,16 +11,16 @@ format `## YYYY-MM-DD: Title`.
 
 ## 2026-07-31: Simulation fidelity assessment + Critical Appraisal appendix
 
-**Status:** Completed (not yet committed)
+**Status:** Completed, committed, and pushed
 
 **Files changed:** `simulation-refinements.md`, `simulation-assumptions.md`, `R/05-ancova.qmd`, `R/07-interpretation.qmd`, `index.qmd`, `_quarto.yml`, `critical-appraisal.md` (new), `docs/` (re-rendered)
-
-**Update — AI disclosure revised to name both tools:** `index.qmd`'s "AI Assistance Disclosure" section previously described only the Phase 1 GitHub Copilot / Claude Sonnet 4.6 session. Restructured it into an explicit Phase 1 (GitHub Copilot Business, Claude Sonnet 4.6 — initial build) / Phase 2 (Claude Code, Claude Sonnet 5 — pre-public review) structure, with a new "What Claude Code added (Phase 2)" subsection itemizing the independent security re-audit, the three appendix integrations, the simulation fidelity assessment and the bug it surfaced, the new Critical Appraisal appendix, and the Module 5 table fix — all attributed to the correct tool rather than folded into the Phase 1 narrative.
 
 **Summary:**
 Ran the actual simulation (`set.seed(241)`) and fit the baseline-adjusted ANCOVA taught in Module 5 for all five outcomes, then compared against the published baseline-adjusted column of Table 2/3 (Matzenbacher et al. 2026) — the correct apples-to-apples comparison. Result: SRQ-20, SF-36, and HbA1c reproduce both direction and significance; **SCI-R and PSS do not** (SCI-R comes out non-significant vs. published p<.001; PSS comes out significant vs. published p=.13). Root-caused this to a real bug found while reading the source paper's Table 2/3 in full: `R/simulate-ivam-ed.R`'s τ for the four secondary outcomes was calibrated to the *fully adjusted* published MD, not the *baseline-adjusted* MD the script's own comments and `simulation-assumptions.md` say it uses (only SRQ-20 was calibrated correctly). Documented this transparently rather than re-tuning the simulation, since changing τ now would silently invalidate every downstream module number and the Answer Key, all built against this exact seed's output. Added a full outcome-by-outcome "Simulation Fidelity Assessment" section to `simulation-refinements.md`, a correction note and new Known Approximation (8) to `simulation-assumptions.md`, and fixed a related pre-existing bug in Module 5's own "published" comparison table (it had mixed baseline-adjusted and fully-adjusted published values across its five rows — now internally consistent, all baseline-adjusted).
 
 Separately, read both full source papers (`da-costa-2024-ivam-ed-protocol-sap.md`, `matzenbacher-2026-ivam-ed-results-paper.md`) end to end and wrote a new `critical-appraisal.md` appendix — a structured, reviewer-style assessment covering design/conduct, the power calculation's effect-size justification (borrowed from a dissimilar prior trial), statistical methods and SAP clarity, statistical reporting quality (CIs and effect sizes reported throughout; no MCID ever defined for any outcome; Discussion tone sometimes outruns the "hypothesis-generating only" label on subgroup findings), and protocol-to-publication consistency beyond the four deviations already in Module 7. Added as a new book appendix and cross-linked from Module 7 and `index.qmd`.
+
+Also restructured `index.qmd`'s "AI Assistance Disclosure," which previously described only the Phase 1 GitHub Copilot / Claude Sonnet 4.6 session, into explicit Phase 1 (GitHub Copilot Business, Claude Sonnet 4.6 — initial build) and Phase 2 (Claude Code, Claude Sonnet 5 — this review work) sections, with a new "What Claude Code added (Phase 2)" subsection itemizing the independent security re-audit, the three appendix integrations, the fidelity assessment and the bug it surfaced, the new Critical Appraisal appendix, and the Module 5 table fix — attributed to the correct tool rather than folded into the Phase 1 narrative.
 
 **Decisions Made:**
 
@@ -28,10 +28,18 @@ Separately, read both full source papers (`da-costa-2024-ivam-ed-protocol-sap.md
 - **Critical Appraisal appendix placement:** added after Simulation Refinements and before References in `_quarto.yml`, grouping it with the other analytical/methodological appendices.
 - **Author field on new files:** used `BERD AI Pilot (Claude Code)` rather than `(GitHub Copilot)` to accurately reflect which tool produced this session's content, distinct from earlier Copilot-authored files.
 
+**Verification:**
+
+- `quarto render` → clean, 15 chapters including the new Critical Appraisal appendix; all new cross-links (Module 5 ↔ Simulation Refinements, Module 7 ↔ Critical Appraisal, index.qmd ↔ both) confirmed resolving to real `.html` pages, not dead filename text.
+- `renv::status()` → "No issues found — the project is in a consistent state."
+- `git status --short` / data-file extension scan → clean before both commits; no data files staged.
+- `git diff --check` → clean (no whitespace errors).
+
 **Next Steps:**
 
-- Review the diff; commit/push when ready (not yet done this session, per ask-before-commit rule).
+- Committed as `a0da43c` (content) and `0043302` (post-merge re-render, after reconciling with a GitHub Actions auto-render commit that landed between sessions), pushed to `origin/main`. Working tree clean, in sync with remote.
 - Future work (not done, out of scope for this pass): recalibrate the four secondary-outcome τ values to the correct baseline-adjusted Table 2/3 column and re-verify all downstream module numbers and the Answer Key against the new output.
+- Repository remains ready for public visibility change (security audit clear); GitHub Pages will pick up this push automatically via the render-book workflow.
 
 ---
 
