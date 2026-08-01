@@ -32,7 +32,6 @@ By the end of this module you should be able to:
 3. Perform an independent-samples t-test and interpret the p-value correctly.
 4. Explain why within-group change is not the treatment effect.
 
----------------------------------------------------------------------
 ---
 
 ## Setup
@@ -51,7 +50,6 @@ dat       <- readRDS("../data/ivam_working.rds")
 completers <- filter(dat, missing_12wk == 0)  # 103 participants with follow-up data
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 1. Group Means at Each Time Point
@@ -81,7 +79,6 @@ means here will not match exactly — adjusted and unadjusted means differ whene
 the groups are not perfectly balanced at baseline. Module 5 fits the ANCOVA model.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 2. Within-Group Change
@@ -124,7 +121,6 @@ patients over time *without* the intervention. Only the difference between the
 two groups' changes isolates the intervention's contribution.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 3. Between-Group Difference (Unadjusted)
@@ -175,7 +171,6 @@ it does not account for the baseline imbalance (the intervention group started
 slightly higher).
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 4. Hypothesis Test: Independent-Samples t-Test
@@ -228,7 +223,6 @@ The published trial used ANCOVA (not a t-test) as the primary analysis. The
 ANCOVA estimate will be more precise — we will fit it in Module 5.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 5. All Secondary Outcomes
@@ -284,7 +278,6 @@ the protocol-to-publication comparison and discuss the consequences of reporting
 p-values for multiple exploratory outcomes without adjustment.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 6. Visualizing the Treatment Effect with a Forest Plot
@@ -357,7 +350,6 @@ with the published finding that perceived stress was not a statistically signifi
 outcome.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 7. Practice Exercises
@@ -385,7 +377,6 @@ outcome.
    (d > 0.8)? How does this compare to the protocol's pre-specified effect size
    of 0.68 (Da Costa et al., 2024)?
 
----------------------------------------------------------------------
 ---
 
 ## Summary
@@ -404,7 +395,6 @@ In this module you:
 and show how adjusting for the baseline value changes the estimate and its
 precision compared to the unadjusted t-test.
 
----------------------------------------------------------------------
 ---
 
 ## Session Information

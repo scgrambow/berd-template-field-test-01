@@ -9,6 +9,29 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-07-31: Pre-public re-audit, appendix integration, formatting cleanup
+
+**Status:** Completed
+
+**Files changed:** `_quarto.yml`, `index.qmd`, `R/01-data-setup.qmd`, `R/02-descriptive.qmd`, `R/03-visualization.qmd`, `R/04-estimation.qmd`, `R/05-ancova.qmd`, `R/06-missing-data.qmd`, `R/07-interpretation.qmd`, `simulation-assumptions.md`, `simulation-refinements.md`, `pedagogical-essay.md`, `docs/` (re-rendered), `SECURITY.md` review (no changes needed)
+
+**Summary:**
+Independent pre-public security re-audit (Claude Code, following `standards/security-audit.md`) confirmed the prior audit's clean verdict: no data files in the working tree or git history, no secrets, no PHI, clean PDF/DOCX metadata, clean GitHub Actions workflow. Reviewed `pedagogical-essay.md`, `simulation-assumptions.md`, and `simulation-refinements.md` and found none were wired into the Quarto book — they existed only as loose root-level files, referenced by plain filename text with no working links and absent from the rendered `docs/`. Promoted all three to real book appendices in `_quarto.yml` (ordered: Answer Key, Simulation Assumptions, Simulation Refinements, References, Process Essay) and converted the plain-text filename mentions in `index.qmd` and three modules into working cross-references. Also did a critical pass on module writing/exercise quality (sampled Modules 1, 5, 7, plus Answer Key/Capstone/References headers); found the material strong overall, and cleaned up a cosmetic doubled-horizontal-rule artifact (long dash line immediately followed by a bare `---`) present in 7 of 9 module files. Verified the AI disclosure's "Claude Sonnet 4.6" model-name claim against the GitHub Copilot Business model picker (user-provided screenshot) — confirmed accurate, no change made. Full book re-rendered; `renv::status()` clean; all new appendix cross-links resolve to real `.html` pages in `docs/`.
+
+**Decisions Made:**
+
+- **Appendix inclusion and order:** All three previously-orphaned docs promoted to appendices, not just the essay, since `simulation-assumptions.md`/`simulation-refinements.md` had the same discoverability problem. Order: Answer Key → Simulation Assumptions → Simulation Refinements → References → Process Essay (essay last as the meta "how this was built" reflection).
+- **Model name in AI disclosure:** Left `index.qmd`'s "Claude Sonnet 4.6" claim unchanged after user confirmed it's a real listed option in the GitHub Copilot Business model picker.
+- **No commits made:** Per `AGENTS.md`, all changes are staged in the working tree only; committing/pushing is left to the user's explicit go-ahead.
+
+**Next Steps:**
+
+- Review the diff and commit/push when ready.
+- Make the repository public (security re-audit is clear; this was the blocking item).
+- Optional future scope (not implemented, noted in `pedagogical-essay.md`'s own "Future Iterations" section): a probabilistic/multi-seed simulation companion document — deferred as new scope, not a pre-publish quality fix.
+
+---
+
 ## 2026-07-31: Session wrap-up — IVAM-ED CRP 241 teaching case complete
 
 **Status:** Completed

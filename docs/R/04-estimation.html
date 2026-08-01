@@ -235,8 +235,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,26 +270,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">5.1</span> Overview</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">5.2</span> ———————————————————————</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">5.3</span> Setup</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">5.4</span> ———————————————————————</a></li>
-  <li><a href="#group-means-at-each-time-point" id="toc-group-means-at-each-time-point" class="nav-link" data-scroll-target="#group-means-at-each-time-point"><span class="header-section-number">5.5</span> 1. Group Means at Each Time Point</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">5.6</span> ———————————————————————</a></li>
-  <li><a href="#within-group-change" id="toc-within-group-change" class="nav-link" data-scroll-target="#within-group-change"><span class="header-section-number">5.7</span> 2. Within-Group Change</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">5.8</span> ———————————————————————</a></li>
-  <li><a href="#between-group-difference-unadjusted" id="toc-between-group-difference-unadjusted" class="nav-link" data-scroll-target="#between-group-difference-unadjusted"><span class="header-section-number">5.9</span> 3. Between-Group Difference (Unadjusted)</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">5.10</span> ———————————————————————</a></li>
-  <li><a href="#hypothesis-test-independent-samples-t-test" id="toc-hypothesis-test-independent-samples-t-test" class="nav-link" data-scroll-target="#hypothesis-test-independent-samples-t-test"><span class="header-section-number">5.11</span> 4. Hypothesis Test: Independent-Samples t-Test</a></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">5.12</span> ———————————————————————</a></li>
-  <li><a href="#all-secondary-outcomes" id="toc-all-secondary-outcomes" class="nav-link" data-scroll-target="#all-secondary-outcomes"><span class="header-section-number">5.13</span> 5. All Secondary Outcomes</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">5.14</span> ———————————————————————</a></li>
-  <li><a href="#visualizing-the-treatment-effect-with-a-forest-plot" id="toc-visualizing-the-treatment-effect-with-a-forest-plot" class="nav-link" data-scroll-target="#visualizing-the-treatment-effect-with-a-forest-plot"><span class="header-section-number">5.15</span> 6. Visualizing the Treatment Effect with a Forest Plot</a></li>
-  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">5.16</span> ———————————————————————</a></li>
-  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">5.17</span> 7. Practice Exercises</a></li>
-  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">5.18</span> ———————————————————————</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.19</span> Summary</a></li>
-  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"><span class="header-section-number">5.20</span> ———————————————————————</a></li>
-  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">5.21</span> Session Information</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">5.2</span> Setup</a></li>
+  <li><a href="#group-means-at-each-time-point" id="toc-group-means-at-each-time-point" class="nav-link" data-scroll-target="#group-means-at-each-time-point"><span class="header-section-number">5.3</span> 1. Group Means at Each Time Point</a></li>
+  <li><a href="#within-group-change" id="toc-within-group-change" class="nav-link" data-scroll-target="#within-group-change"><span class="header-section-number">5.4</span> 2. Within-Group Change</a></li>
+  <li><a href="#between-group-difference-unadjusted" id="toc-between-group-difference-unadjusted" class="nav-link" data-scroll-target="#between-group-difference-unadjusted"><span class="header-section-number">5.5</span> 3. Between-Group Difference (Unadjusted)</a></li>
+  <li><a href="#hypothesis-test-independent-samples-t-test" id="toc-hypothesis-test-independent-samples-t-test" class="nav-link" data-scroll-target="#hypothesis-test-independent-samples-t-test"><span class="header-section-number">5.6</span> 4. Hypothesis Test: Independent-Samples t-Test</a></li>
+  <li><a href="#all-secondary-outcomes" id="toc-all-secondary-outcomes" class="nav-link" data-scroll-target="#all-secondary-outcomes"><span class="header-section-number">5.7</span> 5. All Secondary Outcomes</a></li>
+  <li><a href="#visualizing-the-treatment-effect-with-a-forest-plot" id="toc-visualizing-the-treatment-effect-with-a-forest-plot" class="nav-link" data-scroll-target="#visualizing-the-treatment-effect-with-a-forest-plot"><span class="header-section-number">5.8</span> 6. Visualizing the Treatment Effect with a Forest Plot</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">5.9</span> 7. Practice Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">5.10</span> Summary</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">5.11</span> Session Information</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/R/04-estimation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -298,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">July 31, 2026</p>
     </div>
   </div>
   
@@ -325,12 +333,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Perform an independent-samples t-test and interpret the p-value correctly.</li>
 <li>Explain why within-group change is not the treatment effect.</li>
 </ol>
+<hr>
 </section>
-<section id="section" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="section"><span class="header-section-number">5.2</span> ———————————————————————</h2>
-</section>
-<section id="setup" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">5.3</span> Setup</h2>
+<section id="setup" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">5.2</span> Setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -339,12 +345,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat       <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/ivam_working.rds"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>completers <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>)  <span class="co"># 103 participants with follow-up data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<hr>
 </section>
-<section id="section-1" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">5.4</span> ———————————————————————</h2>
-</section>
-<section id="group-means-at-each-time-point" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="group-means-at-each-time-point"><span class="header-section-number">5.5</span> 1. Group Means at Each Time Point</h2>
+<section id="group-means-at-each-time-point" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="group-means-at-each-time-point"><span class="header-section-number">5.3</span> 1. Group Means at Each Time Point</h2>
 <p>Start by computing the unadjusted group means for the primary outcome (SRQ-20) at baseline and at follow-up.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and SD for SRQ-20 at each time point, by group</span></span>
@@ -378,12 +382,10 @@ Note
 <p><strong>Compare to the published paper:</strong> Table 2 in Matzenbacher et al.&nbsp;(2026) reports the <em>adjusted</em> group means at 12 weeks (from the ANCOVA model). Your unadjusted means here will not match exactly — adjusted and unadjusted means differ whenever the groups are not perfectly balanced at baseline. Module 5 fits the ANCOVA model.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-2" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="section-2"><span class="header-section-number">5.6</span> ———————————————————————</h2>
-</section>
-<section id="within-group-change" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="within-group-change"><span class="header-section-number">5.7</span> 2. Within-Group Change</h2>
+<section id="within-group-change" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="within-group-change"><span class="header-section-number">5.4</span> 2. Within-Group Change</h2>
 <p>For each group, we can calculate the mean change from baseline to follow-up. This tells us: on average, how much did participants in this group change?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>completers <span class="sc">|&gt;</span></span>
@@ -427,12 +429,10 @@ Warning
 <p>The within-group change in the control group estimates everything that happens to patients over time <em>without</em> the intervention. Only the difference between the two groups’ changes isolates the intervention’s contribution.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-3" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="section-3"><span class="header-section-number">5.8</span> ———————————————————————</h2>
-</section>
-<section id="between-group-difference-unadjusted" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="between-group-difference-unadjusted"><span class="header-section-number">5.9</span> 3. Between-Group Difference (Unadjusted)</h2>
+<section id="between-group-difference-unadjusted" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="between-group-difference-unadjusted"><span class="header-section-number">5.5</span> 3. Between-Group Difference (Unadjusted)</h2>
 <p>The <strong>between-group mean difference</strong> at follow-up is the primary estimate of the treatment effect — how much better (or worse) the intervention group did compared to the control group, on average.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted mean difference at follow-up (intervention - control)</span></span>
@@ -489,12 +489,10 @@ Note
 <p><strong>Interpreting the sign:</strong> SRQ-20 measures distress (higher = worse). A <strong>negative</strong> mean difference (intervention minus control) means the intervention group had <em>lower</em> distress — an improvement. The published baseline-adjusted MD was −1.28 (95% CI: −2.51 to −0.04). Your unadjusted estimate may be closer to zero because it does not account for the baseline imbalance (the intervention group started slightly higher).</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-4" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="section-4"><span class="header-section-number">5.10</span> ———————————————————————</h2>
-</section>
-<section id="hypothesis-test-independent-samples-t-test" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="hypothesis-test-independent-samples-t-test"><span class="header-section-number">5.11</span> 4. Hypothesis Test: Independent-Samples t-Test</h2>
+<section id="hypothesis-test-independent-samples-t-test" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="hypothesis-test-independent-samples-t-test"><span class="header-section-number">5.6</span> 4. Hypothesis Test: Independent-Samples t-Test</h2>
 <p>A <strong>hypothesis test</strong> asks: “If the intervention truly had no effect, how often would we see a mean difference this large (or larger) by chance alone?”</p>
 <p>The <strong>null hypothesis</strong> (H₀): the population mean SRQ-20 at 12 weeks is the same in both groups. The <strong>alternative hypothesis</strong> (H₁): the means differ.</p>
 <div class="cell">
@@ -562,12 +560,10 @@ Note
 <p>The published trial used ANCOVA (not a t-test) as the primary analysis. The ANCOVA estimate will be more precise — we will fit it in Module 5.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-5" class="level2" data-number="5.12">
-<h2 data-number="5.12" class="anchored" data-anchor-id="section-5"><span class="header-section-number">5.12</span> ———————————————————————</h2>
-</section>
-<section id="all-secondary-outcomes" class="level2" data-number="5.13">
-<h2 data-number="5.13" class="anchored" data-anchor-id="all-secondary-outcomes"><span class="header-section-number">5.13</span> 5. All Secondary Outcomes</h2>
+<section id="all-secondary-outcomes" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="all-secondary-outcomes"><span class="header-section-number">5.7</span> 5. All Secondary Outcomes</h2>
 <p>The trial had five secondary outcomes. We test all of them here using the same unadjusted t-test approach, but note that we will <strong>not</strong> adjust for multiple comparisons — and we need to be careful about interpreting the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function: run a t-test and return a tidy one-row summary</span></span>
@@ -627,12 +623,10 @@ Warning
 <p><strong>Multiple comparisons:</strong> We evaluated five outcomes. With five tests at α = 0.05, we expect 0.25 false positives by chance even if none of the effects are real. The IVAM-ED protocol (Da Costa et al., 2024) pre-specified SRQ-20 as the <em>primary</em> outcome and described the secondary outcomes as exploratory. Module 7 will examine the protocol-to-publication comparison and discuss the consequences of reporting p-values for multiple exploratory outcomes without adjustment.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-6" class="level2" data-number="5.14">
-<h2 data-number="5.14" class="anchored" data-anchor-id="section-6"><span class="header-section-number">5.14</span> ———————————————————————</h2>
-</section>
-<section id="visualizing-the-treatment-effect-with-a-forest-plot" class="level2" data-number="5.15">
-<h2 data-number="5.15" class="anchored" data-anchor-id="visualizing-the-treatment-effect-with-a-forest-plot"><span class="header-section-number">5.15</span> 6. Visualizing the Treatment Effect with a Forest Plot</h2>
+<section id="visualizing-the-treatment-effect-with-a-forest-plot" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="visualizing-the-treatment-effect-with-a-forest-plot"><span class="header-section-number">5.8</span> 6. Visualizing the Treatment Effect with a Forest Plot</h2>
 <p>A <strong>forest plot</strong> shows the mean difference and 95% CI for each outcome on the same scale, making it easy to compare effect sizes and their precision.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute MDs and CIs for all outcomes</span></span>
@@ -705,24 +699,20 @@ Note
 <p><strong>Reading the forest plot:</strong> Each point is the estimated mean difference; the horizontal bar is the 95% CI. A CI that does not cross zero (dashed line) means the result is statistically significant at α = 0.05. Blue points are significant; grey are not. Note that the PSS confidence interval likely crosses zero — consistent with the published finding that perceived stress was not a statistically significant outcome.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-7" class="level2" data-number="5.16">
-<h2 data-number="5.16" class="anchored" data-anchor-id="section-7"><span class="header-section-number">5.16</span> ———————————————————————</h2>
-</section>
-<section id="practice-exercises" class="level2" data-number="5.17">
-<h2 data-number="5.17" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">5.17</span> 7. Practice Exercises</h2>
+<section id="practice-exercises" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">5.9</span> 7. Practice Exercises</h2>
 <ol type="1">
 <li><p><strong>Within-group vs.&nbsp;between-group.</strong> The smart speaker group improved on average from baseline to 12 weeks (within-group change). The usual care group also improved. Using your output from Section 2, calculate the “difference in differences”: (intervention change) − (control change). Is this equal to the unadjusted between-group mean difference from Section 3? It should be — explain why in one sentence.</p></li>
 <li><p><strong>Interpret a confidence interval.</strong> The 95% CI for the SRQ-20 mean difference is reported above. Write two sentences: one stating what the CI tells you about the magnitude of the effect, and one stating what it tells you about statistical significance.</p></li>
 <li><p><strong>The PSS result.</strong> The PSS (perceived stress) showed the smallest and least precise effect estimate. Look at the forest plot: does the 95% CI for PSS cross zero? What does this mean in plain language for the interpretation of the PSS result?</p></li>
 <li><p><strong>Effect size.</strong> Divide the SRQ-20 mean difference by the pooled SD of the SRQ-20 at baseline to compute an approximate standardized mean difference (Cohen’s d). Is the effect small (d &lt; 0.2), medium (d ≈ 0.5), or large (d &gt; 0.8)? How does this compare to the protocol’s pre-specified effect size of 0.68 (Da Costa et al., 2024)?</p></li>
 </ol>
+<hr>
 </section>
-<section id="section-8" class="level2" data-number="5.18">
-<h2 data-number="5.18" class="anchored" data-anchor-id="section-8"><span class="header-section-number">5.18</span> ———————————————————————</h2>
-</section>
-<section id="summary" class="level2" data-number="5.19">
-<h2 data-number="5.19" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.19</span> Summary</h2>
+<section id="summary" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="summary"><span class="header-section-number">5.10</span> Summary</h2>
 <p>In this module you:</p>
 <ul>
 <li>Computed group means at both time points and the within-group change.</li>
@@ -732,12 +722,10 @@ Note
 <li>Introduced the multiple-comparisons problem for secondary outcomes.</li>
 </ul>
 <p><strong>Next:</strong> Module 5 will fit the ANCOVA model — the pre-specified primary analysis — and show how adjusting for the baseline value changes the estimate and its precision compared to the unadjusted t-test.</p>
+<hr>
 </section>
-<section id="section-9" class="level2" data-number="5.20">
-<h2 data-number="5.20" class="anchored" data-anchor-id="section-9"><span class="header-section-number">5.20</span> ———————————————————————</h2>
-</section>
-<section id="session-information" class="level2" data-number="5.21">
-<h2 data-number="5.21" class="anchored" data-anchor-id="session-information"><span class="header-section-number">5.21</span> Session Information</h2>
+<section id="session-information" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="session-information"><span class="header-section-number">5.11</span> Session Information</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

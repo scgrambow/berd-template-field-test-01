@@ -83,8 +83,8 @@ every substantive decision in the session:
 
 When the instructor was unavailable to answer interview questions (during the
 bootstrap phase), the agent documented its assumptions explicitly in
-`SESSION_LOG.md` and `simulation-assumptions.md`, and flagged them for instructor
-review rather than proceeding silently.
+`SESSION_LOG.md` and [simulation-assumptions.md](simulation-assumptions.md), and
+flagged them for instructor review rather than proceeding silently.
 
 ### What the AI contributed
 
@@ -138,8 +138,10 @@ is reproducible when the *process* is documented, not just the *product*.
 
 The full session history, including every decision, file change, and command
 executed, is in `SESSION_LOG.md`. The simulation construction process is documented
-in `simulation-assumptions.md` and `simulation-refinements.md`. The repository
-itself is the audit trail.
+in [simulation-assumptions.md](simulation-assumptions.md) and
+[simulation-refinements.md](simulation-refinements.md). The repository itself is
+the audit trail. A reflective account of the full build process — case selection
+through deployment — is in the [Process Essay](pedagogical-essay.md) appendix.
 
 ---
 
@@ -359,7 +361,8 @@ strategy:
    are assigned deterministically — those with the highest baseline SRQ-20 within
    each group — reflecting a clinically plausible missing-at-random mechanism.
 
-Full simulation parameter documentation is in `simulation-assumptions.md`.
+Full simulation parameter documentation is in the
+[Simulation Assumptions](simulation-assumptions.md) appendix.
 
 ### Simulation refinement
 
@@ -378,10 +381,10 @@ and 5. Fix: deterministic rank-based selection within each group.
 
 After both fixes, the ANCOVA recovers an adjusted MD of −1.19 (published: −1.28),
 which is close enough for a teaching dataset. The full debugging narrative —
-including the mathematical diagnosis for each bug — is in
-`simulation-refinements.md`. This document is part of the teaching case:
-it illustrates the verify–diagnose–fix–re-verify cycle that applies to any
-quantitative analysis.
+including the mathematical diagnosis for each bug — is in the
+[Simulation Refinements](simulation-refinements.md) appendix. This document is
+part of the teaching case: it illustrates the verify–diagnose–fix–re-verify
+cycle that applies to any quantitative analysis.
 
 ---
 
@@ -566,10 +569,14 @@ your course materials.
 solutions. These answers are based on `set.seed(241)` — update key values if you
 distribute a different seed.
 
-**Simulation documentation.** See `simulation-assumptions.md` for the full
+**Simulation documentation.** See the
+[Simulation Assumptions](simulation-assumptions.md) appendix for the full
 parameter table (every number linked to a paper table), and
-`simulation-refinements.md` for the debugging narrative (useful for advanced
-students or instructor background).
+[Simulation Refinements](simulation-refinements.md) for the debugging narrative
+(useful for advanced students or instructor background). The
+[Process Essay](pedagogical-essay.md) appendix reflects on how the repository
+itself — governance, source extraction, simulation design — was built with
+AI assistance.
 :::
 
 
@@ -593,7 +600,7 @@ The synthetic dataset and all analysis code in this repository were generated fo
 teaching purposes and do not represent reconstructed individual participant data.
 Students should cite both source publications when reporting results derived from
 this teaching case (see suggested citation language in
-`simulation-assumptions.md`).
+[simulation-assumptions.md](simulation-assumptions.md)).
 
 This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2)
 using GitHub Copilot Business with synthetic data only.

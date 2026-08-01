@@ -22,7 +22,6 @@ By the end of this module you should be able to:
 3. Visualize change from baseline using an individual-trajectory plot.
 4. Describe what each plot tells you about the data that a table cannot.
 
----------------------------------------------------------------------
 ---
 
 ## Setup
@@ -44,7 +43,6 @@ dat <- readRDS("../data/ivam_working.rds")
 completers <- filter(dat, missing_12wk == 0)
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 1. Distribution of the Primary Outcome at Baseline
@@ -83,7 +81,6 @@ ggplot(dat, aes(x = srq20_0)) +
 - The SRQ-20 is an integer sum score — that is why the bars fall at whole numbers.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 2. Baseline Distributions by Group
@@ -144,7 +141,6 @@ ggplot(outcomes_long, aes(x = group_label, y = score, fill = group_label)) +
   reveal.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 3. Change from Baseline: Individual Trajectories
@@ -218,7 +214,6 @@ ggplot(srq20_long,
   model in Module 5 will address.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 4. Comparing All Outcomes at Follow-Up
@@ -277,7 +272,6 @@ plots: do any of the comparisons look visually similar (no clear separation),
 even if a difference exists?
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 5. Floor and Ceiling Effects
@@ -321,7 +315,6 @@ of 0, so floor effects are not a major concern. The SF-36 mean is around 55,
 well below the ceiling of 100.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 6. Practice Exercises
@@ -346,7 +339,6 @@ well below the ceiling of 100.
    by group. Add a reference line for y = x (no change). Which points are above
    the line (got worse) and which are below (improved)?
 
----------------------------------------------------------------------
 ---
 
 ## Summary
@@ -365,7 +357,6 @@ In this module you:
 **Next:** Module 4 will quantify what the plots show: group means, mean changes
 from baseline, 95% confidence intervals, and hypothesis tests.
 
----------------------------------------------------------------------
 ---
 
 ## Session Information

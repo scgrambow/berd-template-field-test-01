@@ -6,7 +6,7 @@ author: BERD AI Pilot (GitHub Copilot)
 related: simulation-assumptions.md
 ---
 
-# Simulation Refinements: Debugging and Iteration Log
+# Simulation Refinements: Debugging and Iteration Log {.unnumbered}
 
 This document records the iterative process used to build and validate
 `R/simulate-ivam-ed.R`. It captures not just the final decisions but the

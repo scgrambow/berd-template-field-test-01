@@ -264,8 +264,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,38 +299,31 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">8.1</span> Overview</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">8.2</span> ———————————————————————</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">8.3</span> Setup</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">8.4</span> ———————————————————————</a></li>
-  <li><a href="#statistical-significance-vs.-clinical-significance" id="toc-statistical-significance-vs.-clinical-significance" class="nav-link" data-scroll-target="#statistical-significance-vs.-clinical-significance"><span class="header-section-number">8.5</span> 1. Statistical Significance vs.&nbsp;Clinical Significance</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">8.2</span> Setup</a></li>
+  <li><a href="#statistical-significance-vs.-clinical-significance" id="toc-statistical-significance-vs.-clinical-significance" class="nav-link" data-scroll-target="#statistical-significance-vs.-clinical-significance"><span class="header-section-number">8.3</span> 1. Statistical Significance vs.&nbsp;Clinical Significance</a>
   <ul class="collapse">
-  <li><a href="#a.-the-minimum-clinically-important-difference-mcid" id="toc-a.-the-minimum-clinically-important-difference-mcid" class="nav-link" data-scroll-target="#a.-the-minimum-clinically-important-difference-mcid"><span class="header-section-number">8.5.1</span> 1a. The minimum clinically important difference (MCID)</a></li>
-  <li><a href="#b.-visualizing-the-ci-against-the-mcid" id="toc-b.-visualizing-the-ci-against-the-mcid" class="nav-link" data-scroll-target="#b.-visualizing-the-ci-against-the-mcid"><span class="header-section-number">8.5.2</span> 1b. Visualizing the CI against the MCID</a></li>
+  <li><a href="#a.-the-minimum-clinically-important-difference-mcid" id="toc-a.-the-minimum-clinically-important-difference-mcid" class="nav-link" data-scroll-target="#a.-the-minimum-clinically-important-difference-mcid"><span class="header-section-number">8.3.1</span> 1a. The minimum clinically important difference (MCID)</a></li>
+  <li><a href="#b.-visualizing-the-ci-against-the-mcid" id="toc-b.-visualizing-the-ci-against-the-mcid" class="nav-link" data-scroll-target="#b.-visualizing-the-ci-against-the-mcid"><span class="header-section-number">8.3.2</span> 1b. Visualizing the CI against the MCID</a></li>
   </ul></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">8.6</span> ———————————————————————</a></li>
-  <li><a href="#primary-vs.-exploratory-findings" id="toc-primary-vs.-exploratory-findings" class="nav-link" data-scroll-target="#primary-vs.-exploratory-findings"><span class="header-section-number">8.7</span> 2. Primary vs.&nbsp;Exploratory Findings</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">8.8</span> ———————————————————————</a></li>
-  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons" class="nav-link" data-scroll-target="#multiple-comparisons"><span class="header-section-number">8.9</span> 3. Multiple Comparisons</a>
+  <li><a href="#primary-vs.-exploratory-findings" id="toc-primary-vs.-exploratory-findings" class="nav-link" data-scroll-target="#primary-vs.-exploratory-findings"><span class="header-section-number">8.4</span> 2. Primary vs.&nbsp;Exploratory Findings</a></li>
+  <li><a href="#multiple-comparisons" id="toc-multiple-comparisons" class="nav-link" data-scroll-target="#multiple-comparisons"><span class="header-section-number">8.5</span> 3. Multiple Comparisons</a>
   <ul class="collapse">
-  <li><a href="#a.-bonferroni-correction" id="toc-a.-bonferroni-correction" class="nav-link" data-scroll-target="#a.-bonferroni-correction"><span class="header-section-number">8.9.1</span> 3a. Bonferroni correction</a></li>
+  <li><a href="#a.-bonferroni-correction" id="toc-a.-bonferroni-correction" class="nav-link" data-scroll-target="#a.-bonferroni-correction"><span class="header-section-number">8.5.1</span> 3a. Bonferroni correction</a></li>
   </ul></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">8.10</span> ———————————————————————</a></li>
-  <li><a href="#protocol-to-publication-comparison" id="toc-protocol-to-publication-comparison" class="nav-link" data-scroll-target="#protocol-to-publication-comparison"><span class="header-section-number">8.11</span> 4. Protocol-to-Publication Comparison</a>
+  <li><a href="#protocol-to-publication-comparison" id="toc-protocol-to-publication-comparison" class="nav-link" data-scroll-target="#protocol-to-publication-comparison"><span class="header-section-number">8.6</span> 4. Protocol-to-Publication Comparison</a>
   <ul class="collapse">
-  <li><a href="#a.-changes-found-between-the-protocol-and-the-publication" id="toc-a.-changes-found-between-the-protocol-and-the-publication" class="nav-link" data-scroll-target="#a.-changes-found-between-the-protocol-and-the-publication"><span class="header-section-number">8.11.1</span> 4a. Changes found between the protocol and the publication</a></li>
-  <li><a href="#b.-are-these-changes-problematic" id="toc-b.-are-these-changes-problematic" class="nav-link" data-scroll-target="#b.-are-these-changes-problematic"><span class="header-section-number">8.11.2</span> 4b. Are these changes problematic?</a></li>
+  <li><a href="#a.-changes-found-between-the-protocol-and-the-publication" id="toc-a.-changes-found-between-the-protocol-and-the-publication" class="nav-link" data-scroll-target="#a.-changes-found-between-the-protocol-and-the-publication"><span class="header-section-number">8.6.1</span> 4a. Changes found between the protocol and the publication</a></li>
+  <li><a href="#b.-are-these-changes-problematic" id="toc-b.-are-these-changes-problematic" class="nav-link" data-scroll-target="#b.-are-these-changes-problematic"><span class="header-section-number">8.6.2</span> 4b. Are these changes problematic?</a></li>
   </ul></li>
-  <li><a href="#sample-size-and-power-what-was-planned-vs.-what-was-observed" id="toc-sample-size-and-power-what-was-planned-vs.-what-was-observed" class="nav-link" data-scroll-target="#sample-size-and-power-what-was-planned-vs.-what-was-observed"><span class="header-section-number">8.12</span> 5. Sample Size and Power: What Was Planned vs.&nbsp;What Was Observed</a>
+  <li><a href="#sample-size-and-power-what-was-planned-vs.-what-was-observed" id="toc-sample-size-and-power-what-was-planned-vs.-what-was-observed" class="nav-link" data-scroll-target="#sample-size-and-power-what-was-planned-vs.-what-was-observed"><span class="header-section-number">8.7</span> 5. Sample Size and Power: What Was Planned vs.&nbsp;What Was Observed</a>
   <ul class="collapse">
-  <li><a href="#a.-reproducing-the-planned-sample-size" id="toc-a.-reproducing-the-planned-sample-size" class="nav-link" data-scroll-target="#a.-reproducing-the-planned-sample-size"><span class="header-section-number">8.12.1</span> 5a. Reproducing the planned sample size</a></li>
-  <li><a href="#b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" id="toc-b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" class="nav-link" data-scroll-target="#b.-sensitivity-analysis-what-if-the-true-effect-is-smaller"><span class="header-section-number">8.12.2</span> 5b. Sensitivity analysis: what if the true effect is smaller?</a></li>
-  <li><a href="#c.-the-post-hoc-power-fallacy" id="toc-c.-the-post-hoc-power-fallacy" class="nav-link" data-scroll-target="#c.-the-post-hoc-power-fallacy"><span class="header-section-number">8.12.3</span> 5c. The post-hoc power fallacy</a></li>
+  <li><a href="#a.-reproducing-the-planned-sample-size" id="toc-a.-reproducing-the-planned-sample-size" class="nav-link" data-scroll-target="#a.-reproducing-the-planned-sample-size"><span class="header-section-number">8.7.1</span> 5a. Reproducing the planned sample size</a></li>
+  <li><a href="#b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" id="toc-b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" class="nav-link" data-scroll-target="#b.-sensitivity-analysis-what-if-the-true-effect-is-smaller"><span class="header-section-number">8.7.2</span> 5b. Sensitivity analysis: what if the true effect is smaller?</a></li>
+  <li><a href="#c.-the-post-hoc-power-fallacy" id="toc-c.-the-post-hoc-power-fallacy" class="nav-link" data-scroll-target="#c.-the-post-hoc-power-fallacy"><span class="header-section-number">8.7.3</span> 5c. The post-hoc power fallacy</a></li>
   </ul></li>
-  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">8.13</span> 6. Practice Exercises</a></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">8.14</span> ———————————————————————</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.15</span> Summary</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">8.16</span> ———————————————————————</a></li>
-  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">8.17</span> Session Information</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">8.8</span> 6. Practice Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.9</span> Summary</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">8.10</span> Session Information</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/R/07-interpretation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -339,7 +350,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">July 31, 2026</p>
     </div>
   </div>
   
@@ -368,12 +379,10 @@ window.Quarto = {
 <li>Apply a simple Bonferroni correction and explain what changes.</li>
 <li>Compare the published IVAM-ED analysis to its pre-registered protocol and identify at least three deviations.</li>
 </ol>
+<hr>
 </section>
-<section id="section" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="section"><span class="header-section-number">8.2</span> ———————————————————————</h2>
-</section>
-<section id="setup" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">8.3</span> Setup</h2>
+<section id="setup" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">8.2</span> Setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -382,16 +391,14 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat        <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/ivam_working.rds"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>completers <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<hr>
 </section>
-<section id="section-1" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">8.4</span> ———————————————————————</h2>
-</section>
-<section id="statistical-significance-vs.-clinical-significance" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="statistical-significance-vs.-clinical-significance"><span class="header-section-number">8.5</span> 1. Statistical Significance vs.&nbsp;Clinical Significance</h2>
+<section id="statistical-significance-vs.-clinical-significance" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="statistical-significance-vs.-clinical-significance"><span class="header-section-number">8.3</span> 1. Statistical Significance vs.&nbsp;Clinical Significance</h2>
 <p>A statistically significant result (p &lt; 0.05) tells us the observed effect is unlikely to be due to chance. It says nothing about whether the effect is large enough to matter in practice.</p>
 <p>Clinical significance asks: <strong>Is this effect large enough to benefit patients in a meaningful way?</strong></p>
-<section id="a.-the-minimum-clinically-important-difference-mcid" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="a.-the-minimum-clinically-important-difference-mcid"><span class="header-section-number">8.5.1</span> 1a. The minimum clinically important difference (MCID)</h3>
+<section id="a.-the-minimum-clinically-important-difference-mcid" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="a.-the-minimum-clinically-important-difference-mcid"><span class="header-section-number">8.3.1</span> 1a. The minimum clinically important difference (MCID)</h3>
 <p>For the SRQ-20, the MCID — the smallest change a patient would notice and consider beneficial — is typically reported as <strong>3 points</strong> in comparable populations. (Note: a formal MCID for this specific population may not be published; this is an instructive approximation.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit baseline-adjusted ANCOVA for primary outcome</span></span>
@@ -452,8 +459,8 @@ Warning
 </div>
 </div>
 </section>
-<section id="b.-visualizing-the-ci-against-the-mcid" class="level3" data-number="8.5.2">
-<h3 data-number="8.5.2" class="anchored" data-anchor-id="b.-visualizing-the-ci-against-the-mcid"><span class="header-section-number">8.5.2</span> 1b. Visualizing the CI against the MCID</h3>
+<section id="b.-visualizing-the-ci-against-the-mcid" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="b.-visualizing-the-ci-against-the-mcid"><span class="header-section-number">8.3.2</span> 1b. Visualizing the CI against the MCID</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mcid <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span>   <span class="co"># negative because lower SRQ-20 = better</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -485,13 +492,11 @@ Warning
 </div>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="section-2" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="section-2"><span class="header-section-number">8.6</span> ———————————————————————</h2>
-</section>
-<section id="primary-vs.-exploratory-findings" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="primary-vs.-exploratory-findings"><span class="header-section-number">8.7</span> 2. Primary vs.&nbsp;Exploratory Findings</h2>
+<section id="primary-vs.-exploratory-findings" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="primary-vs.-exploratory-findings"><span class="header-section-number">8.4</span> 2. Primary vs.&nbsp;Exploratory Findings</h2>
 <p>The IVAM-ED protocol pre-specified <strong>one primary outcome</strong> (SRQ-20 at 12 weeks) and <strong>five secondary outcomes</strong> (SF-36, SCI-R, PSS, HbA1c, and blood pressure). Only the primary outcome was powered for confirmatory inference.</p>
 <p>The secondary outcomes were described as <strong>exploratory</strong> because: - The trial was not powered to detect effects on secondary outcomes. - Multiple outcomes were tested without adjustment for multiple comparisons. - Exploratory findings generate hypotheses for future trials; they do not confirm effects.</p>
 <div class="cell">
@@ -525,17 +530,15 @@ Estimate...4     PSS Secondary (exploratory) -3.28 (-6.39, -0.16) 0.040
 Estimate...5 HbA1c % Secondary (exploratory) -0.54 (-0.96, -0.12) 0.012</code></pre>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-3" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="section-3"><span class="header-section-number">8.8</span> ———————————————————————</h2>
-</section>
-<section id="multiple-comparisons" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="multiple-comparisons"><span class="header-section-number">8.9</span> 3. Multiple Comparisons</h2>
+<section id="multiple-comparisons" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="multiple-comparisons"><span class="header-section-number">8.5</span> 3. Multiple Comparisons</h2>
 <p>When you test five outcomes at α = 0.05, the probability of getting at least one false positive (by chance alone) is:</p>
 <p><span class="math display">\[1 - (1 - 0.05)^5 = 1 - 0.95^5 \approx 0.226\]</span></p>
 <p>That is, even if none of the interventions have a true effect on the secondary outcomes, we expect about a 23% chance of seeing at least one p &lt; 0.05 among the five tests just by random variation.</p>
-<section id="a.-bonferroni-correction" class="level3" data-number="8.9.1">
-<h3 data-number="8.9.1" class="anchored" data-anchor-id="a.-bonferroni-correction"><span class="header-section-number">8.9.1</span> 3a. Bonferroni correction</h3>
+<section id="a.-bonferroni-correction" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="a.-bonferroni-correction"><span class="header-section-number">8.5.1</span> 3a. Bonferroni correction</h3>
 <p>The simplest multiplicity correction is <strong>Bonferroni</strong>: divide the target α by the number of tests. With 5 tests, the corrected threshold is 0.05 / 5 = 0.01.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>results_all <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
@@ -579,17 +582,15 @@ Note
 <p><strong>What the Bonferroni correction shows:</strong> The primary outcome (SRQ-20) should remain significant under the corrected threshold if p &lt; 0.01. Some secondary outcomes that were significant at 0.05 may no longer meet the stricter threshold. This illustrates why exploratory secondary findings require cautious interpretation and should be labeled as hypothesis-generating rather than confirmatory.</p>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="section-4" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="section-4"><span class="header-section-number">8.10</span> ———————————————————————</h2>
-</section>
-<section id="protocol-to-publication-comparison" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="protocol-to-publication-comparison"><span class="header-section-number">8.11</span> 4. Protocol-to-Publication Comparison</h2>
+<section id="protocol-to-publication-comparison" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="protocol-to-publication-comparison"><span class="header-section-number">8.6</span> 4. Protocol-to-Publication Comparison</h2>
 <p>One of the most important skills in evidence-based medicine is <strong>comparing what was done</strong> (published paper) <strong>to what was planned</strong> (protocol and SAP).</p>
 <p>The IVAM-ED protocol was published in <em>Trials</em> in 2024 (Da Costa et al.) before the results were available. The results paper was published in <em>JAMA Network Open</em> in 2026. Both are in <code>source/extracted/</code>.</p>
-<section id="a.-changes-found-between-the-protocol-and-the-publication" class="level3" data-number="8.11.1">
-<h3 data-number="8.11.1" class="anchored" data-anchor-id="a.-changes-found-between-the-protocol-and-the-publication"><span class="header-section-number">8.11.1</span> 4a. Changes found between the protocol and the publication</h3>
+<section id="a.-changes-found-between-the-protocol-and-the-publication" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="a.-changes-found-between-the-protocol-and-the-publication"><span class="header-section-number">8.6.1</span> 4a. Changes found between the protocol and the publication</h3>
 <p>Below are four specific changes that a careful reader can identify by comparing the two documents. Read the relevant sections in <code>source/extracted/</code> to verify each one.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This code block is a structured record — not analysis output.</span></span>
@@ -653,8 +654,8 @@ Change 4: Secondary outcome p-values
 </div>
 </div>
 </section>
-<section id="b.-are-these-changes-problematic" class="level3" data-number="8.11.2">
-<h3 data-number="8.11.2" class="anchored" data-anchor-id="b.-are-these-changes-problematic"><span class="header-section-number">8.11.2</span> 4b. Are these changes problematic?</h3>
+<section id="b.-are-these-changes-problematic" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="b.-are-these-changes-problematic"><span class="header-section-number">8.6.2</span> 4b. Are these changes problematic?</h3>
 <p>Not all protocol deviations are equal. Consider each on a spectrum:</p>
 <p><strong>Pre-specified but pragmatically adjusted (low concern):</strong> The age and education subgroup cutoff changes were both driven by the actual sample composition — there were simply too few participants in the original categories to analyze. The authors disclosed these changes explicitly in the Results section. This is transparent post-hoc adaptation, not hidden manipulation.</p>
 <p><strong>Added post hoc (moderate concern):</strong> The history of anxiety subgroup was not pre-specified. The authors added it because anxiety had a high prevalence in their sample and the effect appeared notable. This is a legitimate scientific observation but it means the reported subgroup finding has a higher false-positive rate than a pre-specified subgroup. It should be interpreted as hypothesis-generating.</p>
@@ -675,16 +676,16 @@ Important
 <hr>
 </section>
 </section>
-<section id="sample-size-and-power-what-was-planned-vs.-what-was-observed" class="level2" data-number="8.12">
-<h2 data-number="8.12" class="anchored" data-anchor-id="sample-size-and-power-what-was-planned-vs.-what-was-observed"><span class="header-section-number">8.12</span> 5. Sample Size and Power: What Was Planned vs.&nbsp;What Was Observed</h2>
+<section id="sample-size-and-power-what-was-planned-vs.-what-was-observed" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="sample-size-and-power-what-was-planned-vs.-what-was-observed"><span class="header-section-number">8.7</span> 5. Sample Size and Power: What Was Planned vs.&nbsp;What Was Observed</h2>
 <p>The IVAM-ED protocol specified the sample size using three inputs: α = 0.05, power = 90%, and an effect size of <strong>0.68</strong> (Cohen’s d) for the primary outcome. Assuming 20% dropout, this produced the target of <strong>112 participants</strong> (56 per group).</p>
 <p>This section works through that calculation, examines what happens if the true effect size is smaller than planned, and addresses a common but invalid practice: <em>post-hoc power analysis</em>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install pwr if needed: renv::install("pwr")</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="a.-reproducing-the-planned-sample-size" class="level3" data-number="8.12.1">
-<h3 data-number="8.12.1" class="anchored" data-anchor-id="a.-reproducing-the-planned-sample-size"><span class="header-section-number">8.12.1</span> 5a. Reproducing the planned sample size</h3>
+<section id="a.-reproducing-the-planned-sample-size" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="a.-reproducing-the-planned-sample-size"><span class="header-section-number">8.7.1</span> 5a. Reproducing the planned sample size</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reproduce the protocol's sample size calculation</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Two-sample t-test, two-sided, α = 0.05, power = 90%, effect size d = 0.68</span></span>
@@ -738,8 +739,8 @@ Note
 </div>
 </div>
 </section>
-<section id="b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" class="level3" data-number="8.12.2">
-<h3 data-number="8.12.2" class="anchored" data-anchor-id="b.-sensitivity-analysis-what-if-the-true-effect-is-smaller"><span class="header-section-number">8.12.2</span> 5b. Sensitivity analysis: what if the true effect is smaller?</h3>
+<section id="b.-sensitivity-analysis-what-if-the-true-effect-is-smaller" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="b.-sensitivity-analysis-what-if-the-true-effect-is-smaller"><span class="header-section-number">8.7.2</span> 5b. Sensitivity analysis: what if the true effect is smaller?</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Power curve: what is the probability of a significant result across a range</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of true effect sizes, given n = 52 completers per group (observed)?</span></span>
@@ -795,8 +796,8 @@ Warning
 </div>
 </div>
 </section>
-<section id="c.-the-post-hoc-power-fallacy" class="level3" data-number="8.12.3">
-<h3 data-number="8.12.3" class="anchored" data-anchor-id="c.-the-post-hoc-power-fallacy"><span class="header-section-number">8.12.3</span> 5c. The post-hoc power fallacy</h3>
+<section id="c.-the-post-hoc-power-fallacy" class="level3" data-number="8.7.3">
+<h3 data-number="8.7.3" class="anchored" data-anchor-id="c.-the-post-hoc-power-fallacy"><span class="header-section-number">8.7.3</span> 5c. The post-hoc power fallacy</h3>
 <p>After seeing a statistically significant result with an observed mean difference of approximately −1.2 points and a pooled SD of about 4.5, one might be tempted to compute the “observed power” — plugging the observed effect size into the power formula to see whether the study was “adequately powered.”</p>
 <p><strong>This is invalid and should never be done.</strong></p>
 <div class="cell">
@@ -847,8 +848,8 @@ Important
 <hr>
 </section>
 </section>
-<section id="practice-exercises" class="level2" data-number="8.13">
-<h2 data-number="8.13" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">8.13</span> 6. Practice Exercises</h2>
+<section id="practice-exercises" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">8.8</span> 6. Practice Exercises</h2>
 <ol type="1">
 <li><p><strong>Is the SRQ-20 effect clinically significant?</strong> Using the MCID of 3 points, write a two-sentence interpretation of the primary outcome result that conveys both what the data show and what they do not show.</p></li>
 <li><p><strong>Apply Bonferroni to SCI-R.</strong> If the SCI-R (self-care) p-value from your analysis is below 0.05, is it also below the Bonferroni-corrected threshold of 0.01? What language would you use to describe this result in a paper?</p></li>
@@ -856,12 +857,10 @@ Important
 <li><p><strong>Evaluate the post-hoc anxiety subgroup.</strong> The results paper reports that participants with a history of anxiety benefited more (MD −3.72 on SRQ-20) than those without (MD −0.81). This subgroup was added post hoc. Without a pre-specified hypothesis, what are two reasons to be cautious about this finding?</p></li>
 <li><p><strong>Design the next trial.</strong> Based on the IVAM-ED findings, what would you change in the design of a confirmatory follow-up trial? Consider: sample size, outcome selection, subgroup pre-specification, follow-up duration.</p></li>
 </ol>
+<hr>
 </section>
-<section id="section-5" class="level2" data-number="8.14">
-<h2 data-number="8.14" class="anchored" data-anchor-id="section-5"><span class="header-section-number">8.14</span> ———————————————————————</h2>
-</section>
-<section id="summary" class="level2" data-number="8.15">
-<h2 data-number="8.15" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.15</span> Summary</h2>
+<section id="summary" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.9</span> Summary</h2>
 <p>In this final module you:</p>
 <ul>
 <li>Calculated Cohen’s d and compared the effect size to an approximate MCID, distinguishing statistical significance from clinical significance.</li>
@@ -870,12 +869,10 @@ Important
 <li>Compared the published analysis to the pre-registered protocol and identified four specific deviations, evaluating the concern level of each.</li>
 </ul>
 <p><strong>Completing the sequence:</strong> You have now followed the IVAM-ED trial from data structure (Module 1) through descriptive statistics (Module 2), visualization (Module 3), unadjusted estimation (Module 4), ANCOVA (Module 5), missing data (Module 6), and critical appraisal (Module 7). Each module builds on the previous one using the same dataset — illustrating how a complete analysis of a randomized trial unfolds from raw data to published conclusion.</p>
+<hr>
 </section>
-<section id="section-6" class="level2" data-number="8.16">
-<h2 data-number="8.16" class="anchored" data-anchor-id="section-6"><span class="header-section-number">8.16</span> ———————————————————————</h2>
-</section>
-<section id="session-information" class="level2" data-number="8.17">
-<h2 data-number="8.17" class="anchored" data-anchor-id="session-information"><span class="header-section-number">8.17</span> Session Information</h2>
+<section id="session-information" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="session-information"><span class="header-section-number">8.10</span> Session Information</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

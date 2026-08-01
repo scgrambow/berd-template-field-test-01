@@ -26,7 +26,6 @@ By the end of this module you should be able to:
    the results.
 5. Interpret how much the estimates change across the three approaches.
 
----------------------------------------------------------------------
 ---
 
 ## Setup
@@ -45,7 +44,6 @@ library(ggplot2)
 dat <- readRDS("../data/ivam_working.rds")
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 1. Review: Who Is Missing and Why?
@@ -86,7 +84,6 @@ This is our MAR mechanism — missingness is related to the observed baseline
 value, not to the unobserved follow-up value.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 2. Missing Data Mechanisms
@@ -104,7 +101,6 @@ In the IVAM-ED protocol, the authors stated: "the frequency and reasons for
 missing data are expected to be missing at random (MAR)." The three deaths are
 arguably MCAR (unrelated to the outcome); the six lost-to-follow-up are assumed MAR.
 
----------------------------------------------------------------------
 ---
 
 ## 3. Analysis 1: Complete-Case Analysis
@@ -134,7 +130,6 @@ cat(sprintf("  95%% CI: (%.2f, %.2f)\n", cca_ci[1], cca_ci[2]))
 cat(sprintf("  p:     %.4f\n",   cca_coef["Pr(>|t|)"]))
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 4. Analysis 2: Baseline Observation Carried Forward (BOCF)
@@ -176,7 +171,6 @@ imputed follow-up values will be higher than average, pushing both group means u
 and slightly reducing the between-group difference.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 5. Analysis 3: Multiple Imputation (MI)
@@ -233,7 +227,6 @@ very similar estimates. Large divergence would signal that the MAR assumption
 may not hold.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 6. Comparing the Three Approaches
@@ -278,7 +271,6 @@ that both BOCF and complete-case analyses were consistent with the primary MI
 analysis, supporting the robustness of the main result.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 7. Practice Exercises
@@ -299,7 +291,6 @@ analysis, supporting the robustness of the main result.
    analysis produces the widest confidence interval? Why? Which produces the
    narrowest?
 
----------------------------------------------------------------------
 ---
 
 ## Summary
@@ -316,7 +307,6 @@ In this module you:
 examining clinical significance, the distinction between primary and exploratory
 findings, and comparing the published analysis to what the protocol and SAP specified.
 
----------------------------------------------------------------------
 ---
 
 ## Session Information

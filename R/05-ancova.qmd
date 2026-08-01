@@ -27,7 +27,6 @@ By the end of this module you should be able to:
 4. Report results in the format used in the published paper (Table 2).
 5. Understand what "adjusted mean" means and how it differs from an observed mean.
 
----------------------------------------------------------------------
 ---
 
 ## Setup
@@ -46,7 +45,6 @@ dat        <- readRDS("../data/ivam_working.rds")
 completers <- filter(dat, missing_12wk == 0)   # 103 participants
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 1. Why Adjust for Baseline?
@@ -82,7 +80,6 @@ model can therefore reduce the residual variance by roughly half, which substant
 narrows the confidence interval for the treatment effect.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 2. The Baseline-Adjusted ANCOVA Model
@@ -142,7 +139,8 @@ initially calibrated at the *control group's* baseline mean rather than the
 specified treatment effect, making the raw follow-up means nearly identical
 between groups. The fix — centering the baseline covariate at the grand mean —
 is exactly what this section demonstrates: adjusted means are estimated at the
-grand mean, not the group mean. See `simulation-refinements.md` for the full
+grand mean, not the group mean. See
+[simulation-refinements.md](../simulation-refinements.md) for the full
 diagnosis and the before/after code.
 :::
 
@@ -231,7 +229,6 @@ The adjusted means represent what the expected follow-up score would be for a
 "typical" participant (at the grand mean of the baseline) in each group.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 4. The Fully Adjusted Model
@@ -281,7 +278,6 @@ data.frame(
   when the additional covariates explain residual variance.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 5. Replicating Table 2: All Outcomes
@@ -351,7 +347,6 @@ real data. The key patterns to confirm:
 - HbA1c: negative MD, p < 0.05 (significant)
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 6. Visualizing Adjusted vs. Unadjusted Estimates
@@ -404,7 +399,6 @@ ggplot(compare, aes(x = MD, xmin = lo, xmax = hi, y = Model)) +
   gain from baseline adjustment.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 7. Practice Exercises
@@ -428,7 +422,6 @@ ggplot(compare, aes(x = MD, xmin = lo, xmax = hi, y = Model)) +
    coefficients) have fewer? What is the practical consequence of having fewer
    degrees of freedom?
 
----------------------------------------------------------------------
 ---
 
 ## Summary
@@ -446,7 +439,6 @@ In this module you:
 **Next:** Module 6 examines missing data — how the 9 missing participants affect
 the analysis and what sensitivity analyses can tell us about robustness.
 
----------------------------------------------------------------------
 ---
 
 ## Session Information

@@ -235,8 +235,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,26 +270,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">6.1</span> Overview</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">6.2</span> ———————————————————————</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">6.3</span> Setup</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">6.4</span> ———————————————————————</a></li>
-  <li><a href="#why-adjust-for-baseline" id="toc-why-adjust-for-baseline" class="nav-link" data-scroll-target="#why-adjust-for-baseline"><span class="header-section-number">6.5</span> 1. Why Adjust for Baseline?</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">6.6</span> ———————————————————————</a></li>
-  <li><a href="#the-baseline-adjusted-ancova-model" id="toc-the-baseline-adjusted-ancova-model" class="nav-link" data-scroll-target="#the-baseline-adjusted-ancova-model"><span class="header-section-number">6.7</span> 2. The Baseline-Adjusted ANCOVA Model</a></li>
-  <li><a href="#b.-check-model-assumptions" id="toc-b.-check-model-assumptions" class="nav-link" data-scroll-target="#b.-check-model-assumptions"><span class="header-section-number">6.8</span> 2b. Check Model Assumptions</a></li>
-  <li><a href="#adjusted-means" id="toc-adjusted-means" class="nav-link" data-scroll-target="#adjusted-means"><span class="header-section-number">6.9</span> 3. Adjusted Means</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">6.10</span> ———————————————————————</a></li>
-  <li><a href="#the-fully-adjusted-model" id="toc-the-fully-adjusted-model" class="nav-link" data-scroll-target="#the-fully-adjusted-model"><span class="header-section-number">6.11</span> 4. The Fully Adjusted Model</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">6.12</span> ———————————————————————</a></li>
-  <li><a href="#replicating-table-2-all-outcomes" id="toc-replicating-table-2-all-outcomes" class="nav-link" data-scroll-target="#replicating-table-2-all-outcomes"><span class="header-section-number">6.13</span> 5. Replicating Table 2: All Outcomes</a></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">6.14</span> ———————————————————————</a></li>
-  <li><a href="#visualizing-adjusted-vs.-unadjusted-estimates" id="toc-visualizing-adjusted-vs.-unadjusted-estimates" class="nav-link" data-scroll-target="#visualizing-adjusted-vs.-unadjusted-estimates"><span class="header-section-number">6.15</span> 6. Visualizing Adjusted vs.&nbsp;Unadjusted Estimates</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">6.16</span> ———————————————————————</a></li>
-  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">6.17</span> 7. Practice Exercises</a></li>
-  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">6.18</span> ———————————————————————</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.19</span> Summary</a></li>
-  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">6.20</span> ———————————————————————</a></li>
-  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">6.21</span> Session Information</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">6.2</span> Setup</a></li>
+  <li><a href="#why-adjust-for-baseline" id="toc-why-adjust-for-baseline" class="nav-link" data-scroll-target="#why-adjust-for-baseline"><span class="header-section-number">6.3</span> 1. Why Adjust for Baseline?</a></li>
+  <li><a href="#the-baseline-adjusted-ancova-model" id="toc-the-baseline-adjusted-ancova-model" class="nav-link" data-scroll-target="#the-baseline-adjusted-ancova-model"><span class="header-section-number">6.4</span> 2. The Baseline-Adjusted ANCOVA Model</a></li>
+  <li><a href="#b.-check-model-assumptions" id="toc-b.-check-model-assumptions" class="nav-link" data-scroll-target="#b.-check-model-assumptions"><span class="header-section-number">6.5</span> 2b. Check Model Assumptions</a></li>
+  <li><a href="#adjusted-means" id="toc-adjusted-means" class="nav-link" data-scroll-target="#adjusted-means"><span class="header-section-number">6.6</span> 3. Adjusted Means</a></li>
+  <li><a href="#the-fully-adjusted-model" id="toc-the-fully-adjusted-model" class="nav-link" data-scroll-target="#the-fully-adjusted-model"><span class="header-section-number">6.7</span> 4. The Fully Adjusted Model</a></li>
+  <li><a href="#replicating-table-2-all-outcomes" id="toc-replicating-table-2-all-outcomes" class="nav-link" data-scroll-target="#replicating-table-2-all-outcomes"><span class="header-section-number">6.8</span> 5. Replicating Table 2: All Outcomes</a></li>
+  <li><a href="#visualizing-adjusted-vs.-unadjusted-estimates" id="toc-visualizing-adjusted-vs.-unadjusted-estimates" class="nav-link" data-scroll-target="#visualizing-adjusted-vs.-unadjusted-estimates"><span class="header-section-number">6.9</span> 6. Visualizing Adjusted vs.&nbsp;Unadjusted Estimates</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">6.10</span> 7. Practice Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">6.11</span> Summary</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">6.12</span> Session Information</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/R/05-ancova.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -298,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">July 31, 2026</p>
     </div>
   </div>
   
@@ -321,12 +330,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Report results in the format used in the published paper (Table 2).</li>
 <li>Understand what “adjusted mean” means and how it differs from an observed mean.</li>
 </ol>
+<hr>
 </section>
-<section id="section" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="section"><span class="header-section-number">6.2</span> ———————————————————————</h2>
-</section>
-<section id="setup" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">6.3</span> Setup</h2>
+<section id="setup" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">6.2</span> Setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -335,12 +342,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat        <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/ivam_working.rds"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>completers <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>)   <span class="co"># 103 participants</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<hr>
 </section>
-<section id="section-1" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">6.4</span> ———————————————————————</h2>
-</section>
-<section id="why-adjust-for-baseline" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="why-adjust-for-baseline"><span class="header-section-number">6.5</span> 1. Why Adjust for Baseline?</h2>
+<section id="why-adjust-for-baseline" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="why-adjust-for-baseline"><span class="header-section-number">6.3</span> 1. Why Adjust for Baseline?</h2>
 <p>When participants are randomized, the two groups are <em>expected</em> to be balanced at baseline on average — but in any finite sample, chance imbalances occur. In our simulated data (and the real IVAM-ED trial), the intervention group started with a slightly higher SRQ-20 score than the control group.</p>
 <p><strong>Two consequences of baseline imbalance:</strong></p>
 <ol type="1">
@@ -367,12 +372,10 @@ Note
 <p><strong>Interpreting the correlation:</strong> A value near 0.7 means that knowing a participant’s baseline score explains about 49% of the variance in their follow-up score (r² = 0.70² ≈ 0.49). Including the baseline in the regression model can therefore reduce the residual variance by roughly half, which substantially narrows the confidence interval for the treatment effect.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-2" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="section-2"><span class="header-section-number">6.6</span> ———————————————————————</h2>
-</section>
-<section id="the-baseline-adjusted-ancova-model" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="the-baseline-adjusted-ancova-model"><span class="header-section-number">6.7</span> 2. The Baseline-Adjusted ANCOVA Model</h2>
+<section id="the-baseline-adjusted-ancova-model" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="the-baseline-adjusted-ancova-model"><span class="header-section-number">6.4</span> 2. The Baseline-Adjusted ANCOVA Model</h2>
 <p>The baseline-adjusted ANCOVA model includes two predictors: - <code>group</code>: the randomized treatment assignment (1 = intervention, 0 = control) - <code>srq20_0</code>: the participant’s SRQ-20 score at baseline</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline-adjusted model: y_12 ~ group + y_0</span></span>
@@ -452,12 +455,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Why the intercept must be calibrated at the grand mean — and what went wrong the first time:</strong> When building the synthetic dataset, the ANCOVA intercept was initially calibrated at the <em>control group’s</em> baseline mean rather than the <em>grand mean</em>. A 1.1-point baseline imbalance almost completely offset the specified treatment effect, making the raw follow-up means nearly identical between groups. The fix — centering the baseline covariate at the grand mean — is exactly what this section demonstrates: adjusted means are estimated at the grand mean, not the group mean. See <code>simulation-refinements.md</code> for the full diagnosis and the before/after code.</p>
+<p><strong>Why the intercept must be calibrated at the grand mean — and what went wrong the first time:</strong> When building the synthetic dataset, the ANCOVA intercept was initially calibrated at the <em>control group’s</em> baseline mean rather than the <em>grand mean</em>. A 1.1-point baseline imbalance almost completely offset the specified treatment effect, making the raw follow-up means nearly identical between groups. The fix — centering the baseline covariate at the grand mean — is exactly what this section demonstrates: adjusted means are estimated at the grand mean, not the group mean. See <a href="../simulation-refinements.html">simulation-refinements.md</a> for the full diagnosis and the before/after code.</p>
 </div>
 </div>
 </section>
-<section id="b.-check-model-assumptions" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="b.-check-model-assumptions"><span class="header-section-number">6.8</span> 2b. Check Model Assumptions</h2>
+<section id="b.-check-model-assumptions" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="b.-check-model-assumptions"><span class="header-section-number">6.5</span> 2b. Check Model Assumptions</h2>
 <p>Before interpreting ANCOVA results, verify the two key linear regression assumptions: residuals are approximately normally distributed, and residual variance is roughly constant across fitted values (homoscedasticity).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard residual diagnostic plots for the baseline-adjusted ANCOVA</span></span>
@@ -501,8 +504,8 @@ Note
 </div>
 <hr>
 </section>
-<section id="adjusted-means" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="adjusted-means"><span class="header-section-number">6.9</span> 3. Adjusted Means</h2>
+<section id="adjusted-means" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="adjusted-means"><span class="header-section-number">6.6</span> 3. Adjusted Means</h2>
 <p>The ANCOVA model produces <strong>adjusted means</strong> — the estimated group means at follow-up after accounting for baseline differences. These are what the paper reports in Table 2 as “Adjusted mean (SE)”.</p>
 <p>The adjusted means are evaluated at the <strong>grand mean</strong> of the baseline covariate (not the group-specific mean). This removes the effect of any baseline imbalance.</p>
 <div class="cell">
@@ -551,12 +554,10 @@ Note
 <p><strong>Why adjusted means differ from raw means:</strong> The raw follow-up means reflect which participants ended up in each group, including any baseline imbalance. The adjusted means represent what the expected follow-up score would be for a “typical” participant (at the grand mean of the baseline) in each group.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-3" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="section-3"><span class="header-section-number">6.10</span> ———————————————————————</h2>
-</section>
-<section id="the-fully-adjusted-model" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="the-fully-adjusted-model"><span class="header-section-number">6.11</span> 4. The Fully Adjusted Model</h2>
+<section id="the-fully-adjusted-model" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="the-fully-adjusted-model"><span class="header-section-number">6.7</span> 4. The Fully Adjusted Model</h2>
 <p>The protocol specified a <strong>fully adjusted</strong> model that additionally controls for: age, sex, years of education, individual income, and MMSE score. These variables are included to account for any remaining between-group differences that could influence the outcome.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fully adjusted model: adds age, sex, education, income, MMSE as covariates</span></span>
@@ -635,12 +636,10 @@ Note
 </ul>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-4" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="section-4"><span class="header-section-number">6.12</span> ———————————————————————</h2>
-</section>
-<section id="replicating-table-2-all-outcomes" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="replicating-table-2-all-outcomes"><span class="header-section-number">6.13</span> 5. Replicating Table 2: All Outcomes</h2>
+<section id="replicating-table-2-all-outcomes" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="replicating-table-2-all-outcomes"><span class="header-section-number">6.8</span> 5. Replicating Table 2: All Outcomes</h2>
 <p>The paper’s Table 2 reports baseline-adjusted and fully adjusted results for all five outcomes. Here we fit the baseline-adjusted model for each and compile the results.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper: fit ANCOVA for one outcome and return a tidy summary row</span></span>
@@ -720,12 +719,10 @@ Note
 </ul>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-5" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="section-5"><span class="header-section-number">6.14</span> ———————————————————————</h2>
-</section>
-<section id="visualizing-adjusted-vs.-unadjusted-estimates" class="level2" data-number="6.15">
-<h2 data-number="6.15" class="anchored" data-anchor-id="visualizing-adjusted-vs.-unadjusted-estimates"><span class="header-section-number">6.15</span> 6. Visualizing Adjusted vs.&nbsp;Unadjusted Estimates</h2>
+<section id="visualizing-adjusted-vs.-unadjusted-estimates" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="visualizing-adjusted-vs.-unadjusted-estimates"><span class="header-section-number">6.9</span> 6. Visualizing Adjusted vs.&nbsp;Unadjusted Estimates</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Collect unadjusted and adjusted MDs for SRQ-20</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>unadj_t  <span class="ot">&lt;-</span> <span class="fu">t.test</span>(srq20_12 <span class="sc">~</span> group_label, <span class="at">data =</span> completers)</span>
@@ -783,24 +780,20 @@ Note
 </ul>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-6" class="level2" data-number="6.16">
-<h2 data-number="6.16" class="anchored" data-anchor-id="section-6"><span class="header-section-number">6.16</span> ———————————————————————</h2>
-</section>
-<section id="practice-exercises" class="level2" data-number="6.17">
-<h2 data-number="6.17" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">6.17</span> 7. Practice Exercises</h2>
+<section id="practice-exercises" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">6.10</span> 7. Practice Exercises</h2>
 <ol type="1">
 <li><p><strong>Coefficient interpretation.</strong> Write one sentence interpreting the <code>group</code> coefficient from the baseline-adjusted ANCOVA as you would in a results section of a paper.</p></li>
 <li><p><strong>Baseline coefficient.</strong> The <code>srq20_0</code> coefficient in the ANCOVA model is approximately 0.70. What does this tell you about the relationship between baseline and follow-up SRQ-20 scores?</p></li>
 <li><p><strong>Adjusted means by hand.</strong> Using the estimated coefficients from <code>model_base</code>, predict the adjusted mean SRQ-20 at 12 weeks for a participant in the control group (<code>group = 0</code>) with a baseline SRQ-20 equal to the grand mean. Does this match the output from Section 3?</p></li>
 <li><p><strong>Degrees of freedom.</strong> The baseline-adjusted model has 103 observations and estimates 3 coefficients (intercept, group, baseline). How many residual degrees of freedom does it have? Why does the fully adjusted model (7 coefficients) have fewer? What is the practical consequence of having fewer degrees of freedom?</p></li>
 </ol>
+<hr>
 </section>
-<section id="section-7" class="level2" data-number="6.18">
-<h2 data-number="6.18" class="anchored" data-anchor-id="section-7"><span class="header-section-number">6.18</span> ———————————————————————</h2>
-</section>
-<section id="summary" class="level2" data-number="6.19">
-<h2 data-number="6.19" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.19</span> Summary</h2>
+<section id="summary" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="summary"><span class="header-section-number">6.11</span> Summary</h2>
 <p>In this module you:</p>
 <ul>
 <li>Explained why ANCOVA is preferred over an unadjusted t-test in a randomized trial with continuous outcomes.</li>
@@ -810,12 +803,10 @@ Note
 <li>Visualized the precision gain from baseline adjustment.</li>
 </ul>
 <p><strong>Next:</strong> Module 6 examines missing data — how the 9 missing participants affect the analysis and what sensitivity analyses can tell us about robustness.</p>
+<hr>
 </section>
-<section id="section-8" class="level2" data-number="6.20">
-<h2 data-number="6.20" class="anchored" data-anchor-id="section-8"><span class="header-section-number">6.20</span> ———————————————————————</h2>
-</section>
-<section id="session-information" class="level2" data-number="6.21">
-<h2 data-number="6.21" class="anchored" data-anchor-id="session-information"><span class="header-section-number">6.21</span> Session Information</h2>
+<section id="session-information" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="session-information"><span class="header-section-number">6.12</span> Session Information</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

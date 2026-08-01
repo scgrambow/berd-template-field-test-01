@@ -5,7 +5,7 @@ created: 2026-07-31
 author: Steve Grambow, Duke BERD Core
 ---
 
-# Building a Teaching Repository with AI Assistance: A Process Essay
+# Building a Teaching Repository with AI Assistance: A Process Essay {.unnumbered}
 
 *A reflective account of developing the IVAM-ED CRP 241 teaching case using
 GitHub Copilot, from selecting a published trial to deploying a rendered Quarto

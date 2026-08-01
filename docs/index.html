@@ -263,8 +263,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -361,7 +379,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">July 31, 2026</p>
     </div>
   </div>
   
@@ -424,7 +442,7 @@ window.Quarto = {
 <li><strong>Governance:</strong> The BERD AI pilot’s <code>AGENTS.md</code> operating contract governed what the agent could do autonomously (write and edit files, run terminal commands, render) versus what required instructor confirmation (git commit, git push, package installation, file deletion).</li>
 <li><strong>Content accuracy:</strong> The instructor reviewed the simulation parameters, the module content, and the book structure. All numbers were verified against the published source documents before use.</li>
 </ul>
-<p>When the instructor was unavailable to answer interview questions (during the bootstrap phase), the agent documented its assumptions explicitly in <code>SESSION_LOG.md</code> and <code>simulation-assumptions.md</code>, and flagged them for instructor review rather than proceeding silently.</p>
+<p>When the instructor was unavailable to answer interview questions (during the bootstrap phase), the agent documented its assumptions explicitly in <code>SESSION_LOG.md</code> and <a href="./simulation-assumptions.html">simulation-assumptions.md</a>, and flagged them for instructor review rather than proceeding silently.</p>
 </section>
 <section id="what-the-ai-contributed" class="level3" data-number="0.0.4">
 <h3 data-number="0.0.4" class="anchored" data-anchor-id="what-the-ai-contributed"><span class="header-section-number">0.0.4</span> What the AI contributed</h3>
@@ -444,7 +462,7 @@ window.Quarto = {
 </ul>
 <p>The reproducibility of this repository rests on these standards and templates, not just on the code. Anyone who clones this repository gets the same governance framework, the same operating rules, and the same documentation conventions. The Tier 2 data posture declaration, the <code>.gitignore</code> data exclusions, and the <code>renv.lock</code> package manifest are all products of standards that existed before this teaching case was built.</p>
 <p>This architecture reflects a core principle of the BERD AI pilot: AI-assisted work is reproducible when the <em>process</em> is documented, not just the <em>product</em>.</p>
-<p>The full session history, including every decision, file change, and command executed, is in <code>SESSION_LOG.md</code>. The simulation construction process is documented in <code>simulation-assumptions.md</code> and <code>simulation-refinements.md</code>. The repository itself is the audit trail.</p>
+<p>The full session history, including every decision, file change, and command executed, is in <code>SESSION_LOG.md</code>. The simulation construction process is documented in <a href="./simulation-assumptions.html">simulation-assumptions.md</a> and <a href="./simulation-refinements.html">simulation-refinements.md</a>. The repository itself is the audit trail. A reflective account of the full build process — case selection through deployment — is in the <a href="./pedagogical-essay.html">Process Essay</a> appendix.</p>
 <hr>
 </section>
 </section>
@@ -552,14 +570,14 @@ window.Quarto = {
 <li><p><strong>ANCOVA-generating model.</strong> Follow-up outcomes were simulated using: <span class="math display">\[y_{12,i} = \alpha + \tau \cdot \text{group}_i + \beta \cdot (y_{0,i} - \bar{y}_0) + \varepsilon_i\]</span> where <span class="math inline">\(\tau\)</span> is taken directly from the published Table 2 baseline-adjusted mean differences, <span class="math inline">\(\beta = 0.70\)</span> (a standard test-retest correlation for 12-week clinical outcomes), and <span class="math inline">\(\alpha\)</span> equals the published control-group adjusted mean.</p></li>
 <li><p><strong>MAR missingness.</strong> The 9 missing participants (5 control, 4 intervention) are assigned deterministically — those with the highest baseline SRQ-20 within each group — reflecting a clinically plausible missing-at-random mechanism.</p></li>
 </ol>
-<p>Full simulation parameter documentation is in <code>simulation-assumptions.md</code>.</p>
+<p>Full simulation parameter documentation is in the <a href="./simulation-assumptions.html">Simulation Assumptions</a> appendix.</p>
 </section>
 <section id="simulation-refinement" class="level3" data-number="0.0.19">
 <h3 data-number="0.0.19" class="anchored" data-anchor-id="simulation-refinement"><span class="header-section-number">0.0.19</span> Simulation refinement</h3>
 <p>The simulation required two debugging cycles before producing correct output. Both bugs were caught by the verification summary printed at the end of the script:</p>
 <p><strong>Bug 1 (ANCOVA centering):</strong> The intercept was initially calibrated at the <em>control group’s</em> baseline mean rather than the <em>grand mean</em>, causing the treatment effect (<span class="math inline">\(\tau\)</span>) to be almost entirely offset by chance baseline imbalance in the simulated data. Fix: center the baseline covariate at the grand mean so that <span class="math inline">\(\alpha\)</span> directly equals the published control-group adjusted mean.</p>
 <p><strong>Bug 2 (missingness split):</strong> A probabilistic logistic model for missingness assigned 1 and 8 missing participants to the two groups instead of the target 4 and 5. Fix: deterministic rank-based selection within each group.</p>
-<p>After both fixes, the ANCOVA recovers an adjusted MD of −1.19 (published: −1.28), which is close enough for a teaching dataset. The full debugging narrative — including the mathematical diagnosis for each bug — is in <code>simulation-refinements.md</code>. This document is part of the teaching case: it illustrates the verify–diagnose–fix–re-verify cycle that applies to any quantitative analysis.</p>
+<p>After both fixes, the ANCOVA recovers an adjusted MD of −1.19 (published: −1.28), which is close enough for a teaching dataset. The full debugging narrative — including the mathematical diagnosis for each bug — is in the <a href="./simulation-refinements.html">Simulation Refinements</a> appendix. This document is part of the teaching case: it illustrates the verify–diagnose–fix–re-verify cycle that applies to any quantitative analysis.</p>
 <hr>
 </section>
 </section>
@@ -701,7 +719,7 @@ window.Quarto = {
 <p><strong>Work sequentially.</strong> Each module depends on the data and concepts established in the previous one. Module 2 loads the working dataset created by Module 1; Modules 3–8 use the same <code>completers</code> object.</p>
 <p><strong>Changing the seed.</strong> <code>set.seed(241)</code> in <code>R/simulate-ivam-ed.R</code> produces identical data for all students. To assign different datasets to different student groups, change the seed number before distributing. Document the seed you used in your course materials.</p>
 <p><strong>Answer key.</strong> The <a href="./R/A1-answer-key.html">Answer Key</a> appendix provides worked solutions. These answers are based on <code>set.seed(241)</code> — update key values if you distribute a different seed.</p>
-<p><strong>Simulation documentation.</strong> See <code>simulation-assumptions.md</code> for the full parameter table (every number linked to a paper table), and <code>simulation-refinements.md</code> for the debugging narrative (useful for advanced students or instructor background).</p>
+<p><strong>Simulation documentation.</strong> See the <a href="./simulation-assumptions.html">Simulation Assumptions</a> appendix for the full parameter table (every number linked to a paper table), and <a href="./simulation-refinements.html">Simulation Refinements</a> for the debugging narrative (useful for advanced students or instructor background). The <a href="./pedagogical-essay.html">Process Essay</a> appendix reflects on how the repository itself — governance, source extraction, simulation design — was built with AI assistance.</p>
 </div>
 </div>
 </div>
@@ -715,7 +733,7 @@ window.Quarto = {
 <li>Matzenbacher et al.&nbsp;(2026). <em>JAMA Network Open</em>. doi:10.1001/jamanetworkopen.2025.53508</li>
 <li>Da Costa et al.&nbsp;(2024). <em>Trials</em>. doi:10.1186/s13063-024-08055-3</li>
 </ul>
-<p>The synthetic dataset and all analysis code in this repository were generated for teaching purposes and do not represent reconstructed individual participant data. Students should cite both source publications when reporting results derived from this teaching case (see suggested citation language in <code>simulation-assumptions.md</code>).</p>
+<p>The synthetic dataset and all analysis code in this repository were generated for teaching purposes and do not represent reconstructed individual participant data. Students should cite both source publications when reporting results derived from this teaching case (see suggested citation language in <a href="./simulation-assumptions.html">simulation-assumptions.md</a>).</p>
 <p>This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2) using GitHub Copilot Business with synthetic data only.</p>
 
 

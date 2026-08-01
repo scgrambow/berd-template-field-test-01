@@ -32,7 +32,6 @@ By the end of this module you should be able to:
 4. Compare the published IVAM-ED analysis to its pre-registered protocol and
    identify at least three deviations.
 
----------------------------------------------------------------------
 ---
 
 ## Setup
@@ -51,7 +50,6 @@ dat        <- readRDS("../data/ivam_working.rds")
 completers <- filter(dat, missing_12wk == 0)
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 1. Statistical Significance vs. Clinical Significance
@@ -140,7 +138,6 @@ ggplot(data.frame(MD = md, lo = ci[1], hi = ci[2]),
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 2. Primary vs. Exploratory Findings
@@ -180,7 +177,6 @@ bind_rows(
 )
 ```
 
----------------------------------------------------------------------
 ---
 
 ## 3. Multiple Comparisons
@@ -226,7 +222,6 @@ This illustrates why exploratory secondary findings require cautious interpretat
 and should be labeled as hypothesis-generating rather than confirmatory.
 :::
 
----------------------------------------------------------------------
 ---
 
 ## 4. Protocol-to-Publication Comparison
@@ -508,7 +503,6 @@ discourage post-hoc power analysis. The key reference is Hoenig & Heisey (2001),
    change in the design of a confirmatory follow-up trial? Consider: sample size,
    outcome selection, subgroup pre-specification, follow-up duration.
 
----------------------------------------------------------------------
 ---
 
 ## Summary
@@ -531,7 +525,6 @@ structure (Module 1) through descriptive statistics (Module 2), visualization
 one using the same dataset — illustrating how a complete analysis of a randomized
 trial unfolds from raw data to published conclusion.
 
----------------------------------------------------------------------
 ---
 
 ## Session Information

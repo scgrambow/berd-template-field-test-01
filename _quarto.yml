@@ -25,7 +25,10 @@ book:
         - R/08-capstone.qmd
   appendices:
     - R/A1-answer-key.qmd
+    - simulation-assumptions.md
+    - simulation-refinements.md
     - references.qmd
+    - pedagogical-essay.md
 
 format:
   html:

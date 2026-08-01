@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Steve Grambow, Duke BERD Core">
+
+<title>Appendix E — Building a Teaching Repository with AI Assistance: A Process Essay – IVAM-ED: A CRP 241 Teaching Case</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R/A1-answer-key.html">Appendices</a></li><li class="breadcrumb-item"><a href="./pedagogical-essay.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">IVAM-ED: A CRP 241 Teaching Case</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/scgrambow/berd-template-field-test-01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analysis Modules</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/01-data-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Data Setup and Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/02-descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Descriptive Statistics and Baseline Characteristics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/03-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Module 3: Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/04-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Estimation and Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/05-ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/06-missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Module 6: Missing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/07-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pedagogical-essay.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#building-a-teaching-repository-with-ai-assistance-a-process-essay" id="toc-building-a-teaching-repository-with-ai-assistance-a-process-essay" class="nav-link active" data-scroll-target="#building-a-teaching-repository-with-ai-assistance-a-process-essay">Building a Teaching Repository with AI Assistance: A Process Essay</a>
+  <ul class="collapse">
+  <li><a href="#starting-point-what-we-were-trying-to-build" id="toc-starting-point-what-we-were-trying-to-build" class="nav-link" data-scroll-target="#starting-point-what-we-were-trying-to-build"><span class="header-section-number">E.1</span> Starting Point: What We Were Trying to Build</a></li>
+  <li><a href="#selecting-the-paper-why-ivam-ed" id="toc-selecting-the-paper-why-ivam-ed" class="nav-link" data-scroll-target="#selecting-the-paper-why-ivam-ed"><span class="header-section-number">E.2</span> Selecting the Paper: Why IVAM-ED</a></li>
+  <li><a href="#the-repository-architecture-decision" id="toc-the-repository-architecture-decision" class="nav-link" data-scroll-target="#the-repository-architecture-decision"><span class="header-section-number">E.3</span> The Repository Architecture Decision</a></li>
+  <li><a href="#extracting-the-source-documents" id="toc-extracting-the-source-documents" class="nav-link" data-scroll-target="#extracting-the-source-documents"><span class="header-section-number">E.4</span> Extracting the Source Documents</a></li>
+  <li><a href="#building-the-simulation-moment-matching-and-its-limits" id="toc-building-the-simulation-moment-matching-and-its-limits" class="nav-link" data-scroll-target="#building-the-simulation-moment-matching-and-its-limits"><span class="header-section-number">E.5</span> Building the Simulation: Moment Matching and Its Limits</a></li>
+  <li><a href="#the-debugging-cycles-what-we-learned" id="toc-the-debugging-cycles-what-we-learned" class="nav-link" data-scroll-target="#the-debugging-cycles-what-we-learned"><span class="header-section-number">E.6</span> The Debugging Cycles: What We Learned</a></li>
+  <li><a href="#the-module-architecture-one-study-seven-angles" id="toc-the-module-architecture-one-study-seven-angles" class="nav-link" data-scroll-target="#the-module-architecture-one-study-seven-angles"><span class="header-section-number">E.7</span> The Module Architecture: One Study, Seven Angles</a></li>
+  <li><a href="#the-quarto-book-why-not-just-modules" id="toc-the-quarto-book-why-not-just-modules" class="nav-link" data-scroll-target="#the-quarto-book-why-not-just-modules"><span class="header-section-number">E.8</span> The Quarto Book: Why Not Just Modules?</a></li>
+  <li><a href="#what-ai-assisted-development-looked-like-in-practice" id="toc-what-ai-assisted-development-looked-like-in-practice" class="nav-link" data-scroll-target="#what-ai-assisted-development-looked-like-in-practice"><span class="header-section-number">E.9</span> What AI-Assisted Development Looked Like in Practice</a></li>
+  <li><a href="#what-future-iterations-should-consider" id="toc-what-future-iterations-should-consider" class="nav-link" data-scroll-target="#what-future-iterations-should-consider"><span class="header-section-number">E.10</span> What Future Iterations Should Consider</a></li>
+  <li><a href="#a-note-on-transparency-as-pedagogy" id="toc-a-note-on-transparency-as-pedagogy" class="nav-link" data-scroll-target="#a-note-on-transparency-as-pedagogy"><span class="header-section-number">E.11</span> A Note on Transparency as Pedagogy</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/pedagogical-essay.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R/A1-answer-key.html">Appendices</a></li><li class="breadcrumb-item"><a href="./pedagogical-essay.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Appendix E — Building a Teaching Repository with AI Assistance: A Process Essay</h1>
+<p class="subtitle lead">From Case Selection Through Published Quarto Book</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Steve Grambow, Duke BERD Core </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="building-a-teaching-repository-with-ai-assistance-a-process-essay" class="level1 unnumbered">
+<h1 class="unnumbered">Building a Teaching Repository with AI Assistance: A Process Essay</h1>
+<p><em>A reflective account of developing the IVAM-ED CRP 241 teaching case using GitHub Copilot, from selecting a published trial to deploying a rendered Quarto book on GitHub Pages — in a single working session.</em></p>
+<hr>
+<section id="starting-point-what-we-were-trying-to-build" class="level2" data-number="E.1">
+<h2 data-number="E.1" class="anchored" data-anchor-id="starting-point-what-we-were-trying-to-build"><span class="header-section-number">E.1</span> Starting Point: What We Were Trying to Build</h2>
+<p>The goal was to construct a complete, reproducible, student-ready teaching case for CRP 241, an introductory clinical research methods course. The pedagogical ambition was high: rather than isolated coding exercises, we wanted a single published clinical trial to anchor an entire course arc — from raw data structure through regression modeling, missing data, and critical appraisal. Students would follow one investigation from beginning to end, building statistical concepts on a foundation they already understood.</p>
+<p>The practical constraints were equally real. We had no real participant data, no pre-existing dataset, and no guarantee that any particular paper would lend itself to the full range of topics we needed to cover. We were starting from a blank repository.</p>
+<hr>
+</section>
+<section id="selecting-the-paper-why-ivam-ed" class="level2" data-number="E.2">
+<h2 data-number="E.2" class="anchored" data-anchor-id="selecting-the-paper-why-ivam-ed"><span class="header-section-number">E.2</span> Selecting the Paper: Why IVAM-ED</h2>
+<p>The selection of the IVAM-ED trial was not arbitrary. Several papers were considered. The criteria were explicit:</p>
+<p><strong>Clinical accessibility.</strong> The intervention — a voice-activated Amazon Echo Dot programmed with reminders and health content — is immediately comprehensible to any student, regardless of clinical specialty. The problem (older adults with diabetes and mental health risk) is recognizable; the solution (a smart speaker) is familiar from everyday life. Students don’t need background knowledge to engage with the question.</p>
+<p><strong>Statistical tractability for beginners.</strong> The trial is a clean two-group randomized design with a single pre-specified primary outcome and a 12-week follow-up. The primary analysis is ANCOVA — a model that every student in an introductory research methods course will encounter. The secondary outcomes provide material for discussions of multiple comparisons without becoming methodologically overwhelming.</p>
+<p><strong>Documentation richness.</strong> This was the decisive criterion. The paper came with a pre-registered protocol and SAP published in <em>Trials</em> in 2024, before results were known. Having both a pre-registration and a results paper made it possible to build Module 7 — the protocol-to-publication comparison — which is perhaps the most important critical-appraisal exercise in the course. Few papers offer this combination at the introductory level.</p>
+<p><strong>Open access.</strong> Both publications are CC-BY 4.0. This means the course repository can be public, the source documents can be distributed, and students can cite the real papers. This is not a minor point: it affects the entire pedagogical posture of the course. Students are working with real published science, not a textbook example, and the research is accessible to anyone who wants to verify it.</p>
+<hr>
+</section>
+<section id="the-repository-architecture-decision" class="level2" data-number="E.3">
+<h2 data-number="E.3" class="anchored" data-anchor-id="the-repository-architecture-decision"><span class="header-section-number">E.3</span> The Repository Architecture Decision</h2>
+<p>Before writing a single line of code, we established a repository structure using the BERD AI Repository Starter — a scaffold developed for the Duke BERD Core’s GitHub Copilot pilot program. This was a deliberate choice, not an afterthought.</p>
+<p>The starter provides an <code>AGENTS.md</code> operating contract: a document that tells any AI coding tool what it can do autonomously, what requires human confirmation, and what it must never do. In a teaching context, this matters in at least two ways.</p>
+<p>First, it enforces data hygiene at the infrastructure level. The <code>.gitignore</code> that the bootstrap generates categorically excludes all data file extensions and the <code>data/</code> directory. The simulation script produces <code>data/ivam_synthetic.rds</code>, which is immediately gitignored. Students who clone the repository have to run the simulation script to get data; they cannot accidentally commit data files even if they try.</p>
+<p>Second, it creates institutional memory. The <code>SESSION_LOG.md</code> convention — reverse chronological, prepended at the top — means that any AI agent (or human) reading the repository at any point in the future can open the session log and immediately understand what has been done, what decisions were made, and why. This is not a formality; it is the mechanism by which context persists across sessions.</p>
+<p>The Tier 2 declaration (GitHub Copilot Business, synthetic data, GitHub remote) was also a governance decision with real consequences. It constrained what data could enter the repository, how the repository could be hosted, and what AI tools could be used. Teaching with a Tier 2 repository is teaching with demonstrated reproducibility: the entire workflow is visible, auditable, and repeatable.</p>
+<hr>
+</section>
+<section id="extracting-the-source-documents" class="level2" data-number="E.4">
+<h2 data-number="E.4" class="anchored" data-anchor-id="extracting-the-source-documents"><span class="header-section-number">E.4</span> Extracting the Source Documents</h2>
+<p>The six source documents — two papers and four supplemental files — were extracted to Markdown using local tools (<code>miyo parse</code> for PDFs, <code>pandoc</code> for the DOCX file). This step is worth examining.</p>
+<p>The extraction serves two purposes. The practical purpose: providing the AI agent with searchable text from which to extract simulation parameters. Every number in <code>R/simulate-ivam-ed.R</code> was verified against the extracted Markdown before being hard-coded into the simulation. The mean SRQ-20 at baseline is 7.45 — not because it seemed plausible, but because Table 1 of the results paper shows control: 7.0 and intervention: 7.9, and the pooled value is 7.45.</p>
+<p>The pedagogical purpose: the extractions are reference documents for students. <code>source/extracted/da-costa-2024-ivam-ed-protocol-sap.md</code> is the searchable text of the protocol paper. Students working on Module 7 — comparing the published analysis to the SAP — can open that file, search for “subgroup,” and find the exact language about the age cutoff. The extraction makes the source documents <em>workable</em> for students who might otherwise never look at supplemental PDFs.</p>
+<hr>
+</section>
+<section id="building-the-simulation-moment-matching-and-its-limits" class="level2" data-number="E.5">
+<h2 data-number="E.5" class="anchored" data-anchor-id="building-the-simulation-moment-matching-and-its-limits"><span class="header-section-number">E.5</span> Building the Simulation: Moment Matching and Its Limits</h2>
+<p>The simulation strategy was deliberate and its limitations were documented before a single student sees the dataset.</p>
+<p><strong>Moment matching</strong> — choosing distributions whose means and standard deviations match the published Table 1 values — is the honest choice given what we have. We have summary statistics for 25 variables across two groups of 56 participants. We do not have the individual-level data. We do not know the skewness of the SRQ-20 distribution, the inter-variable correlations, or the covariance structure of the outcome block. Claiming otherwise would be false precision.</p>
+<p>The simulation uses independent normal distributions for each baseline variable. A more sophisticated approach — multivariate normal with a realistic correlation structure, or a Dirichlet-multinomial for the discrete scores — would produce more internally consistent data but would also require assumptions we cannot verify. For an introductory course, the independence assumption is pedagogically appropriate: it is the simplest defensible approach, and its consequences (unrealistic within-person profiles) are documented in <code>simulation-assumptions.md</code> so that instructors know exactly what they are working with.</p>
+<p>The ANCOVA-generating model for follow-up outcomes was more carefully calibrated. The published Table 2 provides adjusted group means and 95% CIs from which we can back-calculate residual standard deviations. The treatment effects (<span class="math inline">\(\tau\)</span>) are taken directly from the published baseline-adjusted estimates. The baseline-to-follow-up correlation (<span class="math inline">\(\beta = 0.70\)</span>) is set at a standard test-retest value and confirmed by checking that the resulting CI widths approximate the published values.</p>
+<hr>
+</section>
+<section id="the-debugging-cycles-what-we-learned" class="level2" data-number="E.6">
+<h2 data-number="E.6" class="anchored" data-anchor-id="the-debugging-cycles-what-we-learned"><span class="header-section-number">E.6</span> The Debugging Cycles: What We Learned</h2>
+<p>Two bugs were encountered during simulation development, both caught by the verification summary printed at the end of <code>R/simulate-ivam-ed.R</code>. These bugs were not embarrassing accidents; they were expected and instructive.</p>
+<p><strong>Bug 1</strong> revealed a fundamental conceptual error: calibrating the ANCOVA intercept at the control group’s baseline mean rather than the grand mean. The consequence was that a 1.1-point baseline imbalance (intervention group started higher on the SRQ-20) almost completely offset the <span class="math inline">\(\tau = -1.28\)</span> treatment effect. The raw follow-up means were nearly identical between groups despite a substantial specified treatment effect. The diagnosis required working through the algebra of adjusted means — which is exactly the content of Module 5. The bug taught us the material we were trying to teach.</p>
+<p><strong>Bug 2</strong> revealed the fragility of probabilistic models for rare events in small samples. With 9 missing participants out of 112, a logistic model for missingness was exquisitely sensitive to the particular random numbers generated with a given seed. The fix — deterministic rank-based selection — is simpler, more predictable, and easier to explain to students. It also reflects a general principle: when the goal is a stable teaching dataset rather than a simulation study, deterministic approximations are often preferable to stochastic ones.</p>
+<p>Both debugging episodes are documented in <code>simulation-refinements.md</code>, with the mathematical diagnosis and before/after code. This documentation exists because debugging is itself a skill, and the verify-diagnose-fix-re-verify cycle that was used here is exactly the cycle students will need when they encounter errors in their own analyses. The simulation refinement document is part of the teaching case.</p>
+<hr>
+</section>
+<section id="the-module-architecture-one-study-seven-angles" class="level2" data-number="E.7">
+<h2 data-number="E.7" class="anchored" data-anchor-id="the-module-architecture-one-study-seven-angles"><span class="header-section-number">E.7</span> The Module Architecture: One Study, Seven Angles</h2>
+<p>The seven-module structure was not arrived at by formula. It reflects the natural sequence of a complete analysis of a randomized clinical trial, with each module addressing one methodological question:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 — Data Setup</td>
+<td>What are the data?</td>
+</tr>
+<tr class="even">
+<td>2 — Descriptive Statistics</td>
+<td>Who was enrolled? Are the groups similar?</td>
+</tr>
+<tr class="odd">
+<td>3 — Visualization</td>
+<td>What do the distributions look like?</td>
+</tr>
+<tr class="even">
+<td>4 — Estimation</td>
+<td>How different were the groups at follow-up?</td>
+</tr>
+<tr class="odd">
+<td>5 — ANCOVA</td>
+<td>Does baseline adjustment change the picture?</td>
+</tr>
+<tr class="even">
+<td>6 — Missing Data</td>
+<td>Does it matter that 9 participants didn’t complete the trial?</td>
+</tr>
+<tr class="odd">
+<td>7 — Interpretation</td>
+<td>Is the result clinically meaningful? Did the paper follow its plan?</td>
+</tr>
+</tbody>
+</table>
+<p>The sequencing reflects the cumulative logic of clinical trial analysis. The unadjusted t-test in Module 4 deliberately precedes the ANCOVA in Module 5 so that students see the adjustment matter. The forest plot in Module 4 shows unadjusted estimates, which are then replaced by ANCOVA estimates in Module 5. The missing-data analysis in Module 6 follows the primary ANCOVA because you need a reference estimate to assess sensitivity to. Module 7 can only be done last because it requires the statistical results from all previous modules to evaluate the protocol-to-publication comparison against real numbers.</p>
+<p>Within each module, the structure is consistent: a brief overview of the question and learning objectives, setup code, numbered analytical sections, callout boxes highlighting key conceptual points, and practice exercises. This consistency is intentional. Students working independently know what to expect at the start of each module; the variation is in the content, not the format.</p>
+<hr>
+</section>
+<section id="the-quarto-book-why-not-just-modules" class="level2" data-number="E.8">
+<h2 data-number="E.8" class="anchored" data-anchor-id="the-quarto-book-why-not-just-modules"><span class="header-section-number">E.8</span> The Quarto Book: Why Not Just Modules?</h2>
+<p>The seven modules could have remained seven separate Quarto documents, each rendered to a self-contained HTML file. That would have been adequate. The decision to wrap them in a Quarto Book was motivated by several considerations.</p>
+<p><strong>Navigation.</strong> A Quarto Book generates a persistent sidebar navigation bar, chapter-to-chapter arrows, and a search index. Students can move between modules without losing their place. They can search “regression to the mean” and find every occurrence across all seven chapters. These are not trivial amenities in a 25,000-word technical tutorial.</p>
+<p><strong>Introduction.</strong> The book format warranted an introductory chapter that could not easily exist as a standalone module. The <code>index.qmd</code> chapter — covering case selection, source materials, repository design, simulation strategy, learning objectives, and the chapter guide — is the kind of document that sets context for an entire course, not just an individual exercise. It is both an orientation for students and a methodological statement for instructors.</p>
+<p><strong>References.</strong> The book format allowed for a formal appendix (<code>references.qmd</code>) with complete citations for all source papers, instrument validation studies, statistical methods references, and R packages. In a standalone module, citations would be scattered across seven files. In the book, they are consolidated and citeable.</p>
+<p><strong>GitHub Pages.</strong> A Quarto Book renders to a coherent website that can be served directly from GitHub. Students can bookmark the URL and access the complete tutorial from any device without downloading or rendering anything. The GitHub Actions workflow means that the published site always reflects the current state of the <code>main</code> branch. This automation, once configured, requires no ongoing maintenance.</p>
+<hr>
+</section>
+<section id="what-ai-assisted-development-looked-like-in-practice" class="level2" data-number="E.9">
+<h2 data-number="E.9" class="anchored" data-anchor-id="what-ai-assisted-development-looked-like-in-practice"><span class="header-section-number">E.9</span> What AI-Assisted Development Looked Like in Practice</h2>
+<p>This entire repository was built in a single working session using GitHub Copilot in VS Code agent mode. That statement deserves some reflection.</p>
+<p>The AI agent did not work autonomously. At every substantive decision point — the tier declaration, the simulation strategy, whether to initialize renv, which paper to use, what to include in the book introduction — the agent either waited for human direction or, when the user was unavailable, documented its assumptions explicitly and invited review. The <code>AGENTS.md</code> operating contract was not ornamental; it governed the session.</p>
+<p>What the AI contributed was speed and consistency. The simulation script that would have taken a half-day to write manually was drafted in minutes, documented with source citations at the same time, and then debugged through two cycles before producing output that met the verification criteria. The seven module documents were written sequentially, each building on the previous, with consistent structure and callout conventions. The book introduction was drafted in a single pass from the accumulated context of the entire session.</p>
+<p>What remained essential for the human to provide: judgment about what to teach and why, the pedagogical sequencing decisions, the understanding of what CRP 241 students need, and the choice of the IVAM-ED paper in the first place. The AI accelerated production; the instructor directed it.</p>
+<p>The <code>docs/extracted/</code> conflict — where Quarto’s book render overwrote the extracted reference documents that had been placed in the same <code>docs/</code> directory — was a genuine error made by the AI agent. The fix was straightforward (move the files to <code>source/extracted/</code>), but the error illustrates a real limitation: AI agents can work very fast and make mistakes that require human review to catch. The session log preserved the full audit trail.</p>
+<hr>
+</section>
+<section id="what-future-iterations-should-consider" class="level2" data-number="E.10">
+<h2 data-number="E.10" class="anchored" data-anchor-id="what-future-iterations-should-consider"><span class="header-section-number">E.10</span> What Future Iterations Should Consider</h2>
+<p>No first version of a teaching case is final. Several extensions are worth considering:</p>
+<p><strong>Answer keys.</strong> The practice exercises in Modules 1–7 have no published solutions. An instructor answer key — rendered as a separate Quarto document, not publicly visible in the main book — would substantially increase the course utility of this material.</p>
+<p><strong>A capstone exercise.</strong> The seven modules teach skills in isolation. A Module 8 “capstone” could ask students to write a complete methods and results section for the primary outcome, integrating data management, descriptive statistics, ANCOVA, and interpretation in a single deliverable. This would be the most direct test of whether the course objectives have been met.</p>
+<p><strong>Power analysis.</strong> The protocol specified n = 112 with power 90%, effect size 0.68, and α = 0.05. Walking students through this calculation — and asking them what happens if the true effect size is 0.40 rather than 0.68 — would complete the connection between design, analysis, and interpretation that the case is designed to build.</p>
+<p><strong>Probabilistic simulation.</strong> The current simulation uses a fixed seed and produces the same dataset every time. A companion document showing what happens when you change the seed — how the p-values vary, how often the primary result crosses the significance threshold, how the CI widths change — would provide a simulation-based introduction to statistical inference that complements the analytical approach.</p>
+<p><strong>Multiple seeds as a course tool.</strong> Instructors could assign different seeds to different students (or different course years), producing datasets with the same underlying parameters but different realized samples. This would allow class discussion of why different groups got different answers from the same “trial.”</p>
+<hr>
+</section>
+<section id="a-note-on-transparency-as-pedagogy" class="level2" data-number="E.11">
+<h2 data-number="E.11" class="anchored" data-anchor-id="a-note-on-transparency-as-pedagogy"><span class="header-section-number">E.11</span> A Note on Transparency as Pedagogy</h2>
+<p>The most unusual feature of this teaching repository — and perhaps the most important — is that it documents everything. The simulation assumptions are documented. The debugging cycles are documented. The protocol-to-publication deviations are documented. The repository construction process (this essay) is documented. The security audit is documented.</p>
+<p>This is not administrative overhead. It is the pedagogy. Clinical research methodology is fundamentally about distinguishing what was decided in advance from what was decided after seeing the data, what was planned from what was found, what is confirmatory from what is exploratory. A teaching case that demonstrates these distinctions in its own construction — that shows the assumptions, the errors, the fixes, and the deviations — is a case that teaches by example as well as by instruction.</p>
+<p>Students who read <code>simulation-refinements.md</code> before Module 5 will understand the adjusted means exercise differently than students who treat the simulation as a black box. Students who compare the IVAM-ED protocol to the published paper in Module 7 are doing exactly what they should do with every paper they read for the rest of their careers. The repository is not just a set of exercises; it is a model of how rigorous quantitative work is documented.</p>
+<hr>
+<p><em>This essay was written on 2026-07-31 at the conclusion of the initial repository development session. It describes the decisions made, the tools used, and the lessons learned. It is intended to be useful to future instructors adapting this material, future AI agents continuing development of this repository, and students curious about how the dataset they are analyzing was made.</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/scgrambow\.github\.io\/berd-template-field-test-01\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./references.html" class="pagination-link" aria-label="References and Source Documents">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/pedagogical-essay.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

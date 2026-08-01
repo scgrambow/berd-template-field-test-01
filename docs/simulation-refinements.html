@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="BERD AI Pilot (GitHub Copilot)">
+<meta name="description" content="Documents the iterative process used to build and validate the IVAM-ED synthetic dataset, including two bugs found, their diagnosis, and the fixes applied.">
+
+<title>Appendix C — Simulation Refinements: Debugging and Iteration Log – IVAM-ED: A CRP 241 Teaching Case</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./simulation-assumptions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R/A1-answer-key.html">Appendices</a></li><li class="breadcrumb-item"><a href="./simulation-refinements.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">IVAM-ED: A CRP 241 Teaching Case</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/scgrambow/berd-template-field-test-01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analysis Modules</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/01-data-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Data Setup and Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/02-descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Descriptive Statistics and Baseline Characteristics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/03-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Module 3: Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/04-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Estimation and Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/05-ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/06-missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Module 6: Missing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/07-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-refinements.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#simulation-refinements-debugging-and-iteration-log" id="toc-simulation-refinements-debugging-and-iteration-log" class="nav-link active" data-scroll-target="#simulation-refinements-debugging-and-iteration-log">Simulation Refinements: Debugging and Iteration Log</a>
+  <ul class="collapse">
+  <li><a href="#why-document-refinements" id="toc-why-document-refinements" class="nav-link" data-scroll-target="#why-document-refinements"><span class="header-section-number">C.1</span> Why document refinements?</a></li>
+  <li><a href="#attempt-1-first-implementation" id="toc-attempt-1-first-implementation" class="nav-link" data-scroll-target="#attempt-1-first-implementation"><span class="header-section-number">C.2</span> Attempt 1: First implementation</a>
+  <ul class="collapse">
+  <li><a href="#what-we-built" id="toc-what-we-built" class="nav-link" data-scroll-target="#what-we-built"><span class="header-section-number">C.2.1</span> What we built</a></li>
+  <li><a href="#what-the-output-showed" id="toc-what-the-output-showed" class="nav-link" data-scroll-target="#what-the-output-showed"><span class="header-section-number">C.2.2</span> What the output showed</a></li>
+  </ul></li>
+  <li><a href="#diagnosing-bug-1-the-vanishing-treatment-effect" id="toc-diagnosing-bug-1-the-vanishing-treatment-effect" class="nav-link" data-scroll-target="#diagnosing-bug-1-the-vanishing-treatment-effect"><span class="header-section-number">C.3</span> Diagnosing Bug 1: The vanishing treatment effect</a>
+  <ul class="collapse">
+  <li><a href="#what-happened" id="toc-what-happened" class="nav-link" data-scroll-target="#what-happened"><span class="header-section-number">C.3.1</span> What happened</a></li>
+  <li><a href="#the-diagnosis" id="toc-the-diagnosis" class="nav-link" data-scroll-target="#the-diagnosis"><span class="header-section-number">C.3.2</span> The diagnosis</a></li>
+  <li><a href="#the-fix" id="toc-the-fix" class="nav-link" data-scroll-target="#the-fix"><span class="header-section-number">C.3.3</span> The fix</a></li>
+  <li><a href="#lesson-for-students" id="toc-lesson-for-students" class="nav-link" data-scroll-target="#lesson-for-students"><span class="header-section-number">C.3.4</span> Lesson for students</a></li>
+  </ul></li>
+  <li><a href="#diagnosing-bug-2-the-wrong-missingness-split" id="toc-diagnosing-bug-2-the-wrong-missingness-split" class="nav-link" data-scroll-target="#diagnosing-bug-2-the-wrong-missingness-split"><span class="header-section-number">C.4</span> Diagnosing Bug 2: The wrong missingness split</a>
+  <ul class="collapse">
+  <li><a href="#what-happened-1" id="toc-what-happened-1" class="nav-link" data-scroll-target="#what-happened-1"><span class="header-section-number">C.4.1</span> What happened</a></li>
+  <li><a href="#the-diagnosis-1" id="toc-the-diagnosis-1" class="nav-link" data-scroll-target="#the-diagnosis-1"><span class="header-section-number">C.4.2</span> The diagnosis</a></li>
+  <li><a href="#the-fix-1" id="toc-the-fix-1" class="nav-link" data-scroll-target="#the-fix-1"><span class="header-section-number">C.4.3</span> The fix</a></li>
+  <li><a href="#lesson-for-students-1" id="toc-lesson-for-students-1" class="nav-link" data-scroll-target="#lesson-for-students-1"><span class="header-section-number">C.4.4</span> Lesson for students</a></li>
+  </ul></li>
+  <li><a href="#verification-after-both-fixes" id="toc-verification-after-both-fixes" class="nav-link" data-scroll-target="#verification-after-both-fixes"><span class="header-section-number">C.5</span> Verification after both fixes</a>
+  <ul class="collapse">
+  <li><a href="#interpreting-the-remaining-discrepancy" id="toc-interpreting-the-remaining-discrepancy" class="nav-link" data-scroll-target="#interpreting-the-remaining-discrepancy"><span class="header-section-number">C.5.1</span> Interpreting the remaining discrepancy</a></li>
+  </ul></li>
+  <li><a href="#summary-of-changes-made" id="toc-summary-of-changes-made" class="nav-link" data-scroll-target="#summary-of-changes-made"><span class="header-section-number">C.6</span> Summary of changes made</a></li>
+  <li><a href="#what-this-process-models-for-students" id="toc-what-this-process-models-for-students" class="nav-link" data-scroll-target="#what-this-process-models-for-students"><span class="header-section-number">C.7</span> What this process models for students</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/simulation-refinements.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R/A1-answer-key.html">Appendices</a></li><li class="breadcrumb-item"><a href="./simulation-refinements.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Appendix C — Simulation Refinements: Debugging and Iteration Log</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>BERD AI Pilot (GitHub Copilot) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="simulation-refinements-debugging-and-iteration-log" class="level1 unnumbered">
+<h1 class="unnumbered">Simulation Refinements: Debugging and Iteration Log</h1>
+<p>This document records the iterative process used to build and validate <code>R/simulate-ivam-ed.R</code>. It captures not just the final decisions but the wrong turns, diagnoses, and fixes along the way.</p>
+<p>This kind of record is rare in published work — most papers describe what was done, not what failed first. We are preserving it here because the debugging process itself illustrates important principles about statistical simulation and quantitative reasoning that are relevant for CRP 241 students and instructors.</p>
+<hr>
+<section id="why-document-refinements" class="level2" data-number="C.1">
+<h2 data-number="C.1" class="anchored" data-anchor-id="why-document-refinements"><span class="header-section-number">C.1</span> Why document refinements?</h2>
+<p>A first attempt at a statistical simulation is almost never correct. You set up a model, run it, compare your output to the known target, find discrepancies, diagnose their cause, fix them, and verify again. This iterative process is identical to the one used in real data analysis:</p>
+<ol type="1">
+<li>Form a plan based on what you know.</li>
+<li>Implement it.</li>
+<li>Check whether the output matches what you expected.</li>
+<li>When it doesn’t, diagnose <em>why</em> before changing anything.</li>
+<li>Apply a targeted fix.</li>
+<li>Verify the fix worked — and didn’t break anything else.</li>
+</ol>
+<p>The simulation had two distinct bugs. Both were caught by the verification summary printed at the end of the script. Neither would have been obvious without running the code and comparing to the published numbers.</p>
+<hr>
+</section>
+<section id="attempt-1-first-implementation" class="level2" data-number="C.2">
+<h2 data-number="C.2" class="anchored" data-anchor-id="attempt-1-first-implementation"><span class="header-section-number">C.2</span> Attempt 1: First implementation</h2>
+<section id="what-we-built" class="level3" data-number="C.2.1">
+<h3 data-number="C.2.1" class="anchored" data-anchor-id="what-we-built"><span class="header-section-number">C.2.1</span> What we built</h3>
+<p>The plan (see <code>simulation-assumptions.md</code>) called for an ANCOVA-generating model:</p>
+<p><span class="math display">\[y_{12,i} = \alpha + \tau \cdot \text{group}_i + \beta \cdot y_{0,i} + \varepsilon_i\]</span></p>
+<p>The intercept <span class="math inline">\(\alpha\)</span> was calculated so that the control group’s expected follow-up value would match the published baseline-adjusted mean from Table 2.</p>
+<p>The implemented formula was:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ctrl_y0_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y0[group <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> ctrl_mean <span class="sc">-</span> beta <span class="sc">*</span> ctrl_y0_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The logic: if <span class="math inline">\(\alpha + \beta \cdot \bar{y}_{0,\text{ctrl}} = \text{ctrl\_mean}\)</span>, then solving for <span class="math inline">\(\alpha\)</span> gives <span class="math inline">\(\alpha = \text{ctrl\_mean} - \beta \cdot \bar{y}_{0,\text{ctrl}}\)</span>.</p>
+<p>For missingness, we used a probabilistic logistic model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>log_odds_missing <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">4.0</span> <span class="sc">+</span> <span class="fl">0.08</span> <span class="sc">*</span> srq20_0 <span class="sc">-</span> <span class="fl">0.30</span> <span class="sc">*</span> group</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>p_missing        <span class="ot">&lt;-</span> <span class="fu">plogis</span>(log_odds_missing)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>missing_draw     <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(N, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> p_missing)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="what-the-output-showed" class="level3" data-number="C.2.2">
+<h3 data-number="C.2.2" class="anchored" data-anchor-id="what-the-output-showed"><span class="header-section-number">C.2.2</span> What the output showed</h3>
+<pre><code>Follow-up means (completers only):
+  SRQ-20 ctrl 12wk:    7.17  [published adj: 7.66]
+  SRQ-20 int  12wk:    7.22  [published adj: 6.39]
+  Observed MD:          0.05  [published baseline-adj: -1.28]
+
+Missing at 12 wks:  9 (published: 9)
+  - Intervention:   1 (published: 4)
+  - Control:        8 (published: 5)</code></pre>
+<p><strong>Two problems:</strong></p>
+<ol type="1">
+<li><p>The treatment effect essentially vanished. The MD was +0.05 instead of −1.28. The intervention group was not doing better than control at follow-up at all.</p></li>
+<li><p>The missingness split was badly wrong: 1 missing in intervention versus 8 in control (target: 4 and 5).</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="diagnosing-bug-1-the-vanishing-treatment-effect" class="level2" data-number="C.3">
+<h2 data-number="C.3" class="anchored" data-anchor-id="diagnosing-bug-1-the-vanishing-treatment-effect"><span class="header-section-number">C.3</span> Diagnosing Bug 1: The vanishing treatment effect</h2>
+<section id="what-happened" class="level3" data-number="C.3.1">
+<h3 data-number="C.3.1" class="anchored" data-anchor-id="what-happened"><span class="header-section-number">C.3.1</span> What happened</h3>
+<p>The raw follow-up means were nearly identical between groups (7.17 vs 7.22), meaning the <code>tau = -1.28</code> coefficient we specified was not producing a visible difference.</p>
+<p>The key question: did the data-generating code even apply <code>tau</code>? Let’s trace through what happens when the groups have different baseline means.</p>
+<p>With <code>set.seed(241)</code>, the simple random assignment happened to give the intervention group a higher baseline SRQ-20 than the control group — roughly 1.1 points higher. (This is normal sampling variability; the real trial’s Table 1 also showed 0.9 points higher in the intervention group.)</p>
+<p>The raw follow-up mean for the intervention group is:</p>
+<p><span class="math display">\[\bar{y}_{12,\text{int}} = \alpha + \tau + \beta \cdot \bar{y}_{0,\text{int}}\]</span></p>
+<p>With our intercept formula (<span class="math inline">\(\alpha = \text{ctrl\_mean} - \beta \cdot \bar{y}_{0,\text{ctrl}}\)</span>):</p>
+<p><span class="math display">\[\bar{y}_{12,\text{int}} = \underbrace{(\text{ctrl\_mean} - \beta \cdot \bar{y}_{0,\text{ctrl}})}_{\alpha} + \tau + \beta \cdot \bar{y}_{0,\text{int}}\]</span></p>
+<p><span class="math display">\[= \text{ctrl\_mean} + \tau + \beta \cdot (\bar{y}_{0,\text{int}} - \bar{y}_{0,\text{ctrl}})\]</span></p>
+<p>With ctrl_mean = 7.66, <span class="math inline">\(\tau\)</span> = −1.28, <span class="math inline">\(\beta\)</span> = 0.70, and baseline difference ≈ +1.1:</p>
+<p><span class="math display">\[= 7.66 + (−1.28) + 0.70 \times 1.1 = 7.66 − 1.28 + 0.77 = 7.15\]</span></p>
+<p>And the raw control mean: <span class="math inline">\(\text{ctrl\_mean} = 7.66\)</span>… but wait. That’s the <em>adjusted</em> mean, not the raw mean. The raw control mean is <span class="math inline">\(\text{ctrl\_mean} + \beta \cdot (\bar{y}_{0,\text{ctrl}} - \bar{y}_{0,\text{ctrl}}) = \text{ctrl\_mean}\)</span>. Actually in our data the raw control mean was 7.17, not 7.66 — because the control group happened to have lower baseline SRQ-20 values and regression toward the mean brought them down from 7.0.</p>
+<p>The net effect: the −1.28 treatment effect was almost entirely offset by the regression-toward-mean advantage the intervention group had from starting higher. The raw means were nearly equal.</p>
+<p><strong>This is not a bug in the math — it is a bug in the parameterization.</strong></p>
+</section>
+<section id="the-diagnosis" class="level3" data-number="C.3.2">
+<h3 data-number="C.3.2" class="anchored" data-anchor-id="the-diagnosis"><span class="header-section-number">C.3.2</span> The diagnosis</h3>
+<p>The published adjusted means (7.66 and 6.39) are <em>ANCOVA-adjusted</em> means. In ANCOVA, the adjusted mean for each group is estimated at the <strong>grand mean</strong> of the baseline covariate, not at the group-specific mean. The standard ANCOVA model is written:</p>
+<p><span class="math display">\[y_{12} = \mu + \tau \cdot \text{group} + \beta \cdot (y_0 - \bar{y}_0) + \varepsilon\]</span></p>
+<p>where <span class="math inline">\(\bar{y}_0\)</span> is the grand mean (not the group mean). The adjusted group means are then: - Control: <span class="math inline">\(\mu\)</span> - Intervention: <span class="math inline">\(\mu + \tau\)</span></p>
+<p>The difference between the adjusted means is exactly <span class="math inline">\(\tau\)</span>, regardless of any baseline imbalance between the groups.</p>
+<p>Our original code was conditioning on the control group’s mean, not the grand mean. This made the intercept wrong whenever the groups were imbalanced at baseline — which they always will be to some degree with a small sample.</p>
+</section>
+<section id="the-fix" class="level3" data-number="C.3.3">
+<h3 data-number="C.3.3" class="anchored" data-anchor-id="the-fix"><span class="header-section-number">C.3.3</span> The fix</h3>
+<p>Replace group-mean centering with grand-mean centering:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># BEFORE (wrong):</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ctrl_y0_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y0[group <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> ctrl_mean <span class="sc">-</span> beta <span class="sc">*</span> ctrl_y0_mean</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y12 <span class="ot">&lt;-</span> alpha <span class="sc">+</span> tau <span class="sc">*</span> group <span class="sc">+</span> beta <span class="sc">*</span> y0 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, resid_sd)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># AFTER (correct):</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>y0_centered <span class="ot">&lt;-</span> y0 <span class="sc">-</span> <span class="fu">mean</span>(y0)   <span class="co"># center at grand mean</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>alpha       <span class="ot">&lt;-</span> ctrl_mean        <span class="co"># intercept = published control adjusted mean</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>y12 <span class="ot">&lt;-</span> alpha <span class="sc">+</span> tau <span class="sc">*</span> group <span class="sc">+</span> beta <span class="sc">*</span> y0_centered <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, resid_sd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now the expected value of y12 for the control group is exactly <code>ctrl_mean</code>, and the expected value for the intervention group is exactly <code>ctrl_mean + tau</code>, regardless of how the randomization split the baseline values. The treatment effect is preserved.</p>
+</section>
+<section id="lesson-for-students" class="level3" data-number="C.3.4">
+<h3 data-number="C.3.4" class="anchored" data-anchor-id="lesson-for-students"><span class="header-section-number">C.3.4</span> Lesson for students</h3>
+<p>This bug illustrates why the distinction between <em>raw means</em> and <em>adjusted means</em> matters in ANCOVA. In a randomized trial with some baseline imbalance:</p>
+<ul>
+<li>The <strong>raw (unadjusted) mean difference</strong> at follow-up reflects both the true treatment effect and any baseline imbalance amplified by regression to the mean.</li>
+<li>The <strong>ANCOVA-adjusted mean difference</strong> removes the baseline imbalance and provides a cleaner estimate of the treatment effect.</li>
+</ul>
+<p>This is exactly what Module 5 of the CRP 241 sequence will demonstrate: students will see that the unadjusted comparison and the ANCOVA-adjusted comparison give different answers, and they will understand why the adjusted analysis is preferred.</p>
+<hr>
+</section>
+</section>
+<section id="diagnosing-bug-2-the-wrong-missingness-split" class="level2" data-number="C.4">
+<h2 data-number="C.4" class="anchored" data-anchor-id="diagnosing-bug-2-the-wrong-missingness-split"><span class="header-section-number">C.4</span> Diagnosing Bug 2: The wrong missingness split</h2>
+<section id="what-happened-1" class="level3" data-number="C.4.1">
+<h3 data-number="C.4.1" class="anchored" data-anchor-id="what-happened-1"><span class="header-section-number">C.4.1</span> What happened</h3>
+<p>The logistic model assigned 1 participant as missing in the intervention group and 8 in the control group. The target was 4 and 5 (matching the published CONSORT figure).</p>
+</section>
+<section id="the-diagnosis-1" class="level3" data-number="C.4.2">
+<h3 data-number="C.4.2" class="anchored" data-anchor-id="the-diagnosis-1"><span class="header-section-number">C.4.2</span> The diagnosis</h3>
+<p>The logistic model included a <code>group</code> term:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>log_odds_missing <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">4.0</span> <span class="sc">+</span> <span class="fl">0.08</span> <span class="sc">*</span> srq20_0 <span class="sc">-</span> <span class="fl">0.30</span> <span class="sc">*</span> group</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The coefficient −0.30 on group was intended to make the intervention group slightly <em>less</em> likely to drop out (a plausible assumption: the intervention provides engagement and social contact). But with <code>set.seed(241)</code>, the intervention group happened to have notably higher baseline SRQ-20 values (more distress), which drove up their missingness probability. The group offset of −0.30 was not large enough to counteract the effect of the higher baseline SRQ-20 in the intervention group.</p>
+<p>Additionally, the probabilistic <code>rbinom()</code> draw is inherently variable with a small sample. With only 9 missing participants out of 112, the draw is sensitive to the exact random numbers generated. Getting 1 vs.&nbsp;4 in a group of 56 is well within the range of random variation from a probabilistic model with a small target count.</p>
+</section>
+<section id="the-fix-1" class="level3" data-number="C.4.3">
+<h3 data-number="C.4.3" class="anchored" data-anchor-id="the-fix-1"><span class="header-section-number">C.4.3</span> The fix</h3>
+<p>Replace the probabilistic model with a deterministic rank-based approach: within each group, assign as missing the participants with the highest baseline SRQ-20 score.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ctrl_missing_idx <span class="ot">&lt;-</span> control_ids[<span class="fu">order</span>(srq20_0[control_ids], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>int_missing_idx  <span class="ot">&lt;-</span> intervention_ids[<span class="fu">order</span>(srq20_0[intervention_ids], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is: - <strong>Exact:</strong> always produces exactly 5 missing in control and 4 in intervention. - <strong>Clinically plausible:</strong> more distressed participants are more likely to drop out, consistent with the MAR mechanism described in the protocol SAP. - <strong>Transparent:</strong> students can see directly who is missing and why. - <strong>Simpler:</strong> no random draw, no calibration, no seed sensitivity.</p>
+<p>The tradeoff is that the missingness is now <strong>deterministic</strong> rather than random. In a real missing data simulation, you would want the missing pattern to vary across simulation replications. But for a teaching dataset where we want reproducible, predictable behavior, deterministic assignment is preferable.</p>
+</section>
+<section id="lesson-for-students-1" class="level3" data-number="C.4.4">
+<h3 data-number="C.4.4" class="anchored" data-anchor-id="lesson-for-students-1"><span class="header-section-number">C.4.4</span> Lesson for students</h3>
+<p>This bug illustrates a general principle: <strong>probabilistic models for rare events in small samples are sensitive to random variation</strong>. When you have 9 missing out of 112, you are trying to control very few events with a stochastic model. Deterministic approximations are often more useful for teaching datasets because they produce predictable, interpretable patterns.</p>
+<hr>
+</section>
+</section>
+<section id="verification-after-both-fixes" class="level2" data-number="C.5">
+<h2 data-number="C.5" class="anchored" data-anchor-id="verification-after-both-fixes"><span class="header-section-number">C.5</span> Verification after both fixes</h2>
+<p>After applying both fixes, the verification summary showed:</p>
+<pre><code>Sample size and completion:
+  Total enrolled:     112
+  Intervention (n):   56
+  Control (n):        56
+  Missing at 12 wks:  9 (published: 9)  ✓
+    - Intervention:   4 (published: 4)  ✓
+    - Control:        5 (published: 5)  ✓
+
+Follow-up means and ANCOVA check (completers only):
+  SRQ-20 ctrl raw 12wk:  7.22
+  SRQ-20 int  raw 12wk:  6.75
+  Raw (unadjusted) MD:   -0.47
+  NOTE: Raw MD &lt; published adj MD because intervention group started with
+        higher baseline SRQ-20; ANCOVA adjusts for this.
+
+  ANCOVA-adjusted MD:    -1.19  [published: -1.28]  ✓ (close)
+  95% CI:               -2.06 to -0.32  [published: -2.51 to -0.04]  ✓ (significant)</code></pre>
+<section id="interpreting-the-remaining-discrepancy" class="level3" data-number="C.5.1">
+<h3 data-number="C.5.1" class="anchored" data-anchor-id="interpreting-the-remaining-discrepancy"><span class="header-section-number">C.5.1</span> Interpreting the remaining discrepancy</h3>
+<p>The ANCOVA-adjusted MD is −1.19 versus the published −1.28 (difference of 0.09 points, or about 7%). The CI is narrower than published (width 1.74 vs.&nbsp;2.47).</p>
+<p><strong>Why does the discrepancy remain?</strong></p>
+<ol type="1">
+<li><p><strong>The residual SD is slightly too small.</strong> We calibrated the residual SD from the published CI width: <span class="math inline">\(\sigma_\varepsilon \approx \text{SE} \times \sqrt{n/2}\)</span>. But the published SE (0.45) is for the <em>adjusted group mean</em>, not for the coefficient of group. The SE of the difference is <span class="math inline">\(\sqrt{SE_\text{ctrl}^2 + SE_\text{int}^2} = \sqrt{0.43^2 + 0.45^2} \approx 0.62\)</span>. Using 0.45 instead of 0.62 produced a residual SD that was too small, resulting in a narrower CI.</p></li>
+<li><p><strong>We are approximating a complex multivariate distribution with independent normals.</strong> The real data likely have correlations between outcomes and between baseline and follow-up that we do not model. These correlations affect precision in ways that are hard to replicate from aggregate statistics.</p></li>
+<li><p><strong>We are comparing a single simulation run to a single trial.</strong> With n = 112, the published result itself is one realization of a random process. Running our simulation with a different seed will produce a different MD and CI in each run.</p></li>
+</ol>
+<p><strong>Is this close enough?</strong> Yes, for a teaching dataset. The ANCOVA estimate is statistically significant, in the correct direction, and of a plausible magnitude. Students analyzing this dataset will:</p>
+<ul>
+<li>Fit the same ANCOVA model that was pre-specified in the SAP.</li>
+<li>Get a significant result (p &lt; 0.05) consistent with the published finding.</li>
+<li>Learn the difference between raw and adjusted means.</li>
+<li>Be able to compare their estimates to the published values and discuss why they differ slightly.</li>
+</ul>
+<p>The small residual discrepancy is itself a teaching point: synthetic datasets do not perfectly reproduce their source, and understanding <em>why</em> they differ is part of understanding the statistical machinery behind both the simulation and the analysis.</p>
+<hr>
+</section>
+</section>
+<section id="summary-of-changes-made" class="level2" data-number="C.6">
+<h2 data-number="C.6" class="anchored" data-anchor-id="summary-of-changes-made"><span class="header-section-number">C.6</span> Summary of changes made</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>Root cause</th>
+<th>Fix applied</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Treatment effect vanished (raw MD ≈ 0)</td>
+<td>Intercept calibrated at control group mean rather than grand mean; baseline imbalance offset tau</td>
+<td>Center y0 at grand mean; set alpha = ctrl_mean directly</td>
+<td>ANCOVA recovers −1.19 (target −1.28)</td>
+</tr>
+<tr class="even">
+<td>Missingness split wrong (1/8 instead of 4/5)</td>
+<td>Probabilistic logistic model sensitive to seed-specific baseline imbalance; group offset insufficient</td>
+<td>Deterministic rank-based assignment within each group</td>
+<td>Exact 5/4 split confirmed</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="what-this-process-models-for-students" class="level2" data-number="C.7">
+<h2 data-number="C.7" class="anchored" data-anchor-id="what-this-process-models-for-students"><span class="header-section-number">C.7</span> What this process models for students</h2>
+<p>The iterative debugging sequence above is a microcosm of what happens in real data analysis:</p>
+<ul>
+<li><strong>Verification before trusting.</strong> We compared every output to a known target. Without the verification summary, both bugs would have gone undetected.</li>
+<li><strong>Diagnosis before fixing.</strong> We traced each discrepancy to its mathematical source before changing any code. This prevented introducing new bugs.</li>
+<li><strong>Targeted fixes.</strong> Each fix addressed the specific diagnosed cause and nothing else. We did not restructure the whole script.</li>
+<li><strong>Re-verification after fixing.</strong> After each fix, we re-ran the full script to confirm the fix worked and nothing else broke.</li>
+</ul>
+<p>This process — verify, diagnose, fix, re-verify — applies equally to simulation code, analysis code, and real data pipelines.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/scgrambow\.github\.io\/berd-template-field-test-01\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./simulation-assumptions.html" class="pagination-link" aria-label="Simulation Process and Assumptions: IVAM-ED Synthetic Dataset">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References and Source Documents">
+        <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/simulation-refinements.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

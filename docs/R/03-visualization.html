@@ -235,8 +235,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,24 +270,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">4.1</span> Overview</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">4.2</span> ———————————————————————</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">4.3</span> Setup</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">4.4</span> ———————————————————————</a></li>
-  <li><a href="#distribution-of-the-primary-outcome-at-baseline" id="toc-distribution-of-the-primary-outcome-at-baseline" class="nav-link" data-scroll-target="#distribution-of-the-primary-outcome-at-baseline"><span class="header-section-number">4.5</span> 1. Distribution of the Primary Outcome at Baseline</a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">4.6</span> ———————————————————————</a></li>
-  <li><a href="#baseline-distributions-by-group" id="toc-baseline-distributions-by-group" class="nav-link" data-scroll-target="#baseline-distributions-by-group"><span class="header-section-number">4.7</span> 2. Baseline Distributions by Group</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">4.8</span> ———————————————————————</a></li>
-  <li><a href="#change-from-baseline-individual-trajectories" id="toc-change-from-baseline-individual-trajectories" class="nav-link" data-scroll-target="#change-from-baseline-individual-trajectories"><span class="header-section-number">4.9</span> 3. Change from Baseline: Individual Trajectories</a></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">4.10</span> ———————————————————————</a></li>
-  <li><a href="#comparing-all-outcomes-at-follow-up" id="toc-comparing-all-outcomes-at-follow-up" class="nav-link" data-scroll-target="#comparing-all-outcomes-at-follow-up"><span class="header-section-number">4.11</span> 4. Comparing All Outcomes at Follow-Up</a></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">4.12</span> ———————————————————————</a></li>
-  <li><a href="#floor-and-ceiling-effects" id="toc-floor-and-ceiling-effects" class="nav-link" data-scroll-target="#floor-and-ceiling-effects"><span class="header-section-number">4.13</span> 5. Floor and Ceiling Effects</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">4.14</span> ———————————————————————</a></li>
-  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">4.15</span> 6. Practice Exercises</a></li>
-  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"><span class="header-section-number">4.16</span> ———————————————————————</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.17</span> Summary</a></li>
-  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="header-section-number">4.18</span> ———————————————————————</a></li>
-  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">4.19</span> Session Information</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">4.2</span> Setup</a></li>
+  <li><a href="#distribution-of-the-primary-outcome-at-baseline" id="toc-distribution-of-the-primary-outcome-at-baseline" class="nav-link" data-scroll-target="#distribution-of-the-primary-outcome-at-baseline"><span class="header-section-number">4.3</span> 1. Distribution of the Primary Outcome at Baseline</a></li>
+  <li><a href="#baseline-distributions-by-group" id="toc-baseline-distributions-by-group" class="nav-link" data-scroll-target="#baseline-distributions-by-group"><span class="header-section-number">4.4</span> 2. Baseline Distributions by Group</a></li>
+  <li><a href="#change-from-baseline-individual-trajectories" id="toc-change-from-baseline-individual-trajectories" class="nav-link" data-scroll-target="#change-from-baseline-individual-trajectories"><span class="header-section-number">4.5</span> 3. Change from Baseline: Individual Trajectories</a></li>
+  <li><a href="#comparing-all-outcomes-at-follow-up" id="toc-comparing-all-outcomes-at-follow-up" class="nav-link" data-scroll-target="#comparing-all-outcomes-at-follow-up"><span class="header-section-number">4.6</span> 4. Comparing All Outcomes at Follow-Up</a></li>
+  <li><a href="#floor-and-ceiling-effects" id="toc-floor-and-ceiling-effects" class="nav-link" data-scroll-target="#floor-and-ceiling-effects"><span class="header-section-number">4.7</span> 5. Floor and Ceiling Effects</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">4.8</span> 6. Practice Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">4.9</span> Summary</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">4.10</span> Session Information</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/R/03-visualization.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -296,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">July 31, 2026</p>
     </div>
   </div>
   
@@ -318,12 +327,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Visualize change from baseline using an individual-trajectory plot.</li>
 <li>Describe what each plot tells you about the data that a table cannot.</li>
 </ol>
+<hr>
 </section>
-<section id="section" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="section"><span class="header-section-number">4.2</span> ———————————————————————</h2>
-</section>
-<section id="setup" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">4.3</span> Setup</h2>
+<section id="setup" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">4.2</span> Setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -335,12 +342,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Completers only (those with follow-up data) — used in several plots</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>completers <span class="ot">&lt;-</span> <span class="fu">filter</span>(dat, missing_12wk <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<hr>
 </section>
-<section id="section-1" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">4.4</span> ———————————————————————</h2>
-</section>
-<section id="distribution-of-the-primary-outcome-at-baseline" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="distribution-of-the-primary-outcome-at-baseline"><span class="header-section-number">4.5</span> 1. Distribution of the Primary Outcome at Baseline</h2>
+<section id="distribution-of-the-primary-outcome-at-baseline" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="distribution-of-the-primary-outcome-at-baseline"><span class="header-section-number">4.3</span> 1. Distribution of the Primary Outcome at Baseline</h2>
 <p>The SRQ-20 is the primary outcome: a 20-item mental-distress questionnaire. Before looking at treatment effects, we should understand what its distribution looks like in this sample.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> srq20_0)) <span class="sc">+</span></span>
@@ -382,12 +387,10 @@ Note
 </ul>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-2" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="section-2"><span class="header-section-number">4.6</span> ———————————————————————</h2>
-</section>
-<section id="baseline-distributions-by-group" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="baseline-distributions-by-group"><span class="header-section-number">4.7</span> 2. Baseline Distributions by Group</h2>
+<section id="baseline-distributions-by-group" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="baseline-distributions-by-group"><span class="header-section-number">4.4</span> 2. Baseline Distributions by Group</h2>
 <p>Do the two groups look similar at baseline? We would hope so — randomization should produce roughly equivalent groups, but it does not guarantee perfect balance in every variable.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape to long format so we can facet across all five outcomes at once</span></span>
@@ -447,12 +450,10 @@ Note
 </ul>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-3" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="section-3"><span class="header-section-number">4.8</span> ———————————————————————</h2>
-</section>
-<section id="change-from-baseline-individual-trajectories" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="change-from-baseline-individual-trajectories"><span class="header-section-number">4.9</span> 3. Change from Baseline: Individual Trajectories</h2>
+<section id="change-from-baseline-individual-trajectories" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="change-from-baseline-individual-trajectories"><span class="header-section-number">4.5</span> 3. Change from Baseline: Individual Trajectories</h2>
 <p>The most informative visualization for a pre-post trial is an individual trajectory plot: one line per participant, connecting their baseline score to their follow-up score. This shows both the direction and magnitude of change for each person, not just the group average.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape to long: one row per participant per time point</span></span>
@@ -521,12 +522,10 @@ Note
 </ul>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-4" class="level2" data-number="4.10">
-<h2 data-number="4.10" class="anchored" data-anchor-id="section-4"><span class="header-section-number">4.10</span> ———————————————————————</h2>
-</section>
-<section id="comparing-all-outcomes-at-follow-up" class="level2" data-number="4.11">
-<h2 data-number="4.11" class="anchored" data-anchor-id="comparing-all-outcomes-at-follow-up"><span class="header-section-number">4.11</span> 4. Comparing All Outcomes at Follow-Up</h2>
+<section id="comparing-all-outcomes-at-follow-up" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="comparing-all-outcomes-at-follow-up"><span class="header-section-number">4.6</span> 4. Comparing All Outcomes at Follow-Up</h2>
 <p>A side-by-side comparison of follow-up distributions across all outcomes gives an overview of where the intervention had an effect and where it did not.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>followup_long <span class="ot">&lt;-</span> completers <span class="sc">|&gt;</span></span>
@@ -587,12 +586,10 @@ Note
 <p>The published trial found statistically significant effects on SRQ-20, SF-36, SCI-R, and HbA1c, but not on PSS (the CI for PSS crossed zero). Look at your plots: do any of the comparisons look visually similar (no clear separation), even if a difference exists?</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-5" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="section-5"><span class="header-section-number">4.12</span> ———————————————————————</h2>
-</section>
-<section id="floor-and-ceiling-effects" class="level2" data-number="4.13">
-<h2 data-number="4.13" class="anchored" data-anchor-id="floor-and-ceiling-effects"><span class="header-section-number">4.13</span> 5. Floor and Ceiling Effects</h2>
+<section id="floor-and-ceiling-effects" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="floor-and-ceiling-effects"><span class="header-section-number">4.7</span> 5. Floor and Ceiling Effects</h2>
 <p>A <strong>floor effect</strong> occurs when many participants score at or near the lowest possible value — they cannot get lower, so the instrument cannot detect further improvement. A <strong>ceiling effect</strong> is the reverse. Either distorts the analysis.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p_srq <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(completers, <span class="fu">aes</span>(<span class="at">x =</span> srq20_12, <span class="at">fill =</span> group_label)) <span class="sc">+</span></span>
@@ -637,24 +634,20 @@ Note
 <p><strong>What to look for:</strong> Are scores piled up against the boundary of the scale? In the IVAM-ED data, mean SRQ-20 at follow-up is around 7, well above the floor of 0, so floor effects are not a major concern. The SF-36 mean is around 55, well below the ceiling of 100.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-6" class="level2" data-number="4.14">
-<h2 data-number="4.14" class="anchored" data-anchor-id="section-6"><span class="header-section-number">4.14</span> ———————————————————————</h2>
-</section>
-<section id="practice-exercises" class="level2" data-number="4.15">
-<h2 data-number="4.15" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">4.15</span> 6. Practice Exercises</h2>
+<section id="practice-exercises" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">4.8</span> 6. Practice Exercises</h2>
 <ol type="1">
 <li><p><strong>Change direction.</strong> For each of the five outcomes, write one sentence stating whether you expect the smart speaker group to have a <em>higher</em> or <em>lower</em> mean than the usual care group at follow-up, and why.</p></li>
 <li><p><strong>Regression to the mean.</strong> In the individual trajectory plot (Section 3), look at participants who started with SRQ-20 scores above 15. What tends to happen to their scores at follow-up? Does this happen in both groups? What does this tell you about interpreting within-group change?</p></li>
 <li><p><strong>Plot the PSS trajectories.</strong> Adapt the code from Section 3 to make an individual trajectory plot for the PSS (perceived stress) outcome. Does the visual separation between group means at follow-up look larger or smaller than for the SRQ-20? This anticipates the Module 4 finding that the PSS result was not statistically significant.</p></li>
 <li><p><strong>HbA1c change.</strong> Make a scatter plot of baseline HbA1c (<code>hba1c_0</code>) on the x-axis against 12-week HbA1c (<code>hba1c_12</code>) on the y-axis, with points colored by group. Add a reference line for y = x (no change). Which points are above the line (got worse) and which are below (improved)?</p></li>
 </ol>
+<hr>
 </section>
-<section id="section-7" class="level2" data-number="4.16">
-<h2 data-number="4.16" class="anchored" data-anchor-id="section-7"><span class="header-section-number">4.16</span> ———————————————————————</h2>
-</section>
-<section id="summary" class="level2" data-number="4.17">
-<h2 data-number="4.17" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.17</span> Summary</h2>
+<section id="summary" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="summary"><span class="header-section-number">4.9</span> Summary</h2>
 <p>In this module you:</p>
 <ul>
 <li>Described the shape and spread of the SRQ-20 baseline distribution (right-skewed, no floor effect).</li>
@@ -664,12 +657,10 @@ Note
 <li>Observed regression to the mean in the trajectory plot — a key motivation for the ANCOVA model in Module 5.</li>
 </ul>
 <p><strong>Next:</strong> Module 4 will quantify what the plots show: group means, mean changes from baseline, 95% confidence intervals, and hypothesis tests.</p>
+<hr>
 </section>
-<section id="section-8" class="level2" data-number="4.18">
-<h2 data-number="4.18" class="anchored" data-anchor-id="section-8"><span class="header-section-number">4.18</span> ———————————————————————</h2>
-</section>
-<section id="session-information" class="level2" data-number="4.19">
-<h2 data-number="4.19" class="anchored" data-anchor-id="session-information"><span class="header-section-number">4.19</span> Session Information</h2>
+<section id="session-information" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="session-information"><span class="header-section-number">4.10</span> Session Information</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">

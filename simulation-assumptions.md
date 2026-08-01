@@ -5,7 +5,7 @@ created: 2026-07-31
 author: BERD AI Pilot (GitHub Copilot)
 ---
 
-# Simulation Process and Assumptions
+# Simulation Process and Assumptions {.unnumbered}
 
 This document explains how the synthetic dataset in `R/simulate-ivam-ed.R` was
 built, where every number came from, and what the known limitations are.

@@ -235,8 +235,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,29 +270,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">3.1</span> Overview</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">3.2</span> ———————————————————————</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">3.3</span> Setup</a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">3.4</span> ———————————————————————</a></li>
-  <li><a href="#univariate-summaries" id="toc-univariate-summaries" class="nav-link" data-scroll-target="#univariate-summaries"><span class="header-section-number">3.5</span> 1. Univariate Summaries</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="header-section-number">3.2</span> Setup</a></li>
+  <li><a href="#univariate-summaries" id="toc-univariate-summaries" class="nav-link" data-scroll-target="#univariate-summaries"><span class="header-section-number">3.3</span> 1. Univariate Summaries</a>
   <ul class="collapse">
-  <li><a href="#continuous-variables" id="toc-continuous-variables" class="nav-link" data-scroll-target="#continuous-variables"><span class="header-section-number">3.5.1</span> Continuous variables</a></li>
-  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">3.5.2</span> Categorical variables</a></li>
+  <li><a href="#continuous-variables" id="toc-continuous-variables" class="nav-link" data-scroll-target="#continuous-variables"><span class="header-section-number">3.3.1</span> Continuous variables</a></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">3.3.2</span> Categorical variables</a></li>
   </ul></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">3.6</span> ———————————————————————</a></li>
-  <li><a href="#table-1-baseline-characteristics-by-randomized-group" id="toc-table-1-baseline-characteristics-by-randomized-group" class="nav-link" data-scroll-target="#table-1-baseline-characteristics-by-randomized-group"><span class="header-section-number">3.7</span> 2. Table 1: Baseline Characteristics by Randomized Group</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">3.8</span> ———————————————————————</a></li>
-  <li><a href="#interpreting-baseline-balance" id="toc-interpreting-baseline-balance" class="nav-link" data-scroll-target="#interpreting-baseline-balance"><span class="header-section-number">3.9</span> 3. Interpreting Baseline Balance</a>
+  <li><a href="#table-1-baseline-characteristics-by-randomized-group" id="toc-table-1-baseline-characteristics-by-randomized-group" class="nav-link" data-scroll-target="#table-1-baseline-characteristics-by-randomized-group"><span class="header-section-number">3.4</span> 2. Table 1: Baseline Characteristics by Randomized Group</a></li>
+  <li><a href="#interpreting-baseline-balance" id="toc-interpreting-baseline-balance" class="nav-link" data-scroll-target="#interpreting-baseline-balance"><span class="header-section-number">3.5</span> 3. Interpreting Baseline Balance</a>
   <ul class="collapse">
-  <li><a href="#a.-what-balanced-means-in-a-randomized-trial" id="toc-a.-what-balanced-means-in-a-randomized-trial" class="nav-link" data-scroll-target="#a.-what-balanced-means-in-a-randomized-trial"><span class="header-section-number">3.9.1</span> 3a. What “balanced” means in a randomized trial</a></li>
-  <li><a href="#b.-why-we-do-not-test-for-statistical-significance-at-baseline" id="toc-b.-why-we-do-not-test-for-statistical-significance-at-baseline" class="nav-link" data-scroll-target="#b.-why-we-do-not-test-for-statistical-significance-at-baseline"><span class="header-section-number">3.9.2</span> 3b. Why we do NOT test for statistical significance at baseline</a></li>
-  <li><a href="#c.-standardized-mean-differences" id="toc-c.-standardized-mean-differences" class="nav-link" data-scroll-target="#c.-standardized-mean-differences"><span class="header-section-number">3.9.3</span> 3c. Standardized mean differences</a></li>
+  <li><a href="#a.-what-balanced-means-in-a-randomized-trial" id="toc-a.-what-balanced-means-in-a-randomized-trial" class="nav-link" data-scroll-target="#a.-what-balanced-means-in-a-randomized-trial"><span class="header-section-number">3.5.1</span> 3a. What “balanced” means in a randomized trial</a></li>
+  <li><a href="#b.-why-we-do-not-test-for-statistical-significance-at-baseline" id="toc-b.-why-we-do-not-test-for-statistical-significance-at-baseline" class="nav-link" data-scroll-target="#b.-why-we-do-not-test-for-statistical-significance-at-baseline"><span class="header-section-number">3.5.2</span> 3b. Why we do NOT test for statistical significance at baseline</a></li>
+  <li><a href="#c.-standardized-mean-differences" id="toc-c.-standardized-mean-differences" class="nav-link" data-scroll-target="#c.-standardized-mean-differences"><span class="header-section-number">3.5.3</span> 3c. Standardized mean differences</a></li>
   </ul></li>
-  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="header-section-number">3.10</span> ———————————————————————</a></li>
-  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">3.11</span> 4. Practice Exercises</a></li>
-  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="header-section-number">3.12</span> ———————————————————————</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.13</span> Summary</a></li>
-  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"><span class="header-section-number">3.14</span> ———————————————————————</a></li>
-  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">3.15</span> Session Information</a></li>
+  <li><a href="#practice-exercises" id="toc-practice-exercises" class="nav-link" data-scroll-target="#practice-exercises"><span class="header-section-number">3.6</span> 4. Practice Exercises</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">3.7</span> Summary</a></li>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information"><span class="header-section-number">3.8</span> Session Information</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/R/02-descriptive.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -301,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">July 31, 2026</p>
     </div>
   </div>
   
@@ -327,12 +338,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Explain why we do not perform significance tests of baseline differences in a randomized trial.</li>
 <li>Distinguish between clinically meaningful and trivially small group differences at baseline.</li>
 </ol>
+<hr>
 </section>
-<section id="section" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="section"><span class="header-section-number">3.2</span> ———————————————————————</h2>
-</section>
-<section id="setup" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">3.3</span> Setup</h2>
+<section id="setup" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">3.2</span> Setup</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)  <span class="co"># produces publication-ready Table 1</span></span>
@@ -344,15 +353,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># then render 01-data-setup.qmd to generate the working copy.</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"../data/ivam_working.rds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<hr>
 </section>
-<section id="section-1" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="section-1"><span class="header-section-number">3.4</span> ———————————————————————</h2>
-</section>
-<section id="univariate-summaries" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="univariate-summaries"><span class="header-section-number">3.5</span> 1. Univariate Summaries</h2>
+<section id="univariate-summaries" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="univariate-summaries"><span class="header-section-number">3.3</span> 1. Univariate Summaries</h2>
 <p>Before building a grouped table, it helps to look at the whole sample together. This gives you a feel for the data and catches obvious problems (values out of range, unexpected distributions).</p>
-<section id="continuous-variables" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="continuous-variables"><span class="header-section-number">3.5.1</span> Continuous variables</h3>
+<section id="continuous-variables" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="continuous-variables"><span class="header-section-number">3.3.1</span> Continuous variables</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize all continuous outcome and clinical variables</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
@@ -417,8 +424,8 @@ Note
 </div>
 </div>
 </section>
-<section id="categorical-variables" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">3.5.2</span> Categorical variables</h3>
+<section id="categorical-variables" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">3.3.2</span> Categorical variables</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count and percentage for each binary variable</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>binary_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"insulin"</span>, <span class="st">"hx_depression"</span>, <span class="st">"hx_anxiety"</span>,</span>
@@ -450,13 +457,11 @@ Note
 5 cognitive_decline    59  52.7 59 (52.7%)</code></pre>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="section-2" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="section-2"><span class="header-section-number">3.6</span> ———————————————————————</h2>
-</section>
-<section id="table-1-baseline-characteristics-by-randomized-group" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="table-1-baseline-characteristics-by-randomized-group"><span class="header-section-number">3.7</span> 2. Table 1: Baseline Characteristics by Randomized Group</h2>
+<section id="table-1-baseline-characteristics-by-randomized-group" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="table-1-baseline-characteristics-by-randomized-group"><span class="header-section-number">3.4</span> 2. Table 1: Baseline Characteristics by Randomized Group</h2>
 <p>The standard way to present baseline characteristics in a clinical trial is a <strong>Table 1</strong>: one column per group, with each row showing a baseline variable.</p>
 <p>We use <code>gtsummary::tbl_summary()</code> to build this table. The package automatically selects appropriate statistics (mean ± SD for continuous variables, n (%) for categorical variables) and formats the output for publication.</p>
 <div class="cell">
@@ -518,23 +523,23 @@ Note
 <span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_spanning_header</span>(<span class="fu">c</span>(<span class="st">"stat_1"</span>, <span class="st">"stat_2"</span>) <span class="sc">~</span> <span class="st">"**Randomized group**"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="eoudslmirh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eoudslmirh table {
+<div id="zcrwwpxhlp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zcrwwpxhlp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eoudslmirh thead, #eoudslmirh tbody, #eoudslmirh tfoot, #eoudslmirh tr, #eoudslmirh td, #eoudslmirh th {
+#zcrwwpxhlp thead, #zcrwwpxhlp tbody, #zcrwwpxhlp tfoot, #zcrwwpxhlp tr, #zcrwwpxhlp td, #zcrwwpxhlp th {
   border-style: none;
 }
 
-#eoudslmirh p {
+#zcrwwpxhlp p {
   margin: 0;
   padding: 0;
 }
 
-#eoudslmirh .gt_table {
+#zcrwwpxhlp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -560,12 +565,12 @@ Note
   border-left-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_caption {
+#zcrwwpxhlp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eoudslmirh .gt_title {
+#zcrwwpxhlp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -577,7 +582,7 @@ Note
   border-bottom-width: 0;
 }
 
-#eoudslmirh .gt_subtitle {
+#zcrwwpxhlp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -589,7 +594,7 @@ Note
   border-top-width: 0;
 }
 
-#eoudslmirh .gt_heading {
+#zcrwwpxhlp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -601,13 +606,13 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_bottom_border {
+#zcrwwpxhlp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_col_headings {
+#zcrwwpxhlp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -622,7 +627,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_col_heading {
+#zcrwwpxhlp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -642,7 +647,7 @@ Note
   overflow-x: hidden;
 }
 
-#eoudslmirh .gt_column_spanner_outer {
+#zcrwwpxhlp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -654,15 +659,15 @@ Note
   padding-right: 4px;
 }
 
-#eoudslmirh .gt_column_spanner_outer:first-child {
+#zcrwwpxhlp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eoudslmirh .gt_column_spanner_outer:last-child {
+#zcrwwpxhlp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eoudslmirh .gt_column_spanner {
+#zcrwwpxhlp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -674,11 +679,11 @@ Note
   width: 100%;
 }
 
-#eoudslmirh .gt_spanner_row {
+#zcrwwpxhlp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eoudslmirh .gt_group_heading {
+#zcrwwpxhlp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -704,7 +709,7 @@ Note
   text-align: left;
 }
 
-#eoudslmirh .gt_empty_group_heading {
+#zcrwwpxhlp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -719,15 +724,15 @@ Note
   vertical-align: middle;
 }
 
-#eoudslmirh .gt_from_md > :first-child {
+#zcrwwpxhlp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eoudslmirh .gt_from_md > :last-child {
+#zcrwwpxhlp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eoudslmirh .gt_row {
+#zcrwwpxhlp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -746,7 +751,7 @@ Note
   overflow-x: hidden;
 }
 
-#eoudslmirh .gt_stub {
+#zcrwwpxhlp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -759,7 +764,7 @@ Note
   padding-right: 5px;
 }
 
-#eoudslmirh .gt_stub_row_group {
+#zcrwwpxhlp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -773,15 +778,15 @@ Note
   vertical-align: top;
 }
 
-#eoudslmirh .gt_row_group_first td {
+#zcrwwpxhlp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eoudslmirh .gt_row_group_first th {
+#zcrwwpxhlp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eoudslmirh .gt_summary_row {
+#zcrwwpxhlp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -791,16 +796,16 @@ Note
   padding-right: 5px;
 }
 
-#eoudslmirh .gt_first_summary_row {
+#zcrwwpxhlp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_first_summary_row.thick {
+#zcrwwpxhlp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eoudslmirh .gt_last_summary_row {
+#zcrwwpxhlp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -810,7 +815,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_grand_summary_row {
+#zcrwwpxhlp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -820,7 +825,7 @@ Note
   padding-right: 5px;
 }
 
-#eoudslmirh .gt_first_grand_summary_row {
+#zcrwwpxhlp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -830,7 +835,7 @@ Note
   border-top-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_last_grand_summary_row_top {
+#zcrwwpxhlp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -840,11 +845,11 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_striped {
+#zcrwwpxhlp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eoudslmirh .gt_table_body {
+#zcrwwpxhlp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -853,7 +858,7 @@ Note
   border-bottom-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_footnotes {
+#zcrwwpxhlp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -867,7 +872,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_footnote {
+#zcrwwpxhlp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -876,7 +881,7 @@ Note
   padding-right: 5px;
 }
 
-#eoudslmirh .gt_sourcenotes {
+#zcrwwpxhlp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -890,7 +895,7 @@ Note
   border-right-color: #D3D3D3;
 }
 
-#eoudslmirh .gt_sourcenote {
+#zcrwwpxhlp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -898,72 +903,72 @@ Note
   padding-right: 5px;
 }
 
-#eoudslmirh .gt_left {
+#zcrwwpxhlp .gt_left {
   text-align: left;
 }
 
-#eoudslmirh .gt_center {
+#zcrwwpxhlp .gt_center {
   text-align: center;
 }
 
-#eoudslmirh .gt_right {
+#zcrwwpxhlp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eoudslmirh .gt_font_normal {
+#zcrwwpxhlp .gt_font_normal {
   font-weight: normal;
 }
 
-#eoudslmirh .gt_font_bold {
+#zcrwwpxhlp .gt_font_bold {
   font-weight: bold;
 }
 
-#eoudslmirh .gt_font_italic {
+#zcrwwpxhlp .gt_font_italic {
   font-style: italic;
 }
 
-#eoudslmirh .gt_super {
+#zcrwwpxhlp .gt_super {
   font-size: 65%;
 }
 
-#eoudslmirh .gt_footnote_marks {
+#zcrwwpxhlp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eoudslmirh .gt_asterisk {
+#zcrwwpxhlp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eoudslmirh .gt_indent_1 {
+#zcrwwpxhlp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eoudslmirh .gt_indent_2 {
+#zcrwwpxhlp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eoudslmirh .gt_indent_3 {
+#zcrwwpxhlp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eoudslmirh .gt_indent_4 {
+#zcrwwpxhlp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eoudslmirh .gt_indent_5 {
+#zcrwwpxhlp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#eoudslmirh .katex-display {
+#zcrwwpxhlp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#eoudslmirh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zcrwwpxhlp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1121,14 +1126,12 @@ Note
 <p><strong>Compare to the published table:</strong> Pull up Table 1 in Matzenbacher et al.&nbsp;(2026). Your simulated table should have similar overall means and SDs but will not match exactly — this is expected with a synthetic dataset. The group-level differences (imbalances) in your table will also differ from the published table because they arise from random chance in the simulation.</p>
 </div>
 </div>
+<hr>
 </section>
-<section id="section-3" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="section-3"><span class="header-section-number">3.8</span> ———————————————————————</h2>
-</section>
-<section id="interpreting-baseline-balance" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="interpreting-baseline-balance"><span class="header-section-number">3.9</span> 3. Interpreting Baseline Balance</h2>
-<section id="a.-what-balanced-means-in-a-randomized-trial" class="level3" data-number="3.9.1">
-<h3 data-number="3.9.1" class="anchored" data-anchor-id="a.-what-balanced-means-in-a-randomized-trial"><span class="header-section-number">3.9.1</span> 3a. What “balanced” means in a randomized trial</h3>
+<section id="interpreting-baseline-balance" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="interpreting-baseline-balance"><span class="header-section-number">3.5</span> 3. Interpreting Baseline Balance</h2>
+<section id="a.-what-balanced-means-in-a-randomized-trial" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="a.-what-balanced-means-in-a-randomized-trial"><span class="header-section-number">3.5.1</span> 3a. What “balanced” means in a randomized trial</h3>
 <p>After randomization, we compare baseline characteristics between groups. In a <em>perfectly</em> balanced trial, every characteristic would be identical across groups. In practice, small differences always occur by chance, even with proper randomization.</p>
 <p>The key question is: <strong>are any of the differences large enough to matter?</strong></p>
 <div class="cell">
@@ -1160,8 +1163,8 @@ Note
 </div>
 </div>
 </section>
-<section id="b.-why-we-do-not-test-for-statistical-significance-at-baseline" class="level3" data-number="3.9.2">
-<h3 data-number="3.9.2" class="anchored" data-anchor-id="b.-why-we-do-not-test-for-statistical-significance-at-baseline"><span class="header-section-number">3.9.2</span> 3b. Why we do NOT test for statistical significance at baseline</h3>
+<section id="b.-why-we-do-not-test-for-statistical-significance-at-baseline" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="b.-why-we-do-not-test-for-statistical-significance-at-baseline"><span class="header-section-number">3.5.2</span> 3b. Why we do NOT test for statistical significance at baseline</h3>
 <p>You may notice that Table 1 in our simulated output (and in most published trials) does not include a p-value column. This is intentional, and it is one of the most important conventions in clinical trial reporting.</p>
 <p><strong>The reason:</strong> In a properly randomized trial, any baseline difference between groups arose by chance — by definition, because we randomized. Testing whether a baseline difference is “statistically significant” asks: “Is this difference too large to be due to chance?” But we already know it is due to chance (the randomization). The test cannot tell us anything informative.</p>
 <p>What matters instead is whether the difference is <strong>clinically meaningful</strong> — large enough to affect the outcome, regardless of its p-value. A large p-value does not mean a baseline imbalance is unimportant; it means only that the sample was too small to detect it with confidence.</p>
@@ -1179,8 +1182,8 @@ Important
 </div>
 </div>
 </section>
-<section id="c.-standardized-mean-differences" class="level3" data-number="3.9.3">
-<h3 data-number="3.9.3" class="anchored" data-anchor-id="c.-standardized-mean-differences"><span class="header-section-number">3.9.3</span> 3c. Standardized mean differences</h3>
+<section id="c.-standardized-mean-differences" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="c.-standardized-mean-differences"><span class="header-section-number">3.5.3</span> 3c. Standardized mean differences</h3>
 <p>A more informative measure of baseline balance is the <strong>standardized mean difference (SMD)</strong>: the group difference divided by the pooled standard deviation. Values below 0.1 are generally considered small (good balance); values above 0.2 may warrant adjustment in the primary analysis.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gtsummary can add SMDs directly to the Table 1</span></span>
@@ -1195,23 +1198,23 @@ Important
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(estimate <span class="sc">~</span> <span class="st">"**SMD**"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="uqsdjupqly" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uqsdjupqly table {
+<div id="pnynwmmxpz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pnynwmmxpz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uqsdjupqly thead, #uqsdjupqly tbody, #uqsdjupqly tfoot, #uqsdjupqly tr, #uqsdjupqly td, #uqsdjupqly th {
+#pnynwmmxpz thead, #pnynwmmxpz tbody, #pnynwmmxpz tfoot, #pnynwmmxpz tr, #pnynwmmxpz td, #pnynwmmxpz th {
   border-style: none;
 }
 
-#uqsdjupqly p {
+#pnynwmmxpz p {
   margin: 0;
   padding: 0;
 }
 
-#uqsdjupqly .gt_table {
+#pnynwmmxpz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1237,12 +1240,12 @@ Important
   border-left-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_caption {
+#pnynwmmxpz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uqsdjupqly .gt_title {
+#pnynwmmxpz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1254,7 +1257,7 @@ Important
   border-bottom-width: 0;
 }
 
-#uqsdjupqly .gt_subtitle {
+#pnynwmmxpz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1266,7 +1269,7 @@ Important
   border-top-width: 0;
 }
 
-#uqsdjupqly .gt_heading {
+#pnynwmmxpz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1278,13 +1281,13 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_bottom_border {
+#pnynwmmxpz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_col_headings {
+#pnynwmmxpz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1299,7 +1302,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_col_heading {
+#pnynwmmxpz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1319,7 +1322,7 @@ Important
   overflow-x: hidden;
 }
 
-#uqsdjupqly .gt_column_spanner_outer {
+#pnynwmmxpz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1331,15 +1334,15 @@ Important
   padding-right: 4px;
 }
 
-#uqsdjupqly .gt_column_spanner_outer:first-child {
+#pnynwmmxpz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uqsdjupqly .gt_column_spanner_outer:last-child {
+#pnynwmmxpz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uqsdjupqly .gt_column_spanner {
+#pnynwmmxpz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1351,11 +1354,11 @@ Important
   width: 100%;
 }
 
-#uqsdjupqly .gt_spanner_row {
+#pnynwmmxpz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uqsdjupqly .gt_group_heading {
+#pnynwmmxpz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1381,7 +1384,7 @@ Important
   text-align: left;
 }
 
-#uqsdjupqly .gt_empty_group_heading {
+#pnynwmmxpz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1396,15 +1399,15 @@ Important
   vertical-align: middle;
 }
 
-#uqsdjupqly .gt_from_md > :first-child {
+#pnynwmmxpz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uqsdjupqly .gt_from_md > :last-child {
+#pnynwmmxpz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uqsdjupqly .gt_row {
+#pnynwmmxpz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1423,7 +1426,7 @@ Important
   overflow-x: hidden;
 }
 
-#uqsdjupqly .gt_stub {
+#pnynwmmxpz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1436,7 +1439,7 @@ Important
   padding-right: 5px;
 }
 
-#uqsdjupqly .gt_stub_row_group {
+#pnynwmmxpz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1450,15 +1453,15 @@ Important
   vertical-align: top;
 }
 
-#uqsdjupqly .gt_row_group_first td {
+#pnynwmmxpz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uqsdjupqly .gt_row_group_first th {
+#pnynwmmxpz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uqsdjupqly .gt_summary_row {
+#pnynwmmxpz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1468,16 +1471,16 @@ Important
   padding-right: 5px;
 }
 
-#uqsdjupqly .gt_first_summary_row {
+#pnynwmmxpz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_first_summary_row.thick {
+#pnynwmmxpz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uqsdjupqly .gt_last_summary_row {
+#pnynwmmxpz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1487,7 +1490,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_grand_summary_row {
+#pnynwmmxpz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1497,7 +1500,7 @@ Important
   padding-right: 5px;
 }
 
-#uqsdjupqly .gt_first_grand_summary_row {
+#pnynwmmxpz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1507,7 +1510,7 @@ Important
   border-top-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_last_grand_summary_row_top {
+#pnynwmmxpz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1517,11 +1520,11 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_striped {
+#pnynwmmxpz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uqsdjupqly .gt_table_body {
+#pnynwmmxpz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1530,7 +1533,7 @@ Important
   border-bottom-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_footnotes {
+#pnynwmmxpz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1544,7 +1547,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_footnote {
+#pnynwmmxpz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1553,7 +1556,7 @@ Important
   padding-right: 5px;
 }
 
-#uqsdjupqly .gt_sourcenotes {
+#pnynwmmxpz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1567,7 +1570,7 @@ Important
   border-right-color: #D3D3D3;
 }
 
-#uqsdjupqly .gt_sourcenote {
+#pnynwmmxpz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1575,72 +1578,72 @@ Important
   padding-right: 5px;
 }
 
-#uqsdjupqly .gt_left {
+#pnynwmmxpz .gt_left {
   text-align: left;
 }
 
-#uqsdjupqly .gt_center {
+#pnynwmmxpz .gt_center {
   text-align: center;
 }
 
-#uqsdjupqly .gt_right {
+#pnynwmmxpz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uqsdjupqly .gt_font_normal {
+#pnynwmmxpz .gt_font_normal {
   font-weight: normal;
 }
 
-#uqsdjupqly .gt_font_bold {
+#pnynwmmxpz .gt_font_bold {
   font-weight: bold;
 }
 
-#uqsdjupqly .gt_font_italic {
+#pnynwmmxpz .gt_font_italic {
   font-style: italic;
 }
 
-#uqsdjupqly .gt_super {
+#pnynwmmxpz .gt_super {
   font-size: 65%;
 }
 
-#uqsdjupqly .gt_footnote_marks {
+#pnynwmmxpz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uqsdjupqly .gt_asterisk {
+#pnynwmmxpz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uqsdjupqly .gt_indent_1 {
+#pnynwmmxpz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uqsdjupqly .gt_indent_2 {
+#pnynwmmxpz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uqsdjupqly .gt_indent_3 {
+#pnynwmmxpz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uqsdjupqly .gt_indent_4 {
+#pnynwmmxpz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uqsdjupqly .gt_indent_5 {
+#pnynwmmxpz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uqsdjupqly .katex-display {
+#pnynwmmxpz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uqsdjupqly div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pnynwmmxpz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1760,25 +1763,21 @@ Note
 <p><strong>Interpreting SMDs in this dataset:</strong> Because we simulated from pooled group means (the same mean for both groups), any SMDs you see reflect random variation from the 1:1 assignment with this particular seed. In the real trial, Table 1 also showed no important baseline differences. The ANCOVA model in Module 5 will adjust for the baseline value of each outcome regardless of the SMD, providing a more precise estimate of the treatment effect.</p>
 </div>
 </div>
+<hr>
 </section>
 </section>
-<section id="section-4" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="section-4"><span class="header-section-number">3.10</span> ———————————————————————</h2>
-</section>
-<section id="practice-exercises" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">3.11</span> 4. Practice Exercises</h2>
+<section id="practice-exercises" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="practice-exercises"><span class="header-section-number">3.6</span> 4. Practice Exercises</h2>
 <ol type="1">
 <li><p><strong>Recalculate by hand.</strong> Compute the mean SRQ-20 score for each group using only base R (no packages). Compare to the gtsummary table.</p></li>
-<li><p><strong>The education variable.</strong> In the real trial, 24.1% of participants had completed secondary education or higher. What percentage do you find in the simulated data? Is it close? (Check <code>simulation-assumptions.md</code> to see where this parameter came from.)</p></li>
+<li><p><strong>The education variable.</strong> In the real trial, 24.1% of participants had completed secondary education or higher. What percentage do you find in the simulated data? Is it close? (Check <a href="../simulation-assumptions.html">simulation-assumptions.md</a> to see where this parameter came from.)</p></li>
 <li><p><strong>Identify the most imbalanced baseline variable.</strong> Using the SMD table, which variable shows the largest imbalance between groups in your simulated data? Is the SMD above or below 0.1?</p></li>
-<li><p><strong>Why does the SRQ-20 show group imbalance?</strong> Think back to <code>simulation-refinements.md</code>. The intervention group started with a higher average SRQ-20 score than the control group. Recall the discussion of how this imbalance affects the raw follow-up comparison. What does this suggest about the importance of the ANCOVA adjustment in Module 5?</p></li>
+<li><p><strong>Why does the SRQ-20 show group imbalance?</strong> Think back to <a href="../simulation-refinements.html">simulation-refinements.md</a>. The intervention group started with a higher average SRQ-20 score than the control group. Recall the discussion of how this imbalance affects the raw follow-up comparison. What does this suggest about the importance of the ANCOVA adjustment in Module 5?</p></li>
 </ol>
+<hr>
 </section>
-<section id="section-5" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="section-5"><span class="header-section-number">3.12</span> ———————————————————————</h2>
-</section>
-<section id="summary" class="level2" data-number="3.13">
-<h2 data-number="3.13" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.13</span> Summary</h2>
+<section id="summary" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">3.7</span> Summary</h2>
 <p>In this module you:</p>
 <ul>
 <li>Computed univariate summaries (mean, SD, n, %) for all baseline variables.</li>
@@ -1787,12 +1786,10 @@ Note
 <li>Learned why significance tests of baseline differences are not appropriate in a randomized trial, and introduced standardized mean differences as a better measure of balance.</li>
 </ul>
 <p><strong>Next:</strong> Module 3 will examine the distributions of the primary and secondary outcomes visually, using histograms, box plots, and individual-change plots.</p>
+<hr>
 </section>
-<section id="section-6" class="level2" data-number="3.14">
-<h2 data-number="3.14" class="anchored" data-anchor-id="section-6"><span class="header-section-number">3.14</span> ———————————————————————</h2>
-</section>
-<section id="session-information" class="level2" data-number="3.15">
-<h2 data-number="3.15" class="anchored" data-anchor-id="session-information"><span class="header-section-number">3.15</span> Session Information</h2>
+<section id="session-information" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="session-information"><span class="header-section-number">3.8</span> Session Information</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
