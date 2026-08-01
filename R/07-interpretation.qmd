@@ -1,7 +1,7 @@
 ---
 title: "Module 7: Interpretation and Critical Appraisal"
 subtitle: "CRP 241 — IVAM-ED Teaching Case"
-author: "Your Name"
+author: "Steve Grambow, PhD"
 date: today
 execute:
   echo: true

@@ -34,9 +34,89 @@ selected exercises.
 
 ---
 
+## AI Assistance Disclosure {.unnumbered}
+
+This repository, its analysis modules, and the rendered book were developed using
+AI-assisted agentic workflows. This section describes what was used, how it was
+used, and what remained the responsibility of the human instructor throughout.
+
+### Tools and model
+
+**GitHub Copilot Business** (VS Code extension, agent mode with agentic workflow)
+was used for the entire development session. The underlying model was
+**Claude Sonnet 4.6** (Anthropic), accessed through GitHub Copilot. The session
+was conducted under the Duke BERD Core AI Coding Pilot, **Tier 2**: GitHub Copilot
+Business with synthetic or non-sensitive data only, on a public GitHub repository.
+
+### What "agentic workflow" means
+
+GitHub Copilot in agent mode allows the AI to take multi-step actions autonomously:
+reading files, writing and editing code, executing terminal commands, installing
+packages, committing to git, and pushing to GitHub. The agent did not merely
+suggest code — it executed the full development workflow, including:
+
+- Analyzing source PDFs to extract simulation parameters
+- Writing, running, debugging, and verifying the synthetic data simulation
+- Creating all eight analysis modules and the Quarto book infrastructure
+- Running security audits and rendering checks
+- Conducting a peer review of its own materials and implementing the recommendations
+
+### Human-in-the-loop: what the instructor directed
+
+This was not autonomous AI generation. The instructor (Steve Grambow) directed
+every substantive decision in the session:
+
+- **Case selection:** The IVAM-ED trial was chosen by the instructor based on
+  pedagogical criteria the instructor specified.
+- **Pedagogical structure:** The seven-module sequence, the learning objectives,
+  and the decision to build a Quarto book were all instructor-directed.
+- **Quality review:** At the end of the session, the instructor requested a
+  critical peer review of the materials, reviewed the AI's recommendations, and
+  directed which changes to implement.
+- **Governance:** The BERD AI pilot's `AGENTS.md` operating contract governed
+  what the agent could do autonomously (write and edit files, run terminal
+  commands, render) versus what required instructor confirmation (git commit,
+  git push, package installation, file deletion).
+- **Content accuracy:** The instructor reviewed the simulation parameters,
+  the module content, and the book structure. All numbers were verified against
+  the published source documents before use.
+
+When the instructor was unavailable to answer interview questions (during the
+bootstrap phase), the agent documented its assumptions explicitly in
+`SESSION_LOG.md` and `simulation-assumptions.md`, and flagged them for instructor
+review rather than proceeding silently.
+
+### What the AI contributed
+
+Speed and consistency at the implementation layer. The simulation script that would
+have required a half-day to write manually was drafted in minutes, with source
+citations embedded at the time of writing. Eight module documents were produced
+with consistent structure and style. Two simulation bugs were caught by automated
+verification and fixed through iterative debugging. The full development session —
+from empty repository to published Quarto book — was completed in a single working
+day.
+
+### What this disclosure is for
+
+The Standards for Educational and Psychological Testing, the American Statistical
+Association, and most Duke University academic integrity policies require disclosure
+of substantial AI assistance in educational materials. This disclosure fulfills
+that requirement. It is also a pedagogical statement: transparency about how
+materials are made is part of what the course is teaching. Students who work
+through Module 7 — comparing what a published analysis reported to what its
+protocol specified — are learning the same critical literacy that applies here.
+
+The full session history, including every decision, file change, and command
+executed, is in `SESSION_LOG.md`. The simulation construction process is documented
+in `simulation-assumptions.md` and `simulation-refinements.md`. The repository
+itself is the audit trail.
+
+---
+
 ## The IVAM-ED Study {.unnumbered}
 
 ### Why this study was chosen
+
 
 The IVAM-ED trial — *Interactive Virtual Assistant for Mental Health Promotion and
 Self-Care Management in Elderly with Type 2 Diabetes* — was selected as the
