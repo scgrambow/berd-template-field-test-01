@@ -35,3 +35,5 @@ Thumbs.db
 **/*.quarto_ipynb
 R/*.html
 _book/
+# Local pilot/daily notes — not synced to remote
+updates/
