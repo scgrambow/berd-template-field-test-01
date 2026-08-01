@@ -315,6 +315,14 @@ A deviation disclosed in the paper is far less concerning than a deviation you
 discover only by reading the protocol.
 :::
 
+For a broader assessment of the trial's methodological quality — the power
+calculation's effect-size assumption, statistical reporting practices,
+whether clinical significance is discussed alongside statistical
+significance, and where the Discussion's tone runs ahead of what the
+Methods actually support — see the
+[Critical Appraisal](../critical-appraisal.md) appendix, which reads both
+papers the way a peer reviewer would.
+
 ---
 
 ## 5. Sample Size and Power: What Was Planned vs. What Was Observed

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="BERD AI Pilot (Claude Code)">
+<meta name="description" content="A structured, evidence-cited peer-review of the IVAM-ED trial’s design, power calculation, statistical methods, and reporting quality — modeling how to read a clinical trial critically.">
+
+<title>Appendix D — Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial – IVAM-ED: A CRP 241 Teaching Case</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./simulation-refinements.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R/A1-answer-key.html">Appendices</a></li><li class="breadcrumb-item"><a href="./critical-appraisal.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">IVAM-ED: A CRP 241 Teaching Case</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/scgrambow/berd-template-field-test-01" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Analysis Modules</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/01-data-setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Data Setup and Inspection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/02-descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Descriptive Statistics and Baseline Characteristics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/03-visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Module 3: Data Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/04-estimation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Estimation and Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/05-ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Linear Regression and ANCOVA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/06-missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Module 6: Missing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/07-interpretation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Module 7: Interpretation and Critical Appraisal</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/08-capstone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Module 8: Capstone — Write a Methods and Results Section</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R/A1-answer-key.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Answer Key</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-assumptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Simulation Process and Assumptions: IVAM-ED Synthetic Dataset</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./simulation-refinements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./critical-appraisal.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pedagogical-essay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#critical-appraisal-a-reviewers-assessment-of-the-ivam-ed-trial" id="toc-critical-appraisal-a-reviewers-assessment-of-the-ivam-ed-trial" class="nav-link active" data-scroll-target="#critical-appraisal-a-reviewers-assessment-of-the-ivam-ed-trial">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</a>
+  <ul class="collapse">
+  <li><a href="#design-and-conduct" id="toc-design-and-conduct" class="nav-link" data-scroll-target="#design-and-conduct"><span class="header-section-number">D.1</span> 1. Design and Conduct</a>
+  <ul class="collapse">
+  <li><a href="#strengths" id="toc-strengths" class="nav-link" data-scroll-target="#strengths"><span class="header-section-number">D.1.1</span> Strengths</a></li>
+  <li><a href="#weaknesses" id="toc-weaknesses" class="nav-link" data-scroll-target="#weaknesses"><span class="header-section-number">D.1.2</span> Weaknesses</a></li>
+  </ul></li>
+  <li><a href="#sample-size-and-power" id="toc-sample-size-and-power" class="nav-link" data-scroll-target="#sample-size-and-power"><span class="header-section-number">D.2</span> 2. Sample Size and Power</a>
+  <ul class="collapse">
+  <li><a href="#what-was-done" id="toc-what-was-done" class="nav-link" data-scroll-target="#what-was-done"><span class="header-section-number">D.2.1</span> What was done</a></li>
+  <li><a href="#the-weak-link-where-0.68-came-from" id="toc-the-weak-link-where-0.68-came-from" class="nav-link" data-scroll-target="#the-weak-link-where-0.68-came-from"><span class="header-section-number">D.2.2</span> The weak link: where 0.68 came from</a></li>
+  <li><a href="#what-actually-happened" id="toc-what-actually-happened" class="nav-link" data-scroll-target="#what-actually-happened"><span class="header-section-number">D.2.3</span> What actually happened</a></li>
+  </ul></li>
+  <li><a href="#statistical-methods-and-analysis-plan" id="toc-statistical-methods-and-analysis-plan" class="nav-link" data-scroll-target="#statistical-methods-and-analysis-plan"><span class="header-section-number">D.3</span> 3. Statistical Methods and Analysis Plan</a>
+  <ul class="collapse">
+  <li><a href="#strengths-1" id="toc-strengths-1" class="nav-link" data-scroll-target="#strengths-1"><span class="header-section-number">D.3.1</span> Strengths</a></li>
+  <li><a href="#weaknesses-1" id="toc-weaknesses-1" class="nav-link" data-scroll-target="#weaknesses-1"><span class="header-section-number">D.3.2</span> Weaknesses</a></li>
+  </ul></li>
+  <li><a href="#statistical-reporting-quality" id="toc-statistical-reporting-quality" class="nav-link" data-scroll-target="#statistical-reporting-quality"><span class="header-section-number">D.4</span> 4. Statistical Reporting Quality</a>
+  <ul class="collapse">
+  <li><a href="#what-the-paper-does-well" id="toc-what-the-paper-does-well" class="nav-link" data-scroll-target="#what-the-paper-does-well"><span class="header-section-number">D.4.1</span> What the paper does well</a></li>
+  <li><a href="#where-it-falls-short" id="toc-where-it-falls-short" class="nav-link" data-scroll-target="#where-it-falls-short"><span class="header-section-number">D.4.2</span> Where it falls short</a></li>
+  </ul></li>
+  <li><a href="#consistency-between-protocolsap-and-publication" id="toc-consistency-between-protocolsap-and-publication" class="nav-link" data-scroll-target="#consistency-between-protocolsap-and-publication"><span class="header-section-number">D.5</span> 5. Consistency Between Protocol/SAP and Publication</a></li>
+  <li><a href="#overall-assessment" id="toc-overall-assessment" class="nav-link" data-scroll-target="#overall-assessment"><span class="header-section-number">D.6</span> 6. Overall Assessment</a></li>
+  <li><a href="#what-this-models-for-students" id="toc-what-this-models-for-students" class="nav-link" data-scroll-target="#what-this-models-for-students"><span class="header-section-number">D.7</span> 7. What This Models for Students</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/critical-appraisal.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R/A1-answer-key.html">Appendices</a></li><li class="breadcrumb-item"><a href="./critical-appraisal.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Appendix D — Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>BERD AI Pilot (Claude Code) </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="critical-appraisal-a-reviewers-assessment-of-the-ivam-ed-trial" class="level1 unnumbered">
+<h1 class="unnumbered">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</h1>
+<p>Module 7 walks through four specific deviations between the IVAM-ED protocol/SAP (Da Costa et al., 2024) and the published results (Matzenbacher et al., 2026). This appendix takes a wider view: it reads both papers in full, the way a peer reviewer or journal club would, and asks a broader set of questions — is the rationale for the design clear? Is the power calculation well justified? Does the statistical reporting follow recognized best practices? Is the clinical significance of the findings discussed, not just their statistical significance? Where the paper is strong, this appendix says so explicitly; where it is weak, it says that too, with the specific text that supports the judgment.</p>
+<p><strong>Why include this in a teaching repository.</strong> Reading a published trial uncritically — treating “published in a peer-reviewed journal” as equivalent to “methodologically flawless” — is a habit this course is trying to break. A structured appraisal like this one is a rubric students can reapply to any paper they read for the rest of their careers: not “is this paper good or bad,” but “what specifically did the authors do well, what did they do less well, and what would I ask them if I were a reviewer?” Every claim below is tied to specific text in <code>source/extracted/matzenbacher-2026-ivam-ed-results-paper.md</code> or <code>source/extracted/da-costa-2024-ivam-ed-protocol-sap.md</code>, so students can verify each judgment against the source rather than take it on faith — including from this document.</p>
+<p>This appraisal is offered in the same spirit as the trial’s own Limitations section: as a constructive assessment of a real, useful, imperfect study, not a takedown. The IVAM-ED trial is, on balance, a well-conducted and unusually transparently reported pilot-scale trial of a genuinely novel intervention. The purpose here is to model <em>how</em> to reach that kind of qualified judgment, not just to state it.</p>
+<hr>
+<section id="design-and-conduct" class="level2" data-number="D.1">
+<h2 data-number="D.1" class="anchored" data-anchor-id="design-and-conduct"><span class="header-section-number">D.1</span> 1. Design and Conduct</h2>
+<section id="strengths" class="level3" data-number="D.1.1">
+<h3 data-number="D.1.1" class="anchored" data-anchor-id="strengths"><span class="header-section-number">D.1.1</span> Strengths</h3>
+<ul>
+<li><strong>Prospective registration well ahead of enrollment.</strong> The trial was registered at ClinicalTrials.gov (NCT05329376) on April 15, 2022 — more than a year before enrollment began on June 20, 2023. Prospective registration is one of the strongest available defenses against outcome switching (deciding which outcomes to report <em>after</em> seeing which ones were significant); a protocol registered this far in advance carries real weight.</li>
+<li><strong>Recognized reporting frameworks used correctly.</strong> The protocol followed SPIRIT 2013 (with a completed checklist in the supplement) and the results paper followed CONSORT. Both are the correct guideline for their respective document type, and both are cited explicitly rather than gestured at.</li>
+<li><strong>Statistician blinded to group assignment until analysis was complete.</strong> “Researchers responsible for performing statistical analysis (LSM and FLB) will also be blinded… random codes for encoding the study groups will be generated by the same independent researcher responsible for allocation” (protocol, <em>Randomization and blinding</em>). This is a genuine methodological safeguard against analyst-driven bias, and it is uncommon for a trial this small to implement it.</li>
+<li><strong>Pragmatic design decisions are stated as decisions, not discovered as gaps.</strong> The protocol explicitly commits, in advance, to intention-to-treat analysis without adjustment for intervention adherence: “the evaluation of outcomes will not consider the patient’s adherence to the proposed intervention, maintaining the integrity of the intention-to-treat analysis.” This is a defensible pragmatic-trial choice, and stating it up front (rather than explaining it away after the fact) is good practice.</li>
+<li><strong>An objective, assessor-independent outcome corroborates the subjective ones.</strong> HbA1c is a laboratory value, not something a participant or interviewer can consciously or unconsciously bias — and its 12-week decline in the intervention group points the same direction as the self-reported outcomes. The authors make exactly this argument in their Limitations section, and it is a legitimate one.</li>
+</ul>
+</section>
+<section id="weaknesses" class="level3" data-number="D.1.2">
+<h3 data-number="D.1.2" class="anchored" data-anchor-id="weaknesses"><span class="header-section-number">D.1.2</span> Weaknesses</h3>
+<ul>
+<li><strong>Open-label by necessity, with the bias risks that follow.</strong> A smart speaker physically installed in a participant’s home cannot be blinded. The authors acknowledge this directly and describe mitigations (follow-up calls in both arms, standardized assessor training), but performance, detection, and response bias remain live threats that no amount of post-hoc mitigation fully removes — this is a structural limitation of the intervention type, not a fixable design flaw.</li>
+<li><strong>Single center, in a population with distinctive socioeconomic and educational characteristics.</strong> Mean 6.4–7.5 years of formal education and a median income around 2.3 Brazilian minimum wages per month are not representative of most higher-income-country populations. The authors disclose this clearly in Limitations rather than overselling generalizability, which is a strength of the writing — but it remains a real constraint on what the trial can tell us.</li>
+<li><strong>The Wi-Fi eligibility requirement selects for tech-comfortable participants</strong> in a device-based intervention trial — plausibly inflating the observed effect relative to a broader older-adult population less comfortable with technology. The authors note this too, though they argue (reasonably, but without direct evidence) that “only a small proportion of participants assessed for eligibility lacked Wi-Fi at home,” so the selection effect may be modest.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="sample-size-and-power" class="level2" data-number="D.2">
+<h2 data-number="D.2" class="anchored" data-anchor-id="sample-size-and-power"><span class="header-section-number">D.2</span> 2. Sample Size and Power</h2>
+<section id="what-was-done" class="level3" data-number="D.2.1">
+<h3 data-number="D.2.1" class="anchored" data-anchor-id="what-was-done"><span class="header-section-number">D.2.1</span> What was done</h3>
+<p>The protocol pre-specifies a conventional two-sample <em>t</em>-test power calculation: α = .05, power = 90%, 1:1 allocation, Cohen’s <em>d</em> = 0.68, yielding 94 completers (47/group), inflated to 112 enrolled (56/group) for an assumed 20% dropout. This is reported plainly and the software used (Statistics and Sample Size Pro) is named — good practice; many papers omit the tool.</p>
+</section>
+<section id="the-weak-link-where-0.68-came-from" class="level3" data-number="D.2.2">
+<h3 data-number="D.2.2" class="anchored" data-anchor-id="the-weak-link-where-0.68-came-from"><span class="header-section-number">D.2.2</span> The weak link: where 0.68 came from</h3>
+<p>The effect size was not estimated from a pilot of this intervention, from prior smart-speaker studies, or from the SRQ-20 literature. It was borrowed from Fulmer et al.&nbsp;(2018), a trial of an SMS-based AI chatbot (“Tess”) for self-identified depression and anxiety symptoms in a different population, using a different outcome instrument (PHQ-9, not SRQ-20). The protocol’s justification is a single sentence: the PHQ-9 “was shown to be equivalent to” the SRQ-20 in a separate validation study. Instrument equivalence in a validation study is not the same claim as <em>effect-size</em> equivalence across two different interventions in two different populations — a text-message chatbot targeting self-identified psychological symptoms in (presumably) a younger, more digitally-native population is a meaningfully different intervention from a voice-activated smart speaker delivering health reminders to older adults with diabetes. <strong>This is a defensible-but-risky practice, not a fabrication</strong>: for a genuinely novel intervention with no closer comparator available (the results paper itself claims IVAM-ED “is the first randomized study to evaluate the impact of such an intervention on diabetes management in older adults”), some anchor has to be chosen, and the authors were transparent about exactly which one they used and why. A reviewer’s fair question is not “why did you guess” but “given that you had to guess, did you discuss the risk that the true effect could be considerably smaller, and did you plan accordingly?” The protocol does not visibly do this — there is no sensitivity analysis around the effect-size assumption in the SAP.</p>
+</section>
+<section id="what-actually-happened" class="level3" data-number="D.2.3">
+<h3 data-number="D.2.3" class="anchored" data-anchor-id="what-actually-happened"><span class="header-section-number">D.2.3</span> What actually happened</h3>
+<p>The achieved standardized effect sizes for the primary outcome were <strong>0.41 (baseline-adjusted) and 0.48 (fully adjusted)</strong> — both well below the assumed 0.68. Module 7’s own power-sensitivity analysis (Section 5b) shows what this means concretely: at <em>d</em> ≈ 0.40, power with this sample falls to roughly 55–60%, meaning more than a third of true effects of that size would be missed by chance. That the trial nonetheless reached significance for the primary outcome (baseline-adjusted <em>p</em> = .04; fully adjusted <em>p</em> = .02) is consistent with a real effect — but a <strong>borderline result from a smaller-than-assumed effect size in a smaller-than-ideal-for-that-effect sample is exactly the fragile combination a reviewer should flag</strong>: the 95% CI for the fully adjusted primary result is (−2.73, −0.19), and its upper bound sits only 0.19 points from the null. A slightly less favorable sample would plausibly have crossed <em>p</em> = .05. This does not mean the finding is wrong; it means the finding calls for replication before being treated as settled, and the paper’s own Discussion is appropriately hedged on this point (“future studies with longer follow-up periods… could provide valuable insights”).</p>
+<p><strong>Reviewer’s note, connecting back to the book:</strong> this is precisely the scenario Module 7 dramatizes with simulated data (Section 5b’s power curve at <em>d</em> = 0.40–0.68). The real trial did not simulate this scenario — it lived it.</p>
+<hr>
+</section>
+</section>
+<section id="statistical-methods-and-analysis-plan" class="level2" data-number="D.3">
+<h2 data-number="D.3" class="anchored" data-anchor-id="statistical-methods-and-analysis-plan"><span class="header-section-number">D.3</span> 3. Statistical Methods and Analysis Plan</h2>
+<section id="strengths-1" class="level3" data-number="D.3.1">
+<h3 data-number="D.3.1" class="anchored" data-anchor-id="strengths-1"><span class="header-section-number">D.3.1</span> Strengths</h3>
+<ul>
+<li><strong>The core analytic approach (ANCOVA on final values, not change scores) is correctly specified and correctly justified</strong>: “As we will compare the means at the end of the study, rather than deltas… the model will include baseline data of the outcome variable as a covariate.” This is the textbook-correct reasoning for why ANCOVA is preferred over a paired change-score analysis in a randomized trial (the same point Module 5 teaches).</li>
+<li><strong>Missing-data strategy is unusually well thought through.</strong> The SAP does not just assume MAR and move on — it names three specific, plausible mechanisms by which data could be missing <em>not</em> at random (less tech-familiar participants dropping out; usual-care participants disengaging from a study that gave them nothing; older/less mobile participants missing the final visit), and pre-specifies three different imputation strategies (multiple imputation, last/baseline observation carried forward, complete-case) specifically to stress-test the primary conclusion against that uncertainty. This is genuinely careful design — more thorough than most trials this size attempt.</li>
+<li><strong>Multiplicity is handled by disclosure, repeatedly, in the right places.</strong> “No adjustments were made for multiple comparisons… secondary end points should be considered only for hypothesis generation” appears in the Methods, is repeated in the Discussion, and is restated a third time in the Figure 2 forest-plot legend (“Estimates and 95% CIs are reported for hypothesis-generating purposes only”). Saying this once would satisfy a minimum bar; saying it three times, attached to the exact place a reader might otherwise over-interpret a number, is good practice that many higher-profile papers do not bother with.</li>
+<li><strong>P-value reporting conventions are pre-specified and followed.</strong> The SAP fixes rounding rules (≥.001 to three decimals; &lt;.001 reported as such) in advance, and Table 2/3 follow them consistently.</li>
+</ul>
+</section>
+<section id="weaknesses-1" class="level3" data-number="D.3.2">
+<h3 data-number="D.3.2" class="anchored" data-anchor-id="weaknesses-1"><span class="header-section-number">D.3.2</span> Weaknesses</h3>
+<ul>
+<li><strong>The SAP’s own text does not cleanly pre-specify “two ANCOVA models.”</strong> The results paper states, “Two analysis of covariance models (baseline-adjusted model and fully adjusted model) were performed as prespecified in the statistical analysis plan.” But the protocol’s <em>Statistical methods for primary and secondary outcomes</em> section describes a single model with the baseline value as covariate, and a separate, later <em>Adjustment for covariates</em> section adds age, sex, MMSE, education, and income “into the ANCOVA model” (singular) — read literally, the protocol describes one progressively-specified model, not two named, parallel models reported side by side as they ultimately are in Table 2/3. This may simply be a case of the SAP under-specifying something the authors always intended to report both ways — nothing suggests the two-model reporting was chosen after seeing which one looked better, and both are reported for every outcome, which is the transparent way to handle genuine SAP ambiguity. Still, a precise SAP would have named both models explicitly and stated which was primary. <strong>This is a real gap in SAP clarity</strong>, distinct from (and in addition to) the four already-disclosed deviations covered in Module 7.</li>
+<li><strong>No sensitivity analysis around the effect-size assumption</strong>, discussed above under Power.</li>
+<li><strong>No explicit statement of which of the two ANCOVA models (baseline-adjusted or fully adjusted) is the single primary comparison.</strong> Both are reported for every outcome; the Abstract leads with the fully adjusted number, but the Methods never states that the fully adjusted model is primary. A reviewer would ask the authors to designate one model as primary <em>before</em> unblinding, precisely to prevent the (almost certainly unintentional) appearance of leading with whichever number is more favorable.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="statistical-reporting-quality" class="level2" data-number="D.4">
+<h2 data-number="D.4" class="anchored" data-anchor-id="statistical-reporting-quality"><span class="header-section-number">D.4</span> 4. Statistical Reporting Quality</h2>
+<p>This section addresses the reporting-practice questions directly: are confidence intervals reported, is clinical significance discussed alongside statistical significance, and are effect sizes given proper context.</p>
+<section id="what-the-paper-does-well" class="level3" data-number="D.4.1">
+<h3 data-number="D.4.1" class="anchored" data-anchor-id="what-the-paper-does-well"><span class="header-section-number">D.4.1</span> What the paper does well</h3>
+<ul>
+<li><strong>95% CIs are reported for every outcome, every subgroup, and every sensitivity analysis</strong>, exactly as the SAP promises (“Ninety-five percent confidence intervals for all study outcomes… will be reported”). This promise is kept without exception across Tables 2, 3, and Figure 2. Many published trials report CIs for primary outcomes only; this one does not cut that corner.</li>
+<li><strong>Standardized effect sizes are reported alongside every raw mean difference</strong> (the “Effect size” column in Table 2/3) — a genuinely good practice that lets a reader compare the relative strength of the primary and secondary findings on a common scale, and one that is not universal even in high-profile trials.</li>
+<li><strong>HbA1c is reported in both conventional (%) and IFCC (mmol/mol) units</strong>, which is the internationally recommended dual-reporting practice and costs the authors nothing but a little more table space.</li>
+<li><strong>The hypothesis-generating caveat for secondary and subgroup findings is attached directly to the numbers</strong>, not buried in a single Methods sentence a reader could miss (see Section 3 above).</li>
+</ul>
+</section>
+<section id="where-it-falls-short" class="level3" data-number="D.4.2">
+<h3 data-number="D.4.2" class="anchored" data-anchor-id="where-it-falls-short"><span class="header-section-number">D.4.2</span> Where it falls short</h3>
+<ul>
+<li><strong>Clinical significance is asserted narratively, not established against a threshold.</strong> The Discussion describes the SRQ-20 change as “a reduction of −1.46 points” and calls it a “significant improvement,” but nowhere in either paper is a minimum clinically important difference (MCID) for the SRQ-20 defined or cited, for this population or any other. The same is true for the SF-36, SCI-R, and PSS changes — each is described as an “improvement” without a stated threshold for what magnitude of change a patient would actually notice or value. Module 7 of this book makes exactly this gap visible by introducing an <em>approximate</em> MCID (3 points on the SRQ-20, explicitly flagged as an instructive approximation, since a formal one for this population does not appear to exist in the published literature either) and showing that the observed effect, while statistically significant, falls short of it. <strong>The paper’s own methodology does not do this</strong> — a reviewer’s fair request would be for the Discussion to state plainly, in one sentence, whether a change of this size is expected to be noticeable to a patient, and on what basis.</li>
+<li><strong>The Discussion occasionally reads more definitively than the “exploratory” label the Methods assigns to the same findings.</strong> For example: “the greater impact observed among those with a previous history of anxiety… suggest[s] that the improvements may be more closely related to anxiety symptoms, as individuals with depression may be less engaged with the device.” This is a specific, mechanism-level causal narrative built on a subgroup that the paper itself, elsewhere, correctly labels post hoc, unadjusted for multiplicity, and hypothesis-generating only (“no statistical tests were performed to compare specific subgroups… reported for hypothesis-generating purposes only,” Figure 2 legend). Both framings are technically present in the paper, but the Discussion’s narrative tone is more confident than the Methods’ own stated evidentiary standard for that same data. This is a common tension in clinical trial reporting — the Discussion section is where authors are permitted to speculate — but it is worth teaching students to notice the shift in register between a paper’s methods caveats and its discussion narrative, since that shift is exactly where over-interpretation creeps into how a finding gets cited by later readers who only skim the Discussion.</li>
+<li><strong>The primary result’s borderline CI (Section 2, above) is not characterized as borderline anywhere in the paper.</strong> Reporting the exact CI is correct and sufficient by CONSORT standards; a fully rigorous Discussion would additionally note, in one sentence, how close the interval sits to the null.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="consistency-between-protocolsap-and-publication" class="level2" data-number="D.5">
+<h2 data-number="D.5" class="anchored" data-anchor-id="consistency-between-protocolsap-and-publication"><span class="header-section-number">D.5</span> 5. Consistency Between Protocol/SAP and Publication</h2>
+<p>Module 7 already documents four specific, disclosed deviations (age subgroup cutoff, education subgroup category, the post hoc anxiety subgroup, and secondary-outcome <em>p</em>-value reporting) — see that module for the full before/after text extracted from both papers. This appendix adds one further observation not covered there:</p>
+<ul>
+<li><strong>Subgroup list mismatch.</strong> The protocol pre-specifies six subgroups: age, education, sex, insulin use, history of depression, and cognitive impairment. The results paper reports seven: the same six (two with redefined cutoffs, as Module 7 documents) plus history of anxiety, added post hoc “due to its high prevalence in the sample.” This is the same addition Module 7 discusses in more analytical depth; it is listed here only to note that the <em>count</em> of subgroups changed (6 → 7), which is easy to miss if a reader compares individual subgroup definitions one at a time without first checking whether the total number matches.</li>
+<li><strong>Missing-data method naming, not substance.</strong> The protocol names its carried-forward sensitivity analysis “Last Observation Carried Forward (LOCF)”; the results paper calls the same procedure “baseline observation carried forward (BOCF).” In a two-timepoint trial (baseline and 12 weeks only), the last observation prior to a dropout <em>is</em> the baseline observation, so these are the same procedure under two names — a terminology drift worth noticing, but not a methodological deviation.</li>
+</ul>
+<p>Taken together with Module 7’s four deviations, none of these changes looks like outcome-driven manipulation — every one is disclosed in the results paper’s own text, and the pattern (subgroup cutoffs adjusted for small cell counts, one subgroup added for a high-prevalence characteristic) is consistent with ordinary, honest adaptation to the sample actually enrolled. The appropriate reviewer posture is not suspicion but verification — which is exactly what comparing the two documents side by side, as this book asks students to do, accomplishes.</p>
+<hr>
+</section>
+<section id="overall-assessment" class="level2" data-number="D.6">
+<h2 data-number="D.6" class="anchored" data-anchor-id="overall-assessment"><span class="header-section-number">D.6</span> 6. Overall Assessment</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>What the trial did right</strong></td>
+<td>Prospective registration well before enrollment; SPIRIT/CONSORT-compliant reporting; blinded statistician; CIs and standardized effect sizes reported for every outcome, subgroup, and sensitivity analysis without exception; multiplicity caveat stated repeatedly and attached to the relevant numbers; unusually thorough a priori missing-data planning, including named MNAR risk mechanisms; an objective corroborating outcome (HbA1c); an honest, self-critical Limitations section that anticipates most of a reviewer’s structural objections before they’re raised.</td>
+</tr>
+<tr class="even">
+<td><strong>What it did not do well</strong></td>
+<td>No MCID or clinical-significance threshold defined for any outcome; the SAP under-specifies the two-ANCOVA-model reporting structure used in the results; no sensitivity analysis around the borrowed effect-size assumption; the Discussion’s narrative tone outruns the “hypothesis-generating only” label on subgroup findings in places; the primary result’s borderline CI is not flagged as borderline.</td>
+</tr>
+<tr class="odd">
+<td><strong>How it could have been better</strong></td>
+<td>State one model (baseline-adjusted or fully adjusted) as the pre-specified primary comparison, not both without ranking; cite or derive an MCID for the primary outcome, or explicitly state that none exists and interpret the point estimate against that gap; add a sentence in the Discussion acknowledging how close the primary CI sits to the null; keep the Discussion’s subgroup narrative language as tentative as the Methods’ own evidentiary standard for that data.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overall verdict.</strong> This is a well-conducted, transparently reported pilot-scale trial of a genuinely novel intervention, with reporting practices (universal CI reporting, standardized effect sizes, repeated multiplicity disclaimers) that exceed the norm for a trial of this size. Its central weakness is not fraud or carelessness but the ordinary difficulty of powering a first-of-its-kind trial: the effect-size assumption came from a dissimilar prior study, the achieved effect was smaller than assumed, and the primary result — while real and directionally consistent across every sensitivity analysis the authors ran — is close enough to the null that replication, not restatement as fact, is the right next step. The authors’ own Discussion and Limitations sections say much of this already; this appraisal’s main additions are the MCID gap, the SAP’s model-specification ambiguity, and the observation about Discussion tone outrunning the Methods’ own evidentiary standard.</p>
+<hr>
+</section>
+<section id="what-this-models-for-students" class="level2" data-number="D.7">
+<h2 data-number="D.7" class="anchored" data-anchor-id="what-this-models-for-students"><span class="header-section-number">D.7</span> 7. What This Models for Students</h2>
+<p>A structured appraisal like this one is reusable. For any trial you read, the same six questions apply:</p>
+<ol type="1">
+<li><strong>Design:</strong> Is the design (randomization, blinding, control condition) adequate for the question being asked, and are its unavoidable limitations (e.g., inherent unblindability of a physical device) acknowledged rather than ignored?</li>
+<li><strong>Power:</strong> Where did the effect-size assumption come from, and is it a close analog to this intervention and population? What happens to power if the true effect is smaller?</li>
+<li><strong>Methods:</strong> Does the SAP pre-specify the analysis precisely enough that a reader could predict, before seeing results, exactly which numbers will be reported and how?</li>
+<li><strong>Reporting:</strong> Are CIs and effect sizes reported for every outcome, not just favorable ones? Are exploratory findings labeled as such at the point of reporting, not just once in the Methods?</li>
+<li><strong>Interpretation:</strong> Is statistical significance distinguished from clinical significance, against a stated or defensible threshold? Does the Discussion’s tone match the evidentiary weight the Methods assigned to the same finding?</li>
+<li><strong>Consistency:</strong> Does the published analysis match the pre-registered plan? Where it doesn’t, is the deviation disclosed, and does the pattern of deviations look like honest adaptation or like outcome-driven post-hoc reshaping?</li>
+</ol>
+<p>None of these questions requires advanced statistical training to ask — only a willingness to read the protocol and the results paper side by side, the way this appendix and Module 7 both do.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/scgrambow\.github\.io\/berd-template-field-test-01\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./simulation-refinements.html" class="pagination-link" aria-label="Simulation Refinements: Debugging and Iteration Log">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Simulation Refinements: Debugging and Iteration Log</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References and Source Documents">
+        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/critical-appraisal.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

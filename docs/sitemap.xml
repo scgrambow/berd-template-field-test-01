@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/index.html</loc>
-    <lastmod>2026-08-01T01:16:56.329Z</lastmod>
+    <lastmod>2026-08-01T01:42:40.337Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/01-data-setup.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/05-ancova.html</loc>
-    <lastmod>2026-08-01T01:16:35.114Z</lastmod>
+    <lastmod>2026-08-01T01:33:47.115Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/06-missing-data.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/07-interpretation.html</loc>
-    <lastmod>2026-08-01T01:16:06.695Z</lastmod>
+    <lastmod>2026-08-01T01:37:17.913Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/R/08-capstone.html</loc>
@@ -42,11 +42,15 @@
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/simulation-assumptions.html</loc>
-    <lastmod>2026-08-01T01:17:13.492Z</lastmod>
+    <lastmod>2026-08-01T01:34:35.351Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/simulation-refinements.html</loc>
-    <lastmod>2026-08-01T01:17:14.507Z</lastmod>
+    <lastmod>2026-08-01T01:35:11.565Z</lastmod>
+  </url>
+  <url>
+    <loc>https://scgrambow.github.io/berd-template-field-test-01/critical-appraisal.html</loc>
+    <lastmod>2026-08-01T01:36:57.464Z</lastmod>
   </url>
   <url>
     <loc>https://scgrambow.github.io/berd-template-field-test-01/references.html</loc>

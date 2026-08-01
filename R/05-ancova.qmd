@@ -321,15 +321,19 @@ table2
 ```{r}
 #| label: table2-published
 
-# Published baseline-adjusted results (Table 2, Matzenbacher et al. 2026)
-# for comparison
+# Published BASELINE-ADJUSTED results (Table 2 and Table 3, Matzenbacher et al.
+# 2026) for comparison. Table 2/3 report two ANCOVA models per outcome --
+# baseline-adjusted and fully adjusted. The model fit above (ancova_row) uses
+# only the baseline covariate, so the comparison must use the baseline-adjusted
+# column, not the fully adjusted column (that comparison would not be apples
+# to apples).
 published <- data.frame(
   Outcome    = c("SRQ-20 (primary)", "SF-36 (quality of life)",
                  "SCI-R (self-care)", "PSS (perceived stress)", "HbA1c %"),
-  MD_pub     = c(-1.28, 9.46, 3.40, -3.00, -0.48),
-  CI_pub     = c("(-2.51, -0.04)", "(3.65, 15.26)", "(1.61, 5.19)",
-                 "(-6.20, 0.20)", "(-0.85, -0.11)"),
-  p_pub      = c(0.04, 0.001, "<0.001", 0.07, 0.01)
+  MD_pub     = c(-1.28, 8.20, 3.17, -2.47, -0.47),
+  CI_pub     = c("(-2.51, -0.04)", "(2.47, 13.93)", "(1.39, 4.96)",
+                 "(-5.63, 0.68)", "(-0.84, -0.10)"),
+  p_pub      = c(0.04, 0.005, "<0.001", 0.13, 0.01)
 )
 
 published
@@ -337,14 +341,15 @@ published
 
 ::: {.callout-note}
 **Comparing your estimates to the published values:** Your estimates should have
-the same sign and approximate magnitude as the published results. Exact matches
-are not expected — the simulation approximates, but does not reconstruct, the
-real data. The key patterns to confirm:
-
-- SRQ-20: negative MD, p < 0.05 (significant)
-- SF-36 and SCI-R: positive MD, p < 0.05 (significant)
-- PSS: negative MD, p > 0.05 (not significant; CI should cross zero)
-- HbA1c: negative MD, p < 0.05 (significant)
+the same sign as the published results, and the primary outcome (SRQ-20) should
+match closely. Exact matches are not expected — the simulation approximates,
+but does not reconstruct, the real data. With `set.seed(241)`, two of the four
+secondary outcomes do **not** reproduce the published significance conclusion:
+SCI-R comes out non-significant here (published: p < .001) and PSS comes out
+significant here (published: p = .13). This is a known, documented limitation
+of the simulation, not an error in your code — see the
+[Simulation Fidelity Assessment](../simulation-refinements.md) for the full
+outcome-by-outcome comparison and why the discrepancy occurs.
 :::
 
 ---

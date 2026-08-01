@@ -149,18 +149,37 @@ We solve for σ_ε using the published SE and n = 103 completers.
 
 #### Follow-up parameters by outcome
 
-| Outcome | Published MD (τ) | Published SE | Target ctrl mean | Residual σ | Source |
-|---|---|---|---|---|---|
-| `srq20_12` | −1.28 | 0.45 (baseline-adj) | 7.66 | ~2.3 | Table 2 |
-| `sf36_12` | +9.46 | 2.95 (from CI width) | ~49.0 | ~15.0 | Table 2 |
-| `sci_r_12` | +3.40 | 0.91 (from CI width) | ~36.0 | ~4.6 | Table 2 |
-| `hba1c_12` | −0.48 | 0.19 (from CI width) | ~8.04 | ~0.97 | Table 2 |
-| `pss_12` | −3.00 | 1.63 (from CI width) | ~21.0 | ~8.3 | Table 2 |
+| Outcome | Published MD (τ) used | Model column actually used | Published SE | Target ctrl mean | Residual σ | Source |
+|---|---|---|---|---|---|---|
+| `srq20_12` | −1.28 | Baseline-adjusted | 0.45 (baseline-adj) | 7.66 | ~2.3 | Table 2 |
+| `sf36_12` | +9.46 | **Fully adjusted** | 2.95 (from CI width) | ~49.0 | ~15.0 | Table 3 |
+| `sci_r_12` | +3.40 | **Fully adjusted** | 0.91 (from CI width) | ~36.0 | ~4.6 | Table 3 |
+| `hba1c_12` | −0.48 | **Fully adjusted** | 0.19 (from CI width) | ~8.04 | ~0.97 | Table 3 |
+| `pss_12` | −3.00 | **Fully adjusted** | 1.63 (from CI width) | ~21.0 | ~8.3 | Table 3 |
 
-Note: We use the **baseline-adjusted** MD from Table 2 (not the fully adjusted).
-This is the simpler model students will replicate first. The fully adjusted model
-(which additionally controls for age, sex, education, income, and MMSE) produces
-slightly larger effect estimates in the paper (e.g., SRQ-20 MD: −1.46 vs. −1.28).
+**Correction (added on fidelity review):** The intent, stated throughout this
+document and in `R/simulate-ivam-ed.R`'s comments, was to calibrate every τ to
+the **baseline-adjusted** column of Table 2/3 — the simpler model students fit
+first in Module 5 — and let the fully adjusted model be a later comparison.
+That was done correctly for the primary outcome (SRQ-20: τ = −1.28, the
+baseline-adjusted MD). For the four secondary outcomes, the τ actually coded
+into the script is the **fully adjusted** MD, not the baseline-adjusted MD
+(baseline-adjusted values are SF-36 +8.20, SCI-R +3.17, PSS −2.47, HbA1c
+−0.47 — all somewhat smaller in magnitude than what is coded). This was not
+caught during the original build-and-verify cycle described in
+`simulation-refinements.md` because that cycle only checked the primary
+outcome against its target. See Known Approximation 8 below and the
+[Simulation Fidelity Assessment](simulation-refinements.md) for the measured
+consequence: under `set.seed(241)`, this contributes to two secondary
+outcomes (SCI-R, PSS) not reproducing the published significance pattern when
+students fit the baseline-adjusted model taught in Module 5.
+
+The synthetic data itself was **not** changed after this was found — doing so
+would silently invalidate every downstream module number, exercise answer,
+and the Answer Key, all of which were built against `set.seed(241)`'s actual
+output. Consistent with this repository's transparency principle, the
+mismatch is documented here and in the Fidelity Assessment rather than
+quietly patched.
 
 ### Missingness
 
@@ -189,6 +208,8 @@ slightly larger effect estimates in the paper (e.g., SRQ-20 MD: −1.46 vs. −1
 6. **No inter-rater reliability or measurement error modeling.** The real outcomes were interviewer-assessed. We do not add a separate measurement-error component.
 
 7. **Follow-up HbA1c bounding.** HbA1c is clipped at 4.5% as a physiological lower bound. Very high values are theoretically unbounded but rare; the simulation will occasionally produce values above 12% that are implausible for a treated older adult with diabetes.
+
+8. **Secondary-outcome τ calibrated to the wrong Table 2/3 column.** SF-36, SCI-R, PSS, and HbA1c were calibrated to the *fully adjusted* published MD rather than the *baseline-adjusted* MD the simulation strategy calls for (SRQ-20 was calibrated correctly). Combined with ordinary single-seed sampling variability, this means two of the four secondary outcomes (SCI-R, PSS) do not reproduce the published significance conclusion when students fit the baseline-adjusted model in Module 5, under the fixed `set.seed(241)`. See the [Simulation Fidelity Assessment](simulation-refinements.md) for the full outcome-by-outcome numbers.
 
 ---
 

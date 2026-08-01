@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./critical-appraisal.html" rel="next">
 <link href="./simulation-assumptions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -276,14 +276,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./critical-appraisal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pedagogical-essay.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,8 +330,13 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#interpreting-the-remaining-discrepancy" id="toc-interpreting-the-remaining-discrepancy" class="nav-link" data-scroll-target="#interpreting-the-remaining-discrepancy"><span class="header-section-number">C.5.1</span> Interpreting the remaining discrepancy</a></li>
   </ul></li>
-  <li><a href="#summary-of-changes-made" id="toc-summary-of-changes-made" class="nav-link" data-scroll-target="#summary-of-changes-made"><span class="header-section-number">C.6</span> Summary of changes made</a></li>
-  <li><a href="#what-this-process-models-for-students" id="toc-what-this-process-models-for-students" class="nav-link" data-scroll-target="#what-this-process-models-for-students"><span class="header-section-number">C.7</span> What this process models for students</a></li>
+  <li><a href="#simulation-fidelity-assessment-all-five-outcomes" id="toc-simulation-fidelity-assessment-all-five-outcomes" class="nav-link" data-scroll-target="#simulation-fidelity-assessment-all-five-outcomes"><span class="header-section-number">C.6</span> Simulation Fidelity Assessment: All Five Outcomes</a>
+  <ul class="collapse">
+  <li><a href="#why-sci-r-and-pss-are-the-two-that-miss" id="toc-why-sci-r-and-pss-are-the-two-that-miss" class="nav-link" data-scroll-target="#why-sci-r-and-pss-are-the-two-that-miss"><span class="header-section-number">C.6.1</span> Why SCI-R and PSS are the two that miss</a></li>
+  <li><a href="#what-this-means-for-using-the-book" id="toc-what-this-means-for-using-the-book" class="nav-link" data-scroll-target="#what-this-means-for-using-the-book"><span class="header-section-number">C.6.2</span> What this means for using the book</a></li>
+  </ul></li>
+  <li><a href="#summary-of-changes-made" id="toc-summary-of-changes-made" class="nav-link" data-scroll-target="#summary-of-changes-made"><span class="header-section-number">C.7</span> Summary of changes made</a></li>
+  <li><a href="#what-this-process-models-for-students" id="toc-what-this-process-models-for-students" class="nav-link" data-scroll-target="#what-this-process-models-for-students"><span class="header-section-number">C.8</span> What this process models for students</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/scgrambow/berd-template-field-test-01/edit/main/simulation-refinements.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/scgrambow/berd-template-field-test-01/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -529,8 +540,128 @@ Follow-up means and ANCOVA check (completers only):
 <hr>
 </section>
 </section>
-<section id="summary-of-changes-made" class="level2" data-number="C.6">
-<h2 data-number="C.6" class="anchored" data-anchor-id="summary-of-changes-made"><span class="header-section-number">C.6</span> Summary of changes made</h2>
+<section id="simulation-fidelity-assessment-all-five-outcomes" class="level2" data-number="C.6">
+<h2 data-number="C.6" class="anchored" data-anchor-id="simulation-fidelity-assessment-all-five-outcomes"><span class="header-section-number">C.6</span> Simulation Fidelity Assessment: All Five Outcomes</h2>
+<p>The verification above checked only the primary outcome. This section extends that check to all five outcomes — the assessment the earlier verification cycle should have run but didn’t — and reports the result plainly, including where it falls short.</p>
+<p><strong>Method.</strong> With <code>set.seed(241)</code>, <code>R/simulate-ivam-ed.R</code> was run to generate the dataset, then the same baseline-adjusted ANCOVA taught in Module 5 (<code>lm(outcome_12 ~ group + outcome_0)</code>, completers only, n = 103) was fit for each outcome. Results are compared against the <strong>baseline-adjusted</strong> column of Table 2/3 in Matzenbacher et al.&nbsp;(2026) — the correct comparison, since that is the model actually fit.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th>Simulated MD (95% CI), <em>p</em></th>
+<th>Published baseline-adj MD (95% CI), <em>p</em></th>
+<th>MD gap</th>
+<th>Significance conclusion matches?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SRQ-20 (primary)</td>
+<td>−1.19 (−2.06, −0.32), <em>p</em> = .008</td>
+<td>−1.28 (−2.51, −0.04), <em>p</em> = .04</td>
+<td>0.09</td>
+<td>✓ Yes (both significant)</td>
+</tr>
+<tr class="even">
+<td>SF-36</td>
+<td>+5.95 (0.05, 11.85), <em>p</em> = .048</td>
+<td>+8.20 (2.47, 13.93), <em>p</em> = .005</td>
+<td>−2.25</td>
+<td>✓ Yes (both significant, though the simulated result is barely so)</td>
+</tr>
+<tr class="odd">
+<td>SCI-R</td>
+<td>+1.39 (−0.48, 3.26), <em>p</em> = .14</td>
+<td>+3.17 (1.39, 4.96), <em>p</em> = .001</td>
+<td>−1.78</td>
+<td>✗ <strong>No</strong> — published is highly significant; simulated is not</td>
+</tr>
+<tr class="even">
+<td>PSS</td>
+<td>−3.28 (−6.39, −0.16), <em>p</em> = .040</td>
+<td>−2.47 (−5.63, 0.68), <em>p</em> = .13</td>
+<td>−0.81</td>
+<td>✗ <strong>No</strong> — published is not significant; simulated is</td>
+</tr>
+<tr class="odd">
+<td>HbA1c</td>
+<td>−0.54 (−0.96, −0.12), <em>p</em> = .012</td>
+<td>−0.47 (−0.84, −0.10), <em>p</em> = .01</td>
+<td>−0.07</td>
+<td>✓ Yes (both significant)</td>
+</tr>
+</tbody>
+</table>
+<p>All five outcomes point in the published direction, and three of five (SRQ-20, SF-36, HbA1c) reproduce both the approximate magnitude and the published significance conclusion — SRQ-20 and HbA1c fidelity is good (MD within 0.1 of published in both cases). <strong>SCI-R and PSS do not</strong>: SCI-R comes out roughly 44% of its published magnitude and loses significance; PSS comes out larger than published and gains significance it shouldn’t have. Because the seed is fixed, this is not occasional noise — it is exactly what every student following this book with the default seed will see.</p>
+<section id="why-sci-r-and-pss-are-the-two-that-miss" class="level3" data-number="C.6.1">
+<h3 data-number="C.6.1" class="anchored" data-anchor-id="why-sci-r-and-pss-are-the-two-that-miss"><span class="header-section-number">C.6.1</span> Why SCI-R and PSS are the two that miss</h3>
+<p>Two compounding factors, both traceable and both documented rather than silently patched:</p>
+<p><strong>1. The τ parameterization bug (see <code>simulation-assumptions.md</code>, Known Approximation 8).</strong> SF-36, SCI-R, PSS, and HbA1c were calibrated to the <em>fully adjusted</em> published MD, not the <em>baseline-adjusted</em> MD the model in Module 5 actually estimates:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th>τ coded in script</th>
+<th>Baseline-adjusted target (correct)</th>
+<th>Fully adjusted target (what was actually used)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>SF-36</td>
+<td>+9.46</td>
+<td>+8.20</td>
+<td>+9.46</td>
+</tr>
+<tr class="even">
+<td>SCI-R</td>
+<td>+3.40</td>
+<td>+3.17</td>
+<td>+3.40</td>
+</tr>
+<tr class="odd">
+<td>PSS</td>
+<td>−3.00</td>
+<td>−2.47</td>
+<td>−3.00</td>
+</tr>
+<tr class="even">
+<td>HbA1c</td>
+<td>−0.48</td>
+<td>−0.47</td>
+<td>−0.48</td>
+</tr>
+</tbody>
+</table>
+<p>For HbA1c the two published columns happen to be almost identical (−0.47 vs. −0.48), so the mislabeling is harmless there. For SF-36 the gap (8.20 vs. 9.46) is large in relative terms but the effect is strong enough in either version to stay significant. For <strong>PSS</strong>, whose baseline-adjusted effect sits close to the null (−2.47, CI crossing zero, <em>p</em> = .13), calibrating to the larger fully-adjusted τ (−3.00) is enough on its own to plausibly push a simulated draw past <em>p</em> = .05 — which is what happened.</p>
+<p><strong>2. Ordinary single-seed sampling variability.</strong> SCI-R’s simulated MD (1.39) is about 2 residual SEs below even its (mislabeled, larger) target of 3.40 — a plausible but unlucky draw, the same kind of variability discussed in <a href="#diagnosing-bug-1-the-vanishing-treatment-effect">Diagnosing Bug 1</a> above. Recalibrating τ to the correct baseline-adjusted value would narrow the gap for SCI-R but would not guarantee significance with this seed, because sampling variability is doing real work here too, not just the calibration error.</p>
+</section>
+<section id="what-this-means-for-using-the-book" class="level3" data-number="C.6.2">
+<h3 data-number="C.6.2" class="anchored" data-anchor-id="what-this-means-for-using-the-book"><span class="header-section-number">C.6.2</span> What this means for using the book</h3>
+<ul>
+<li><strong>The primary outcome — the one the whole seven-module sequence is built around — is faithful.</strong> Direction, approximate magnitude, and significance all match. This is the outcome that matters most for Modules 4, 5, and 7.</li>
+<li><strong>Instructors relying on secondary-outcome significance patterns for discussion should know SCI-R and PSS will not match the paper</strong> with the default seed. This is disclosed here and referenced from Module 5’s practice-exercise callout rather than left for an instructor to discover independently.</li>
+<li><strong>This was not fixed by re-tuning the simulation.</strong> Changing τ or the residual SD now would silently change every downstream number in Modules 5–8 and the Answer Key, all built against this exact seed’s output. Consistent with this repository’s transparency principle (see the Process Essay appendix, “A Note on Transparency as Pedagogy”), the honest choice is to document the gap rather than quietly re-engineer the dataset to hide it.</li>
+<li><strong>A future revision</strong> could recalibrate all five τ values to the correct baseline-adjusted column and re-verify the full outcome set (not just the primary outcome) before publishing — closing this gap properly rather than documenting around it.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="summary-of-changes-made" class="level2" data-number="C.7">
+<h2 data-number="C.7" class="anchored" data-anchor-id="summary-of-changes-made"><span class="header-section-number">C.7</span> Summary of changes made</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -563,8 +694,8 @@ Follow-up means and ANCOVA check (completers only):
 </table>
 <hr>
 </section>
-<section id="what-this-process-models-for-students" class="level2" data-number="C.7">
-<h2 data-number="C.7" class="anchored" data-anchor-id="what-this-process-models-for-students"><span class="header-section-number">C.7</span> What this process models for students</h2>
+<section id="what-this-process-models-for-students" class="level2" data-number="C.8">
+<h2 data-number="C.8" class="anchored" data-anchor-id="what-this-process-models-for-students"><span class="header-section-number">C.8</span> What this process models for students</h2>
 <p>The iterative debugging sequence above is a microcosm of what happens in real data analysis:</p>
 <ul>
 <li><strong>Verification before trusting.</strong> We compared every output to a known target. Without the verification summary, both bugs would have gone undetected.</li>
@@ -986,8 +1117,8 @@ Follow-up means and ANCOVA check (completers only):
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References and Source Documents">
-        <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./critical-appraisal.html" class="pagination-link" aria-label="Critical Appraisal: A Reviewer's Assessment of the IVAM-ED Trial">
+        <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

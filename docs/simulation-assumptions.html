@@ -241,14 +241,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./critical-appraisal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Critical Appraisal: A Reviewer’s Assessment of the IVAM-ED Trial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">References and Source Documents</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pedagogical-essay.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Building a Teaching Repository with AI Assistance: A Process Essay</span></span></a>
   </div>
 </li>
       </ul>
@@ -564,17 +570,19 @@ window.Quarto = {
 <h4 data-number="B.4.3.4" class="anchored" data-anchor-id="follow-up-parameters-by-outcome"><span class="header-section-number">B.4.3.4</span> Follow-up parameters by outcome</h4>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Outcome</th>
-<th>Published MD (τ)</th>
+<th>Published MD (τ) used</th>
+<th>Model column actually used</th>
 <th>Published SE</th>
 <th>Target ctrl mean</th>
 <th>Residual σ</th>
@@ -585,6 +593,7 @@ window.Quarto = {
 <tr class="odd">
 <td><code>srq20_12</code></td>
 <td>−1.28</td>
+<td>Baseline-adjusted</td>
 <td>0.45 (baseline-adj)</td>
 <td>7.66</td>
 <td>~2.3</td>
@@ -593,38 +602,43 @@ window.Quarto = {
 <tr class="even">
 <td><code>sf36_12</code></td>
 <td>+9.46</td>
+<td><strong>Fully adjusted</strong></td>
 <td>2.95 (from CI width)</td>
 <td>~49.0</td>
 <td>~15.0</td>
-<td>Table 2</td>
+<td>Table 3</td>
 </tr>
 <tr class="odd">
 <td><code>sci_r_12</code></td>
 <td>+3.40</td>
+<td><strong>Fully adjusted</strong></td>
 <td>0.91 (from CI width)</td>
 <td>~36.0</td>
 <td>~4.6</td>
-<td>Table 2</td>
+<td>Table 3</td>
 </tr>
 <tr class="even">
 <td><code>hba1c_12</code></td>
 <td>−0.48</td>
+<td><strong>Fully adjusted</strong></td>
 <td>0.19 (from CI width)</td>
 <td>~8.04</td>
 <td>~0.97</td>
-<td>Table 2</td>
+<td>Table 3</td>
 </tr>
 <tr class="odd">
 <td><code>pss_12</code></td>
 <td>−3.00</td>
+<td><strong>Fully adjusted</strong></td>
 <td>1.63 (from CI width)</td>
 <td>~21.0</td>
 <td>~8.3</td>
-<td>Table 2</td>
+<td>Table 3</td>
 </tr>
 </tbody>
 </table>
-<p>Note: We use the <strong>baseline-adjusted</strong> MD from Table 2 (not the fully adjusted). This is the simpler model students will replicate first. The fully adjusted model (which additionally controls for age, sex, education, income, and MMSE) produces slightly larger effect estimates in the paper (e.g., SRQ-20 MD: −1.46 vs.&nbsp;−1.28).</p>
+<p><strong>Correction (added on fidelity review):</strong> The intent, stated throughout this document and in <code>R/simulate-ivam-ed.R</code>’s comments, was to calibrate every τ to the <strong>baseline-adjusted</strong> column of Table 2/3 — the simpler model students fit first in Module 5 — and let the fully adjusted model be a later comparison. That was done correctly for the primary outcome (SRQ-20: τ = −1.28, the baseline-adjusted MD). For the four secondary outcomes, the τ actually coded into the script is the <strong>fully adjusted</strong> MD, not the baseline-adjusted MD (baseline-adjusted values are SF-36 +8.20, SCI-R +3.17, PSS −2.47, HbA1c −0.47 — all somewhat smaller in magnitude than what is coded). This was not caught during the original build-and-verify cycle described in <code>simulation-refinements.md</code> because that cycle only checked the primary outcome against its target. See Known Approximation 8 below and the <a href="./simulation-refinements.html">Simulation Fidelity Assessment</a> for the measured consequence: under <code>set.seed(241)</code>, this contributes to two secondary outcomes (SCI-R, PSS) not reproducing the published significance pattern when students fit the baseline-adjusted model taught in Module 5.</p>
+<p>The synthetic data itself was <strong>not</strong> changed after this was found — doing so would silently invalidate every downstream module number, exercise answer, and the Answer Key, all of which were built against <code>set.seed(241)</code>’s actual output. Consistent with this repository’s transparency principle, the mismatch is documented here and in the Fidelity Assessment rather than quietly patched.</p>
 </section>
 </section>
 <section id="missingness" class="level3" data-number="B.4.4">
@@ -683,6 +697,7 @@ window.Quarto = {
 <li><p><strong>No group-level imbalance in baseline.</strong> The real randomization produced essentially balanced groups (Table 1 shows no meaningful differences). We enforce exact equal group sizes (56/56) and simulate from pooled baseline parameters, so our groups will also be balanced on average.</p></li>
 <li><p><strong>No inter-rater reliability or measurement error modeling.</strong> The real outcomes were interviewer-assessed. We do not add a separate measurement-error component.</p></li>
 <li><p><strong>Follow-up HbA1c bounding.</strong> HbA1c is clipped at 4.5% as a physiological lower bound. Very high values are theoretically unbounded but rare; the simulation will occasionally produce values above 12% that are implausible for a treated older adult with diabetes.</p></li>
+<li><p><strong>Secondary-outcome τ calibrated to the wrong Table 2/3 column.</strong> SF-36, SCI-R, PSS, and HbA1c were calibrated to the <em>fully adjusted</em> published MD rather than the <em>baseline-adjusted</em> MD the simulation strategy calls for (SRQ-20 was calibrated correctly). Combined with ordinary single-seed sampling variability, this means two of the four secondary outcomes (SCI-R, PSS) do not reproduce the published significance conclusion when students fit the baseline-adjusted model in Module 5, under the fixed <code>set.seed(241)</code>. See the <a href="./simulation-refinements.html">Simulation Fidelity Assessment</a> for the full outcome-by-outcome numbers.</p></li>
 </ol>
 <hr>
 </section>

@@ -40,20 +40,33 @@ This repository, its analysis modules, and the rendered book were developed usin
 AI-assisted agentic workflows. This section describes what was used, how it was
 used, and what remained the responsibility of the human instructor throughout.
 
-### Tools and model
+### Tools and models
 
-**GitHub Copilot Business** (VS Code extension, agent mode with agentic workflow)
-was used for the entire development session. The underlying model was
-**Claude Sonnet 4.6** (Anthropic), accessed through GitHub Copilot. The session
-was conducted under the Duke BERD Core AI Coding Pilot, **Tier 2**: GitHub Copilot
-Business with synthetic or non-sensitive data only, on a public GitHub repository.
+This repository was built in two phases, using two different AI coding tools,
+both under the same Duke BERD Core AI Coding Pilot **Tier 2** governance
+(GitHub Copilot Business or an equivalent agentic CLI, synthetic or
+non-sensitive data only, on a public GitHub repository) and the same
+`AGENTS.md` operating contract.
+
+**Phase 1 — initial build.** **GitHub Copilot Business** (VS Code extension,
+agent mode with agentic workflow) was used for the entire initial development
+session: case selection through the published Quarto book. The underlying
+model was **Claude Sonnet 4.6** (Anthropic), accessed through GitHub Copilot.
+
+**Phase 2 — pre-public review and appendices.** A follow-up session used
+**Claude Code** (Anthropic's CLI-based agentic coding tool) running
+**Claude Sonnet 5**, working in the same repository under the same
+`AGENTS.md` contract, to review the Phase 1 output before making the
+repository public and to add material Phase 1 had not covered. What that
+session specifically did is described in its own subsection below.
 
 ### What "agentic workflow" means
 
-GitHub Copilot in agent mode allows the AI to take multi-step actions autonomously:
-reading files, writing and editing code, executing terminal commands, installing
-packages, committing to git, and pushing to GitHub. The agent did not merely
-suggest code — it executed the full development workflow, including:
+Both tools work the same way: agent mode allows the AI to take multi-step
+actions autonomously — reading files, writing and editing code, executing
+terminal commands, installing packages, committing to git, and pushing to
+GitHub — rather than merely suggesting code a human pastes in. In Phase 1,
+GitHub Copilot executed the full development workflow, including:
 
 - Analyzing source PDFs to extract simulation parameters
 - Writing, running, debugging, and verifying the synthetic data simulation
@@ -86,7 +99,7 @@ bootstrap phase), the agent documented its assumptions explicitly in
 `SESSION_LOG.md` and [simulation-assumptions.md](simulation-assumptions.md), and
 flagged them for instructor review rather than proceeding silently.
 
-### What the AI contributed
+### What GitHub Copilot contributed (Phase 1)
 
 Speed and consistency at the implementation layer. The simulation script that would
 have required a half-day to write manually was drafted in minutes, with source
@@ -95,6 +108,54 @@ with consistent structure and style. Two simulation bugs were caught by automate
 verification and fixed through iterative debugging. The full development session —
 from empty repository to published Quarto book — was completed in a single working
 day.
+
+### What Claude Code added (Phase 2)
+
+Before making the repository public, a follow-up session with Claude Code
+reviewed the Phase 1 output rather than taking its "ready for public release"
+status at face value, and added material Phase 1 had not covered:
+
+- **An independent pre-public security re-audit.** Rather than relying on the
+  Phase 1 audit log, Claude Code re-ran the checks itself — data-file and
+  secret scans across the full git history, PDF/DOCX metadata inspection,
+  GitHub Actions workflow review — and confirmed the clean verdict
+  independently. See `SECURITY.md`.
+- **Integrated three orphaned documents into the actual book.**
+  `simulation-assumptions.md`, `simulation-refinements.md`, and this
+  process essay existed in Phase 1 but were never added to `_quarto.yml` —
+  they were referenced by plain filename text with no working links, and
+  absent from the rendered site entirely. Claude Code promoted all three to
+  real book appendices with working cross-references.
+- **A full simulation fidelity assessment.** Phase 1's verification checked
+  only the primary outcome (SRQ-20) against its published target. Claude
+  Code ran the simulation and checked all five outcomes, which surfaced a
+  real calibration bug: the four secondary outcomes' effect sizes had been
+  set to the *fully adjusted* published values rather than the
+  *baseline-adjusted* values the simulation's own documentation says it
+  uses. The practical consequence — two secondary outcomes (SCI-R, PSS) not
+  reproducing the published significance pattern under the book's fixed
+  seed — is disclosed in detail in the
+  [Simulation Refinements](simulation-refinements.md) appendix rather than
+  silently patched, since correcting it now would invalidate every
+  downstream module number and the Answer Key.
+- **A new Critical Appraisal appendix.** Claude Code read both full source
+  papers end to end and wrote a structured, reviewer-style assessment of the
+  trial itself — the power calculation's effect-size justification,
+  statistical methods and SAP clarity, statistical reporting quality
+  (whether confidence intervals and clinical significance are discussed, not
+  just statistical significance), and protocol-to-publication consistency
+  beyond the deviations already covered in Module 7. See
+  [Critical Appraisal](critical-appraisal.md).
+- **Minor accuracy and formatting fixes**, including a bug in Module 5's own
+  published-comparison table (it mixed baseline-adjusted and fully adjusted
+  published values inconsistently) and a cosmetic doubled-horizontal-rule
+  artifact across seven module files.
+
+As in Phase 1, this was instructor-directed work, not autonomous AI
+publication: every change was reviewed by the instructor (Steve Grambow)
+before being committed, `git commit` and `git push` were never executed
+without explicit confirmation, and the full record of what was done and why
+is in `SESSION_LOG.md`.
 
 ### What this disclosure is for
 
@@ -572,8 +633,15 @@ distribute a different seed.
 **Simulation documentation.** See the
 [Simulation Assumptions](simulation-assumptions.md) appendix for the full
 parameter table (every number linked to a paper table), and
-[Simulation Refinements](simulation-refinements.md) for the debugging narrative
-(useful for advanced students or instructor background). The
+[Simulation Refinements](simulation-refinements.md) for the debugging
+narrative and a full outcome-by-outcome fidelity assessment of simulated vs.
+published results, including two secondary outcomes that do not reproduce
+the published significance pattern under the default seed (useful for
+advanced students or instructor background). The
+[Critical Appraisal](critical-appraisal.md) appendix is a structured,
+reviewer-style assessment of the trial itself — design, power calculation,
+statistical reporting quality, and consistency between the protocol and the
+publication — going beyond the four deviations covered in Module 7. The
 [Process Essay](pedagogical-essay.md) appendix reflects on how the repository
 itself — governance, source extraction, simulation design — was built with
 AI assistance.

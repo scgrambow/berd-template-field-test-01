@@ -323,6 +323,94 @@ and the analysis.
 
 ---
 
+## Simulation Fidelity Assessment: All Five Outcomes
+
+The verification above checked only the primary outcome. This section extends
+that check to all five outcomes — the assessment the earlier verification
+cycle should have run but didn't — and reports the result plainly, including
+where it falls short.
+
+**Method.** With `set.seed(241)`, `R/simulate-ivam-ed.R` was run to generate
+the dataset, then the same baseline-adjusted ANCOVA taught in Module 5
+(`lm(outcome_12 ~ group + outcome_0)`, completers only, n = 103) was fit for
+each outcome. Results are compared against the **baseline-adjusted** column
+of Table 2/3 in Matzenbacher et al. (2026) — the correct comparison, since
+that is the model actually fit.
+
+| Outcome | Simulated MD (95% CI), *p* | Published baseline-adj MD (95% CI), *p* | MD gap | Significance conclusion matches? |
+|---|---|---|---|---|
+| SRQ-20 (primary) | −1.19 (−2.06, −0.32), *p* = .008 | −1.28 (−2.51, −0.04), *p* = .04 | 0.09 | ✓ Yes (both significant) |
+| SF-36 | +5.95 (0.05, 11.85), *p* = .048 | +8.20 (2.47, 13.93), *p* = .005 | −2.25 | ✓ Yes (both significant, though the simulated result is barely so) |
+| SCI-R | +1.39 (−0.48, 3.26), *p* = .14 | +3.17 (1.39, 4.96), *p* = .001 | −1.78 | ✗ **No** — published is highly significant; simulated is not |
+| PSS | −3.28 (−6.39, −0.16), *p* = .040 | −2.47 (−5.63, 0.68), *p* = .13 | −0.81 | ✗ **No** — published is not significant; simulated is |
+| HbA1c | −0.54 (−0.96, −0.12), *p* = .012 | −0.47 (−0.84, −0.10), *p* = .01 | −0.07 | ✓ Yes (both significant) |
+
+All five outcomes point in the published direction, and three of five
+(SRQ-20, SF-36, HbA1c) reproduce both the approximate magnitude and the
+published significance conclusion — SRQ-20 and HbA1c fidelity is good (MD
+within 0.1 of published in both cases). **SCI-R and PSS do not**: SCI-R comes
+out roughly 44% of its published magnitude and loses significance; PSS comes
+out larger than published and gains significance it shouldn't have. Because
+the seed is fixed, this is not occasional noise — it is exactly what every
+student following this book with the default seed will see.
+
+### Why SCI-R and PSS are the two that miss
+
+Two compounding factors, both traceable and both documented rather than
+silently patched:
+
+**1. The τ parameterization bug (see `simulation-assumptions.md`, Known
+Approximation 8).** SF-36, SCI-R, PSS, and HbA1c were calibrated to the
+*fully adjusted* published MD, not the *baseline-adjusted* MD the model in
+Module 5 actually estimates:
+
+| Outcome | τ coded in script | Baseline-adjusted target (correct) | Fully adjusted target (what was actually used) |
+|---|---|---|---|
+| SF-36 | +9.46 | +8.20 | +9.46 |
+| SCI-R | +3.40 | +3.17 | +3.40 |
+| PSS | −3.00 | −2.47 | −3.00 |
+| HbA1c | −0.48 | −0.47 | −0.48 |
+
+For HbA1c the two published columns happen to be almost identical (−0.47 vs.
+−0.48), so the mislabeling is harmless there. For SF-36 the gap (8.20 vs.
+9.46) is large in relative terms but the effect is strong enough in either
+version to stay significant. For **PSS**, whose baseline-adjusted effect
+sits close to the null (−2.47, CI crossing zero, *p* = .13), calibrating to
+the larger fully-adjusted τ (−3.00) is enough on its own to plausibly push a
+simulated draw past *p* = .05 — which is what happened.
+
+**2. Ordinary single-seed sampling variability.** SCI-R's simulated MD (1.39)
+is about 2 residual SEs below even its (mislabeled, larger) target of 3.40 —
+a plausible but unlucky draw, the same kind of variability discussed in
+[Diagnosing Bug 1](#diagnosing-bug-1-the-vanishing-treatment-effect) above.
+Recalibrating τ to the correct baseline-adjusted value would narrow the gap
+for SCI-R but would not guarantee significance with this seed, because
+sampling variability is doing real work here too, not just the calibration
+error.
+
+### What this means for using the book
+
+- **The primary outcome — the one the whole seven-module sequence is built
+  around — is faithful.** Direction, approximate magnitude, and significance
+  all match. This is the outcome that matters most for Modules 4, 5, and 7.
+- **Instructors relying on secondary-outcome significance patterns for
+  discussion should know SCI-R and PSS will not match the paper** with the
+  default seed. This is disclosed here and referenced from Module 5's
+  practice-exercise callout rather than left for an instructor to discover
+  independently.
+- **This was not fixed by re-tuning the simulation.** Changing τ or the
+  residual SD now would silently change every downstream number in Modules
+  5–8 and the Answer Key, all built against this exact seed's output.
+  Consistent with this repository's transparency principle (see the Process
+  Essay appendix, "A Note on Transparency as Pedagogy"), the honest choice is
+  to document the gap rather than quietly re-engineer the dataset to hide it.
+- **A future revision** could recalibrate all five τ values to the correct
+  baseline-adjusted column and re-verify the full outcome set (not just the
+  primary outcome) before publishing — closing this gap properly rather than
+  documenting around it.
+
+---
+
 ## Summary of changes made
 
 | Issue | Root cause | Fix applied | Verification |
