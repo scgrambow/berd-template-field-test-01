@@ -106,6 +106,36 @@ materials are made is part of what the course is teaching. Students who work
 through Module 7 — comparing what a published analysis reported to what its
 protocol specified — are learning the same critical literacy that applies here.
 
+### Repository architecture and reproducibility foundation
+
+This repository did not begin from a blank folder. It was initialized from the
+**BERD AI Repository Starter** — a portable scaffold developed by the Duke
+Biostatistics, Epidemiology, and Research Design (BERD) Core for AI-assisted
+clinical research analysis repositories. The starter provides:
+
+- **`AGENTS.md`:** The operating contract that governed every action taken in this
+  session — defining what the AI could do autonomously, what required confirmation,
+  and what was prohibited.
+- **`standards/`:** A set of shared, versioned standards covering data handling
+  (`data-handling.md`), repository baseline requirements (`repo-baseline.md`),
+  security audit procedures (`security-audit.md`), session start and wrap-up
+  protocols, and — added during this project — R and Quarto teaching material
+  quality requirements (`r-quarto-teaching-materials.md`) and a tutorial authoring
+  workflow skill (`r-quarto-tutorial-authoring.md`).
+- **`SESSION_LOG.md`:** A structured session log that provides human-readable
+  institutional memory across sessions, ensuring any future instructor or agent
+  can recover full context from the repository files alone.
+
+The reproducibility of this repository rests on these standards and templates,
+not just on the code. Anyone who clones this repository gets the same governance
+framework, the same operating rules, and the same documentation conventions. The
+Tier 2 data posture declaration, the `.gitignore` data exclusions, and the
+`renv.lock` package manifest are all products of standards that existed before
+this teaching case was built.
+
+This architecture reflects a core principle of the BERD AI pilot: AI-assisted work
+is reproducible when the *process* is documented, not just the *product*.
+
 The full session history, including every decision, file change, and command
 executed, is in `SESSION_LOG.md`. The simulation construction process is documented
 in `simulation-assumptions.md` and `simulation-refinements.md`. The repository
