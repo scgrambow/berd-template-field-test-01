@@ -11,8 +11,10 @@ workflow, and the underlying pedagogical and statistical design principles.
 | File | Description |
 |---|---|
 | [2026-09-11-RISW-2026-Chatbots-to-Agentic-Workflows.pdf](2026-09-11-RISW-2026-Chatbots-to-Agentic-Workflows.pdf) | Slide deck presented at RISW 2026: *From Chatbots to Agentic Workflows: Responsible LLM Implementation in Academic Biostatistics* |
-| [qrcode-tutorial.png](qrcode-tutorial.png) | High-resolution raster QR code linking directly to the live Quarto tutorial book (for inclusion in slides/handouts) |
+| [qrcode-tutorial.png](qrcode-tutorial.png) | High-resolution raster QR code linking directly to the live Quarto tutorial book (`scgrambow.github.io/...`) |
 | [qrcode-tutorial.svg](qrcode-tutorial.svg) | Scalable vector QR code linking to the live Quarto tutorial book |
+| [qrcode-repository.png](qrcode-repository.png) | High-resolution raster QR code linking directly to the GitHub source repository (`github.com/...`) |
+| [qrcode-repository.svg](qrcode-repository.svg) | Scalable vector QR code linking to the GitHub source repository |
 
 ---
 
