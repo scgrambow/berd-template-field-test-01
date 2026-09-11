@@ -128,8 +128,6 @@ quarto render R/01-data-setup.qmd
 git status
 ```
 
-> **Note:** `renv` has not yet been initialized. Until the user runs `renv::init()` and commits `renv.lock`, use `Rscript -e 'sessionInfo()'` to verify R is available.
-
 ## Security
 
 Security findings and audit history live in `SECURITY.md`. Audits follow

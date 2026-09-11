@@ -47,7 +47,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f265b87640d31df99b0219922ff83384.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -275,7 +275,7 @@ window.Quarto = {
   <li><a href="#extracting-the-source-documents" id="toc-extracting-the-source-documents" class="nav-link" data-scroll-target="#extracting-the-source-documents"><span class="header-section-number">F.4</span> Extracting the Source Documents</a></li>
   <li><a href="#building-the-simulation-moment-matching-and-its-limits" id="toc-building-the-simulation-moment-matching-and-its-limits" class="nav-link" data-scroll-target="#building-the-simulation-moment-matching-and-its-limits"><span class="header-section-number">F.5</span> Building the Simulation: Moment Matching and Its Limits</a></li>
   <li><a href="#the-debugging-cycles-what-we-learned" id="toc-the-debugging-cycles-what-we-learned" class="nav-link" data-scroll-target="#the-debugging-cycles-what-we-learned"><span class="header-section-number">F.6</span> The Debugging Cycles: What We Learned</a></li>
-  <li><a href="#the-module-architecture-one-study-seven-angles" id="toc-the-module-architecture-one-study-seven-angles" class="nav-link" data-scroll-target="#the-module-architecture-one-study-seven-angles"><span class="header-section-number">F.7</span> The Module Architecture: One Study, Seven Angles</a></li>
+  <li><a href="#the-module-architecture-from-setup-to-capstone" id="toc-the-module-architecture-from-setup-to-capstone" class="nav-link" data-scroll-target="#the-module-architecture-from-setup-to-capstone"><span class="header-section-number">F.7</span> The Module Architecture: From Setup to Capstone</a></li>
   <li><a href="#the-quarto-book-why-not-just-modules" id="toc-the-quarto-book-why-not-just-modules" class="nav-link" data-scroll-target="#the-quarto-book-why-not-just-modules"><span class="header-section-number">F.8</span> The Quarto Book: Why Not Just Modules?</a></li>
   <li><a href="#what-ai-assisted-development-looked-like-in-practice" id="toc-what-ai-assisted-development-looked-like-in-practice" class="nav-link" data-scroll-target="#what-ai-assisted-development-looked-like-in-practice"><span class="header-section-number">F.9</span> What AI-Assisted Development Looked Like in Practice</a></li>
   <li><a href="#what-future-iterations-should-consider" id="toc-what-future-iterations-should-consider" class="nav-link" data-scroll-target="#what-future-iterations-should-consider"><span class="header-section-number">F.10</span> What Future Iterations Should Consider</a></li>
@@ -364,9 +364,9 @@ window.Quarto = {
 <p>Both debugging episodes are documented in <code>simulation-refinements.md</code>, with the mathematical diagnosis and before/after code. This documentation exists because debugging is itself a skill, and the verify-diagnose-fix-re-verify cycle that was used here is exactly the cycle students will need when they encounter errors in their own analyses. The simulation refinement document is part of the teaching case.</p>
 <hr>
 </section>
-<section id="the-module-architecture-one-study-seven-angles" class="level2" data-number="F.7">
-<h2 data-number="F.7" class="anchored" data-anchor-id="the-module-architecture-one-study-seven-angles"><span class="header-section-number">F.7</span> The Module Architecture: One Study, Seven Angles</h2>
-<p>The seven-module structure was not arrived at by formula. It reflects the natural sequence of a complete analysis of a randomized clinical trial, with each module addressing one methodological question:</p>
+<section id="the-module-architecture-from-setup-to-capstone" class="level2" data-number="F.7">
+<h2 data-number="F.7" class="anchored" data-anchor-id="the-module-architecture-from-setup-to-capstone"><span class="header-section-number">F.7</span> The Module Architecture: From Setup to Capstone</h2>
+<p>The core sequence of the course reflects the natural sequence of a complete analysis of a randomized clinical trial, with each module addressing one methodological question:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -407,6 +407,10 @@ window.Quarto = {
 <td>7 — Interpretation</td>
 <td>Is the result clinically meaningful? Did the paper follow its plan?</td>
 </tr>
+<tr class="even">
+<td>8 — Capstone</td>
+<td>Can you synthesize the findings into publication-ready prose?</td>
+</tr>
 </tbody>
 </table>
 <p>The sequencing reflects the cumulative logic of clinical trial analysis. The unadjusted t-test in Module 4 deliberately precedes the ANCOVA in Module 5 so that students see the adjustment matter. The forest plot in Module 4 shows unadjusted estimates, which are then replaced by ANCOVA estimates in Module 5. The missing-data analysis in Module 6 follows the primary ANCOVA because you need a reference estimate to assess sensitivity to. Module 7 can only be done last because it requires the statistical results from all previous modules to evaluate the protocol-to-publication comparison against real numbers.</p>
@@ -433,12 +437,10 @@ window.Quarto = {
 </section>
 <section id="what-future-iterations-should-consider" class="level2" data-number="F.10">
 <h2 data-number="F.10" class="anchored" data-anchor-id="what-future-iterations-should-consider"><span class="header-section-number">F.10</span> What Future Iterations Should Consider</h2>
-<p>No first version of a teaching case is final. Several extensions are worth considering:</p>
-<p><strong>Answer keys.</strong> The practice exercises in Modules 1–7 have no published solutions. An instructor answer key — rendered as a separate Quarto document, not publicly visible in the main book — would substantially increase the course utility of this material.</p>
-<p><strong>A capstone exercise.</strong> The seven modules teach skills in isolation. A Module 8 “capstone” could ask students to write a complete methods and results section for the primary outcome, integrating data management, descriptive statistics, ANCOVA, and interpretation in a single deliverable. This would be the most direct test of whether the course objectives have been met.</p>
-<p><strong>Power analysis.</strong> The protocol specified n = 112 with power 90%, effect size 0.68, and α = 0.05. Walking students through this calculation — and asking them what happens if the true effect size is 0.40 rather than 0.68 — would complete the connection between design, analysis, and interpretation that the case is designed to build.</p>
-<p><strong>Probabilistic simulation.</strong> The current simulation uses a fixed seed and produces the same dataset every time. A companion document showing what happens when you change the seed — how the p-values vary, how often the primary result crosses the significance threshold, how the CI widths change — would provide a simulation-based introduction to statistical inference that complements the analytical approach.</p>
+<p>No first version of a teaching case is final. Several initial candidate extensions (the <a href="./R/A1-answer-key.html">Answer Key</a> appendix, the <a href="./R/08-capstone.html">Module 8 Capstone</a> writing exercise, and the power analysis calculations in <a href="./R/07-interpretation.html">Module 7</a>) were implemented during the review pass of this case. Further extensions for future iterations include:</p>
+<p><strong>Probabilistic simulation companion.</strong> The current simulation uses a fixed seed and produces the same dataset every time. A companion document showing what happens when you change the seed — how the p-values vary, how often the primary result crosses the significance threshold, how the CI widths change — would provide a simulation-based introduction to statistical inference that complements the analytical approach.</p>
 <p><strong>Multiple seeds as a course tool.</strong> Instructors could assign different seeds to different students (or different course years), producing datasets with the same underlying parameters but different realized samples. This would allow class discussion of why different groups got different answers from the same “trial.”</p>
+<p><strong>Interactive parameter explorer.</strong> An interactive Shiny or WebR widget allowing students to adjust effect sizes (<span class="math inline">\(\tau\)</span>) or baseline correlations (<span class="math inline">\(\beta\)</span>) and observe the empirical power and regression to the mean in real time.</p>
 <hr>
 </section>
 <section id="a-note-on-transparency-as-pedagogy" class="level2" data-number="F.11">

@@ -179,9 +179,9 @@ own analyses. The simulation refinement document is part of the teaching case.
 
 ---
 
-## The Module Architecture: One Study, Seven Angles
+## The Module Architecture: From Setup to Capstone
 
-The seven-module structure was not arrived at by formula. It reflects the natural
+The core sequence of the course reflects the natural
 sequence of a complete analysis of a randomized clinical trial, with each module
 addressing one methodological question:
 
@@ -194,6 +194,7 @@ addressing one methodological question:
 | 5 — ANCOVA | Does baseline adjustment change the picture? |
 | 6 — Missing Data | Does it matter that 9 participants didn't complete the trial? |
 | 7 — Interpretation | Is the result clinically meaningful? Did the paper follow its plan? |
+| 8 — Capstone | Can you synthesize the findings into publication-ready prose? |
 
 The sequencing reflects the cumulative logic of clinical trial analysis. The
 unadjusted t-test in Module 4 deliberately precedes the ANCOVA in Module 5 so
@@ -281,29 +282,15 @@ log preserved the full audit trail.
 
 ## What Future Iterations Should Consider
 
-No first version of a teaching case is final. Several extensions are worth
-considering:
+No first version of a teaching case is final. Several initial candidate extensions
+(the [Answer Key](R/A1-answer-key.qmd) appendix, the [Module 8 Capstone](R/08-capstone.qmd)
+writing exercise, and the power analysis calculations in [Module 7](R/07-interpretation.qmd))
+were implemented during the review pass of this case. Further extensions for future
+iterations include:
 
-**Answer keys.** The practice exercises in Modules 1–7 have no published solutions.
-An instructor answer key — rendered as a separate Quarto document, not publicly
-visible in the main book — would substantially increase the course utility of this
-material.
-
-**A capstone exercise.** The seven modules teach skills in isolation. A Module 8
-"capstone" could ask students to write a complete methods and results section for
-the primary outcome, integrating data management, descriptive statistics, ANCOVA,
-and interpretation in a single deliverable. This would be the most direct test of
-whether the course objectives have been met.
-
-**Power analysis.** The protocol specified n = 112 with power 90%, effect size 0.68,
-and α = 0.05. Walking students through this calculation — and asking them what
-happens if the true effect size is 0.40 rather than 0.68 — would complete the
-connection between design, analysis, and interpretation that the case is designed
-to build.
-
-**Probabilistic simulation.** The current simulation uses a fixed seed and produces
-the same dataset every time. A companion document showing what happens when you
-change the seed — how the p-values vary, how often the primary result crosses the
+**Probabilistic simulation companion.** The current simulation uses a fixed seed and
+produces the same dataset every time. A companion document showing what happens when
+you change the seed — how the p-values vary, how often the primary result crosses the
 significance threshold, how the CI widths change — would provide a simulation-based
 introduction to statistical inference that complements the analytical approach.
 
@@ -311,6 +298,10 @@ introduction to statistical inference that complements the analytical approach.
 to different students (or different course years), producing datasets with the same
 underlying parameters but different realized samples. This would allow class
 discussion of why different groups got different answers from the same "trial."
+
+**Interactive parameter explorer.** An interactive Shiny or WebR widget allowing
+students to adjust effect sizes ($\tau$) or baseline correlations ($\beta$) and
+observe the empirical power and regression to the mean in real time.
 
 ---
 

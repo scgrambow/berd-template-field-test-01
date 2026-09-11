@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Steve Grambow, PhD — Duke University">
-<meta name="dcterms.date" content="2026-08-11">
+<meta name="dcterms.date" content="2026-09-11">
 
 <title>IVAM-ED: A CRP 241 Teaching Case</title>
 <style>
@@ -83,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f265b87640d31df99b0219922ff83384.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ebf8830c9c8a2245f0722c650bc74245.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -346,16 +346,18 @@ window.Quarto = {
   <li><a href="#regression-and-ancova" id="toc-regression-and-ancova" class="nav-link" data-scroll-target="#regression-and-ancova"><span class="header-section-number">0.0.25</span> Regression and ANCOVA</a></li>
   <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"><span class="header-section-number">0.0.26</span> Missing data</a></li>
   <li><a href="#interpretation-and-critical-appraisal" id="toc-interpretation-and-critical-appraisal" class="nav-link" data-scroll-target="#interpretation-and-critical-appraisal"><span class="header-section-number">0.0.27</span> Interpretation and critical appraisal</a></li>
+  <li><a href="#scientific-synthesis-and-reporting-capstone" id="toc-scientific-synthesis-and-reporting-capstone" class="nav-link" data-scroll-target="#scientific-synthesis-and-reporting-capstone"><span class="header-section-number">0.0.28</span> Scientific synthesis and reporting (Capstone)</a></li>
   </ul></li>
   <li><a href="#chapter-guide" id="toc-chapter-guide" class="nav-link" data-scroll-target="#chapter-guide">Chapter Guide</a>
   <ul class="collapse">
-  <li><a href="#module-1-data-setup-and-inspection" id="toc-module-1-data-setup-and-inspection" class="nav-link" data-scroll-target="#module-1-data-setup-and-inspection"><span class="header-section-number">0.0.28</span> Module 1 — Data Setup and Inspection</a></li>
-  <li><a href="#module-2-descriptive-statistics-and-baseline-characteristics" id="toc-module-2-descriptive-statistics-and-baseline-characteristics" class="nav-link" data-scroll-target="#module-2-descriptive-statistics-and-baseline-characteristics"><span class="header-section-number">0.0.29</span> Module 2 — Descriptive Statistics and Baseline Characteristics</a></li>
-  <li><a href="#module-3-data-visualization" id="toc-module-3-data-visualization" class="nav-link" data-scroll-target="#module-3-data-visualization"><span class="header-section-number">0.0.30</span> Module 3 — Data Visualization</a></li>
-  <li><a href="#module-4-estimation-and-hypothesis-testing" id="toc-module-4-estimation-and-hypothesis-testing" class="nav-link" data-scroll-target="#module-4-estimation-and-hypothesis-testing"><span class="header-section-number">0.0.31</span> Module 4 — Estimation and Hypothesis Testing</a></li>
-  <li><a href="#module-5-linear-regression-and-ancova" id="toc-module-5-linear-regression-and-ancova" class="nav-link" data-scroll-target="#module-5-linear-regression-and-ancova"><span class="header-section-number">0.0.32</span> Module 5 — Linear Regression and ANCOVA</a></li>
-  <li><a href="#module-6-missing-data" id="toc-module-6-missing-data" class="nav-link" data-scroll-target="#module-6-missing-data"><span class="header-section-number">0.0.33</span> Module 6 — Missing Data</a></li>
-  <li><a href="#module-7-interpretation-and-critical-appraisal" id="toc-module-7-interpretation-and-critical-appraisal" class="nav-link" data-scroll-target="#module-7-interpretation-and-critical-appraisal"><span class="header-section-number">0.0.34</span> Module 7 — Interpretation and Critical Appraisal</a></li>
+  <li><a href="#module-1-data-setup-and-inspection" id="toc-module-1-data-setup-and-inspection" class="nav-link" data-scroll-target="#module-1-data-setup-and-inspection"><span class="header-section-number">0.0.29</span> Module 1 — Data Setup and Inspection</a></li>
+  <li><a href="#module-2-descriptive-statistics-and-baseline-characteristics" id="toc-module-2-descriptive-statistics-and-baseline-characteristics" class="nav-link" data-scroll-target="#module-2-descriptive-statistics-and-baseline-characteristics"><span class="header-section-number">0.0.30</span> Module 2 — Descriptive Statistics and Baseline Characteristics</a></li>
+  <li><a href="#module-3-data-visualization" id="toc-module-3-data-visualization" class="nav-link" data-scroll-target="#module-3-data-visualization"><span class="header-section-number">0.0.31</span> Module 3 — Data Visualization</a></li>
+  <li><a href="#module-4-estimation-and-hypothesis-testing" id="toc-module-4-estimation-and-hypothesis-testing" class="nav-link" data-scroll-target="#module-4-estimation-and-hypothesis-testing"><span class="header-section-number">0.0.32</span> Module 4 — Estimation and Hypothesis Testing</a></li>
+  <li><a href="#module-5-linear-regression-and-ancova" id="toc-module-5-linear-regression-and-ancova" class="nav-link" data-scroll-target="#module-5-linear-regression-and-ancova"><span class="header-section-number">0.0.33</span> Module 5 — Linear Regression and ANCOVA</a></li>
+  <li><a href="#module-6-missing-data" id="toc-module-6-missing-data" class="nav-link" data-scroll-target="#module-6-missing-data"><span class="header-section-number">0.0.34</span> Module 6 — Missing Data</a></li>
+  <li><a href="#module-7-interpretation-and-critical-appraisal" id="toc-module-7-interpretation-and-critical-appraisal" class="nav-link" data-scroll-target="#module-7-interpretation-and-critical-appraisal"><span class="header-section-number">0.0.35</span> Module 7 — Interpretation and Critical Appraisal</a></li>
+  <li><a href="#module-8-capstone-write-a-methods-and-results-section" id="toc-module-8-capstone-write-a-methods-and-results-section" class="nav-link" data-scroll-target="#module-8-capstone-write-a-methods-and-results-section"><span class="header-section-number">0.0.36</span> Module 8 — Capstone: Write a Methods and Results Section</a></li>
   </ul></li>
   <li><a href="#how-to-use-this-book" id="toc-how-to-use-this-book" class="nav-link" data-scroll-target="#how-to-use-this-book">How to Use This Book</a></li>
   <li><a href="#acknowledgments-and-licensing" id="toc-acknowledgments-and-licensing" class="nav-link" data-scroll-target="#acknowledgments-and-licensing">Acknowledgments and Licensing</a></li>
@@ -386,7 +388,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 11, 2026</p>
+      <p class="date">September 11, 2026</p>
     </div>
   </div>
   
@@ -604,7 +606,7 @@ window.Quarto = {
 </section>
 <section id="learning-objectives" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>After completing all seven modules, students will be able to:</p>
+<p>After completing all eight modules, students will be able to:</p>
 <section id="data-management" class="level3" data-number="0.0.21">
 <h3 data-number="0.0.21" class="anchored" data-anchor-id="data-management"><span class="header-section-number">0.0.21</span> Data management</h3>
 <ul>
@@ -663,53 +665,66 @@ window.Quarto = {
 <li>Apply Bonferroni correction and explain what changes.</li>
 <li>Compare a published analysis to its pre-registered protocol and evaluate identified deviations.</li>
 </ul>
+</section>
+<section id="scientific-synthesis-and-reporting-capstone" class="level3" data-number="0.0.28">
+<h3 data-number="0.0.28" class="anchored" data-anchor-id="scientific-synthesis-and-reporting-capstone"><span class="header-section-number">0.0.28</span> Scientific synthesis and reporting (Capstone)</h3>
+<ul>
+<li>Synthesize trial findings across participant flow, baseline characteristics, primary outcome, and sensitivity analyses into publication-ready prose.</li>
+<li>Draft a coherent Methods and Results section conforming to CONSORT reporting principles.</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="chapter-guide" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="chapter-guide">Chapter Guide</h2>
 <p>Each chapter addresses a distinct methodological question and is designed to take approximately 45–90 minutes for a student working independently.</p>
-<section id="module-1-data-setup-and-inspection" class="level3" data-number="0.0.28">
-<h3 data-number="0.0.28" class="anchored" data-anchor-id="module-1-data-setup-and-inspection"><span class="header-section-number">0.0.28</span> Module 1 — Data Setup and Inspection</h3>
+<section id="module-1-data-setup-and-inspection" class="level3" data-number="0.0.29">
+<h3 data-number="0.0.29" class="anchored" data-anchor-id="module-1-data-setup-and-inspection"><span class="header-section-number">0.0.29</span> Module 1 — Data Setup and Inspection</h3>
 <p><em>What are the data? What do the variables mean? Who is missing?</em></p>
 <p>Introduces the synthetic dataset: variable types, instrument descriptions and score directions, group assignment, and the 9 participants with missing follow-up data. Establishes the working dataset used in all subsequent modules.</p>
 <p><strong>Key concepts:</strong> data frames, variable labels, binary vs.&nbsp;continuous variables, missing values, range checks.</p>
 </section>
-<section id="module-2-descriptive-statistics-and-baseline-characteristics" class="level3" data-number="0.0.29">
-<h3 data-number="0.0.29" class="anchored" data-anchor-id="module-2-descriptive-statistics-and-baseline-characteristics"><span class="header-section-number">0.0.29</span> Module 2 — Descriptive Statistics and Baseline Characteristics</h3>
+<section id="module-2-descriptive-statistics-and-baseline-characteristics" class="level3" data-number="0.0.30">
+<h3 data-number="0.0.30" class="anchored" data-anchor-id="module-2-descriptive-statistics-and-baseline-characteristics"><span class="header-section-number">0.0.30</span> Module 2 — Descriptive Statistics and Baseline Characteristics</h3>
 <p><em>Who was enrolled? Are the two groups similar at baseline?</em></p>
 <p>Constructs Table 1 using <code>gtsummary</code>. Introduces standardized mean differences as the appropriate measure of baseline balance and explains the CONSORT rationale for omitting p-values from Table 1 in a randomized trial.</p>
 <p><strong>Key concepts:</strong> means and SDs, frequencies and percentages, Table 1, standardized mean differences, CONSORT reporting guidelines.</p>
 </section>
-<section id="module-3-data-visualization" class="level3" data-number="0.0.30">
-<h3 data-number="0.0.30" class="anchored" data-anchor-id="module-3-data-visualization"><span class="header-section-number">0.0.30</span> Module 3 — Data Visualization</h3>
+<section id="module-3-data-visualization" class="level3" data-number="0.0.31">
+<h3 data-number="0.0.31" class="anchored" data-anchor-id="module-3-data-visualization"><span class="header-section-number">0.0.31</span> Module 3 — Data Visualization</h3>
 <p><em>What do the outcome distributions look like? Do individuals improve?</em></p>
 <p>Builds four types of visualizations: a baseline histogram with density overlay, faceted box plots with jittered individual points, individual trajectory plots with group mean lines, and a side-by-side floor/ceiling check. Introduces regression to the mean as a visual concept.</p>
 <p><strong>Key concepts:</strong> histograms, box plots, jitter plots, trajectory plots, floor and ceiling effects, regression to the mean.</p>
 </section>
-<section id="module-4-estimation-and-hypothesis-testing" class="level3" data-number="0.0.31">
-<h3 data-number="0.0.31" class="anchored" data-anchor-id="module-4-estimation-and-hypothesis-testing"><span class="header-section-number">0.0.31</span> Module 4 — Estimation and Hypothesis Testing</h3>
+<section id="module-4-estimation-and-hypothesis-testing" class="level3" data-number="0.0.32">
+<h3 data-number="0.0.32" class="anchored" data-anchor-id="module-4-estimation-and-hypothesis-testing"><span class="header-section-number">0.0.32</span> Module 4 — Estimation and Hypothesis Testing</h3>
 <p><em>How much did each group change? How different were they at follow-up?</em></p>
 <p>Computes group means at both time points and the within-group change. Derives the Welch t-interval formula before applying <code>t.test()</code>. Builds a forest plot for all five outcomes. Emphasizes the distinction between within-group change and the randomized between-group comparison.</p>
 <p><strong>Key concepts:</strong> mean difference, standard error, 95% confidence interval, Welch t-test, p-value interpretation, forest plots.</p>
 </section>
-<section id="module-5-linear-regression-and-ancova" class="level3" data-number="0.0.32">
-<h3 data-number="0.0.32" class="anchored" data-anchor-id="module-5-linear-regression-and-ancova"><span class="header-section-number">0.0.32</span> Module 5 — Linear Regression and ANCOVA</h3>
+<section id="module-5-linear-regression-and-ancova" class="level3" data-number="0.0.33">
+<h3 data-number="0.0.33" class="anchored" data-anchor-id="module-5-linear-regression-and-ancova"><span class="header-section-number">0.0.33</span> Module 5 — Linear Regression and ANCOVA</h3>
 <p><em>Does adjusting for baseline change the estimate and its precision?</em></p>
 <p>Fits the pre-specified ANCOVA using <code>lm()</code>. Demonstrates the precision gain from baseline adjustment by comparing CI widths. Introduces adjusted means via <code>predict()</code>. Extends to the fully adjusted model and replicates Table 2.</p>
 <p><strong>Key concepts:</strong> linear regression, ANCOVA, treatment coefficient, adjusted means, grand mean centering, efficiency gain from covariate adjustment.</p>
 </section>
-<section id="module-6-missing-data" class="level3" data-number="0.0.33">
-<h3 data-number="0.0.33" class="anchored" data-anchor-id="module-6-missing-data"><span class="header-section-number">0.0.33</span> Module 6 — Missing Data</h3>
+<section id="module-6-missing-data" class="level3" data-number="0.0.34">
+<h3 data-number="0.0.34" class="anchored" data-anchor-id="module-6-missing-data"><span class="header-section-number">0.0.34</span> Module 6 — Missing Data</h3>
 <p><em>Does it matter how we handle the 9 participants with missing follow-up data?</em></p>
 <p>Compares three approaches: complete-case analysis, baseline-observation-carried forward (BOCF), and multiple imputation with the <code>mice</code> package. Visualizes all three estimates on a forest plot and assesses the robustness of the primary conclusion.</p>
 <p><strong>Key concepts:</strong> MCAR / MAR / MNAR, complete-case analysis, BOCF, multiple imputation, Rubin’s rules, sensitivity analysis.</p>
 </section>
-<section id="module-7-interpretation-and-critical-appraisal" class="level3" data-number="0.0.34">
-<h3 data-number="0.0.34" class="anchored" data-anchor-id="module-7-interpretation-and-critical-appraisal"><span class="header-section-number">0.0.34</span> Module 7 — Interpretation and Critical Appraisal</h3>
+<section id="module-7-interpretation-and-critical-appraisal" class="level3" data-number="0.0.35">
+<h3 data-number="0.0.35" class="anchored" data-anchor-id="module-7-interpretation-and-critical-appraisal"><span class="header-section-number">0.0.35</span> Module 7 — Interpretation and Critical Appraisal</h3>
 <p><em>Is the result clinically meaningful? Did the paper follow its own plan?</em></p>
 <p>Introduces the minimum clinically important difference (MCID) and visualizes the CI against that threshold. Applies Bonferroni correction to the five outcomes. Conducts a structured protocol-to-publication comparison identifying four specific deviations between the Da Costa 2024 protocol and the Matzenbacher 2026 paper.</p>
 <p><strong>Key concepts:</strong> clinical significance, effect size, Cohen’s d, MCID, multiplicity correction, confirmatory vs.&nbsp;exploratory inference, protocol adherence.</p>
+</section>
+<section id="module-8-capstone-write-a-methods-and-results-section" class="level3" data-number="0.0.36">
+<h3 data-number="0.0.36" class="anchored" data-anchor-id="module-8-capstone-write-a-methods-and-results-section"><span class="header-section-number">0.0.36</span> Module 8 — Capstone: Write a Methods and Results Section</h3>
+<p><em>Can you synthesize the findings into publication-ready prose?</em></p>
+<p>Synthesizes the entire analytical sequence into a single writing exercise: drafting a complete Methods and Results section for the primary outcome of the IVAM-ED trial, following CONSORT reporting guidelines.</p>
+<p><strong>Key concepts:</strong> scientific synthesis, participant flow reporting, baseline table presentation, ANCOVA results description, CONSORT compliance.</p>
 <hr>
 </section>
 </section>

@@ -451,7 +451,7 @@ cycle that applies to any quantitative analysis.
 
 ## Learning Objectives {.unnumbered}
 
-After completing all seven modules, students will be able to:
+After completing all eight modules, students will be able to:
 
 ### Data management
 - Load an R data frame, inspect its structure, and identify variable types.
@@ -497,6 +497,12 @@ After completing all seven modules, students will be able to:
 - Apply Bonferroni correction and explain what changes.
 - Compare a published analysis to its pre-registered protocol and evaluate
   identified deviations.
+
+### Scientific synthesis and reporting (Capstone)
+- Synthesize trial findings across participant flow, baseline characteristics,
+  primary outcome, and sensitivity analyses into publication-ready prose.
+- Draft a coherent Methods and Results section conforming to CONSORT reporting
+  principles.
 
 ---
 
@@ -585,6 +591,17 @@ deviations between the Da Costa 2024 protocol and the Matzenbacher 2026 paper.
 
 **Key concepts:** clinical significance, effect size, Cohen's d, MCID, multiplicity
 correction, confirmatory vs. exploratory inference, protocol adherence.
+
+### Module 8 — Capstone: Write a Methods and Results Section
+
+*Can you synthesize the findings into publication-ready prose?*
+
+Synthesizes the entire analytical sequence into a single writing exercise:
+drafting a complete Methods and Results section for the primary outcome of the
+IVAM-ED trial, following CONSORT reporting guidelines.
+
+**Key concepts:** scientific synthesis, participant flow reporting, baseline
+table presentation, ANCOVA results description, CONSORT compliance.
 
 ---
 

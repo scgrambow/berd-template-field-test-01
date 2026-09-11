@@ -116,6 +116,7 @@ doi:[10.18637/jss.v045.i03](https://doi.org/10.18637/jss.v045.i03)
 | mice | (see renv.lock) | van Buuren S, Groothuis-Oudshoorn K. *Journal of Statistical Software*. 2011;45(3):1–67. |
 | patchwork | (see renv.lock) | Pedersen TL. patchwork: The composer of plots. 2024. |
 | labelled | (see renv.lock) | Larmarange J. labelled: Manipulating labelled data. 2024. |
+| pwr | (see renv.lock) | Champely S. pwr: Basic Functions for Power Analysis. 2020. |
 
 ---
 

@@ -18,28 +18,37 @@ The repository contains code, documentation, and configuration only. The synthet
 
 ```text
 .
-├── README.md
+├── _quarto.yml                Quarto book configuration
+├── index.qmd                  Book introduction and case overview
+├── README.md                  Project overview and quickstart
 ├── AGENTS.md                  Agent operating contract
 ├── BOOTSTRAP.md               Repository initialization record
 ├── SESSION_LOG.md             Reverse-chronological work log
 ├── SECURITY.md                Security posture and audit log
 ├── .gitignore
+├── renv.lock                  R package lockfile (isolated environment)
+├── renv/                      renv configuration and activation scripts
+├── critical-appraisal.md      Appendix: Reviewer's critical appraisal of the trial
+├── pedagogical-essay.md       Appendix: Process essay on AI-assisted development
+├── references.qmd             Appendix: Complete citations and source documents
+├── simulation-assumptions.md  Appendix: Simulation parameters and source mapping
+├── simulation-refinements.md  Appendix: Simulation debugging and fidelity assessment
 ├── standards/                 Shared BERD pilot standards (do not edit here)
 │   ├── data-handling.md
 │   ├── repo-baseline.md
 │   ├── security-audit.md
 │   ├── session-start.md
 │   └── session-wrap-up.md
-├── R/                         Analysis and simulation scripts
+├── R/                         Analysis modules, capstone, and simulation script
 ├── data/                      Local-only data staging — never committed
 │   └── README.md
 ├── output/                    Generated tables, figures, rendered documents — excluded from git
-├── docs/                      Protocols, notes, and documentation
-│   └── extracted/             Markdown extractions of source PDFs and DOCX files
+├── docs/                      Rendered Quarto book (GitHub Pages output)
 └── source/                    Original source documents (PDFs and DOCX — not committed as data)
+    └── extracted/             Markdown extractions of source PDFs and DOCX files
 ```
 
-## Analysis Modules
+## Analysis Modules and Appendices
 
 | File | Description |
 |---|---|
@@ -51,6 +60,13 @@ The repository contains code, documentation, and configuration only. The synthet
 | [R/05-ancova.qmd](R/05-ancova.qmd) | Module 5: ANCOVA, adjusted means, Table 2 replication |
 | [R/06-missing-data.qmd](R/06-missing-data.qmd) | Module 6: complete-case, BOCF, multiple imputation |
 | [R/07-interpretation.qmd](R/07-interpretation.qmd) | Module 7: clinical significance, multiplicity, protocol-to-publication comparison |
+| [R/08-capstone.qmd](R/08-capstone.qmd) | Module 8: Capstone — write a complete Methods and Results section |
+| [R/A1-answer-key.qmd](R/A1-answer-key.qmd) | Appendix: Worked solutions and answer key for selected exercises |
+| [simulation-assumptions.md](simulation-assumptions.md) | Appendix: Simulation parameter table, source mapping, and approximations |
+| [simulation-refinements.md](simulation-refinements.md) | Appendix: Simulation debugging log and full empirical fidelity assessment |
+| [critical-appraisal.md](critical-appraisal.md) | Appendix: Structured peer-reviewer critical appraisal of the IVAM-ED trial |
+| [references.qmd](references.qmd) | Appendix: Complete source publications, instruments, and package citations |
+| [pedagogical-essay.md](pedagogical-essay.md) | Appendix: Process essay on building a teaching repository with AI assistance |
 
 ## Source Documents
 
@@ -66,16 +82,28 @@ The repository contains code, documentation, and configuration only. The synthet
 
 ## Getting Started / Reproducing the Environment
 
-This project uses R with [renv](https://rstudio.github.io/renv/) for package isolation.
+This project uses R with [renv](https://rstudio.github.io/renv/) for package isolation. The package environment is fully initialized with dependencies pinned in [renv.lock](renv.lock).
 
 ```r
 # After cloning, restore the package library
 renv::restore()
 ```
 
-> **Note:** `renv` has not yet been initialized in this repository. Run `renv::init()` to create the lockfile, then commit `renv.lock` and the `renv/` folder (excluding `renv/library/` and `renv/staging/`, which are already gitignored).
+Data for exercises is generated locally by running the simulation script:
 
-Data for exercises is generated locally by running the simulation script (to be created in `R/`). The simulated dataset lives in `data/` and is never committed.
+```bash
+Rscript R/simulate-ivam-ed.R
+```
+
+The simulated dataset lives in `data/` (`ivam_synthetic.rds`, `ivam_working.rds`) and is never committed.
+
+To render the complete book locally:
+
+```bash
+quarto render
+```
+
+The rendered book is output to [docs/](docs/) for GitHub Pages deployment.
 
 ## Contributing / Conventions
 
