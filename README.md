@@ -44,6 +44,7 @@ The repository contains code, documentation, and configuration only. The synthet
 │   └── README.md
 ├── output/                    Generated tables, figures, rendered documents — excluded from git
 ├── docs/                      Rendered Quarto book (GitHub Pages output)
+├── presentation-slides/       Conference slide decks, QR codes, and presentation assets
 └── source/                    Original source documents (PDFs and DOCX — not committed as data)
     └── extracted/             Markdown extractions of source PDFs and DOCX files
 ```

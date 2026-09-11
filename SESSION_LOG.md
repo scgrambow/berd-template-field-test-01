@@ -9,37 +9,33 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
-## 2026-09-11: Pre-conference readiness, licensing, presentation folder & security audit
+## 2026-09-11: Presentation slides, QR codes, pre-conference readiness & licensing
 
-**Status:** Completed, committed, and pushed
+**Status:** Completed (working tree staged and updated)
 
-**Files changed:** `LICENSE.md` (new), `presentation-slides/README.md` (new), `README.md`, `AGENTS.md`, `index.qmd`, `pedagogical-essay.md`, `references.qmd`, `SECURITY.md`, `SESSION_LOG.md`, `docs/` (re-rendered)
+**Files changed:** `presentation-slides/2026-09-11-RISW-2026-Chatbots-to-Agentic-Workflows.pdf` (new), `presentation-slides/qrcode-tutorial.png` (new), `presentation-slides/qrcode-tutorial.svg` (new), `presentation-slides/README.md` (updated), `LICENSE.md` (new), `README.md`, `AGENTS.md`, `index.qmd`, `pedagogical-essay.md`, `references.qmd`, `SECURITY.md`, `SESSION_LOG.md`, `docs/` (re-rendered)
 
 **Summary:**
-Prepared the repository for public presentation at a national conference. Conducted a comprehensive documentation consistency review and routine security audit per `standards/security-audit.md`. Added a formal dual-license `LICENSE.md` (MIT for software/R scripts and CC-BY 4.0 for educational text/documentation). Created the `presentation-slides/` folder with an explanatory README for hosting conference slide decks and materials. Performed a full contextual scan of all references to Duke and the BERD Core to ensure accurate institutional framing. Updated `README.md`, `AGENTS.md`, `index.qmd`, `pedagogical-essay.md`, `references.qmd`, and `SECURITY.md` to ensure all module numbers, renv environment states, package citations (`pwr`), and security audit logs are completely synchronized. Re-rendered all 15 book chapters and appendices cleanly to `docs/`.
+Prepared the repository for presentation at RISW 2026 (*From Chatbots to Agentic Workflows: Responsible LLM Implementation in Academic Biostatistics*). Added the conference slide deck PDF to `presentation-slides/` and generated high-resolution QR codes in both PNG and SVG formats linking directly to the live Quarto tutorial book (`https://scgrambow.github.io/berd-template-field-test-01/`). Updated `presentation-slides/README.md` and root `README.md` with complete session details, speaker affiliation, framework summary (`FRAME → SPECIFY → EXECUTE → VERIFY → INTERPRET → APPROVE`), and asset tables. Added a formal dual-license `LICENSE.md` (MIT for software/R scripts and CC-BY 4.0 for educational text/documentation). Conducted a full institutional reference scan, security audit per `standards/security-audit.md`, and documentation synchronization across the book.
 
 **Decisions Made:**
 
+- **Conference Asset Organization:** Stored presentation deck and generated QR codes (PNG and SVG) in `presentation-slides/` with clear usage documentation.
 - **Dual Licensing:** Adopted MIT License for code and simulation scripts; CC-BY 4.0 for curriculum text, notes, and teaching materials.
-- **Presentation Materials:** Created dedicated `presentation-slides/` directory to store presentation decks.
 - **Repository Visibility:** Maintained public repository posture for conference demonstration with live GitHub Pages tutorial link.
-- **Documentation synchronization:** Aligned all module counts and tables across `README.md`, `index.qmd`, and `pedagogical-essay.md` to 8 modules and 6 appendices.
-- **`renv` notes cleaned:** Removed historical warnings stating `renv` was uninitialized; `renv.lock` is tracked and active.
-- **Security audit logged:** Recorded clean audit finding in `SECURITY.md`.
 
 **Verification:**
 
+- `presentation-slides/qrcode-tutorial.png` verified via visual inspection.
 - `git ls-files` + `git log` data scan → clean, 0 data files tracked or in history.
 - `trufflehog filesystem .` → 0 verified secrets.
 - `renv::status()` → "No issues found — the project is in a consistent state."
-- `Rscript R/simulate-ivam-ed.R` → synthetic dataset generated and verified cleanly.
-- `quarto render` → all 15 documents rendered to `docs/` without errors or broken links.
-- `git diff --check` on source files → clean (no whitespace issues).
+- `quarto render` → all 15 documents rendered to `docs/` cleanly.
+- `git diff --check` on source files → clean.
 
 **Next Steps:**
 
-- Add conference presentation slide files to `presentation-slides/`.
-- Add conference QR code linking to `https://scgrambow.github.io/berd-template-field-test-01/`.
+- Review working tree changes and commit/push to remote.
 
 ---
 
