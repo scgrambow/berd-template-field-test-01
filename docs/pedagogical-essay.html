@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Steve Grambow, Duke BERD Core">
+<meta name="author" content="Steve Grambow, Duke University">
 
 <title>Appendix F — Building a Teaching Repository with AI Assistance: A Process Essay – IVAM-ED: A CRP 241 Teaching Case</title>
 <style>
@@ -300,7 +300,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Steve Grambow, Duke BERD Core </p>
+             <p>Steve Grambow, Duke University </p>
           </div>
   </div>
     
@@ -334,7 +334,7 @@ window.Quarto = {
 </section>
 <section id="the-repository-architecture-decision" class="level2" data-number="F.3">
 <h2 data-number="F.3" class="anchored" data-anchor-id="the-repository-architecture-decision"><span class="header-section-number">F.3</span> The Repository Architecture Decision</h2>
-<p>Before writing a single line of code, we established a repository structure using the BERD AI Repository Starter — a scaffold developed for the Duke BERD Core’s GitHub Copilot pilot program. This was a deliberate choice, not an afterthought.</p>
+<p>Before writing a single line of code, we established a repository structure using the BERD AI Repository Starter — a prototype scaffold developed for the BERD agentic coding pilot initiatiave. This was a deliberate choice, not an afterthought.</p>
 <p>The starter provides an <code>AGENTS.md</code> operating contract: a document that tells any AI coding tool what it can do autonomously, what requires human confirmation, and what it must never do. In a teaching context, this matters in at least two ways.</p>
 <p>First, it enforces data hygiene at the infrastructure level. The <code>.gitignore</code> that the bootstrap generates categorically excludes all data file extensions and the <code>data/</code> directory. The simulation script produces <code>data/ivam_synthetic.rds</code>, which is immediately gitignored. Students who clone the repository have to run the simulation script to get data; they cannot accidentally commit data files even if they try.</p>
 <p>Second, it creates institutional memory. The <code>SESSION_LOG.md</code> convention — reverse chronological, prepended at the top — means that any AI agent (or human) reading the repository at any point in the future can open the session log and immediately understand what has been done, what decisions were made, and why. This is not a formality; it is the mechanism by which context persists across sessions.</p>
