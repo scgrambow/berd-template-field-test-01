@@ -43,7 +43,7 @@ used, and what remained the responsibility of the human instructor throughout.
 ### Tools and models
 
 This repository was built in two phases, using two different AI coding tools,
-both under the same Duke BERD Core AI Coding Pilot **Tier 2** governance
+both under the same BERD Core AI agentic coding Pilot **Tier 2** governance
 (GitHub Copilot Business or an equivalent agentic CLI, synthetic or
 non-sensitive data only, on a public GitHub repository) and the same
 `AGENTS.md` operating contract.

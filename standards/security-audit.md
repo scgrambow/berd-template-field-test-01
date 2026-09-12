@@ -77,7 +77,7 @@ workstation protection software to make a scan pass.
 ## Check 4: Repository Boundary
 
 - Confirm the remote matches the tier guidance in `standards/data-handling.md`
-  (Duke GitLab for Tier 1A/1B; GitHub EMU private for Tier 2): `git remote -v`.
+  (GitLab for Tier 1A/1B; GitHub EMU private for Tier 2): `git remote -v`.
 - Confirm the repository is private.
 - Review rendered output (`.html`, `.docx`, `.pdf`) for embedded data values before
   any such file is committed or shared; `output/` stays gitignored by default.

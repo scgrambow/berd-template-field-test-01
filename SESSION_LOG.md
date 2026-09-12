@@ -9,6 +9,31 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-09-12: Generalize governance wording and synchronize published site
+
+**Status:** Completed
+
+**Files changed:** `index.qmd`, `standards/security-audit.md`, `docs/` (re-rendered), `SESSION_LOG.md`
+
+**Summary:**
+Generalized remaining portable BERD governance wording in the landing page and security-audit standard. Re-rendered the Quarto site so the published HTML and search metadata reflect the updated source text.
+
+**Decisions Made:**
+
+- **Published output:** Committed the generated `docs/` refresh together with the source edits because this repository publishes the Quarto-rendered site from that directory.
+
+**Verification:**
+
+- `quarto render` completed successfully for all 15 documents.
+- `git diff --check` passed.
+- Confirmed no data or environment files were pending for staging.
+
+**Next Steps:**
+
+- Commit and push the synchronized documentation update.
+
+---
+
 ## 2026-09-11: Presentation slides, QR codes, pre-conference readiness & licensing
 
 **Status:** Completed (working tree staged and updated)
