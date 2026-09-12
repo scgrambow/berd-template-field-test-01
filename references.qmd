@@ -148,5 +148,5 @@ are available at:
 
 [github.com/scgrambow/berd-template-field-test-01](https://github.com/scgrambow/berd-template-field-test-01)
 
-This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2)
+This repository was developed under the BERD Core AI Coding Pilot (Tier 2)
 using GitHub Copilot Business with synthetic data only.

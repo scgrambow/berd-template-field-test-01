@@ -103,7 +103,7 @@ Environment isolation differs by language, and the difference matters here:
   needed.
 - **Python:** Use a project-local virtual environment with a committed manifest.
 - **SAS:** There is no project-local install. Record the SAS version and environment
-  (local desktop SAS, a Duke-provisioned SAS server, or SAS OnDemand/Viya) in the
+  (local desktop SAS, an enterprise-provisioned SAS server, or SAS OnDemand/Viya) in the
   README's Environment section, since it cannot be pinned by a lockfile. If SAS runs
   on a remote server, that is the same remote-execution pattern as the pilot's
   Tier 1B, not a local terminal command.

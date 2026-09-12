@@ -56,20 +56,20 @@ skip those.
    `.gitignore` content.
 3. **Pilot tier.** Which BERD pilot tier does this work fall under? (See
    `standards/data-handling.md` for definitions.)
-   - Tier 1A: local VS Code + Duke Azure OpenAI private endpoint, PHI-adjacent
-   - Tier 1B: Remote SSH to a Duke-provisioned VM, PHI execution on the VM
+   - Tier 1A: local VS Code + Azure OpenAI private endpoint, PHI-adjacent
+   - Tier 1B: Remote SSH to a provisioned VM, PHI execution on the VM
    - Tier 2: GitHub Copilot Business, synthetic or non-sensitive data only
    - Not sure: default to the strictest interpretation (treat as Tier 1A rules)
 4. **Data sensitivity.** Will this project touch real study data (PHI or identifiable),
    de-identified data, or only synthetic/simulated/public data?
-5. **Git remote (if any).** Duke GitLab, GitHub under the Duke EMU account, or no
-   remote yet. Per the governance framework, Duke GitLab is preferred for Tier 1A/1B
-   work; GitHub EMU private repositories are appropriate for Tier 2.
+5. **Git remote (if any).** GitLab, GitHub under the organizational account, or no
+   remote yet. Per the governance framework, GitLab is preferred for Tier 1A/1B
+   work; GitHub private repositories are appropriate for Tier 2.
 6. **Environment management.** For R, initialize `renv` now unless the user declines
    (see Step 3i; this isolates the package library from the system R installation).
    For Python, is there an existing virtual environment or manifest? For SAS, there is
    no project-local install; ask for the SAS version and environment instead (local
-   desktop SAS, a Duke-provisioned SAS server, or SAS OnDemand/Viya) so it can be
+   desktop SAS, a provisioned SAS server, or SAS OnDemand/Viya) so it can be
    recorded in the README, since it cannot be pinned by a lockfile.
 
 ## Step 3: Generate the Repository Structure
@@ -206,7 +206,7 @@ the result in the generated `README.md` under a short "Environment" section.
   (`requirements.txt` or `pyproject.toml`); do not rely on a global or conda base
   environment.
 - **SAS:** There is no project-local install for SAS. Record the SAS version and
-  environment (local desktop SAS, a Duke-provisioned SAS server, or SAS
+  environment (local desktop SAS, a provisioned SAS server, or SAS
   OnDemand/Viya) as a plain statement in the README's Environment section, since it
   cannot be pinned by a lockfile the way R and Python dependencies can. If SAS runs
   on a remote server rather than the local machine, note that this is the same

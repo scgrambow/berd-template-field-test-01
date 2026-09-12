@@ -2,7 +2,7 @@
 title: "Building a Teaching Repository with AI Assistance: A Process Essay"
 subtitle: "From Case Selection Through Published Quarto Book"
 created: 2026-07-31
-author: Steve Grambow, Duke BERD Core
+author: Steve Grambow, Duke University
 ---
 
 # Building a Teaching Repository with AI Assistance: A Process Essay {.unnumbered}
@@ -67,8 +67,7 @@ example, and the research is accessible to anyone who wants to verify it.
 ## The Repository Architecture Decision
 
 Before writing a single line of code, we established a repository structure using
-the BERD AI Repository Starter — a scaffold developed for the Duke BERD Core's
-GitHub Copilot pilot program. This was a deliberate choice, not an afterthought.
+the BERD AI Repository Starter — a prototype scaffold developed for the BERD agentic coding pilot initiatiave. This was a deliberate choice, not an afterthought.
 
 The starter provides an `AGENTS.md` operating contract: a document that tells any
 AI coding tool what it can do autonomously, what requires human confirmation, and

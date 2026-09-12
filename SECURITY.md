@@ -66,7 +66,7 @@
 #### Known Accepted Limitations
 
 - **Personal identifiers:** The GitHub username `scgrambow` and name "Steve Grambow" in standards files will be publicly visible. This is intentional and appropriate for a public teaching repository.
-- **BERD AI Pilot references:** The SESSION_LOG documents use of GitHub Copilot Business under the Duke BERD pilot program. This is disclosed governance documentation; the pilot program itself is not confidential.
+- **BERD AI Pilot references:** The SESSION_LOG documents use of GitHub Copilot Business under the BERD pilot program. This is disclosed governance documentation; the pilot program itself is not confidential.
 
 ---
 
