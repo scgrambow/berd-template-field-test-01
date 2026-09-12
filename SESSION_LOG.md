@@ -9,6 +9,137 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-09-12: Review source provenance and full commit history
+
+**Status:** Completed; working tree uncommitted
+
+**Files changed:** `source/paper-case-study-description.md`, `SESSION_LOG.md`
+
+**Summary:**
+Reviewed the published source documents, project-authored case-study description, external chat transcript, document metadata, and all 54 reachable commits. Qualified the case-study statement about public educational use to make it conditional on attribution, licensing review, and avoiding restricted third-party content.
+
+**Decisions Made:**
+
+- **External chat provenance:** Left `source/external-chat/` unchanged. It is an accurate historical planning record, not current policy or governance guidance; its provenance is documented here rather than by altering the transcript.
+- **History preservation:** Did not rewrite commit history. Historical template references to institutional systems were identified but contained no secrets or private operational details.
+
+**Verification:**
+
+- TruffleHog 3.97.4 scanned all reachable Git history: 0 verified and 0 unverified secrets.
+- No current or historical data-file paths were found.
+- No matches for Gina Maria Poman or “Poman” were found.
+- Source PDF/DOCX metadata contained publication author and publisher information only.
+
+**Next Steps:**
+
+- Proceed to final review of the accumulated working-tree diff, then scan the full history findings for any remaining presentation-sensitive language.
+
+---
+
+## 2026-09-12: Pin CI action dependencies
+
+**Status:** Completed; working tree uncommitted
+
+**Files changed:** `.github/workflows/render-book.yml`, `SESSION_LOG.md`
+
+**Summary:**
+Pinned all third-party GitHub Actions used by the Quarto publishing workflow to immutable release commits. Added version comments so the selected action releases remain identifiable during future maintenance.
+
+**Decisions Made:**
+
+- **CI reproducibility:** Pinned `actions/checkout`, `r-lib/actions/setup-r`, `r-lib/actions/setup-renv`, and `quarto-dev/quarto-actions/setup` rather than relying on mutable major-version tags.
+- **Scope:** Did not change workflow permissions or rendering behavior in this stage.
+
+**Verification:**
+
+- Ruby YAML parse passed for `.github/workflows/render-book.yml`.
+- Confirmed no mutable `@vN` action references remain.
+- Confirmed all action references use 40-character commit SHAs with release comments.
+- `git diff --check` passed.
+
+**Next Steps:**
+
+- Proceed to the next repository review surface: source documents, external chat material, and full commit history.
+
+---
+
+## 2026-09-12: Align presentation materials with prototype framing
+
+**Status:** Completed; working tree uncommitted
+
+**Files changed:** `presentation-slides/README.md`, `SESSION_LOG.md`
+
+**Summary:**
+Corrected the presentation README link to the tracked RISW draft PDF and clarified that it is a conference presentation draft. Replaced the public-facing “Repository Source Code & Governance” label with “Repository Source Code & Prototype Materials” to keep the presentation materials consistent with the repository's preliminary, non-institutional framing.
+
+**Decisions Made:**
+
+- **Draft status:** Described the tracked PDF as a conference presentation draft prepared for RISW 2026 rather than claiming it was the presented final deck.
+- **CI scope:** Deferred GitHub Actions version pinning to a separate configuration-hardening stage.
+
+**Verification:**
+
+- Confirmed the corrected PDF target exists.
+- Confirmed the obsolete PDF target and governance label are absent.
+- `git diff --check` passed.
+
+**Next Steps:**
+
+- Review and, if approved, harden CI action pinning as a separate stage.
+
+---
+
+## 2026-09-12: Add prototype and non-endorsement framing
+
+**Status:** Completed; working tree uncommitted
+
+**Files changed:** `README.md`, `AGENTS.md`, `BOOTSTRAP.md`, `SECURITY.md`, `index.qmd`, `pedagogical-essay.md`, `standards/data-handling.md`, `standards/repo-baseline.md`, `SESSION_LOG.md`, `docs/` (re-rendered)
+
+**Summary:**
+Added explicit public-facing language describing the repository as a preliminary working prototype from a BERD Core pilot effort, not an official Duke University product, policy, standard, security determination, or institutional recommendation. Narrowed agent, bootstrap, baseline, data-handling, and security language to project-level guidance and repository-scoped review evidence while preserving factual pilot history and approved author and speaker affiliations.
+
+**Decisions Made:**
+
+- **Public framing:** Use “prototype,” “working guidance,” and “project-level review” instead of institutional-policy or public-release-clearance language.
+- **History preservation:** Retain historical session-log facts while clarifying that prior security reviews were not institutional authorization.
+
+**Verification:**
+
+- `git diff --check` passed.
+- Targeted scan found no remaining “ready for public release,” “working policy,” “governance framework,” or institutional-clearance phrases in the reviewed source files.
+
+**Next Steps:**
+
+- Review the next repository surface: code, configuration, and presentation materials.
+
+---
+
+## 2026-09-12: Generalize remaining institutional language
+
+**Status:** Completed; working tree uncommitted
+
+**Files changed:** `R/simulate-ivam-ed.R`, `index.qmd`, `standards/data-handling.md`, `standards/repo-baseline.md`, `docs/` (re-rendered), `SESSION_LOG.md`
+
+**Summary:**
+Generalized remaining portable governance, infrastructure, storage, and policy language while retaining Duke University for the author and speaker affiliations approved by the user. Replaced the BERD starter descriptions with "a prototype portable scaffold" and re-rendered the Quarto site.
+
+**Decisions Made:**
+
+- **Institutional attribution:** Retained Duke University only where it identifies authorship or speaker affiliation.
+- **Repository state:** Left the changes uncommitted for user review; commit and push were not requested.
+
+**Verification:**
+
+- `quarto render` completed successfully for all 15 documents.
+- `git diff --check` passed.
+- Repository-wide search confirmed five remaining files mention Duke, all within approved attribution contexts.
+
+**Next Steps:**
+
+- Review the uncommitted diff before committing or pushing.
+
+---
+
 ## 2026-09-12: Generalize governance wording and synchronize published site
 
 **Status:** Completed

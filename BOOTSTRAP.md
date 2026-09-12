@@ -23,7 +23,7 @@ Before doing anything else, read these files in the current folder:
 2. `standards/repo-baseline.md` (specification for the files you will generate)
 3. `standards/data-handling.md` (data, PHI, and prompt hygiene rules)
 
-Two rules apply during bootstrap and forever after:
+Two rules apply during bootstrap and throughout this repository's working life:
 
 - **Never commit, stage, or suggest committing data files.** If you find data files
   in the folder, leave them where they are and make sure the `.gitignore` covers them.
@@ -54,8 +54,8 @@ skip those.
 1. **Project name and one-sentence purpose.** Used in the README and session log.
 2. **Primary language(s).** R, Python, both, or other. Determines folder layout and
    `.gitignore` content.
-3. **Pilot tier.** Which BERD pilot tier does this work fall under? (See
-   `standards/data-handling.md` for definitions.)
+3. **Pilot tier.** Which BERD pilot tier does this work fall under? (See the
+  prototype working guidance in `standards/data-handling.md` for definitions.)
    - Tier 1A: local VS Code + Azure OpenAI private endpoint, PHI-adjacent
    - Tier 1B: Remote SSH to a provisioned VM, PHI execution on the VM
    - Tier 2: GitHub Copilot Business, synthetic or non-sensitive data only
@@ -63,7 +63,7 @@ skip those.
 4. **Data sensitivity.** Will this project touch real study data (PHI or identifiable),
    de-identified data, or only synthetic/simulated/public data?
 5. **Git remote (if any).** GitLab, GitHub under the organizational account, or no
-   remote yet. Per the governance framework, GitLab is preferred for Tier 1A/1B
+  remote yet. Per the pilot's working guidance, GitLab is preferred for Tier 1A/1B
    work; GitHub private repositories are appropriate for Tier 2.
 6. **Environment management.** For R, initialize `renv` now unless the user declines
    (see Step 3i; this isolates the package library from the system R installation).

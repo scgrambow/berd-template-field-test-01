@@ -10,9 +10,10 @@ last_updated: 2026-07-31
 
 # AGENTS.md: Repository Operating Contract
 
-This file is the authoritative operating contract for any AI coding tool working in
-this repository (GitHub Copilot, Claude Code, or equivalent). Read it at the start of
-every session.
+This file is the repository operating contract for any AI coding tool working in
+this prototype (GitHub Copilot, Claude Code, or equivalent). Read it at the start
+of every session. It contains project working conventions, not institutional policy
+or authorization.
 
 ## Read First
 
@@ -37,7 +38,9 @@ This repository contains analysis code, documentation, and simulated-data genera
 
 Data rule: This repository contains code and documentation only. The synthetic dataset generated for exercises lives in `data/` (gitignored) and is never committed. No real participant data, PHI, or identifiable information is used at any tier of this project.
 
-The full tier definitions and rationale are in `standards/data-handling.md`.
+The project's working tier definitions and rationale are in
+`standards/data-handling.md`. They are preliminary repository guidance, not
+institutional policy.
 
 ## Operating Rules
 
@@ -72,7 +75,7 @@ The full tier definitions and rationale are in `standards/data-handling.md`.
 
 ## Data and Prompt Hygiene
 
-The governing behavioral rule from the pilot governance framework: **never paste or
+The repository's governing data-handling rule: **never paste or
 inject data values into a model prompt.** As an agent you enforce your side of this:
 when the user asks you to inspect data, work from structure (`str()`, `names()`,
 `dim()`, column types) rather than value listings wherever possible, and do not

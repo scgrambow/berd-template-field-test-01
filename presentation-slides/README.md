@@ -10,7 +10,7 @@ workflow, and the underlying pedagogical and statistical design principles.
 
 | File | Description |
 |---|---|
-| [2026-09-11-RISW-2026-Chatbots-to-Agentic-Workflows.pdf](2026-09-11-RISW-2026-Chatbots-to-Agentic-Workflows.pdf) | Slide deck presented at RISW 2026: *From Chatbots to Agentic Workflows: Responsible LLM Implementation in Academic Biostatistics* |
+| [2026-09-11-RISW-Chatbots-Agentic-Workflows-Draft.pdf](2026-09-11-RISW-Chatbots-Agentic-Workflows-Draft.pdf) | Conference presentation draft prepared for RISW 2026: *From Chatbots to Agentic Workflows: Responsible LLM Implementation in Academic Biostatistics* |
 | [qrcode-tutorial.png](qrcode-tutorial.png) | High-resolution raster QR code linking directly to the live Quarto tutorial book (`scgrambow.github.io/...`) |
 | [qrcode-tutorial.svg](qrcode-tutorial.svg) | Scalable vector QR code linking to the live Quarto tutorial book |
 | [qrcode-repository.png](qrcode-repository.png) | High-resolution raster QR code linking directly to the GitHub source repository (`github.com/...`) |
@@ -34,5 +34,5 @@ workflow, and the underlying pedagogical and statistical design principles.
 ## Direct Links
 
 - **Live Interactive Tutorial Book:** [https://scgrambow.github.io/berd-template-field-test-01/](https://scgrambow.github.io/berd-template-field-test-01/)
-- **Repository Source Code & Governance:** [https://github.com/scgrambow/berd-template-field-test-01](https://github.com/scgrambow/berd-template-field-test-01)
+- **Repository Source Code & Prototype Materials:** [https://github.com/scgrambow/berd-template-field-test-01](https://github.com/scgrambow/berd-template-field-test-01)
 

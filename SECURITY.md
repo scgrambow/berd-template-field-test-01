@@ -6,6 +6,11 @@
 - **Data location:** Synthetic datasets generated locally by scripts in `R/`; never committed. No real participant data is used in this repository.
 - **Repository contents:** Code, documentation, extracted source documents (open-access publications), and configuration templates only.
 
+This file records repository-level review evidence for a preliminary BERD pilot
+prototype. It is not an institutional security approval, authorization to publish,
+or determination that the repository satisfies every applicable institutional
+requirement.
+
 ---
 
 ## Audit Log
@@ -27,11 +32,15 @@
 
 #### Remediations Applied
 
-- None required. Repository meets all Tier 2 security standards.
+- None required within the reviewed repository scope. This project-level result is
+	not institutional security approval.
 
 #### Verdict
 
-**PASS / CLEAR.** No credentials, no committed data files in working tree or git history, no PHI, dependency lockfile consistent, and workflow configurations secure.
+**PROJECT-LEVEL REVIEW CLEAR WITHIN SCOPE.** No credentials, no committed data files
+in working tree or git history, no PHI, dependency lockfile consistent, and workflow
+configurations secure within the checks documented above. This is not institutional
+security clearance or authorization to publish.
 
 ---
 
@@ -57,11 +66,16 @@
 
 #### Remediations Applied
 
-- None required. Repository is clean for public release.
+- None required within the reviewed repository scope. This project-level result is
+	not institutional authorization to publish.
 
 #### Verdict
 
-**CLEAR FOR PUBLIC RELEASE.** No credentials, no data files (in working tree or history), no PHI, no internal infrastructure details. All source documents are open-access CC-BY. Personal identifiers are appropriate and expected for a public academic teaching repository.
+**PROJECT-LEVEL REVIEW CLEAR WITHIN SCOPE.** No credentials, no data files (in
+working tree or history), no PHI, and no internal infrastructure details were
+identified in the documented checks. All source documents are open-access CC-BY.
+This review was not institutional clearance or authorization to make the repository
+public.
 
 #### Known Accepted Limitations
 

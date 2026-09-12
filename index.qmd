@@ -16,6 +16,12 @@ The primary language is **R**. All analysis is performed on a **synthetic
 (simulated) dataset** that approximates the published trial's sample characteristics.
 No real participant data are used or stored anywhere in this repository.
 
+This is a preliminary working prototype developed as part of a BERD Core pilot
+effort in collaboration with project contributors. It is not an official Duke
+University product, policy, standard, security determination, or institutional
+recommendation. The repository's conventions and analyses are project guidance
+for this pilot and do not replace applicable institutional requirements.
+
 ::: {.callout-tip}
 ## Start here if you're a student
 
@@ -112,8 +118,8 @@ day.
 ### What Claude Code added (Phase 2)
 
 Before making the repository public, a follow-up session with Claude Code
-reviewed the Phase 1 output rather than taking its "ready for public release"
-status at face value, and added material Phase 1 had not covered:
+reviewed the Phase 1 output rather than treating it as publication-ready, and
+added material Phase 1 had not covered:
 
 - **An independent pre-public security re-audit.** Rather than relying on the
   Phase 1 audit log, Claude Code re-ran the checks itself — data-file and
@@ -160,7 +166,7 @@ is in `SESSION_LOG.md`.
 ### What this disclosure is for
 
 The Standards for Educational and Psychological Testing, the American Statistical
-Association, and most Duke University academic integrity policies require disclosure
+Association, and most institutional academic integrity policies require disclosure
 of substantial AI assistance in educational materials. This disclosure fulfills
 that requirement. It is also a pedagogical statement: transparency about how
 materials are made is part of what the course is teaching. Students who work
@@ -170,8 +176,7 @@ protocol specified — are learning the same critical literacy that applies here
 ### Repository architecture and reproducibility foundation
 
 This repository did not begin from a blank folder. It was initialized from the
-**BERD AI Repository Starter** — a portable scaffold developed by the Duke
-Biostatistics, Epidemiology, and Research Design (BERD) Core for AI-assisted
+**BERD AI Repository Starter** — a prototype portable scaffold for AI-assisted
 clinical research analysis repositories. The starter provides:
 
 - **`AGENTS.md`:** The operating contract that governed every action taken in this
@@ -188,13 +193,13 @@ clinical research analysis repositories. The starter provides:
   can recover full context from the repository files alone.
 
 The reproducibility of this repository rests on these standards and templates,
-not just on the code. Anyone who clones this repository gets the same governance
-framework, the same operating rules, and the same documentation conventions. The
+not just on the code. Anyone who clones this repository gets the same project
+working conventions and documentation practices. The
 Tier 2 data posture declaration, the `.gitignore` data exclusions, and the
 `renv.lock` package manifest are all products of standards that existed before
 this teaching case was built.
 
-This architecture reflects a core principle of the BERD AI pilot: AI-assisted work
+This architecture reflects a core principle of this BERD pilot effort: AI-assisted work
 is reproducible when the *process* is documented, not just the *product*.
 
 The full session history, including every decision, file change, and command
@@ -373,9 +378,8 @@ that shaped the analysis.
 ### Initial setup
 
 This repository was initialized using the **BERD AI Repository Starter** — a
-portable scaffold for AI-assisted clinical research analysis repositories developed
-by the Duke Biostatistics, Epidemiology, and Research Design (BERD) Core as part
-of a GitHub Copilot pilot program. The starter provides:
+prototype portable scaffold for AI-assisted clinical research analysis repositories
+developed as part of a GitHub Copilot pilot program. The starter provides:
 
 - `AGENTS.md`: an operating contract for AI coding tools that specifies what an
   AI agent may do autonomously versus what requires confirmation.
@@ -387,7 +391,7 @@ of a GitHub Copilot pilot program. The starter provides:
 The bootstrap interview established:
 
 - **Tier 2** — GitHub Copilot Business, synthetic or non-sensitive data only,
-  GitHub remote (per the BERD pilot governance framework).
+  GitHub remote (per the BERD pilot working guidance).
 - **Primary language:** R with Quarto and renv.
 - **Data posture:** synthetic/simulated only; no real participant data at any stage.
 
@@ -687,5 +691,5 @@ Students should cite both source publications when reporting results derived fro
 this teaching case (see suggested citation language in
 [simulation-assumptions.md](simulation-assumptions.md)).
 
-This repository was developed under the Duke BERD Core AI Coding Pilot (Tier 2)
+This repository was developed under the BERD Core AI Coding Pilot (Tier 2)
 using GitHub Copilot Business with synthetic data only.

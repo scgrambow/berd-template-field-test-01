@@ -12,8 +12,12 @@ last_updated: 2026-07-08
 
 Every repository built from this kit contains four baseline files before
 project-specific work begins. These files provide human orientation, agent operating
-rules, institutional memory, and security accountability. `BOOTSTRAP.md` generates
-them; this standard defines what they must contain.
+rules, project memory, and repository-level security documentation. `BOOTSTRAP.md`
+generates them; this prototype working standard defines what they must contain.
+
+This document is preliminary project guidance, not official institutional policy or
+authorization. Consult applicable institutional requirements for authoritative
+decisions.
 
 ## When to Apply
 
@@ -212,7 +216,7 @@ Repositories containing executable code must document local environment requirem
   `pyproject.toml`). Do not rely on global or conda base environments.
 - **Manifest-scoped audits:** Dependency audits target the repository's own manifest,
   not the global tool environment.
-- **Network caveats:** On managed Duke devices, corporate TLS inspection can affect
+- **Network caveats:** On managed institutional devices, corporate TLS inspection can affect
   package installs and audit tools. Record a blocked scan as blocked, with the exact
   error; do not disable workstation protection to make a scan pass.
 

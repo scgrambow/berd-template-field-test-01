@@ -10,21 +10,21 @@ last_updated: 2026-07-08
 
 # STANDARD: Data Handling and Prompt Hygiene
 
-This standard translates the BERD AI Coding Pilot governance framework (v2,
-2026-05-28) into operating rules for a single analysis repository. The framework is a
-draft pending DHTS review; treat these rules as working policy and update this file
-if the framework changes.
+This document provides prototype working guidance for data handling and prompt
+hygiene in a single BERD pilot repository. It is preliminary project guidance, not
+official Duke University policy or an institutional security determination. Consult
+applicable institutional requirements for authoritative decisions.
 
 ## The Tier Model
 
-The pilot organizes AI-assisted coding into tiers. Every repository declares its tier
-at bootstrap, and the tier determines the data rules.
+This prototype organizes AI-assisted coding into working tiers. The repository
+declares a tier at bootstrap, and that tier guides the project data rules.
 
 | Tier | IDE | AI layer | Data permitted | Git remote |
 | --- | --- | --- | --- | --- |
 | **Tier 0** | RStudio | None | PHI (runtime only) | GitLab or GitHub (code only) |
-| **Tier 1A** | VS Code (local) | Duke Azure OpenAI private endpoint | PHI-adjacent; no data values in prompts | Duke GitLab preferred |
-| **Tier 1B** | VS Code Remote SSH to Duke VM | Duke Azure OpenAI private endpoint | PHI (execution on the VM) | Duke GitLab (internal network) |
+| **Tier 1A** | VS Code (local) | Azure OpenAI private endpoint | PHI-adjacent; no data values in prompts | GitLab preferred |
+| **Tier 1B** | VS Code Remote SSH to a provisioned VM | Azure OpenAI private endpoint | PHI (execution on the VM) | GitLab (internal network) |
 | **Tier 2** | VS Code or Positron | GitHub Copilot Business | No PHI; synthetic or non-sensitive only | GitHub EMU private repos |
 
 If the tier is unclear, apply Tier 1A rules until it is resolved.
@@ -32,15 +32,16 @@ If the tier is unclear, apply Tier 1A rules until it is resolved.
 ## Rule 1: Data Never Enters the Repository
 
 The repository contains code logic only: scripts, rendered-document sources,
-configuration templates without secrets, and documentation. Data lives in a Duke
-approved storage location (Duke Health Network Storage, REDCap exports to approved
-storage, Duke OneDrive, Duke Box) and is read into memory at runtime.
+configuration templates without secrets, and documentation. Data lives in an
+organization-approved storage location (approved network storage, REDCap exports
+to approved storage, institutional OneDrive, institutional Box) and is read into
+memory at runtime.
 
 - The `.gitignore` categorically excludes all data formats (`.csv`, `.rds`, `.RData`,
   `.sas7bdat`, `.xlsx`, `.dta`, `.parquet`, and similar) and the `data/` directory.
 - GitHub and GitLab are not approved storage locations for Sensitive Data under
-  Duke's data classification matrix. This applies to data files; it does not prohibit
-  code repositories.
+  the applicable institutional data classification matrix. This applies to data
+  files; it does not prohibit code repositories.
 - Rendered output (`.html`, `.docx`, `.pdf` from Quarto or R Markdown) can embed data
   values in tables and figures. The `output/` directory is excluded by default;
   review any rendered file individually before it leaves the repository boundary.

@@ -8,6 +8,12 @@ Analysis code, documentation, and simulated-data generation scripts for a CRP 24
 
 This repository supports a sequence of CRP 241 course activities — from data structure and reproducibility through descriptive statistics, visualization, regression modeling, missing-data sensitivity analyses, and protocol-to-publication comparison. All analysis is performed on a synthetic dataset that approximates the sample sizes, distributions, and treatment effects reported in the published trial. No real participant data are stored here.
 
+This repository is a preliminary working prototype developed as part of a BERD
+Core pilot effort in collaboration with project contributors. It is not an
+official Duke University product, policy, standard, security determination, or
+institutional recommendation. Its conventions and analyses are project guidance
+for this pilot and do not replace applicable institutional requirements.
+
 ## Pilot Tier and Data Rules
 
 **Tier 2** — GitHub Copilot Business; synthetic or non-sensitive data only.
@@ -33,7 +39,7 @@ The repository contains code, documentation, and configuration only. The synthet
 ├── references.qmd             Appendix: Complete citations and source documents
 ├── simulation-assumptions.md  Appendix: Simulation parameters and source mapping
 ├── simulation-refinements.md  Appendix: Simulation debugging and fidelity assessment
-├── standards/                 Shared BERD pilot standards (do not edit here)
+├── standards/                 Prototype BERD pilot working standards
 │   ├── data-handling.md
 │   ├── repo-baseline.md
 │   ├── security-audit.md

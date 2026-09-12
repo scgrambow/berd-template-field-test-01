@@ -67,7 +67,7 @@ example, and the research is accessible to anyone who wants to verify it.
 ## The Repository Architecture Decision
 
 Before writing a single line of code, we established a repository structure using
-the BERD AI Repository Starter — a prototype scaffold developed for the BERD agentic coding pilot initiatiave. This was a deliberate choice, not an afterthought.
+the BERD AI Repository Starter — a prototype scaffold developed for the BERD agentic coding pilot initiative. This was a deliberate choice, not an afterthought.
 
 The starter provides an `AGENTS.md` operating contract: a document that tells any
 AI coding tool what it can do autonomously, what requires human confirmation, and

@@ -31,7 +31,7 @@
 #   set.seed(241) below. Running this script on R >= 4.6.1 with the same
 #   seed will always produce the same dataset.
 #
-# CRP 241 | Duke University | 2026
+# CRP 241 | Teaching Case | 2026
 # =============================================================================
 
 
