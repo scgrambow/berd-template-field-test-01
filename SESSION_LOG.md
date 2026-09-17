@@ -9,6 +9,32 @@ format `## YYYY-MM-DD: Title`.
 
 ---
 
+## 2026-09-17: Refresh slide metadata for the latest RISW deck
+
+**Status:** Completed; working tree uncommitted
+
+**Files changed:** `presentation-slides/README.md`, `SESSION_LOG.md`
+
+**Summary:**
+Updated the slide folder metadata to match the latest September 17 RISW presentation PDF and clarified that the README reflects the current deck revision rather than an earlier draft version.
+
+**Decisions Made:**
+
+- **Version tracking:** Replaced the stale September 11 draft reference with the current September 17 file name and current revision date.
+- **Presentation framing:** Kept the README concise and current without overstating its status beyond identifying it as the latest presentation revision.
+
+**Verification:**
+
+- Confirmed the latest PDF file exists in `presentation-slides/`.
+- Confirmed the README no longer references the older draft PDF filename.
+- `git diff --check` passed.
+
+**Next Steps:**
+
+- Keep the slide folder README aligned with any future deck revisions and archive prior versions if a separate historical record is needed.
+
+---
+
 ## 2026-09-12: Review source provenance and full commit history
 
 **Status:** Completed; working tree uncommitted
